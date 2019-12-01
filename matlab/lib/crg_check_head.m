@@ -33,7 +33,7 @@ function [data] = crg_check_head(data)
 %
 %       http://www.opencrg.org
 %
-%   $Id: crg_check_head.m 363 2015-11-09 07:26:14Z jorauh@EMEA.CORPDIR.NET $
+%   $Id: crg_check_head.m 358 2015-10-05 19:14:23Z jorauh@EMEA.CORPDIR.NET $
 
 %% remove ok flag, initialize error/warning counter
 
@@ -271,6 +271,30 @@ end
 if isfield(data.head, 'vmin') && isfield(data.head, 'vmax')
     if data.head.vmin >= data.head.vmax
         error('CRG:checkError', 'inconsistent definition of header data "reference_line_v_right/left"')
+    end
+end
+
+%% check for consistent start/end distance (we already checked for existing start and pairs)
+
+% local rectangular coordinate system <> WGS84 world geodetic system
+if isfield(data.head, 'xend') && isfield(data.head, 'eend')
+    dxy = sqrt((data.head.xend-data.head.xbeg)^2 + (data.head.yend-data.head.ybeg)^2);
+    dll = crg_wgs84_dist([data.head.nbeg data.head.ebeg], [data.head.nend data.head.eend]);
+    if abs(dxy-dll) > max(crgeps*(dxy+dll), crgtol)
+        warning('CRG:checkWarning', 'inconsistent distance definition of header data "reference_line_start/end_x/y" and "reference_line_start/end_lon/lat"')
+        ierr = 1;
+    end
+end
+
+%% check for consistent altitude definitions (we already checked for existing start)
+
+% local rectangular coordinate system <> WGS84 world geodetic system
+if isfield(data.head, 'zend') && isfield(data.head, 'aend')
+    dxy = data.head.zend - data.head.zbeg;
+    dll = data.head.aend - data.head.abeg;
+    if dxy*dll < -crgtol^2 || abs(dxy-dll) > max(crgeps*abs(dxy+dll)/2, crgtol)
+        warning('CRG:checkWarning', 'inconsistent definition of header data "reference_line_start/end_z" and "reference_line_start/end_alt"')
+        ierr = 1;
     end
 end
 
