@@ -1,0 +1,4 @@
+= OpenCRG Version 1.2
+
+
+include::1_Foreword.adoc[]
