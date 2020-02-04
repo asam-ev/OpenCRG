@@ -32,3 +32,5 @@
 :imagesoutdir: ../images/generated_images
 
 include::1_Foreword.adoc[]
+
+include::2_Relations_to_other_standards.adoc[]

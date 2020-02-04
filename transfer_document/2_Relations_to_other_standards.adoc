@@ -1,5 +1,5 @@
 == Relations to other standards (preliminary)
-:imagesdir: ../images
+:imagesdir: ../transfer_document/images
 :stem: latexmath
 
 === Positioning of ASAM OpenCRG within ASAM activities
