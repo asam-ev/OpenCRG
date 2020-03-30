@@ -1,0 +1,36 @@
+= OpenCRG Version 1.1.2
+:revnumber: 1.1.2 
+:revdate: 14.01.2020
+:toc: left 
+:toclevels: 2
+:sectnums:
+// header & footer for html
+// pdf themes
+:pdf-theme: asam.yml
+:pdf-themesdir: ../0_resources/themes/pdf
+:pdf-fontsdir: 0_resources/fonts
+:title-logo-image: image:asam_logo.png[align=left, top=10%, pdfwidth=3in]
+:title-page:
+// html themes
+:stylesheet: asam.css
+:stylesdir: ../0_resources/themes/html
+:linkcs:
+:docinfodir: 0_resources/themes/html
+:docinfo: shared,private
+//
+:stem: latexmath
+:icons: font
+// source highlighting
+:source-highlighter: rouge
+:rouge-style: base16.solarized.light
+// 
+// :nofooter:
+:last-update-label!:
+//embed images into html
+:data-uri: 
+:mathematical-format: svg
+:imagesoutdir: ../images/generated_images
+
+include::1_0_Foreword.adoc[]
+
+include::2_0_Relations_to_other_standards.adoc[]
