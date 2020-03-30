@@ -1,0 +1,9 @@
+=== Normative and non-normative statements and deliverables
+
+This specification uses a standard information structure. The following rules apply regarding normativity of sections:
+
+*	Statements expressed as requirements, permissions, or prohibitions according to the use of modal verbs, as defined in "1.4.3 Modal verbs", are normative.
+*	UML diagrams from the OpenDRIVE UML model are normative.
+*	Rules for OpenDRIVE data structures in "Rules" sections are normative.
+*	XML examples and use case descriptions are non-normative.
+

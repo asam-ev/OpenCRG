@@ -31,6 +31,6 @@
 :mathematical-format: svg
 :imagesoutdir: ../images/generated_images
 
-include::1_Foreword.adoc[]
+include::1_0_Foreword.adoc[]
 
-include::2_Relations_to_other_standards.adoc[]
+include::2_0_Relations_to_other_standards.adoc[]
