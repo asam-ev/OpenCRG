@@ -1,0 +1,77 @@
+= Workflow Tutorial
+:revnumber: 1.0 
+:revdate: 31.03.2020
+:imagesdir: images
+
+== Workflow Tutorial for the projects using Gitlab
+
+In this tutorial we will go through the workflow we want to use to create the OpenDRIVE concept Paper.
+
+IMPORTANT: Never work on the master branch, always create your own development branch
+
+== Tooling
+
+To work on the files in your branch you can either use the integrated WEB IDE or any other text editor, to pull, commit, push etc. to the repository you can use any git tool.
+We recommend to use the following tools:
+
+- Texteditor: Visual Studio Code (VSCode) https://code.visualstudio.com/ please install also the AsciiDoc Extension, this can be done in VSCode
+
+- git tools: https://git-scm.com/downloads
+
+== create your own development branch
+
+If you want to start writing on the OpenDRIVE Concept Document, please create your own development branch. This branch can than be merged into the master branch after you are done with your work. Please keep in mind to change only few files at once in one branch, this will make merging easier.
+The change to one file can be significant. 
+
+To create a new branch please follow these simple steps:
+
+image::workflow_tut_step1.png[img1, 1100, title="select the dropdown menu for new branch"]
+
+image::workflow_tut_step2.png[img2, 1100,title="create name for new branch"]
+
+ 
+now the repository is switched to your new branch and you can get started working on this branch.
+If you want to switch back to any ofther branch see image below:
+
+image::workflow_tut_switch_branch.png[img3, 1100,title="select branch"]
+
+ 
+After you are done with your work it is time to merge your branch to the master branch, for this you have to create a "merge request"
+
+image::workflow_tut_step3.png[img4, 1100,title="merge request"]
+
+image::workflow_tut_step4.png[img5, 1100,title="merge request options"]
+
+
+== use issue tracker to create development branch
+
+The preferred way of working on the concepts is by using issues. When ever a issue is opened a branch is created with it. So it is possible to work on the issue in an individual branch an merge that branch onto the master after the issue is done.
+
+The first step is to create an issue:
+
+image::workflow_tut_issue1.png[img6, 1100, "create issue"]
+
+ 
+fill out the neccessary fields. keep in mind to have a reasonable size of the issue, for example an issue is worth 8h of work.
+
+image::workflow_tut_issue2.png[img7, 1100, "define issue"]
+
+ 
+now the ticket is created and we can start working on the issue. when wie work on the issue we also want to document our progress, so we know when we are done with the task.
+Please keep the documentation for the progress short and simple.
+
+image::workflow_tut_issue3.png[img8, 1100, "work on issue"]
+
+ 
+if there are openpoints that need to be discussed with te group you can also staert a new thread in the issue so others can reply to your suggestion or question
+
+image::workflow_tut_issue4.png[img8, 1100, "start thread"]
+
+ 
+a thread in an issue looks like the image below.
+
+image::workflow_tut_issue5.png[img8, 1100, "thread"]
+
+ 
+as soon as you are done with your issue, please close the issue.
+When all issues for your development branch are closed we can start a simple review of the work and merge the branch back onto the master branch.
