@@ -1,0 +1,25 @@
+=== Sample files
+
+// TODO Add some descriptive text
+----
++---*crg-bin*...............................sample files with binary road data
+|   +---belgian_block.crg...................binary data set for complex tests
++---*crg-txt*...............................sample files with human-readable road data
+|   +---fileref.crg.........................referencing another CRG file
+|   +---fileref_mods.crg....................referencing another CRG file and modifiers
+|   +---fileref_opts.crg....................referencing another CRG file and options
+|   +---handmade_arc.crg....................180° arc
+|   +---handmade_banked.crg.................straight road with banking
+|   +---handmade_circle.crg.................circular road
+|   +---handmade_curved.crg.................curved road
+|   +---handmade_curved_banked_sloped.crg...curved road with banking and slope
+|   +---handmade_curved_minimalist.crg......minimal CRG file
+|   +---handmade_platform.crg...............????
+|   +---handmade_sloped.crg.................straight road with slope
+|   +---handmade_sloped_opts.crg............straight road with slope and options
+|   +---handmade_straight.crg...............straight road (LRFI format)
+|   +---handmade_straight_double.crg........straight road (LDRI format)
+|   +---handmade_straight_minimalist.crg....minimal OpenCRG file
+|   +---handmade_vtest.crg..................????
+|   +---testOptionBorderMode.crg............testing different border mode options
+----

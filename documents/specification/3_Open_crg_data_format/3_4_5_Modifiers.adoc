@@ -1,0 +1,151 @@
+==== Modifiers
+
+The optional _modifiers_ section defines values for modifiers. Modifiers modify OpenCRG data stored in memory.
+
+Applications define default values for modifiers themselves. If an OpenCRG file contains a modifiers section, an application shall ignore its own default modifier values and shall apply only the modifiers specified in the OpenCRG file. If an OpenCRG file contains contains an empty modifiers sections, no modifiers are applied to the data. An application may however apply different modifiers explicitely.
+
+An OpenCRG file may specify modifiers without having a section containing actual road data. Such a file may be used as a control file by referencing it in another OpenCRG file containing the actual data.
+
+An OpenCRG data set can be re-located by mapping a reference point in u/v-coordinates to a new target position in x/y-coordinates. The reference point can be explicitely defined in u/v-coordinates. Alternativley, the reference point can be defined relatively as fractions of the data set extent in u-direction or v-direction. Additionally, the reference point can be modified by adding an offset. The methods for defining a reference point can be combined as long as it does not result in contradicting definitions. The target position of the data set is defined in inertial coordinates and with an absolute heading angle.
+
+An OpenCRG data set can be re-located by rotating and shifting the data set in x/y-coordinates. First, the data set is rotated by a rotation angle around a rotation center. Then the data set is translated in x-direction, y-direction and z-direction.
+
+OpenCRG data can be scaled in multiple ways. Scaling factors can be applied to length, width, z-values, slope and banking. For elevation data applying a factor of 0 will lead to ignoring that modifier. For length and width only factors greater than 0 are valid.
+// TODO Do the slope/banking factors only scale explicitely stated slope/banking or calculated slope/banking as well?
+
+The curvature of the reference line can be scaled by a factor, resulting in a different end point. Scaling the curvature by a factor of 0 results in a straight line.
+
+When preparing a data set for evaluation, the borders of the road in v-direction are checked for NaN values. These NaN values can be kept or replaced by defined values.
+
+//TODO what constitutes a border?
+
+===== Keyword
+
+----
+$ROAD_CRG_MODS
+----
+
+===== Contents
+
+The modifiers section contains modifiers provided as key-value pairs.
+
+|===
+|Modifier |Values |Description
+
+|`REFPOINT_U`
+|Double-precision floating-point number
+a| u-coordinate of reference point for re-locating by reference point.
+
+|`REFPOINT_V`
+|Double-precision floating-point number
+a| v-coordinate of reference point for re-locating by reference point.
+
+|`REFPOINT_U_FRACTION`
+|Double-precision floating-point number: [0.0, 1.0] (default: 0.0)
+a| Relative u-coordinate of reference point for re-locating by reference point.
+
+|`REFPOINT_U_OFFSET`
+|Double-precision floating-point number (default: 0.0)
+a| Offset for u-coordinate of reference point for re-locating by reference point. 
+
+|`REFPOINT_V_FRACTION`
+|Double-precision floating-point number: [0.0, 1.0] (default: 0.0)
+a| Relative v-coordinate of reference point for re-locating by reference point.
+
+|`REFPOINT_V_OFFSET`
+|Double-precision floating-point number (default: 0.0)
+a| Offset for v-coordinate of reference point for re-locating by reference point. 
+
+|`REFPOINT_X`
+|Double-precision floating-point number (default: 0.0)
+a| x-coordinate of target position for re-locating by reference point.
+
+|`REFPOINT_Y`
+|Double-precision floating-point number (default: 0.0)
+a| y-coordinate of target position for re-locating by reference point.
+
+|`REFPOINT_Z`
+|Double-precision floating-point number (default: 0.0)
+a| z-coordinate of target position for re-locating by reference point.
+
+|`REFPOINT_PHI`
+|Double-precision floating-point number (default: 0.0)
+a| Absolute heading angle of target position for re-locating by reference point.
+
+|`REFLINE_ROTCENTER_X`
+|Double-precision floating-point number (default: x-coordinate of starting position)
+a| x-coordinate of rotation center for re-locating by rotation and translation.
+
+|`REFLINE_ROTCENTER_Y`
+|Double-precision floating-point number (default: y-coordinate of starting position)
+a| y-coordinate of rotation center for re-locating by rotation and translation.
+
+|`REFLINE_OFFSET_PHI`
+|Double-precision floating-point number (default: 0.0)
+a| Rotation angle for re-locating by rotation and translation.
+
+|`REFLINE_OFFSET_X`
+|Double-precision floating-point number (default: 0.0)
+a| Offset in x-direction for re-locating by rotation and translation.
+
+|`REFLINE_OFFSET_Y`
+|Double-precision floating-point number (default: 0.0)
+a| Offset in y-direction for transforming by rotation and translation.
+
+|`REFLINE_OFFSET_Z`
+|Double-precision floating-point number (default: 0.0)
+a| Offset in z-direction for re-locating by rotation and translation.
+
+|`SCALE_Z_GRID`
+|Double-precision floating-point number (default: 0.0)
+a| Factor for scaling the data in z-direction.
+
+|`SCALE_SLOPE`
+|Double-precision floating-point number (default: 0.0)
+a| Factor for scaling slope in elevation data.
+
+|`SCALE_BANKING`
+|Double-precision floating-point number (default: 0.0)
+a| Factor for scaling banking in elevation data.
+
+|`SCALE_LENGTH`
+|Double-precision floating-point number: ]0.0,∞] (default: 0.0)
+a| Factor for scaling the data in u-direction.
+
+|`SCALE_WIDTH`
+|Double-precision floating-point number: ]0.0,∞] (default: 0.0)
+a| Factor for scaling the data in v-direction.
+
+|`SCALE_CURVATURE`
+|Double-precision floating-point number: : [0.0,∞] (default: 0.0)
+a| Factor for scaling the curvature.
+
+// TODO Research: Does this only affect NaN at border or all NaNs in road data?
+
+|`GRID_NAN_MODE`
+|0,1,2
+a| Mode for replacing NaN values in road data.
+
+0:: Keep NaN values.
+1:: Replace NaN values with 0.
+2:: Replace NaN values with last valid value.
+
+|`GRID_NAN_OFFSET`
+|Double-precision floating-point number (default: 0.0)
+a| Offset applied on replaced NaN values.
+
+
+|===
+
+===== Rules
+
+// TODO coordinate rules with working group
+
+* An OpenCRG file may contain a modifiers section.
+* Modifiers in a modifiers section shall be provided as key-value pairs using the syntax `MODIFIER = value`.
+* A modifiers section may be empty.
+* If the data in an OpenCRG file is intended to be used with specific modifiers applied, these modifiers should be defined in the OpenCRG file.
+* If an OpenCRG file contains a modifiers section, an application shall ignore its own default modifier values and shall apply only the modifiers specified in the OpenCRG file.
+
+===== Examples
+// TODO design and add examples once more information on modifiers is provided

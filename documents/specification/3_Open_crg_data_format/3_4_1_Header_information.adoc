@@ -1,0 +1,56 @@
+==== Header information
+
+The _header information_ gives information about the data file as human-readable text. A header information section may contain among other things:
+
+* Title of the file
+* Short description of the contents and purpose of the file
+* Information about creators or issuing organization
+* Copyright information
+
+===== Keyword
+
+----
+$CT
+----
+
+===== Contents
+
+The header information section contains unstructured plain-text.
+
+===== Rules
+
+* An OpenCRG data file shall contain a header information section.
+* The header information section shall be the first section in an OpenCRG data file.
+* The header information should give information about the content of the file.
+
+===== Examples
+
+----
+$CT
+CRG file example for road surface description (width: 3m, length: 22m)
+with curved reference line and grid of (0.25m...1.0m) x 1.0m.
+
+A minimalist file can have an empty $CT, a minimalist $ROAD_CRG block,
+and no comments marked by asterisk "*" in column 1 or marked by "!" in
+other columns. So this file is completely equivalent to its commented
+version in handmade_curved.crg .
+
+Copyright 2005-2009 OpenCRG - Daimler AG - Jochen Rauh
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+More Information on OpenCRG open file formats and tools can be found at
+
+    http://www.opencrg.org
+$!*********************************************************************
+----

@@ -1,0 +1,48 @@
+=== OpenCRG data files
+
+An OpenCRG file consists of several data sections which correspond to different aspects of the road surface data described in that file. OpenCRG files are written in plain-text using ISO 8859-1 encoding.The actual road data may be provided in a binary format. Each line in a data section is considered a record. Except for the road data section, a record shall have a maximum length of 72 byte for a maximum of 72 characters per record. In the road data section, a record shall have a maximum length of 80 byte.
+
+Each data section shall start with a line containing only a `$` character followed by a corresponding keyword. Each data section shall be terminated by a new line with a $ character as first character. The keyword at the beginning of a data section and the terminating $ character at the end of a data section may be followed by inline comments.
+
+Every OpenCRG file shall start with a header information section, describing the contents of the file. If a road data section is present, it shall be the last section in an OpenCRG file. The sequence of all other data sections is irrelevant. To increase readability, data sections should however appear in the sequence recommended in Table 1.
+
+.Overview of data sections in recommended sequence
+|====
+|Data section |Keyword | Content |Remark
+
+|Header information
+|`$CT`
+|Unstructured description in plain-text
+|Mandatory
+
+|Road parameter
+|`$ROAD_CRG`
+|Structured definition of reference line in plain-text
+|Mandatory if file contains a road data section.
+
+|Data definition
+|`$KD_Definition`
+|Structured definition of data channels in plain-text
+|Mandatory if file contains a road data section.
+
+|Options
+|`$ROAD_CRG_OPTS`
+|Structured definition of evaluation options in plain-text
+|optional
+
+|Modifiers
+|`$ROAD_CRG_MODS`
+|Structured definition of data set modifiers in plain-text
+|optional
+
+|File reference
+|`$ROAD_CRG_FILE`
+|References to other OpenCRG files in plain-text
+|optional
+
+|Road data
+|none
+|Actual road surface data in plain-text or binary format.
+|optional
+
+|====

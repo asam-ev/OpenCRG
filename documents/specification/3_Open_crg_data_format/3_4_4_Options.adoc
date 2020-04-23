@@ -1,0 +1,221 @@
+==== Options
+
+The optional _options_ section defines values for options. Options influence the evaluation of OpenCRG data. Options do not modify the road data itself.
+
+A creator of an OpenCRG file shall not rely on applications evaluating the data with options set to the values specified in the OpenCRG file. Applications define default values for options themselves. An application however may use options provided in an OpenCRG file to override these default values. A creator of an OpenCRG file may thus use the options section to express the intented option settings.
+
+An OpenCRG file may specify options without having a section containing actual road data. Such a file may be used as a control file by referencing it in another OpenCRG file containing the actual data.
+
+Border mode options and border offset options influence the returned z-values when the u/v-coordinates in a query exceed the defined road in the respective direction. These options can be used to mark borders, provide fallback values or to extend the data beyond the defined area.
+
+Border-smoothing options provide a linear ascend or descend of z-values along a defined range at the beginning and the end of the road. These options can be used to smooth abrupt changes in road data at the beginning or the end of the road e. g. to reduce unwanted high-frequency input in vibration simulation.
+
+When the u-coordinate exceeds the defined range, the corresponding x/y-coordinates are computed by either extrapolating the reference line or evaluating the reference line as closed track. The reference-line-continuation option defines whether the reference line is extrapolated or treated as closed track. The reference line can only be treated as closed track if the following conditions are met:
+
+// TODO List conditions for treating a refline as closed track.
+
+// TODO Describe how to use history manipulation and history search criteria options to speed up evaluation.
+
+// TODO explain how to use logging and message options
+
+// TODO explain how to use check options
+
+===== Keyword
+
+----
+$ROAD_CRG_OPTS
+----
+
+===== Contents
+
+The options section contains options provided as key-value pairs.
+
+|===
+|Option |Values |Description
+
+|`BORDER_MODE_U`
+|0, 1, 2, 3, 4, 5 (default: 2)
+a|Returned z-value, when a query exceeds the beginning or the end of the road.
+
+0:: Return NaN or an error.
+1:: Return 0.
+2:: Return the last valid z-value at the given v-coordinate.
+3:: Repeat road data before the beginning and after the end of the road.
+4:: Mirror road data at the beginning and the end of the road.
+
+|`BORDER_MODE_V`
+|0, 1, 2, 3, 4, 5 (default: 2)
+a|Returned z-value, when a query exceeds the left side or the right side of the road.
+
+0:: Return NaN or an error.
+1:: Return 0.
+2:: Return the last valid z-value at the given u-coordinate.
+3:: Repeat road data after the left side and the right side of the road.
+4:: Mirror road data at the left side and the right side of the road.
+
+|`BORDER_OFFSET_U`
+|Double-precision floating-point number (default: 0.0)
+|Offset for returned z-value, when a query exceeds the beginning or the end of the road.
+
+|`BORDER_OFFSET_V`
+|Double-precision floating-point number (default: 0.0)
+|Offset for returned z-value, when a query exceeds the left side or the right side of the road.
+
+|`BORDER_SMOOTH_UBEG`
+|Double-precision floating-point number from 0.0 to u~max~ (default: 0.0)
+|Range for scaling z-values linearly from 0 to the actual value, including slope and banking. Provides a smooth increase of road data at the beginning of the road.
+
+|`BORDER_SMOOTH_UEND`
+|Double-precision floating-point number from 0.0 to u~max~ (default: 0.0)
+|Range for scaling z-values linearly from the actual value to 0. Provides a smooth decrease of road data at the end of the road.
+
+|`REFLINE_CONTINUATION`
+|0, 1 (default: 0)
+a| Mode for computing x/y-positions if a given u-coordinate lays outside the defined reference line.
+
+0:: Extrapolate the reference line at both ends.
+1:: Treat reference line as closed track, if possible.
+
+|`REFLINE_SEARCH_INIT_U`
+|Double-precision floating-point number (default: 0.0)
+|????
+
+|`REFLINE_SEARCH_INIT_U_FRACTION`
+|Double-precision floating-point number (default: 0.0)
+|????
+
+// TODO Research default value
+// TODO Research description
+
+|`REFLINE_SEARCH_CLOSE`
+|Double-precision floating-point number (default: ???)
+|????
+
+// TODO Research default value
+// TODO Research description
+
+|`REFLINE_SEARCH_FAR`
+|Double-precision floating-point number (default: ???)
+|????
+
+|`WARN_MSGS`
+|-1, 0, [1;∞[ (default: -1)
+a|Number of warning messages displayed.
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+|`WARN_CURV_LOCAL`
+|-1, 0, [1;∞[ (default: -1)
+a|Number of warning messages displayed: local curvature limit exceeded.
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+|`WARN_CURV_GLOBAL`
+|-1, 0, [1;∞[ (default: -1)
+a|Number of warning messages displayed: global curvature limit exceeded.
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+|`LOG_MSGS`
+|-1, 0, [1;∞[ (default: -1)
+a|Number of logged messages.
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+|`LOG_EVAL`
+|-1, 0, [1;∞[ (default: 20)
+a|Number of logged evaluation inputs and results.
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+// TODO I don't get this --> research
+|`LOG_EVAL_FREQ`
+|-1, 0, [1;∞[ (default: -1)
+a|????
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+|`LOG_HIST`
+|-1, 0, [1;∞[ (default: -1)
+a|Number of logged evaluation inputs and results.
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+// TODO I don't get this --> research
+|`LOG_HIST_FREQ`
+|-1, 0, [1;∞[ (default: -1)
+a|????
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+|`LOG_STAT`
+|-1, 0, [1;∞[ (default: -1)
+a|????
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+// TODO I don't get this --> research
+|`LOG_STAT_FREQ`
+|-1, 0, [1;∞[ (default: -1)
+a|????
+
+-1:: All
+0:: None
+[1;∞[:: Max. number
+
+// TODO these options are used to check tolerances and accuracies of road data. How do these checks work? Check against what? Why should I set a different option? To what value should I set them?
+
+|`CHECK_EPS`
+|???? (default: 1e-6)
+a|????
+
+|`CHECK_INC`
+|???? (default: 1e-3)
+a|????
+
+|`CHECK_TOL`
+|???? (default: 0.1*CHECK_INC)
+a|????
+
+|`CHECK_PRO`
+|???? (default: 5e-3)
+a|????
+
+|`CHECK_WGS`
+|???? (default: 10)
+a|????
+
+
+
+|===
+
+===== Rules
+
+// TODO coordinate rules with working group
+
+* An OpenCRG file may contain an options section.
+* Options in an options section shall be provided as key-value pairs using the syntax `OPTION = value`.
+* An options section may be empty.
+* If the data in an OpenCRG file is intended to be evaluated with options set to specific values, these values should be specified in the OpenCRG file.
+* Applications shall define default values for options. Options defined in an OpenCRG file may override these default values.
+
+===== Examples
+// TODO design and add examples once more information on options is provided

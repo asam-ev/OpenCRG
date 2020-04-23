@@ -1,0 +1,165 @@
+==== Road Parameters
+
+The _road parameters_ section contains information about the reference line necessary for road re-construction. If an OpenCRG file contains a road data section, the file shall also contain a road parameters section. A road parameters section shall always define the distance between lateral cross sections via REFERENCE_LINE_INCREMENT. All other parameters are optional.
+
+Integrating along the reference line may lead to error accumulation due to low-precision heading angles. To allow the detection and handling of integration errors, high-precision start positions and end positions in x/y-coordinates should be provided.
+
+A curved regular grid can be placed in an inertial x/y-coordinate system or the geodetic WGS84-coordinate system by providing start positions or end positions in the respective coordinate system.
+
+===== Keyword
+
+----
+$ROAD_CRG
+----
+
+===== Contents
+
+The road parameters sections contains parameters as key-value pairs.
+
+// TODO are the parameter values Double-precision floating-point numbers?
+
+|===
+|Parameter | Values |Description
+
+|`REFERENCE_LINE_START_U`
+|Double-precision floating-point number (default: 0.0)
+|u-coordinate of start position
+
+|`REFERENCE_LINE_END_U`
+|Double-precision floating-point number (default: calculated from road data)
+|u-coordinate of end position
+
+|`REFERENCE_LINE_INCREMENT`
+|Double-precision floating-point number (default: none)
+|distance between lateral cross sections
+
+|`LONG_SECTION_V_RIGHT`
+|Double-precision floating-point number (default: calculated from road data)
+|v-coordinate of the outer right border of the road
+
+|`LONG_SECTION_V_LEFT`
+|Double-precision floating-point number (default: calculated from road data)
+|v-coordinate of the outer left border of the road
+
+|`LONG_SECTION_V_INCREMENT`
+|Double-precision floating-point number (default: calculated from road data)
+|distance between axial cross sections
+
+|`REFERENCE_LINE_START_S`
+|Double-precision floating-point number (default: 0.0)
+|slope at start position
+
+|`REFERENCE_LINE_END_S`
+|Double-precision floating-point number (default: 0.0)
+|slope at end position
+
+|`REFERENCE_LINE_START_B`
+|Double-precision floating-point number (default: 0.0)
+|banking at start position
+
+|`REFERENCE_LINE_END_B`
+|Double-precision floating-point number (default: 0.0)
+|banking at end position
+
+|`REFERENCE_LINE_START_X`
+|Double-precision floating-point number (default: 0.0)
+|x-coordinate of start position of the reference 
+line
+
+|`REFERENCE_LINE_START_Y`
+|Double-precision floating-point number (default: 0.0)
+|y-coordinate of start position of the reference line
+
+|`REFERENCE_LINE_END_X`
+|Double-precision floating-point number (default: calculated from road data)
+|x-coordinate of end position of the reference line
+
+
+|`REFERENCE_LINE_END_Y`
+|Double-precision floating-point number (default: calculated from road data)
+|y-coordinate of end position of the reference line
+
+|`REFERENCE_LINE_OFFSET_X`
+|Double-precision floating-point number (default: 0.0)
+|global off-set for x-coordinates
+
+|`REFERENCE_LINE_OFFSET_Y`
+|Double-precision floating-point number (default: 0.0)
+|global off-set for y-coordinates
+
+|`REFERENCE_LINE_START_PHI`
+|Double-precision floating-point number (default: ????)
+|heading angle at start position
+
+|`REFERENCE_LINE_END_PHI`
+|Double-precision floating-point number (default: ????)
+|heading angle at end position
+
+|`REFERENCE_LINE_OFFSET_PHI`
+|Double-precision floating-point number (default: 0.0)
+|global off-set for heading angle
+
+|`REFERENCE_LINE_START_Z`
+|Double-precision floating-point number (default: 0.0)
+|elevation at start position
+
+|`REFERENCE_LINE_END_Z`
+|Double-precision floating-point number (default: 0.0)
+|elevation at end position
+
+|`REFERENCE_LINE_OFFSET_Z`
+|Double-precision floating-point number (default: 0.0)
+|global off-set for elevation
+
+// TODO what are the defaults for WGS84 coordinates?
+
+|`REFERENCE_LINE_START_LON`
+|Double-precision floating-point number (default: ????)
+|longitude of the start position in WGS84-coordinates
+
+|`REFERENCE_LINE_START_LAT`
+|Double-precision floating-point number (default: ????)
+|latitude of start position in WGS84-coordinates
+
+|`REFERENCE_LINE_END_LON`
+|Double-precision floating-point number (default: ????)
+|longitude of end position in WGS84-coordinates
+
+|`REFERENCE_LINE_END_LAT`
+|Double-precision floating-point number (default: ????)
+|latitude of end position in WGS84-coordinates
+
+|`REFERENCE_LINE_START_ALT`
+|Double-precision floating-point number (default: ????)
+|altitude of start position in WGS84 coordinates
+
+|`REFERENCE_LINE_END_ALT`
+|Double-precision floating-point number (default: ????)
+|altitude of end position in WGS84 coordinates
+
+|===
+
+===== Rules
+
+// TODO coordinate rules with working group
+
+* If an OpenCRG file contains a data section, the file shall also contain a road parameters section.
+* A road parameters section shall define REFERENCE_LINE_INCREMENT.
+* A road parameters section should define x/y-coordinates of both start position and end position to avoid errors in road re-construction.
+* A road parameters section should define WGS84-coordinates of the start position and end position if available.
+
+===== Examples
+
+The following road parameters section defines a 3 m wide road with 44 sections along the reference line. The start of the reference line coincides with the origin of the x/y-coordinate system.
+
+----
+$ROAD_CRG
+REFERENCE_LINE_START_U		= 0.0
+REFERENCE_LINE_END_U		= 22.0
+REFERENCE_LINE_INCREMENT	= 0.5
+REFERENCE_LINE_START_X		= 0.0
+REFERENCE_LINE_START_Y		= 0.0
+LONG_SECTION_V_RIGHT     	=-1.50
+LONG_SECTION_V_LEFT     	= 1.50
+$!********************************
+----

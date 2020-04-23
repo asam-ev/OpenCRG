@@ -1,0 +1,46 @@
+==== Road data
+
+The _road data_ section contains the actual road surface data. 
+
+Road data is stored as low-precision array as defined in the data definition section. Columns are longitudinal cuts parallel to the reference line. Rows are lateral cuts orthogonal to the reference line. Additional columns may contain reference line data, such as heading angle, banking or slope.
+
+A single record shall contain a maximum of 80 byte. If the data channels defined exceed this limit, the respective data row shall be wrapped to the next record.
+
+In plain-text format, each data row shall start in a new record. Numbers of type real are 10 characters long for a maximum of 8 numbers per record. Numbers of type double are 20 characters long for a maximum of 4 numbers per record. Numbers shall be represented using fixpoint or scientific format. NaNs are represented by a placeholder with a leading asterisk (`*`).
+
+In binary format, records are successively filled up to 80 byte. The last record is padded with NaNs. Numbers of type real are 4 byte long for a maximum of 20 numbers per record. Numbers of type double are 8 byte long for a maximum of 10 numbers per record. Numbers shall be represented using IEEE Big Endian format.
+
+===== Keyword
+
+none
+
+===== Contents
+
+// TODO research more information
+
+===== Rules
+
+* An OpenCRG file may contain a road data section.
+* The road data section shall be the last section of an OpenCRG file.
+* Data formatting shall match the definitions in the data definition section.
+* The road data section may contain other data than elevation.
+* A 
+
+===== Examples
+
+.Plain-text road data with 4 columns and 10 rows
+----
+$
+0.0000000 0.0000000  0.0000000 0.0000000
+0.0000000 0.0000000  0.0000000 0.0000000
+0.0000000 0.0000000  0.0000000 0.0000000
+0.0000000 0.0111111  0.0111111 0.0000000
+0.0000000 0.0000000  0.0000000 0.0000000
+0.0111111 *missing*  0.0000000 0.0111111
+0.0111111 0.0111111  0.0111111 0.0222222
+0.0111111 0.0111111  0.0222222 0.0333333
+0.0111111 0.0111111  0.0111111 0.0222222
+0.0111111 0.0000000  0.0000000 0.0111111
+----
+
+// TODO extend existing or provide 2nd example illustrating interaction of road data section and data definition section.

@@ -1,0 +1,96 @@
+==== Data definition
+
+The _data defintion_ section defines the format and sequence of data in the following road data section. If an OpenCRG file contains a road data section, the file shall also contain a data definition section.
+
+Lines starting with `#:` define the data format used. OpenCRG supports the following formats:
+// The expansion in brackets is rather undescriptiv, may be omitted
+* LRFI (long, real, formatted, interchangeable)
+* LDFI (long, double, formatted, interchangeable)
+* KRBI (kernel, real, binary, interchangeable)
+* KDBI (kernel, double, binary, interchangeable)
+
+If no data format is defined, road data shall be considered to use KRBI format.
+
+Lines starting with `U:` define a virtual channel.
+// TODO extend once more information on virtual channels is provided
+
+Lines starting with `D:` define a channel in the road data section. A channel definition defines both the type of data and the unit. A channel corresponds to a column in the road data section. Channel definitions shall appear in the same sequence as the corresponding columns appear in the road data section.
+
+// TODO research how units are handled
+
+===== Keyword
+
+----
+$KD_Definition
+----
+
+===== Contents
+
+// TODO research virtual channel definitions
+// TODO add all possible definition
+// COMMENT if there is a clear syntax, listing all possible definition might be replaced by a more concise explanation of the syntax elements.
+
+|===
+|Definition |Description
+
+|`#:KRBI`
+| Binary data format using numbers of type real
+
+|`#:KRBI`
+| Binary data format using numbers of type double
+
+|`#:LRFI`
+| human-readable IPLOS format, plain-text format using numbers of type real
+
+|`#:LDFI`
+| human-readable IPLOS format, plain-text format using numbers of type double
+
+|`D:reference line phi,rad`
+|Data entries represent heading angles of the reference line in rad.
+
+|`D:reference line banking,m/m`
+|Data entries represent banking as dimensionless fraction.
+
+|`D:reference line slope,m/m`
+|Data entries represent slope as dimensionless fraction.
+
+|`D:long section at v = X,m`
+|Data entries represent a longitudinal cut at position X in meters. X corresponds to a v-coordinate.
+
+|`D:long section X,m`
+|Data entries represent the X-th longitudinal cut. To use this definition, both the width of the road and 
+
+|===
+
+===== Rules
+
+* If an OpenCRG file contains a road data section, the file shall also contain a data definition section.
+* The data definition section should define the data format used.
+* The data section shall define all channels in the road data section.
+* Channel definitions shall appear in the same sequence as the corresponding columns in the road data section.
+* The data definition section may define a virtual channel for IPLOS viewing.
+
+// TODO extend rule set once more information on this section is provided
+
+===== Examples
+
+// TODO create description for example once more information on this section is provided
+
+----
+$KD_DEFINiTION
+#:LRFI                             ! plain-text data, numbers of type real
+U:reference line u,m,0,1.0         ! virtual channel, only for IPLOS viewing
+D:reference line phi,rad           ! heading angle
+D:reference line banking,m/m       ! lateral banking (cross slope)
+D:reference line slope,m/m         ! longitudinal slope
+D:long section at v = -1.500,m     ! 1.50m right of reference line
+D:long section at v = -1.250,m     ! 1.25m right of reference line
+D:long section at v = -1.000,m     ! 1.00m right of reference line
+D:long section at v =  0.000,m     !             on reference line
+D:long section at v =  1.000,m     ! 1.00m left  of reference line
+D:long section at v =  1.250,m     ! 1.25m left  of reference line
+D:long section at v =  1.500,m     ! 1.50m left  of reference line
+$!********************************
+----
+
+// TODO add 2nd example, where long_secs are not explicitly defined, but rather derived from road parameters
