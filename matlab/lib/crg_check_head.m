@@ -80,6 +80,7 @@ if isfield(data.head, 'eend'), head.eend = data.head.eend; end
 if isfield(data.head, 'nend'), head.nend = data.head.nend; end
 if isfield(data.head, 'abeg'), head.abeg = data.head.abeg; end
 if isfield(data.head, 'aend'), head.aend = data.head.aend; end
+if isfield(data.head, 'rccl'), head.rccl = data.head.rccl; end    % //TODO: flag name
 
 data.head = head;
 

@@ -205,6 +205,7 @@ if isfield(head, 'eend'), c{end+1} = sprintf('%s = %24.16e','reference_line_end_
 if isfield(head, 'nend'), c{end+1} = sprintf('%s = %24.16e','reference_line_end_lat   ', head.nend); end
 if isfield(head, 'abeg'), c{end+1} = sprintf('%s = %24.16e','reference_line_start_alt ', head.abeg); end
 if isfield(head, 'aend'), c{end+1} = sprintf('%s = %24.16e','reference_line_end_alt   ', head.aend); end
+if isfield(head, 'rccl'), c{end+1} = sprintf('%s = %24.16e','reference_line_curv_check', head.rccl); end    % //TODO: flag name
 
 crgdat.struct = sdf_add(crgdat.struct, 'ROAD_CRG', c);
 

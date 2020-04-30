@@ -586,20 +586,9 @@ if isfield(data, 'p') && length(data.p)==nu-1 % variable heading (curved refline
     data.rc = (dx(1:end-1).*dy(2:end)-dy(1:end-1).*dx(2:end)) / data.head.uinc^3;
     clear dx dy
 
-    cmin = min(data.rc);
-    cmax = max(data.rc);
-    if abs(cmax) > crgeps
-        if 1/cmax <= data.head.vmax && 1/cmax >= data.head.vmin
-            warning('CRG:checkWarning', 'center of max. reference line curvature=%d inside road limits', cmax)
-            ierr = 1;
-        end
-    end
-    if abs(cmin) > crgeps
-        if 1/cmin <= data.head.vmax && 1/cmin >= data.head.vmin
-            warning('CRG:checkWarning', 'center of min. reference line curvature=%d inside road limits', cmin)
-            ierr = 1;
-        end
-    end
+    % curvature check (global and local)
+    data = crg_check_curvature(data);
+    
 else % constant heading (straight refline)
     if ~isfield(data.head, 'xbeg')
         data.head.xbeg = 0;
