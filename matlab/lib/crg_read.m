@@ -319,9 +319,6 @@ for i = 1:length(block)
             data.head.nend = hvalue;
         case 'reference_line_end_alt'
             data.head.aend = hvalue;
-            
-        case 'reference_line_curv_check'    % //TODO: flag name
-            data.head.rccl = hvalue;
     end
 end
 

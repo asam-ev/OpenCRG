@@ -1,4 +1,4 @@
-function [data] = crg_check_curvature(data)
+function [data, ierr] = crg_check_curvature(data, ierr)
 % CRG_CHECK_CURVATURE CRG check CRG curvature data.
 %   [DATA] = CRG_CHECK_CURVATURE(DATA) checks CRG reference line curvature
 %
@@ -34,14 +34,6 @@ function [data] = crg_check_curvature(data)
 %
 %   $Id: crg_check_curvature.m 1 2020-04-30 15:30:00Z rruhdorfer $
 
-%% remove ok flag, initialize error/warning counter
-
-% if isfield(data, 'ok')
-%     data = rmfield(data, 'ok');
-% end
-gierr = 0;
-lierr = 0;
-
 %% some local variables
 
 crgeps = data.opts.ceps;
@@ -54,24 +46,26 @@ end
 
 %% global curvature check
 
-cmin = min(data.rc);
-cmax = max(data.rc);
-if abs(cmax) > crgeps
-    if 1/cmax <= data.head.vmax && 1/cmax >= data.head.vmin
-        warning('CRG:checkWarning', 'global curvature check failed - center of max. reference line curvature=%d inside road limits', cmax)
-        gierr = gierr + 1;
+if isfield(data.opts, 'wcvg') && data.opts.wcvg ~= 0
+    cmin = min(data.rc);
+    cmax = max(data.rc);
+    if abs(cmax) > crgeps
+        if 1/cmax <= data.head.vmax && 1/cmax >= data.head.vmin
+            warning('CRG:checkWarning', 'global curvature check failed - center of max. reference line curvature=%d inside road limits', cmax)
+            ierr = ierr + 1;
+        end
     end
-end
-if abs(cmin) > crgeps
-    if 1/cmin <= data.head.vmax && 1/cmin >= data.head.vmin
-        warning('CRG:checkWarning', 'global curvature check failed - center of min. reference line curvature=%d inside road limits', cmin)
-        gierr = gierr + 1;
+    if abs(cmin) > crgeps
+        if 1/cmin <= data.head.vmax && 1/cmin >= data.head.vmin
+            warning('CRG:checkWarning', 'global curvature check failed - center of min. reference line curvature=%d inside road limits', cmin)
+            ierr = ierr + 1;
+        end
     end
 end
 
 %% local curvature check
 
-if isfield(data.head, 'rccl') && gierr > 0
+if isfield(data.opts, 'wcvl') && data.opts.wcvl > 0
     % set temp ok
     data.ok = 0;
     
@@ -100,19 +94,11 @@ if isfield(data.head, 'rccl') && gierr > 0
         % ierr = ierr + 1;
     else
         warning('local curvature check failed - critical curvature areas in z-value regions') % //TODO: warning or error?
-        lierr = lierr + 1;
+        ierr = ierr + 1;
     end
     
     % remove temp ok
     data = rmfield(data, 'ok');
 end
-
-%% set ok-flag
-% //TODO: throw error here?
-% if isfield(data.head, 'rccl') && lierr == 0 % local curvature check only
-%     data.ok = 0; 
-% elseif gierr == 0 % global curvature check
-%     data.ok = 0;
-% end
 
 end

@@ -587,7 +587,7 @@ if isfield(data, 'p') && length(data.p)==nu-1 % variable heading (curved refline
     clear dx dy
 
     % curvature check (global and local)
-    data = crg_check_curvature(data);
+    [data, ierr] = crg_check_curvature(data, ierr);
     
 else % constant heading (straight refline)
     if ~isfield(data.head, 'xbeg')

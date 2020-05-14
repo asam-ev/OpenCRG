@@ -38,30 +38,38 @@ clear all;
 clc;
 
 % read crg data
-disp("----- standard check: crg_read -----");
+disp("----- Pre: standard check 'crg_read' -----");
 data = crg_read('../crg-bin/crgcurvtest.crg');
+
+ierr = 0;
 
 %% Test 1 a
 disp("----- Test 1 a: global & local curvature check -----");
 tic;
-% set reference line curvature check local
-data.head.rccl = 1.0;
-crg_check_curvature(data);
+% set opts warn_curv_local
+data.opts.wcvl = 1;
+crg_check_curvature(data, ierr);
 toc
 
 %% Test 1 b
 disp("----- Test 1 b: global & local curvature check - variant -----");
 tic;
-% set reference line curvature check local
-data.head.rccl = 1.0;
-crg_check_curvature2(data);
+% set opts warn_curv_local
+data.opts.wcvl = 1;
+crg_check_curvature2(data, ierr);
 toc
 
-%% Test 2
-disp("----- standard check: crg_write (with curvature check local) -----");
-crg_write(data,'crgcurvtest_rccl.crg');
+%% Test 2 a
+disp("----- Test 2 a: standard check 'crg_write' (with curvature check local) -----");
+% set opts warn_curv_local
+data.opts.wcvl = 1;
+% disable opts warn_curv_global to make file writeable
+data.opts.wcvg = 0;
+crg_write(data,'crgcurvtest_local.crg');
 
-disp("----- standard check: crg_read (with curvature check local) -----");
-data = crg_read('crgcurvtest_rccl.crg');
-
-
+%% Test 2 b
+disp("----- Test 2 b: standard check 'crg_read' (with curvature check local) -----");
+% warn_curv_global disabled (!) -> only warn_curv_local
+data = crg_read('crgcurvtest_local.crg');
+disp("warn_curv_local: " + data.opts.wcvl);
+disp("warn_curv_global: " + data.opts.wcvg);
