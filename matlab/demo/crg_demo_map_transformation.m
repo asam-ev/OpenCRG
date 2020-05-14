@@ -1,10 +1,13 @@
-%% Usage of CRG_TEST_MAP_TRANSFORMATION
-% Introducing the usage of map_geod2pmap_tm and map_pmap2geod_tm, 
-% map_global2plocal and map_geod2pmap_tm.
-% Examples are included.
-% The file comments are optimized for the matlab publishing makro.
+% CRG_DEMO_MAP_TRANSFORMATION CRG demo to perform transformations.
+%   CRG_DEMO_MAP_TRANSFORMATION demonstrates how mpro projection data can
+%   be used to perform geodetic transformations.
+%   A single point in WGS84 coordinates (Latitude, Longitude, Height)
+%   is transformed to common map projections (UTM, GK).
+%
+%   Example:
+%   crg_demo_map_transformation         runs this demo
 
-%   Copyright penCRG - ASAM e.V.
+%   Copyright OpenCRG - ASAM e.V.
 %
 %   Licensed under the Apache License, Version 2.0 (the "License");
 %   you may not use this file except in compliance with the License.
@@ -22,7 +25,7 @@
 %
 %       http://www.opencrg.org
 %
-%   $Id: crg_test_map_transformation.m 1 2020-04-24 15:30:00Z rruhdorfer $
+%   $Id: crg_demo_map_transformation.m 1 2020-04-24 15:30:00Z rruhdorfer $
 
 %% Test proceedings
 %
