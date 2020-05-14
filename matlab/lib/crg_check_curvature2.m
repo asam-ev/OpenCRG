@@ -1,0 +1,119 @@
+function [data, ierr] = crg_check_curvature2(data, ierr)
+% CRG_CHECK_CURVATURE CRG check CRG curvature data.
+%   [DATA] = CRG_CHECK_CURVATURE(DATA) checks CRG reference line curvature
+%
+%   Inputs:
+%   DATA    struct array as defined in CRG_INTRO.
+%
+%   Outputs:
+%   DATA    is a checked, purified, and eventually completed version of
+%           the function input argument DATA
+%
+%   Examples:
+%   data = crg_check_curvature(data) checks CRG reference line curvature.
+%
+%   See also CRG_INTRO.
+
+%   Copyright 2005-2015 OpenCRG - ASAM e.V.
+%
+%   Licensed under the Apache License, Version 2.0 (the "License");
+%   you may not use this file except in compliance with the License.
+%   You may obtain a copy of the License at
+%
+%       http://www.apache.org/licenses/LICENSE-2.0
+%
+%   Unless required by applicable law or agreed to in writing, software
+%   distributed under the License is distributed on an "AS IS" BASIS,
+%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%   See the License for the specific language governing permissions and
+%   limitations under the License.
+%
+%   More Information on OpenCRG open file formats and tools can be found at
+%
+%       http://www.opencrg.org
+%
+%   $Id: crg_check_curvature.m 1 2020-04-30 15:30:00Z rruhdorfer $
+
+
+%% some local variables
+
+crgeps = data.opts.ceps;
+
+%% check for rc field (reference line curvature)
+
+if ~isfield(data, 'rc')
+    error('CRG:checkError', 'DATA.rc missing')
+end
+
+%% global curvature check
+
+if isfield(data.opts, 'wcvg') && data.opts.wcvg ~= 0
+    cmin = min(data.rc);
+    cmax = max(data.rc);
+    if abs(cmax) > crgeps
+        if 1/cmax <= data.head.vmax && 1/cmax >= data.head.vmin
+            warning('CRG:checkWarning', 'global curvature check failed - center of max. reference line curvature=%d inside road limits', cmax)
+            ierr = ierr + 1;
+        end
+    end
+    if abs(cmin) > crgeps
+        if 1/cmin <= data.head.vmax && 1/cmin >= data.head.vmin
+            warning('CRG:checkWarning', 'global curvature check failed - center of min. reference line curvature=%d inside road limits', cmin)
+            ierr = ierr + 1;
+        end
+    end
+end
+
+%% local curvature check
+
+if isfield(data.opts, 'wcvl') && data.opts.wcvl > 0
+    % set temp ok
+    data.ok = 0;
+    
+    % reference line points
+    uges=data.head.ubeg:data.head.uinc:data.head.uend;
+    uinc=data.head.uinc;
+    %%
+
+    % indices l/r curvature
+    vek_rc=[data.rc(1),data.rc,data.rc(end)];
+    idx_right=vek_rc< 0;
+    idx_left =vek_rc>=0;
+
+    % min max v values from curvature radius
+    min_max_v = NaN(size(vek_rc));
+    min_max_v(idx_right)=ceil(1./vek_rc(idx_right)./data.head.uinc).*data.head.uinc; 
+    min_max_v(idx_left) =floor(1./vek_rc(idx_left)./data.head.uinc).*data.head.uinc;
+
+    % width in number of grid cells
+    %te=min_max_v./data.head.vinc-(data.head.vmin./data.head.vinc)+1; % check against data.il data.ir 
+
+    % max grid cells array
+    rightNaNBorder=data.head.vmin.*(ones(size(vek_rc)));
+    leftNaNBorder =data.head.vmax.*(ones(size(vek_rc)));
+
+    % check, where curvature radius > grid
+    idx_CurvAreaRight=min_max_v > data.head.vmin  & idx_right;
+    idx_CurvAreaLeft =min_max_v < data.head.vmax  & idx_left;
+
+    % create curvature radius border array
+    rightNaNBorder(idx_CurvAreaRight) = min_max_v(idx_CurvAreaRight);
+    leftNaNBorder(idx_CurvAreaLeft)   = min_max_v(idx_CurvAreaLeft);
+
+    % get z at border
+    zleft  = crg_eval_uv2z(data,[uges',(leftNaNBorder +uinc)']);
+    zright = crg_eval_uv2z(data,[uges',(rightNaNBorder-uinc)']);
+
+    % check if z isnan
+    if sum(isnan(zleft))==size(data.z,1) && sum(isnan(zright))==size(data.z,1) 
+        warning('local curvature check succeeded - critical curvature areas in NaN regions')
+    else
+        warning('local curvature check failed - critical curvature areas in z-value regions')
+        ierr = ierr + 1;
+    end
+    
+    % remove temp ok
+    data = rmfield(data, 'ok');
+end
+
+end
