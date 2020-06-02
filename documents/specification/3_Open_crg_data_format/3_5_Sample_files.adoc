@@ -1,6 +1,6 @@
 === Sample files
 
-// TODO Add some descriptive text
+The OpenCRG software package contains various sample files demonstrating different use cases.
 ----
 +---*crg-bin*...............................sample files with binary road data
 |   +---belgian_block.crg...................binary data set for complex tests

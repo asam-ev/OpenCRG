@@ -1,6 +1,6 @@
 ==== Header information
 
-The _header information_ gives information about the data file as human-readable text. A header information section may contain among other things:
+The _header information_ gives information about the data file as human-readable text. For example, a _header information_ section may contain:
 
 * Title of the file
 * Short description of the contents and purpose of the file
@@ -15,13 +15,13 @@ $CT
 
 ===== Contents
 
-The header information section contains unstructured plain-text.
+The _header information_ section contains unstructured plain text.
 
 ===== Rules
 
-* An OpenCRG data file shall contain a header information section.
-* The header information section shall be the first section in an OpenCRG data file.
-* The header information should give information about the content of the file.
+* An OpenCRG data file shall contain a _header information_ section.
+* The _header information_ section shall be the first section in an OpenCRG data file.
+* The _header information_ section should give information about the content of the file.
 
 ===== Examples
 

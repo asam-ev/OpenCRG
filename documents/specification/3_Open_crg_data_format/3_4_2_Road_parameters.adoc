@@ -1,10 +1,12 @@
 ==== Road Parameters
 
-The _road parameters_ section contains information about the reference line necessary for road re-construction. If an OpenCRG file contains a road data section, the file shall also contain a road parameters section. A road parameters section shall always define the distance between lateral cross sections via REFERENCE_LINE_INCREMENT. All other parameters are optional.
+The _road parameters_ section contains information about the reference line necessary for road re-construction. With OpenCRG, road data is recorded in relation to a reference line. If an OpenCRG file contains a _road data_ section, a _road parameters_ section is therefore mandatory.
 
-Integrating along the reference line may lead to error accumulation due to low-precision heading angles. To allow the detection and handling of integration errors, high-precision start positions and end positions in x/y-coordinates should be provided.
+The minimum information necessary for creating a reference line is the distance between lateral cross sections. The parameter REFERENCE_LINE_INCREMENT is therefore mandatory. All other parameters are optional.
 
-A curved regular grid can be placed in an inertial x/y-coordinate system or the geodetic WGS84-coordinate system by providing start positions or end positions in the respective coordinate system.
+Curved regular grids can be placed in an inertial x/y-coordinate system or the geodetic WGS84-coordinate system by providing start positions or end positions in the respective coordinate system.
+
+Integrating along the reference line may lead to error accumulation due to low-precision heading angles. To allow the detection and handling of integration errors, high-precision start positions and end positions in x/y-coordinates are necessary. Applications can then compare the integration result to the given positions.
 
 ===== Keyword
 
@@ -14,7 +16,7 @@ $ROAD_CRG
 
 ===== Contents
 
-The road parameters sections contains parameters as key-value pairs.
+The _road parameters_ sections contains parameters as key-value pairs.
 
 // TODO are the parameter values Double-precision floating-point numbers?
 
@@ -31,7 +33,7 @@ The road parameters sections contains parameters as key-value pairs.
 
 |`REFERENCE_LINE_INCREMENT`
 |Double-precision floating-point number (default: none)
-|distance between lateral cross sections
+|Distance between lateral cross sections
 
 |`LONG_SECTION_V_RIGHT`
 |Double-precision floating-point number (default: calculated from road data)
@@ -43,23 +45,23 @@ The road parameters sections contains parameters as key-value pairs.
 
 |`LONG_SECTION_V_INCREMENT`
 |Double-precision floating-point number (default: calculated from road data)
-|distance between axial cross sections
+|Distance between axial cross sections
 
 |`REFERENCE_LINE_START_S`
 |Double-precision floating-point number (default: 0.0)
-|slope at start position
+|Slope at start position
 
 |`REFERENCE_LINE_END_S`
 |Double-precision floating-point number (default: 0.0)
-|slope at end position
+|Slope at end position
 
 |`REFERENCE_LINE_START_B`
 |Double-precision floating-point number (default: 0.0)
-|banking at start position
+|Banking at start position
 
 |`REFERENCE_LINE_END_B`
 |Double-precision floating-point number (default: 0.0)
-|banking at end position
+|Banking at end position
 
 |`REFERENCE_LINE_START_X`
 |Double-precision floating-point number (default: 0.0)
@@ -81,61 +83,61 @@ line
 
 |`REFERENCE_LINE_OFFSET_X`
 |Double-precision floating-point number (default: 0.0)
-|global off-set for x-coordinates
+|Global off-set for x-coordinates
 
 |`REFERENCE_LINE_OFFSET_Y`
 |Double-precision floating-point number (default: 0.0)
-|global off-set for y-coordinates
+|Global off-set for y-coordinates
 
 |`REFERENCE_LINE_START_PHI`
 |Double-precision floating-point number (default: ????)
-|heading angle at start position
+|Heading angle at start position
 
 |`REFERENCE_LINE_END_PHI`
 |Double-precision floating-point number (default: ????)
-|heading angle at end position
+|Heading angle at end position
 
 |`REFERENCE_LINE_OFFSET_PHI`
 |Double-precision floating-point number (default: 0.0)
-|global off-set for heading angle
+|Global off-set for heading angle
 
 |`REFERENCE_LINE_START_Z`
 |Double-precision floating-point number (default: 0.0)
-|elevation at start position
+|Elevation at start position
 
 |`REFERENCE_LINE_END_Z`
 |Double-precision floating-point number (default: 0.0)
-|elevation at end position
+|Elevation at end position
 
 |`REFERENCE_LINE_OFFSET_Z`
 |Double-precision floating-point number (default: 0.0)
-|global off-set for elevation
+|Global off-set for elevation
 
 // TODO what are the defaults for WGS84 coordinates?
 
 |`REFERENCE_LINE_START_LON`
 |Double-precision floating-point number (default: ????)
-|longitude of the start position in WGS84-coordinates
+|Longitude of the start position in WGS84-coordinates
 
 |`REFERENCE_LINE_START_LAT`
 |Double-precision floating-point number (default: ????)
-|latitude of start position in WGS84-coordinates
+|Latitude of start position in WGS84-coordinates
 
 |`REFERENCE_LINE_END_LON`
 |Double-precision floating-point number (default: ????)
-|longitude of end position in WGS84-coordinates
+|Longitude of end position in WGS84-coordinates
 
 |`REFERENCE_LINE_END_LAT`
 |Double-precision floating-point number (default: ????)
-|latitude of end position in WGS84-coordinates
+|Latitude of end position in WGS84-coordinates
 
 |`REFERENCE_LINE_START_ALT`
 |Double-precision floating-point number (default: ????)
-|altitude of start position in WGS84 coordinates
+|Altitude of start position in WGS84 coordinates
 
 |`REFERENCE_LINE_END_ALT`
 |Double-precision floating-point number (default: ????)
-|altitude of end position in WGS84 coordinates
+|Altitude of end position in WGS84 coordinates
 
 |===
 
@@ -143,14 +145,15 @@ line
 
 // TODO coordinate rules with working group
 
-* If an OpenCRG file contains a data section, the file shall also contain a road parameters section.
-* A road parameters section shall define REFERENCE_LINE_INCREMENT.
-* A road parameters section should define x/y-coordinates of both start position and end position to avoid errors in road re-construction.
-* A road parameters section should define WGS84-coordinates of the start position and end position if available.
+* If an OpenCRG file contains a _road data_ section, the file shall also contain a _road parameters_ section.
+* Parameters in a _road parameters_ section shall be provided as key-value pairs using the syntax `PARAMETER = value`.
+* A _road parameters_ section shall define REFERENCE_LINE_INCREMENT.
+* A _road parameters_ section should define x/y-coordinates of both start position and end position to avoid errors in road re-construction.
+* A _road parameters_ section should define WGS84-coordinates of the start position and end position if available.
 
 ===== Examples
 
-The following road parameters section defines a 3 m wide road with 44 sections along the reference line. The start of the reference line coincides with the origin of the x/y-coordinate system.
+The following _road parameters_ section defines a 3 m wide road with 44 sections along the reference line. The start of the reference line coincides with the origin of the x/y-coordinate system.
 
 ----
 $ROAD_CRG

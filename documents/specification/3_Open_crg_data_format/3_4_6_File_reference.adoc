@@ -2,11 +2,9 @@
 
 The optional _file reference_ section contains references to other OpenCRG files. 
 
-The file reference section of an OpenCRG file may reference multiple files. This can be used to group options and modifiers in control files separate from files containing actual road data. By referencing both a control file and a road data file, multiple combinations of options, modifiers and road data can be created without copying the contents.
+The _file reference_ section of an OpenCRG file may reference multiple files. This can be used to group options and modifiers in control files separate from files containing actual road data. By referencing both a control file and a road data file, multiple combinations of options, modifiers and road data can be created without copying the contents.
 
 // TODO how are conflicting option or modifier settings resolved?
-
-Files may be referenced using absolute paths, relative paths or environment variables. Paths may be split into multiple lines. These lines shall not contain leading or trailing spaces, tabs, asterisks or exclamation marks.
 
 ===== Keyword
 
@@ -30,8 +28,8 @@ File references use the following smybols for describing paths.
 
 ===== Rules
 
-*   An OpenCRG file may contain a file reference section.
-*   A file reference section may contain multiple file references
+*   An OpenCRG file may contain a _file reference_ section.
+*   A _file reference_ section may contain multiple file references
 *   File references may use absolute paths.
 *   File references may use relative paths.
 *   File references may use environment variables.

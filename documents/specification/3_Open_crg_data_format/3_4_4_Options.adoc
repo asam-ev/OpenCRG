@@ -2,15 +2,15 @@
 
 The optional _options_ section defines values for options. Options influence the evaluation of OpenCRG data. Options do not modify the road data itself.
 
-A creator of an OpenCRG file shall not rely on applications evaluating the data with options set to the values specified in the OpenCRG file. Applications define default values for options themselves. An application however may use options provided in an OpenCRG file to override these default values. A creator of an OpenCRG file may thus use the options section to express the intented option settings.
+A creator of an OpenCRG file shall not rely on applications evaluating the data with options set to the values specified in the OpenCRG file. Applications define default values for options themselves. An application however may use options provided in an OpenCRG file to override these default values. A creator of an OpenCRG file may thus use the _options_ section to express the intented option settings.
 
 An OpenCRG file may specify options without having a section containing actual road data. Such a file may be used as a control file by referencing it in another OpenCRG file containing the actual data.
 
-Border mode options and border offset options influence the returned z-values when the u/v-coordinates in a query exceed the defined road in the respective direction. These options can be used to mark borders, provide fallback values or to extend the data beyond the defined area.
+Border mode options and border offset options influence the returned z-values when the u/v-coordinates in a query exceed the defined road in the respective direction. These options may be used to mark borders, provide fallback values or to extend the data beyond the defined area.
 
 Border-smoothing options provide a linear ascend or descend of z-values along a defined range at the beginning and the end of the road. These options can be used to smooth abrupt changes in road data at the beginning or the end of the road e. g. to reduce unwanted high-frequency input in vibration simulation.
 
-When the u-coordinate exceeds the defined range, the corresponding x/y-coordinates are computed by either extrapolating the reference line or evaluating the reference line as closed track. The reference-line-continuation option defines whether the reference line is extrapolated or treated as closed track. The reference line can only be treated as closed track if the following conditions are met:
+When the u-coordinate exceeds the defined range, the corresponding x/y-coordinates are calculated by either extrapolating the reference line or evaluating the reference line as closed track. The reference-line-continuation option defines whether the reference line is extrapolated or treated as closed track. The reference line can only be treated as closed track if the following conditions are met:
 
 // TODO List conditions for treating a refline as closed track.
 
@@ -28,7 +28,7 @@ $ROAD_CRG_OPTS
 
 ===== Contents
 
-The options section contains options provided as key-value pairs.
+The _options_ section contains options provided as key-value pairs.
 
 |===
 |Option |Values |Description
@@ -211,9 +211,9 @@ a|????
 
 // TODO coordinate rules with working group
 
-* An OpenCRG file may contain an options section.
-* Options in an options section shall be provided as key-value pairs using the syntax `OPTION = value`.
-* An options section may be empty.
+* An OpenCRG file may contain an _options_ section.
+* Options in an _options_ section shall be provided as key-value pairs using the syntax `OPTION = value`.
+* An _options_ section may be empty.
 * If the data in an OpenCRG file is intended to be evaluated with options set to specific values, these values should be specified in the OpenCRG file.
 * Applications shall define default values for options. Options defined in an OpenCRG file may override these default values.
 

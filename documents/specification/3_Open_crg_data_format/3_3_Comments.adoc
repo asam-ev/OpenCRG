@@ -1,8 +1,8 @@
 === Comments
 
-An OpenCRG file may contain comments providing further information about the file. These comments shall not substitute the introductory header information section.
+An OpenCRG file may contain comments with further information about the file. These comments shall not substitute the introductory header information section.
 
-There may be two types of comments in an OpenCRG file:
+There are two types of comments in an OpenCRG file:
 
 Block comment:: An asterisk (`*`) at the beginning of a line causes the entire line to be treated as a comment.
 

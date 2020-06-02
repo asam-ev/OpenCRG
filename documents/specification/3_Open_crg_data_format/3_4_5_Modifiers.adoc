@@ -2,11 +2,17 @@
 
 The optional _modifiers_ section defines values for modifiers. Modifiers modify OpenCRG data stored in memory.
 
-Applications define default values for modifiers themselves. If an OpenCRG file contains a modifiers section, an application shall ignore its own default modifier values and shall apply only the modifiers specified in the OpenCRG file. If an OpenCRG file contains contains an empty modifiers sections, no modifiers are applied to the data. An application may however apply different modifiers explicitely.
+Applications may define default values for modifiers. However, if an OpenCRG file contains a _modifiers_ section, applications shall remove all default modifier values. Instead, only the modifiers specified in the OpenCRG file are applied. If an OpenCRG file contains an empty modifiers sections, no modifiers are applied to the data. Applications may nonetheless apply different modifiers explicitely via API calls.
 
 An OpenCRG file may specify modifiers without having a section containing actual road data. Such a file may be used as a control file by referencing it in another OpenCRG file containing the actual data.
 
-An OpenCRG data set can be re-located by mapping a reference point in u/v-coordinates to a new target position in x/y-coordinates. The reference point can be explicitely defined in u/v-coordinates. Alternativley, the reference point can be defined relatively as fractions of the data set extent in u-direction or v-direction. Additionally, the reference point can be modified by adding an offset. The methods for defining a reference point can be combined as long as it does not result in contradicting definitions. The target position of the data set is defined in inertial coordinates and with an absolute heading angle.
+An OpenCRG data set can be re-located by mapping a reference point in u/v-coordinates to a new target position in x/y-coordinates. 
+
+* The reference point can be explicitely defined in u/v-coordinates.
+* Alternativley, the reference point can be defined relatively as fractions of the data set extent in u-direction or v-direction.
+* Additionally, the reference point can be modified by adding an offset.
+
+The methods for defining a reference point can be combined as long as it does not result in contradicting definitions. The target position of the data set is defined in x/y-coordinates and with an absolute heading angle.
 
 An OpenCRG data set can be re-located by rotating and shifting the data set in x/y-coordinates. First, the data set is rotated by a rotation angle around a rotation center. Then the data set is translated in x-direction, y-direction and z-direction.
 
@@ -27,7 +33,7 @@ $ROAD_CRG_MODS
 
 ===== Contents
 
-The modifiers section contains modifiers provided as key-value pairs.
+The _modifiers_ section contains modifiers provided as key-value pairs.
 
 |===
 |Modifier |Values |Description
@@ -141,11 +147,11 @@ a| Offset applied on replaced NaN values.
 
 // TODO coordinate rules with working group
 
-* An OpenCRG file may contain a modifiers section.
-* Modifiers in a modifiers section shall be provided as key-value pairs using the syntax `MODIFIER = value`.
-* A modifiers section may be empty.
+* An OpenCRG file may contain a _modifiers_ section.
+* Modifiers in a _modifiers_ section shall be provided as key-value pairs using the syntax `MODIFIER = value`.
+* A _modifiers section_ may be empty.
 * If the data in an OpenCRG file is intended to be used with specific modifiers applied, these modifiers should be defined in the OpenCRG file.
-* If an OpenCRG file contains a modifiers section, an application shall ignore its own default modifier values and shall apply only the modifiers specified in the OpenCRG file.
+* If an OpenCRG file contains a _modifiers_ section, an application shall ignore its own default modifier values and shall apply only the modifiers specified in the OpenCRG file.
 
 ===== Examples
 // TODO design and add examples once more information on modifiers is provided

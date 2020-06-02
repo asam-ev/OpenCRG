@@ -1,20 +1,21 @@
 ==== Data definition
 
-The _data defintion_ section defines the format and sequence of data in the following road data section. If an OpenCRG file contains a road data section, the file shall also contain a data definition section.
+The _data defintion_ section defines the format and sequence of data in the following road data section. If an OpenCRG file contains a _road data_ section, a _data definition_ section is therefore mandatory.
 
 Lines starting with `#:` define the data format used. OpenCRG supports the following formats:
+
 // The expansion in brackets is rather undescriptiv, may be omitted
 * LRFI (long, real, formatted, interchangeable)
 * LDFI (long, double, formatted, interchangeable)
 * KRBI (kernel, real, binary, interchangeable)
 * KDBI (kernel, double, binary, interchangeable)
 
-If no data format is defined, road data shall be considered to use KRBI format.
+If no data format is defined, road data is considered to use KRBI format.
 
 Lines starting with `U:` define a virtual channel.
 // TODO extend once more information on virtual channels is provided
 
-Lines starting with `D:` define a channel in the road data section. A channel definition defines both the type of data and the unit. A channel corresponds to a column in the road data section. Channel definitions shall appear in the same sequence as the corresponding columns appear in the road data section.
+Lines starting with `D:` define a channel in the _road data_ section. A channel definition defines both the type of data and the unit. A channel corresponds to a column in the _road data_ section. Channel definitions appear in the same sequence as the corresponding columns appear in the _road data_ section.
 
 // TODO research how units are handled
 
@@ -58,17 +59,17 @@ $KD_Definition
 |Data entries represent a longitudinal cut at position X in meters. X corresponds to a v-coordinate.
 
 |`D:long section X,m`
-|Data entries represent the X-th longitudinal cut. To use this definition, both the width of the road and 
+|Data entries represent the X-th longitudinal cut. To use this definition, both the width of the road and the increments in v-direction must be defined in the _road parameters_ section.
 
 |===
 
 ===== Rules
 
-* If an OpenCRG file contains a road data section, the file shall also contain a data definition section.
-* The data definition section should define the data format used.
-* The data section shall define all channels in the road data section.
-* Channel definitions shall appear in the same sequence as the corresponding columns in the road data section.
-* The data definition section may define a virtual channel for IPLOS viewing.
+* If an OpenCRG file contains a _road data_ section, the file shall also contain a _data definition_ section.
+* The _data definition_ section should define the data format used.
+* The _data definition_ section shall define all channels of the _road data_ section.
+* Channel definitions shall appear in the same sequence as the corresponding columns in the _road data_ section.
+* The _data definition_ section may define a virtual channel for IPLOS viewing.
 
 // TODO extend rule set once more information on this section is provided
 
