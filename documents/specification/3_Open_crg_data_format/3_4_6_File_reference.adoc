@@ -2,9 +2,9 @@
 
 The optional _file reference_ section contains references to other OpenCRG files. 
 
-The _file reference_ section of an OpenCRG file may reference multiple files. This can be used to group options and modifiers in control files separate from files containing actual road data. By referencing both a control file and a road data file, multiple combinations of options, modifiers and road data can be created without copying the contents.
+The _file reference_ section of an OpenCRG file may reference multiple files. This can be used to separate options and modifiers in control files from files containing actual road data. By referencing both a control file and a road data file, multiple combinations of options, modifiers and road data can be created without copying the contents.
 
-// TODO how are conflicting option or modifier settings resolved?
+If resolving references results in conflicting definitions, the last definition takes precedence.
 
 ===== Keyword
 
@@ -14,7 +14,7 @@ $ROAD_CRG_FILE
 
 ===== Contents
 
-File references use the following smybols for describing paths.
+File references use the following symbols for describing paths.
 
 |===
 |Symbol |Function
@@ -30,10 +30,9 @@ File references use the following smybols for describing paths.
 
 *   An OpenCRG file may contain a _file reference_ section.
 *   A _file reference_ section may contain multiple file references
-*   File references may use absolute paths.
-*   File references may use relative paths.
+*   File references may use absolute or relative paths.
 *   File references may use environment variables.
-*   A path may be split into several lines. These lines shall not contain leading or trailing spaces, tabs, asterisks or exclamation marks.
+*   A path may be split into several lines. These lines shall not contain leading or trailing spaces, tabs, asterisks and exclamation marks.
 
 ===== Examples
 
@@ -63,5 +62,5 @@ $crgpath/handmade_straight.crg
 $ROAD_CRG_FILE
 /home/name/crg-files/control_file.crg
 /home/name/crg-files/road_data.crg
-$!------------
+$!********
 ----

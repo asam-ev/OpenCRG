@@ -4,7 +4,7 @@ The _road data_ section contains the actual road surface data. Road surface data
 
 Road data is stored as low-precision array as defined in the _data definition_ section. Columns are longitudinal cuts parallel to the reference line. Rows are lateral cuts orthogonal to the reference line. Additional columns may contain reference line data, such as heading angle, banking or slope.
 
-A single record shall contain a maximum of 80 byte. If the data channels defined exceed this limit, the respective data row shall be wrapped to the next record. In plain-text format, each data row shall start in a new record. In binary format, records are successively filled up to 80 byte. The last record is padded with NaNs.
+A single record shall contain a maximum of 80 byte. If the defined data channels exceed this limit, the respective data row shall be wrapped to the next record. In plain-text format, each data row shall start in a new record. In binary format, records are successively filled up to 80 byte. The last record is padded with NaNs.
 
 In plain-text formats, numbers are represented as follows:
 
@@ -20,15 +20,9 @@ In binary formats, numbers are represented as follows:
 * Numbers of type double are 8 byte long for a maximum of 10 numbers per record.
 * NaNs are represented according to IEEE 754.
 
-// TODO Is the statement about NaN representation in binary formats correct?
-
 ===== Keyword
 
 none
-
-===== Contents
-
-// TODO research more information
 
 ===== Rules
 
@@ -39,19 +33,32 @@ none
 
 ===== Examples
 
+The example shows road data for a 1 m wide road. The road data is organized in a 4-by-10 matrix. The first column contains heading angles of the reference line. The following three columns contain actual road surface data. One value on the right border of the road is missing.
+
 .Plain-text road data with 4 columns and 10 rows
 ----
+$ROAD_CRG                          ! road parameters section
+REFERENCE_LINE_INCREMENT =  0.50   ! 10 cm between every lateral cut
+LONG_SECTION_V_RIGHT     = -0.50   ! right road border
+LONG_SECTION_V_RIGHT     =  0.50   ! left road border
+LONG_SECTION_V_INCREMENT =  0.50   ! 50 cm between every longitudinal cut
+$!********************************
+$KD_DEFINiTION                     ! data definition section
+#:LRBI                             ! plain-text data, numbers of type real
+D:reference line phi,rad           ! heading angle
+D:long section 1,m                 ! 0.50m right of reference line
+D:long section 2,m                 !             on reference line
+D:long section 3,m                 ! 0.50m  left of reference line
+$!********************************
 $
-0.0000000 0.0000000  0.0000000 0.0000000
-0.0000000 0.0000000  0.0000000 0.0000000
-0.0000000 0.0000000  0.0000000 0.0000000
-0.0000000 0.0111111  0.0111111 0.0000000
-0.0000000 0.0000000  0.0000000 0.0000000
-0.0111111 *missing*  0.0000000 0.0111111
-0.0111111 0.0111111  0.0111111 0.0222222
-0.0111111 0.0111111  0.0222222 0.0333333
-0.0111111 0.0111111  0.0111111 0.0222222
-0.0111111 0.0000000  0.0000000 0.0111111
+0.0000000 0.0000000 0.0000000 0.0000000
+0.0000000 0.0000000 0.0000000 0.0000000
+0.0000000 0.0000000 0.0000000 0.0000000
+0.0000000 0.0111111 0.0111111 0.0000000
+0.0000000 0.0000000 0.0000000 0.0000000
+0.0111111 *missing* 0.0000000 0.0111111
+0.0111111 0.0111111 0.0111111 0.0222222
+0.0111111 0.0111111 0.0222222 0.0333333
+0.0111111 0.0111111 0.0111111 0.0222222
+0.0111111 0.0000000 0.0000000 0.0111111
 ----
-
-// TODO extend existing or provide 2nd example illustrating interaction of road data section and data definition section.

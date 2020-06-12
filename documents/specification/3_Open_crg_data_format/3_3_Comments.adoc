@@ -1,6 +1,6 @@
 === Comments
 
-An OpenCRG file may contain comments with further information about the file. These comments shall not substitute the introductory header information section.
+An OpenCRG file may contain comments with further information about the file. These comments shall not substitute the introductory _header information_.
 
 There are two types of comments in an OpenCRG file:
 

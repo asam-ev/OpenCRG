@@ -1,6 +1,6 @@
 ==== Header information
 
-The _header information_ gives information about the data file as human-readable text. For example, a _header information_ section may contain:
+The _header information_ section provides information about the file as human-readable text. For example, a _header information_ section may contain:
 
 * Title of the file
 * Short description of the contents and purpose of the file
