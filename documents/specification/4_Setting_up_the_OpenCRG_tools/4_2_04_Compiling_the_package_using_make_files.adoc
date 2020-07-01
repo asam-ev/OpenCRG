@@ -1,0 +1,19 @@
+==== Compiling the C-API using make files
+
+Using the provided make files is the most convenient way of compiling the C-API.
+
+===== Prerequisites
+
+* You downloaded and unpacked the OpenCRG software package.
+* You have installed the C-compiler _gcc_ on your computer.
+* You have set up a standard make environnment on your computer.
+
+===== Steps
+. Open a command line interpreter.
+. Change to the `c-api` directory.
+. Run `make`.
+
+===== Result
+* A library containing all object files of the basic library is generated in `c-api/baselib/lib/`.
+* Executable test files are generated in `c-api/test/bin/`.
+* Executable demo files are generated in `c-api/demo/bin/`.

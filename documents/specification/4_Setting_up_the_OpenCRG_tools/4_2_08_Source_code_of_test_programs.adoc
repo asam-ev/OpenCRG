@@ -1,0 +1,11 @@
+==== Source code of test programs
+
+The source code of the test programs for the C-API is located in `_open-crg_/c-api/test/` and comprises the following:
+
+`/test/Dump/`:: Read an OpenCRG file and write all values (x, y, z, u, v) into into a text file `crgDump.txt`.
+`/test/MemTest/`:: Test allocating and releasing OpenCRG data sets.
+`/test/MultiCp/`:: Test multiple contact points.
+`/test/MultiRead/`:: Read multiple data files and evaluate on last file.
+`/test/PerfTest/`:: Tool for evaluating the performance of the library.
+`/test/Scan/`:: Perform an x/y-scan of an OpenCRG data set.
+`/test/Verify/`:: Reads an OpenCRG file and a reference text file containing x/y/z data or x/y/z/u/v data. Computes the z-values at the given x/y locations from the OpenCRG file and compares the result with the z-values from the reference text file.

@@ -1,0 +1,19 @@
+==== Testing the API
+
+The software package provides programs for testing various aspects of the C-API. Successfully running these test programs ensures that the C-API is set up correctly. These tests are also used for acceptance tests of the C-API.
+
+===== Prerequisites
+
+* You have compiled the software package.
+* Your computers provides an environment for executing shell scripts.
+* You have installed _gnuplot_ on your computer.
+
+===== Steps
+
+. To run all tests for evaluation options, execute the script `c-api/test/bin/testOptions.sh`.
+. To run all tests for data set modifiers, execute the script `c-api/test/bin/testModifiers.sh`.
+
+===== Results
+
+* The C-API is set up successfully.
+* Image files illustrating the various options and modifiers are created.

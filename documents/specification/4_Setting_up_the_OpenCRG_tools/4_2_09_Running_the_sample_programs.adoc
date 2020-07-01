@@ -1,0 +1,25 @@
+==== Running the sample programs
+
+The software package contains several sample programs illustrating the use of
+the C-API:
+
+`crgSimple`:: Perform a series  of z-data queries on a mesh of x/y-coordinates.
+`crgReader`:: Read an OpenCRG file and print debug information.
+`crgEvalxyuv`:: Perform a series of conversions between x/y-coordinates and u/v-
+coordinates and check the results for consistency.
+`crgEvalZ`:: Perform a series of advanced z-data queries from given x/y-
+coordinates and u/v-coordinates.
+`crgEvalOpts`:: Collection of tests involving data set modifiers and evaluation
+options.
+
+===== Prerequisites
+
+You have compiled the C-API successfully.
+
+===== Steps
+
+. Open a command line interpreter.
+. Switch to the directory containing the executable of the sample program. The
+executables are located in `_open-crg_/c-api/demo/bin/`.
+. Run `[program] -help` to display information on the available options.
+. Run `[program] [options] <OpenCRG file>` to run the program with the set options on the OpenCRG file.

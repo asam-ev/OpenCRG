@@ -1,0 +1,7 @@
+== Setting up the OpenCRG tools
+
+include::4_1_Downloading_the_software_package.adoc[]
+
+include::4_2_00_Setting_up_the_C-API.adoc[]
+
+include::4_3_00_Setting_up_the_Matlab_tools.adoc[]
