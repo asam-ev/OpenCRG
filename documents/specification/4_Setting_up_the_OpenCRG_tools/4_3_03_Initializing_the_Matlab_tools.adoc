@@ -3,7 +3,7 @@
 Initializing the Matlab tools adds them to the Matlab search path. This allows
 Matlab to find functions by their name.
 
-Additionally you should create a new directory for holding temporary data. Such a directory is required when running the demo scripts or tests.
+Additionally, a new directory for holding temporary data is needed. Such a directory is required when running the demo scripts or tests.
 
 ===== Prerequisites
 

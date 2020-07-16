@@ -1,6 +1,6 @@
 ==== Library files of the Matlab tools
 
-The library files of the Matlab tools are located in `_open-crg_/matlab/lib/` and comprise the following:
+The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and comprise the following:
 
 // TODO: add descriptions once the code comments have been reviewed (maybe use include mechanism?)
 

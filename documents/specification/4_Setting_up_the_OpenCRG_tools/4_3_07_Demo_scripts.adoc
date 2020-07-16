@@ -19,8 +19,8 @@ a complete road.
 `/demo/crg_demo_gen_sl_surf.m`:: Generate a synthetic OpenCRG file representing a straight road.
 `/demo/crg_demo_gen_surface.m`:: Generate a surface OpenCRG file.
 // TODO: what's a surface OpenCRG file?
-`/demo/crg_demo_gen_syntheticStraight.m`:: Generate a synthetic straigth OpenCRG file.
-`/demo/crg_demo_gen_target.m`:: Generate a surface crg file.
+`/demo/crg_demo_gen_syntheticStraight.m`:: Generate a synthetic OpenCRG file representing a straight road.
+`/demo/crg_demo_gen_target.m`:: Generate a surface OpenCRG file.
 `/demo/crg_demo_map_transformation.m`:: Perform geodetic transformations.
 //TODO: How does this fit with the current geo-referencing work.
 `/demo/crg_demo_scale_data.m`:: Scale OpenCRG data.

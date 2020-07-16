@@ -1,6 +1,6 @@
 ==== Test scripts
 
-The test scripts for the Matlab tools are located in `_open-crg_/matlab/test/` and comprise the following:
+The test scripts for the Matlab tools are stored in `_open-crg_/matlab/test/` and comprise the following:
 
 //TODO: check descriptions again once code comments have been reviewed
 

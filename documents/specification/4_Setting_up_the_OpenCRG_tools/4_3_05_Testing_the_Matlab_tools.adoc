@@ -1,8 +1,8 @@
 ==== Testing the Matlab tools
 
-After initializing the Matlab tools, you should run tests to make sure that they are set up correctly. The OpenCRG software package provides several scripts you can use for testing. These scripts are located in `/matlab/demo/` and `/matlab/test/`
+Testing the Matlab tools makes sure that they are set up correctly. The OpenCRG software package provides several scripts you can use for testing. These scripts are stored in `/matlab/demo/` and `/matlab/test/`
 
-Before running the actual tests, must create the required OpenCRG data structures and write them to file. You can use the command `crg_demo` to create the required files. 
+Before running the actual tests, the required OpenCRG data structures must be created and written to file. You can use the command `crg_demo` to create the required files. 
 
 All test files and demo files may further be used as examples on how to use the Matlab tools.
 

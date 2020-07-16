@@ -1,8 +1,8 @@
 ==== Getting help
 
-The OpenCRG Matlab files contain comments formatted for help display. The function help contains the following information:
+The OpenCRG Matlab files contain comments formatted for help display. The help comments contain the following information:
 
-* Short description
+* Short description of the function
 * Input parameters and return values
 * Usage examples
 * Related functions
