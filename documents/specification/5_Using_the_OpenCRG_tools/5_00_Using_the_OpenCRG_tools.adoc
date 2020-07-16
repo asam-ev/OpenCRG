@@ -1,0 +1,21 @@
+=== Using the OpenCRG tools
+
+include::5_01_Usage_of_the_C-API.adoc[]
+
+include::5_02_Usage_of_the_Matlab_tools.adoc[]
+
+include::5_03_Reading_OpenCRG_files.adoc[]
+
+include::5_04_Setting_and_applying_modifiers.adoc[]
+
+include::5_05_Creating_a_contact_point.adoc[]
+
+include::5_06_Setting_options.adoc[]
+
+include::5_07_Evaluating_OpenCRG_data.adoc[]
+
+include::5_08_Manipulating_OpenCRG_data.adoc[]
+
+include::5_09_Generating_OpenCRG_data.adoc[]
+
+include::5_10_Visualizing_OpenCRG_data.adoc[]

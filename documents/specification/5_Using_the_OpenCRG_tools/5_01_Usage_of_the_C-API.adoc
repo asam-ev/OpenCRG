@@ -1,0 +1,19 @@
+==== Usage of the C-API
+
+The C-API comprises methods for the following tasks:
+
+ * Reading OpenCRG files
+ * Modifying OpenCRG data
+ * Evaluating OpenCRG data
+
+The C-API is especially suitable for applications where fast evaluation is important. Typical use cases include driving simulators or test rigs.
+
+A _data set_ is the instance of data read from an OpenCRG file into memory. A _data set_ is identified by a unique integer ID. This ID is returned by the data loader method. A _data set_ stores the actual road data as well as modifiers and options defined in the file.
+
+After reading the file, the modifiers of the _data set_ may be replaced, deleted or extended via API calls referring to that _data set_. Once the modifiers are defined they must be applied via an API call.
+
+
+
+
+A _contact point_ inherits all options from the corresponding data set. The options of a _contact point_ may be replaced, deleted or extended via API calls referring to that _contact point_. In contrast to modifiers, options are applied implicitly whenever an evaluation is performed. 
+

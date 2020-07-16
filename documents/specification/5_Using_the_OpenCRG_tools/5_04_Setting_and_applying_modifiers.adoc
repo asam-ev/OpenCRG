@@ -1,0 +1,86 @@
+=== Setting and applying modifiers
+
+Modifiers provide a way to alter OpenCRG data without changing the actual data in the file. 
+
+With the C-API, modifiers are set via function calls. For all modifiers and values, symbolic constants are defined in `_opencrg_/c-api/baselib/inc/crgBaseLib.h`. These constants should be used instead of their integer equivalents to improve readability of the code.
+
+With Matlab, modifiers are set by directly accessing the `mods` field of a data set using dot notation.
+
+[NOTE]
+====
+Modifiers, whether defined in an OpenCRG file or via function calls, are not applied automatically. They must be applied explicitly via a separate function call.
+====
+
+==== Prerequisites
+
+You have loaded an OpenCRG data set.
+
+==== Corresponding C functions
+
+`int crgDataSetModifierSetInt( int dataSetId, int mod, int val )`::
+Set modifier `mod` of the data set `dataSetId` to the value `val`.
+
+`int crgDataSetModifierSetDouble( int dataSetId, int mod, double val )`::
+Set modifier `mod` of the data set `dataSetId` to the value `val`.
+
+//TODO: there is also a function "crgDataSetModifierRemove" which seems to remove individual modifiers.
+
+`int crgDataSetModifierRemoveAll( int dataSetId )`::
+Remove all modifiers from the data set `dataSetId`.
+
+`void crgDataSetModifierSetDefault( int dataSetId )`::
+Set all modifiers of the data set `dataSetId` to their default values.
+
+`void crgDataSetModifiersApply( int dataSetId )`::
+Apply set modifiers to the data set `dataSetId`. If no modifiers are defined, the default modifier values are applied.
+
+//TODO: Does this remove the modifiers from data set like the Matlab API?
+
+==== Corresponding Matlab functions
+
+`[data] = crg_mods(data)`::
+Apply modifiers in `data.mods` to the OpenCRG data in `data`. Afterwards, remove all modifiers from `data.mods`. If `data.mods` does not exist, default modifier values are applied. If `data.mods` is empty, no modifiers are applied.
+
+==== Examples
+
+===== C examples
+
+----
+ /* load CRG file */
+int dataSetId = crgLoaderReadFile( 'demo.crg' );
+
+/* remove modifiers defined in file */
+crgDataSetModifierRemoveAll( dataSetId );
+
+/* set NaN-handling modifier using symbolic constants */
+crgDataSetModifierSetInt( dataSetId, dCrgModGridNaNMode, dCrgGridNaNKeepLast );
+
+/* set offset-position modifiers using both symbolic constants and numerical values */
+crgDataSetModifierSetDouble( dataSetId, dCrgModRefLineOffsetX,  100.0 );
+crgDataSetModifierSetDouble( dataSetId, dCrgModRefLineOffsetY,  200.0 );
+crgDataSetModifierSetDouble( dataSetId, dCrgModRefLineOffsetZ,   10.0 );
+
+/* apply modifiers to data set */
+crgDataSetModifiersApply( dataSetId );
+----
+
+===== Matlab examples
+
+----
+% load CRG file 
+data = crg_read('demo.crg');
+
+% create mods struct
+data.mods = struct;
+
+/* set NaN-handling modifier */
+data.mods.gnan = 2;
+
+/* set offset-position modifiers */
+data.mods.rlox = 100;
+data.mods.rloy = 200;
+data.mods.rloz = 10;
+
+/* apply modifiers to data set */
+data = crg_mods(data);
+----

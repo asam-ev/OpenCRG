@@ -1,0 +1,23 @@
+=== Visualizing OpenCRG data
+
+
+
+==== Prerequisites
+
+
+
+==== Corresponding C functions
+
+
+==== Corresponding Matlab functions
+
+
+==== Examples
+
+===== C examples
+
+
+===== Matlab examples
+
+
+==== Related topics

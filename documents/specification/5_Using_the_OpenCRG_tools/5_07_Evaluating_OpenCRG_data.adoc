@@ -1,0 +1,89 @@
+=== Evaluating OpenCRG data
+
+Evaluation routines provide access to road data. Evaluation routines can further be used for transforming between different coordinate systems.
+
+==== Prerequisites
+
+- You have loaded an OpenCRG data set.
+- You have set and applied modifiers.
+- You have created a contact point (C only).
+- You have set options.
+
+==== Corresponding C functions
+
+`void crgEvaluv2z( int cpId, double u, double v, double* z )`::
+Evaluate the `z`-position at a given `u`/`v`-position for contact point `cpId`.
+
+`void crgEvalxy2z( int cpId, double u, double v, double* z )`::
+Evaluate the `z`-position at a given `x`/`y`-position for contact point `cpId`.
+
+`void crgEvaluv2xy( int cpId, double u, double v, double* x, double* y )`::
+Evaluate the `x`/`y`-position of a given `u`/`v`-position for contact point `cpId`.
+
+`void crgEvalxy2uv( int cpId, double x, double y, double* u, double* v )`::
+Evaluate the `u`/`v`-position of a given `x`/`y`-position for contact point `cpId`.
+
+`void crgEvaluv2pk( int cpId, double u, double v, double* phi, double* crv )`::
+Evaluate the heading angle `phi` and the curvature `crv` at a given `u`/`v`-position for contact point `cpId`.
+
+==== Corresponding Matlab functions
+
+`[pz, data] = crg_eval_uv2z(data, puv)`::
+Evaluate the `z`-positions at the given `u`/`v`-positions for data set `data`.
+
+`[pz, data] = crg_eval_xy2z(data, pxy)`::
+Evaluate the `z`-positions at the given `x`/`y`-positions for data set `data`.
+
+`[pxy, data] = crg_eval_uv2xy(data, puv)`::
+Evaluate the `x`/`y`-positions of the given `u`/`v`-positions for data set `data`.
+
+`[puv, data] = crg_eval_xy2uv(data, pxy)`::
+Evaluate the `u`/`v`-positions of the given `x`/`y`-positions for data set `data`.
+
+`[iu, iv] = crg_eval_uv2iuiv(data, u, v)`::
+Evaluate the index positions `iu`, `iv` of the given `u`/`v`-positions for data set `data`.
+
+`[phi, data] = crg_eval_u2phi(data, pu)`::
+Evaluate the heading angles `phi` at given `u`-positions for data set `data`.
+
+`[crv, data] = crg_eval_u2crv(data, pu)`::
+Evaluate the curvature values `crv` at given `u`-positions for data set `data`.
+
+//TODO: What are coordinates in the following functions? Are these functions still valid?
+// crg_eval_enh2xyz
+// crg_eval_llh2xyz
+// crg_eval_xyz2enh
+// crg_eval_xyz2llh
+
+
+==== Examples
+
+===== C examples
+
+----
+double z;
+
+/* load CRG file */
+int dataSetId = crgLoaderReadFile( 'demo.crg' );
+
+/* create contact point */
+int cpId = crgContactPointCreate( dataSetId );
+
+/* evaluate z at (u,v) = [100 0] */
+crgEvaluv2z( cpId, 100, 0, &z );
+----
+
+===== Matlab examples
+
+----
+% load CRG file 
+data = crg_read('demo.crg');
+
+% evaluate z at (u,v) = [100 0]
+pz = crg_eval_uv2z(data, [100 0]);
+----
+
+==== Related Topics
+
+- <<Reading an OpenCRG file>>
+- <<Creating a contact point>>

@@ -1,0 +1,41 @@
+=== Creating a contact point
+
+In order to evaluate data with the C-API, the user must create one or more _contact points_. Contact points provide access to a given data set. A contact point is identified by a unique integer ID. This ID is returned by the contact-point creation method. The number of contact points per data set is not limited.
+
+[NOTE]
+====
+When creating multi-thread applications to parallelize evaluation calls, create a separate contact point for each thread. Sharing contact points across different threads will destroy data associated with that  contact point.
+====
+
+==== Prerequisites
+
+- You have loaded an OpenCRG data set.
+- You have set and applied modifiers.
+
+==== Corresponding C functions
+
+`int cpId = crgContactPointCreate( int dataSetId )`::
+Create a contact point with the ID `cpId` for a data set with the ID `dataSetId`.
+
+
+==== Corresponding Matlab functions
+
+n/a
+
+==== Examples
+
+===== C examples
+
+----
+double z;
+
+/* load CRG file */
+int dataSetId = crgLoaderReadFile( 'demo.crg' );
+
+/* create two contact points */
+int cpId1 = crgContactPointCreate( dataSetId );
+int cpId2 = crgContactPointCreate( dataSetId );
+----
+
+==== Related Topics
+
