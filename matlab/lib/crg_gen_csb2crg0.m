@@ -65,26 +65,24 @@ function [data] = crg_gen_csb2crg0(inc, u, v, c, s, b)
 %
 %   See also CRG_INTRO, CRG_TEST_GEN_CSB2CRG0.
 
-%   Copyright 2005-2010 OpenCRG - VIRES Simulationstechnologie GmbH - HHelmich
-%   Based on Dr. Klaus Mueller (DAIMLER AG) Matlab implementation to generate a synthetic road
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               lib
+% file name:             crg_gen_csb2crg0 
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_gen_csb2crg0 2010-03-25 10:20:00Z hhelmich $
+% *****************************************************************
 
 %% check input parameter
 

@@ -103,25 +103,24 @@ function [] = map_intro()
 %   MAP_GLOBAL2PLOCAL, MAP_PLOCAL2GLOBAL,
 %   and many others.
 
-%   Copyright 2012-2015 OpenCRG - Daimler AG - Jochen Rauh
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               lib
+% file name:             map_intro.m 
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: map_intro.m 369 2019-09-12 20:52:13Z jorauh@EMEA.CORPDIR.NET $
+% *****************************************************************
 
 %   The MAP routines use algorithms which can be found in many places in
 %   literature and many implementations of various authos. Just to mention
