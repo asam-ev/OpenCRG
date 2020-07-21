@@ -5,7 +5,7 @@ cache:
 stages:
   - build
 
-html_OpenDRIVE_Concept_paper:
+html_OpenCRG_specification_1_2:
   stage: build
   tags:
      - asciidoc
