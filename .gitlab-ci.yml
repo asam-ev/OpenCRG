@@ -1,0 +1,24 @@
+# Cache docker images
+cache:
+  key: one-key-to-rule-them-all
+
+stages:
+  - build
+
+html_OpenDRIVE_Concept_paper:
+  stage: build
+  tags:
+     - asciidoc
+  script: 
+     - asciidoctor -r asciidoctor-diagram documents/specification/OpenCRG_specification_1_2.adoc -o OpenCRG_specification_1_2.html
+  artifacts:
+    paths:
+     - OpenCRG_specification_1_2.html
+
+#pdf_OpenDRIVE_Concept_paper:
+#  stage: build
+#  script: 
+#     - asciidoctor-pdf -r asciidoctor-diagram -r asciidoctor-mathematical concept_paper/OpenDRIVE_Concept.adoc -o OpenDRIVE_Concept.pdf
+#  artifacts:
+#    paths:
+#     - OpenDRIVE_Concept.pdf
