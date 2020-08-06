@@ -26,7 +26,7 @@
 %
 % *****************************************************************
 
-%% Test proceedings
+%% Demo proceedings
 %
 % * UTM (UTM2BLH, BLH2UTM)
 % * GK (GK2BLH, BLH2GK)
@@ -47,7 +47,7 @@ format long g;
 org_llh = [	48.02331, 11.71584, 584.0]; % WGS84
 
 %% Test1 (UTM)
-
+fprintf('%% Test1 (UTM)')
 % create mpro
 mpro.gell.nm='WGS84';   % global datum
 mpro.proj.nm='UTM_32U'; % local datum
@@ -65,7 +65,7 @@ llh = map_pmap2geod_tm(enh_utm,  mpro.gell, mpro.proj);
 llh = [180/pi*llh(1), 180/pi*llh(2), llh(3)]
 
 %% Test2 (GK with datum transformation)
-
+fprintf('%% Test2 (GK with datum transformation)')
 % create mpro2
 mpro2.gell.nm='WGS84';
 mpro2.lell.nm='BESSELDHDN';
@@ -97,12 +97,10 @@ llh = [180/pi*llh(1), 180/pi*llh(2), llh(3)]
 
 
 %% Test3 (GK to UTM)
-
+fprintf('%% Test3 (GK to UTM)')
 % transform GK3 zone 4 (BESSELDHDN) -> WGS84 llh radian
 % transformation includes datum transformation, see map_global2plocal.m
 llh = map_plocal2global(enh_gk, mpro2);
 
 % transform WGS84 llh radian -> UTM_32U
 enh_utm = map_geod2pmap_tm(llh, mpro.gell, mpro.proj)
-
-%% Test4 (NAD)
