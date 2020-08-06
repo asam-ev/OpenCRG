@@ -37,14 +37,15 @@ clc;
 
 % read crg data
 crg_orig = crg_read('../crg-bin/3DMap_Axis1318611_Cobblestoneroad_5mm.crg');
-
+% //TODO: use crg_orig = crg_read('../crg-bin/crg_refline_Hoki_HoeKi_Grafing.crg');
+% //TODO: missing wgs84 coordinates in crg_refline_Hoki_HoeKi_Grafing.crg
 
 %% Test1 ( orig data consistency no map pro entry )
 
 % check data consistency
 crg_orig = crg_check_wgs84(crg_orig);
 crg_wgs84_crg2html(crg_orig, '3DMap_Axis1318611_Cobblestoneroad_5mm_orig.html');
-
+% //TODO: use crg_wgs84_crg2html(crg_orig, 'crg_refline_Hoki_HoeKi_Grafing.html');
 
 %% Test2 ( add map pro entry and check data consistency)
 
@@ -82,11 +83,6 @@ disp_mpro(crg_new)
 [crg_new_wgs, crg_new_puv] = generateWGS84coords(crg_new);
 
 % distance [m] between start points [nbeg,ebeg]
-%orig_ref_points = [[crg_orig.head.nbeg, crg_orig.head.ebeg]; [crg_orig.head.nend, crg_orig.head.eend]];
-%new_ref_points = [[crg_new.head.nbeg, crg_new.head.ebeg];[crg_new.head.nend, crg_new.head.eend]];
-
-%dll_beg = crg_wgs84_dist(orig_ref_points, new_ref_points)
-
 dist = crg_wgs84_dist(crg_orig_wgs, crg_new_wgs);
 figure
 subplot(2,1,1)
@@ -112,14 +108,6 @@ xlabel('u [m]')
 ylabel('distance on sphere [m]')
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
-
-
-
-% distance [m] between end points [nend,eend]
-%dll_end = crg_wgs84_dist([crg_orig.head.nend crg_orig.head.eend], [crg_new.head.nend crg_new.head.eend])
-
-% plot difference in steps
-% [pllh, crg_orig] = crg_eval_xyz2llh(crg_orig, [crg_orig.rx, crg_orig.ry]);
 
 
 %% helper functions
