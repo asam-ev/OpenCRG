@@ -1,0 +1,13 @@
+== Open CRG data format
+:imagesdir: ../images/
+:stem: latexmath
+:sampledir: ../../crg-text
+include::3_1_Curved_regular_grids.adoc[]
+
+include::3_2_Data_file_structure.adoc[]
+
+include::3_3_Comments.adoc[]
+
+include::3_4_0_Data_sections.adoc[]
+
+include::3_5_Sample_files.adoc[]

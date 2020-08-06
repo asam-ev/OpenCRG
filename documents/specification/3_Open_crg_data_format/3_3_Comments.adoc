@@ -1,0 +1,9 @@
+=== Comments
+
+An OpenCRG file may contain comments with further information about the file. These comments shall not substitute the introductory _header information_.
+
+There are two types of comments in an OpenCRG file:
+
+Block comment:: An asterisk (`*`) at the beginning of a line causes the entire line to be treated as a comment.
+
+Inline comment:: An exclamation mark (`!`) causes all following characters to be treated as a comment.

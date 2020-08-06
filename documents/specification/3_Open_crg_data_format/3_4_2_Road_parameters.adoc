@@ -1,0 +1,166 @@
+==== Road parameters
+
+The _road parameters_ section contains information about the reference line necessary for road reconstruction. With OpenCRG, road data is recorded in relation to a reference line. If an OpenCRG file contains the _road data_ section, a _road parameters_ section is therefore mandatory.
+
+The minimum information necessary for creating a reference line is the distance between lateral cross sections. The REFERENCE_LINE_INCREMENT parameter is therefore mandatory. All other parameters are optional.
+
+Curved regular grids can be placed in an inertial x/y-coordinate system and additionally in World Geodetic System WGS 84 by providing start positions or end positions in the respective coordinate system. The geodetic coordinates are purely informative and not suitable for exact geo-referencing.
+
+Integrating along the reference line may lead to error accumulation due to low-precision heading angles. To allow the detection and handling of integration errors, high-precision start positions and end positions in x/y-coordinates are necessary. Applications can then compare the integration result to the given positions.
+
+===== Keyword
+
+----
+$ROAD_CRG
+----
+
+===== Contents
+
+The _road parameters_ section contains parameters as key-value pairs.
+
+// TODO are the parameter values Double-precision floating-point numbers?
+
+|===
+|Parameter | Values |Description
+
+|`REFERENCE_LINE_START_U`
+|Double-precision floating-point number (default: 0.0)
+|u-coordinate of start position
+
+|`REFERENCE_LINE_END_U`
+|Double-precision floating-point number (default: calculated from road data)
+|u-coordinate of end position
+
+|`REFERENCE_LINE_INCREMENT`
+|Double-precision floating-point number (default: none)
+|Distance between lateral cross sections
+
+|`LONG_SECTION_V_RIGHT`
+|Double-precision floating-point number (default: calculated from road data)
+|v-coordinate of the outer right border of the road
+
+|`LONG_SECTION_V_LEFT`
+|Double-precision floating-point number (default: calculated from road data)
+|v-coordinate of the outer left border of the road
+
+|`LONG_SECTION_V_INCREMENT`
+|Double-precision floating-point number (default: calculated from road data)
+|Distance between axial cross sections
+
+|`REFERENCE_LINE_START_S`
+|Double-precision floating-point number (default: 0.0)
+|Slope at start position
+
+|`REFERENCE_LINE_END_S`
+|Double-precision floating-point number (default: 0.0)
+|Slope at end position
+
+|`REFERENCE_LINE_START_B`
+|Double-precision floating-point number (default: 0.0)
+|Banking at start position
+
+|`REFERENCE_LINE_END_B`
+|Double-precision floating-point number (default: 0.0)
+|Banking at end position
+
+|`REFERENCE_LINE_START_X`
+|Double-precision floating-point number (default: 0.0)
+|x-coordinate of start position of the reference 
+line
+
+|`REFERENCE_LINE_START_Y`
+|Double-precision floating-point number (default: 0.0)
+|y-coordinate of start position of the reference line
+
+|`REFERENCE_LINE_END_X`
+|Double-precision floating-point number (default: calculated from road data)
+|x-coordinate of end position of the reference line
+
+
+|`REFERENCE_LINE_END_Y`
+|Double-precision floating-point number (default: calculated from road data)
+|y-coordinate of end position of the reference line
+
+|`REFERENCE_LINE_OFFSET_X`
+|Double-precision floating-point number (default: 0.0)
+|Global offset for x-coordinates
+
+|`REFERENCE_LINE_OFFSET_Y`
+|Double-precision floating-point number (default: 0.0)
+|Global offset for y-coordinates
+
+|`REFERENCE_LINE_START_PHI`
+|Double-precision floating-point number (default: ????)
+|Heading angle at start position
+
+|`REFERENCE_LINE_END_PHI`
+|Double-precision floating-point number (default: ????)
+|Heading angle at end position
+
+|`REFERENCE_LINE_OFFSET_PHI`
+|Double-precision floating-point number (default: 0.0)
+|Global offset for heading angle
+
+|`REFERENCE_LINE_START_Z`
+|Double-precision floating-point number (default: 0.0)
+|Elevation at start position
+
+|`REFERENCE_LINE_END_Z`
+|Double-precision floating-point number (default: 0.0)
+|Elevation at end position
+
+|`REFERENCE_LINE_OFFSET_Z`
+|Double-precision floating-point number (default: 0.0)
+|Global offset for elevation
+
+// TODO what are the defaults for WGS 84 coordinates?
+
+|`REFERENCE_LINE_START_LON`
+|Double-precision floating-point number (default: ????)
+|Longitude of the start position in WGS 84 coordinates
+
+|`REFERENCE_LINE_START_LAT`
+|Double-precision floating-point number (default: ????)
+|Latitude of start position in WGS 84 coordinates
+
+|`REFERENCE_LINE_END_LON`
+|Double-precision floating-point number (default: ????)
+|Longitude of end position in WGS 84 coordinates
+
+|`REFERENCE_LINE_END_LAT`
+|Double-precision floating-point number (default: ????)
+|Latitude of end position in WGS 84 coordinates
+
+|`REFERENCE_LINE_START_ALT`
+|Double-precision floating-point number (default: ????)
+|Altitude of start position in WGS 84 coordinates
+
+|`REFERENCE_LINE_END_ALT`
+|Double-precision floating-point number (default: ????)
+|Altitude of end position in WGS 84 coordinates
+
+|===
+
+===== Rules
+
+* If an OpenCRG file contains a _road data_ section, the file shall also contain a _road parameters_ section.
+* Parameters in a _road parameters_ section shall be provided as key-value pairs using the syntax `PARAMETER = value`.
+* A _road parameters_ section shall define REFERENCE_LINE_INCREMENT.
+* A _road parameters_ section should define x/y-coordinates of both start position and end position to handle numeric errors in road reconstruction.
+* A _road parameters_ section may define WGS 84 coordinates of the start position and end position if available. These coordinates shall not be used for geo-referencing.
+
+===== Examples
+
+The following _road parameters_ section defines a 3 m wide road with 45 data points along the reference line. The start of the reference line coincides with the origin of the x/y-coordinate system.
+
+----
+$ROAD_CRG
+REFERENCE_LINE_START_U		= 0.0
+REFERENCE_LINE_END_U		= 22.0
+REFERENCE_LINE_INCREMENT	= 0.5
+REFERENCE_LINE_START_X		= 0.0
+REFERENCE_LINE_START_Y		= 0.0
+LONG_SECTION_V_RIGHT     	=-1.50
+LONG_SECTION_V_LEFT     	= 1.50
+$!********************************
+----

@@ -1,0 +1,108 @@
+==== Data definition
+
+The _data definition_ section defines the format and sequence of data in the following road data section. If an OpenCRG file contains a _road data_ section, a _data definition_ section is therefore mandatory.
+
+Lines starting with `#:` define the data format used. OpenCRG supports the following formats:
+
+* LRFI (long, real, formatted, interchangeable)
+* LDFI (long, double, formatted, interchangeable)
+* KRBI (kernel, real, binary, interchangeable)
+* KDBI (kernel, double, binary, interchangeable)
+
+If no data format is defined, road data is considered to use KRBI format.
+
+Lines starting with `D:` define a channel in the _road data_ section. A channel definition defines both the type of data and the unit. A channel corresponds to a column in the _road data_ section. Channel definitions appear in the same sequence as the corresponding columns appear in the _road data_ section.
+
+Lines starting with `U:` define a virtual channel. A virtual channel does not contain original data. Instead, data in a virtual channel is derived from data and definitions provided elsewhere in the file. Virtual channels may safely be ignored.
+
+// TODO research how units are handled
+
+===== Keyword
+
+----
+$KD_Definition
+----
+
+===== Contents
+
+|===
+|Definition |Description
+
+|`#:KRBI`
+| Binary data format using numbers of type real
+
+|`#:KRBI`
+|Binary data format using numbers of type double
+
+|`#:LRFI`
+|Human-readable plain-text format using numbers of type real
+
+|`#:LDFI`
+|Human-readable plain-text format using numbers of type double
+
+|`D:reference line phi,rad`
+|Data entries represent heading angles of the reference line in rad.
+
+|`D:reference line banking,m/m`
+|Data entries represent banking as dimensionless fraction.
+
+|`D:reference line slope,m/m`
+|Data entries represent slope as dimensionless fraction.
+
+|`D:long section at v = X,m`
+|Data entries represent a longitudinal cut at position X in meters. X corresponds to a v-coordinate.
+
+|`D:long section X,m`
+|Data entries represent the X-th longitudinal cut. To use this definition, both the width of the road and the increments in v-direction must be defined in the _road parameters_ section.
+
+|===
+
+===== Rules
+
+* If an OpenCRG file contains a _road data_ section, the file shall also contain a _data definition_ section.
+* The _data definition_ section should define the data format used.
+* The _data definition_ section shall define all channels of the _road data_ section.
+* Channel definitions shall appear in the same sequence as the corresponding columns in the _road data_ section.
+* The _data definition_ section may define a virtual channel.
+
+===== Examples
+
+The following _data definition_ section defines ten channels. Each channel corresponds to a column in the _road data_ section. The first three columns contain reference line data. The other seven columns contain road surface data. The v-positions of the longitudinal cuts are defined explicitely.
+
+----
+$KD_DEFINiTION
+#:LRFI                             ! plain-text data, numbers of type real
+D:reference line phi,rad           ! heading angle
+D:reference line banking,m/m       ! lateral banking (cross slope)
+D:reference line slope,m/m         ! longitudinal slope
+D:long section at v = -1.500,m     ! 1.50 m right of reference line
+D:long section at v = -1.250,m     ! 1.25 m right of reference line
+D:long section at v = -1.000,m     ! 1.00 m right of reference line
+D:long section at v =  0.000,m     !             on reference line
+D:long section at v =  1.000,m     ! 1.00 m left  of reference line
+D:long section at v =  1.250,m     ! 1.25 m left  of reference line
+D:long section at v =  1.500,m     ! 1.50 m left  of reference line
+$!********************************
+----
+
+The following examples illustrates how the _data definition_ section interacts with the _road parameters_ section. In the example, the _road parameters_ section defines a 3 m wide road with longitudinal cuts every 10 cm. The channel definitions only refer to the number of the cut without explicitly stating the v-position.
+
+----
+$ROAD_CRG                          ! road parameters section
+REFERENCE_LINE_INCREMENT =  0.01   ! 1 cm between every lateral cut
+LONG_SECTION_V_RIGHT     = -1.50   ! right road border
+LONG_SECTION_V_RIGHT     =  1.50   ! left road border
+LONG_SECTION_V_INCREMENT =  0.10   ! 10 cm between every longitudinal cut
+$!********************************
+$KD_DEFINiTION                     ! data definition section
+#:KRBI                             ! binary data, numbers of type real
+D:reference line phi,rad           ! heading angle
+D:long section 1,m                 ! 1.50 m right of reference line
+D:long section 2,m                 ! 1.40 m right of reference line
+...
+D:long section 16,m                !             on reference line
+...
+D:long section 30,m                ! 1.40 m left of reference line
+D:long section 31,m                ! 1.50 m left of reference line
+$!********************************
+----
