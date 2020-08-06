@@ -1,0 +1,29 @@
+=== Reading OpenCRG files
+
+Reading an OpenCRG files loads its content into memory.
+
+==== Related C functions
+
+`int crgLoaderReadFile( const char* file )`:: 
+Reads the OpenCRG file `file` and returns an integer data set ID.
+
+==== Related Matlab functions
+
+`[data] = crg_read(file)`::
+Reads the OpenCRG file `file` and returns a structure array `data` containing the OpenCRG data.
+
+==== Examples
+
+===== C examples
+
+----
+/* load CRG file */
+int dataSetId = crgLoaderReadFile( 'demo.crg' );
+----
+
+===== Matlab examples
+
+----
+% load CRG file 
+data = crg_read('demo.crg');
+----
