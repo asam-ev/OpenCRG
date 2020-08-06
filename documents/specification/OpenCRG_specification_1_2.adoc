@@ -13,9 +13,9 @@
 :title-page:
 // html themes
 :stylesheet: asam.css
-:stylesdir: ../0_resources/themes/html
+:stylesdir: ./0_resources/themes/html
 :linkcs:
-:docinfodir: 0_resources/themes/html
+:docinfodir: ./0_resources/themes/html
 :docinfo: shared,private
 //
 :stem: latexmath
@@ -34,3 +34,9 @@
 include::1_Foreword/1_0_Foreword.adoc[]
 
 include::2_Relations_to_other_standards/2_0_Relations_to_other_standards.adoc[]
+
+include::3_Open_crg_data_format/3_0_Open_crg_data_format.adoc[]
+
+include::4_Setting_up_the_OpenCRG_tools/4_0_Setting_up_the_OpenCRG_tools.adoc[]
+
+include::5_Using_the_OpenCRG_tools/5_00_Using_the_OpenCRG_tools.adoc[]
