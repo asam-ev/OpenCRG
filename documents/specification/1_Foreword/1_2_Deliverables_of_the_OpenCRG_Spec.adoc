@@ -1,0 +1,8 @@
+=== Deliverables of the OpenCRG specification
+
+The following deliverables are provided for OpenCRG:
+
+*   User guide 
+*   Sample OpenCRG files
+*   C-API including demo files and test scripts
+*   Matlab library including demo files and test scripts

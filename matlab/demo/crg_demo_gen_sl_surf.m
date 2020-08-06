@@ -17,25 +17,24 @@ function [ier] = crg_demo_gen_sl_surf(filename)
 %   See also CRG_INTRO, CRG_GEN_CSB2CRG0, CRG_CHECK_UV_DESCRIPT,
 %            CRG_PERFORM_2SURFACE
 
-%   Copyright 2005-2010 OpenCRG - Daimler AG - Klaus Mueller
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               demo
+% file name:             crg_demo_gen_sl_surf.m
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_demo_gen_sl_surf.m 217 2011-02-06 19:54:42Z jorauh $
+% *****************************************************************
 
 %% check input parameter
 

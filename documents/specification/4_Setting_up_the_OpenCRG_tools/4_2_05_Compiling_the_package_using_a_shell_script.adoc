@@ -1,0 +1,23 @@
+==== Compiling the C-API using a shell script
+
+Using a shell script for compiling is appropriate, if you cannot compile the software package using the provided make files.
+
+In contrast to using the make files, no library containing the object files of the basic library is generated.
+
+
+===== Prerequisites
+
+* You downloaded and unpacked the OpenCRG software package.
+* Your computers provides an environment for executing shell scripts.
+* You have installed a C-compiler on your computer.
+
+===== Steps
+
+. Open the shell script `c-api/compileScript.sh` in a text editor.
+. Find the variable `COMP` and set it to the name of your compiler.
+. Save your changes to the script.
+. Execute the script.
+
+===== Result
+* Executable test files are generated in `c-api/test/bin/`.
+* Executable demo files are generated in `c-api/demo/bin/`.

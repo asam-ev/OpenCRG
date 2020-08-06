@@ -1,11 +1,11 @@
 === Conventions
-:imagesdir: ../OpenDRIVE_1_6/images/1_Foreword/
+:imagesdir: ../images/
 :stem: latexmath
 
 ==== Naming Conventions 
 In this document, the following conventions apply:
 
-``data types`` 	are given according to IEEE standard
+``data types`` 	are given according to IEEE standards.
 
 ==== Units
 
@@ -13,34 +13,12 @@ Unless stated otherwise, all numeric values within this specification are in SI 
 
 *	position/distance	in [m]
 *	angles	in [rad]
-*	time	in [s]
-*	speed	in [m/s]
 
 Geographic positions are stated in the unit defined by the spatial coordinate system, for example, in accordance with WGS 84 – EPSG 4326 [1].
 
-Some data elements allow you to explicitly state the unit of a given value. If the unit is not given or if there is no means to state the unit, SI units apply. The following units may be used in explicit assignments:
-
-.Units
-[%header, cols=3*]
-|===
-|Category	    |Description	    |Identifier
-.4+|distance	|meter	            |m
-	            |kilometer	        |km
-	            |feet	            |ft
-	            |land mile	        |mile
-.3+|Speed	    |meters per second	|m/s
-	            |miles per hour	    |mph
-	            |kilometers per hour|km/h
-.2+|Mass	    |kilogram	        |kg
-	            |metric tons	    |t
-|Slope  	    |percent	        |%
-|===
-
-These optional units shall be used for purposes of signage and speed indication only. They shall not be used as general units, for example, to define road geometry, etc.
-
 ==== Modal verbs
 
-To ensure compliance with the OpenDRIVE standard, users need to be able to distinguish between mandatory requirements, recommendations, permissions, as well as possibilities and capabilities.
+To ensure compliance with the OpenCRG standard, users need to be able to distinguish between mandatory requirements, recommendations, permissions, as well as possibilities and capabilities.
 
 The following rules for using modal verbs apply:
 
@@ -59,7 +37,7 @@ Recommendations indicate that among several possibilities, one is recommended as
 should not
 
 |*Permission* +
-Permissions indicate a course of action permissible within the limits of OpenDRIVE deliverables.	
+Permissions indicate a course of action permissible within the limits of OpenCRG deliverables.	
 |may + 
 need not
 
@@ -69,7 +47,7 @@ These verbal forms are used for stating possibilities or capabilities, being tec
 can not
 
 |*Obligation and necessity* +
-These verbal forms are used to describe legal, organizational, or technical obligations and necessities that are not regulated or enforced by the OpenDRIVE standard.	
+These verbal forms are used to describe legal, organizational, or technical obligations and necessities that are not regulated or enforced by the OpenCRG standard.	
 |must +
 must not
 |===
@@ -86,35 +64,7 @@ This documentation uses the following typographical conventions:
 |```[blue]#Code snippets#``` 				|This format is used for excerpts of code that serve as an example for implementation.
 |_Terms_						|This format is used to introduce glossary terms, new terms and to emphasize terms.
 |`[green]#Mathematical elements#`	|This format is used for calculations and mathematical elements.
-|`[green]#<element>#`					|This describes a tag for an element within the XML specification 
-|@attribute					|The "@" identifies an attribute of any OpenDRIVE element
 |===
-
-The OpenDRIVE structure diagrams are modeled according to the Unified Modeling Language (UML). For detailed information on UML, see Booch et al. (1997).
-
-image::uml_notation.png[img1, 1100, title ="UML notation (see ISO TS 19103, Geographic information - Conceptual schema language)" ]
-
-The context that an element takes within an association is indicated by its role. The role is given near the target of the association.
-For better readability, the OpenDRIVE class diagrams use a color scheme:
-
-*	The top-level element of a diagram is [red]#marked orange#. This helps finding the entry point when reading a diagram top-down.
-*	Classes that are [yellow]#marked yellow# belong to the UML package that is discussed in the chapter of the specification, where the UML diagram is given.
-*	Classes that are [blue]#marked blue# belong to an OpenDRIVE package that is different from the package that is associated with the yellow color.
-*	Classes that are [green]#marked green# are classes that contain geometry information.
-
-[.underline]#*Mandatory and optional attributes*#
-
-image::uml_attributes.png[img2, 600, title ="UML attribute notation" ]
-
-In the UML Model attributes are marked as mandatory and optional. In the above figure the marking of the attributes can be seen. Optional attributes have the UML specific notation [0..1], mandatory attributes do not have any notation.
-
-==== Use of IDs
-
-The following rules apply to the use of IDs in OpenDRIVE:
-
-*	IDs shall be unique within a class.
-*	Lane IDs shall be unique within a lane section.
-*	Only defined IDs may be referenced.
 
 ==== Curvature
 

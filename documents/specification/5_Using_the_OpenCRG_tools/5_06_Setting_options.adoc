@@ -1,0 +1,36 @@
+=== Setting options
+
+With the Matlab tools, Options stored with OpenCRG data are automatically taken into account when evaluating the data.
+
+With the C-API, options are set via function calls. For all options and values, symbolic constants are defined in `_opencrg_/c-api/baselib/inc/crgBaseLib.h`. These constants should be used instead of their integer equivalents to improve readability of the code.
+
+With Matlab, options are set by directly accessing the `opts` field of a data set using dot notation.
+
+[NOTE]
+====
+Options, whether defined in an OpenCRG file or via function calls, are applied automatically when executing an evaluation call.
+====
+
+
+==== Prerequisites
+
+- You have loaded an OpenCRG data set.
+- You have set and applied modifiers.
+- You have created a contact point (C only).
+
+==== Corresponding C functions
+
+
+
+==== Corresponding Matlab functions
+
+
+==== Examples
+
+===== C examples
+
+
+===== Matlab examples
+
+
+==== Related topics

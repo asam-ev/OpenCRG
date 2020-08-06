@@ -21,25 +21,24 @@ function [data] = crg_plot_elgrid_cross_sect(data, iu, iv)
 %       plots selected elevation grid data part.
 %   See also CRG_INTRO.
 
-%   Copyright 2005-2012 OpenCRG - Daimler AG - Jochen Rauh
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               lib
+% file name:             crg_plot_elgrid_cross_sect.m 
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_plot_elgrid_cross_sect.m 303 2012-10-17 14:44:30Z jorauh $
+% *****************************************************************
 
 %% check if already succesfully checked
 

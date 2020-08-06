@@ -16,25 +16,24 @@ function [data] = crg_check_data(data)
 %
 %   See also CRG_INTRO.
 
-%   Copyright 2005-2015 OpenCRG - Daimler AG - Jochen Rauh
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               lib
+% file name:             crg_check_data.m 
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_check_data.m 365 2015-11-17 21:48:41Z jorauh@EMEA.CORPDIR.NET $
+% *****************************************************************
 
 %% remove ok flag, initialize error/warning counter
 
@@ -586,20 +585,9 @@ if isfield(data, 'p') && length(data.p)==nu-1 % variable heading (curved refline
     data.rc = (dx(1:end-1).*dy(2:end)-dy(1:end-1).*dx(2:end)) / data.head.uinc^3;
     clear dx dy
 
-    cmin = min(data.rc);
-    cmax = max(data.rc);
-    if abs(cmax) > crgeps
-        if 1/cmax <= data.head.vmax && 1/cmax >= data.head.vmin
-            warning('CRG:checkWarning', 'center of max. reference line curvature=%d inside road limits', cmax)
-            ierr = 1;
-        end
-    end
-    if abs(cmin) > crgeps
-        if 1/cmin <= data.head.vmax && 1/cmin >= data.head.vmin
-            warning('CRG:checkWarning', 'center of min. reference line curvature=%d inside road limits', cmin)
-            ierr = 1;
-        end
-    end
+    % curvature check (global and local)
+    [data, ierr] = crg_check_curvature(data, ierr);
+    
 else % constant heading (straight refline)
     if ~isfield(data.head, 'xbeg')
         data.head.xbeg = 0;
@@ -770,25 +758,24 @@ function [data] = crg_check_data_rflc(data)
 %
 %   See also CRG_INTRO.
 
-%   Copyright 2005-2010 OpenCRG - Daimler AG - Jochen Rauh
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               lib
+% file name:             crg_check_data.m 
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_check_data.m 365 2015-11-17 21:48:41Z jorauh@EMEA.CORPDIR.NET $
+% *****************************************************************
 
 % simplify data access
 

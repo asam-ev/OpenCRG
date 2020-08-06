@@ -1,0 +1,21 @@
+=== Setting up the C-API
+
+include::4_2_01_Contents_of_the_C-API.adoc[]
+
+include::4_2_02_Include_files_of_the_C-API.adoc[]
+
+include::4_2_03_Source_files_of_the_C-API.adoc[]
+
+include::4_2_04_Compiling_the_package_using_make_files.adoc[]
+
+include::4_2_05_Compiling_the_package_using_a_shell_script.adoc[]
+
+include::4_2_06_Compiling_the_package_using_the_command_line.adoc[]
+
+include::4_2_07_Testing_the_API.adoc[]
+
+include::4_2_08_Source_code_of_test_programs.adoc[]
+
+include::4_2_09_Running_the_sample_programs.adoc[]
+
+include::4_2_10_Source_code_of sample_programs.adoc[]

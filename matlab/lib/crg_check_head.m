@@ -15,25 +15,24 @@ function [data] = crg_check_head(data)
 %
 %   See also CRG_CHECK, CRG_INTRO.
 
-%   Copyright 2005-2015 OpenCRG - Daimler AG - Jochen Rauh
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               lib
+% file name:             crg_check_head.m 
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_check_head.m 358 2015-10-05 19:14:23Z jorauh@EMEA.CORPDIR.NET $
+% *****************************************************************
 
 %% remove ok flag, initialize error/warning counter
 
@@ -276,27 +275,35 @@ end
 
 %% check for consistent start/end distance (we already checked for existing start and pairs)
 
+%TODO: resolve redundancy issue (explained below)
+% suggestions:
+% - call crg_check_wgs84(data); AND
+% - remove the call from crg_check.m line 80
+% OR
+% - remove the check here AND leave it in crg_check.m
+
 % local rectangular coordinate system <> WGS84 world geodetic system
-if isfield(data.head, 'xend') && isfield(data.head, 'eend')
-    dxy = sqrt((data.head.xend-data.head.xbeg)^2 + (data.head.yend-data.head.ybeg)^2);
-    dll = crg_wgs84_dist([data.head.nbeg data.head.ebeg], [data.head.nend data.head.eend]);
-    if abs(dxy-dll) > max(crgeps*(dxy+dll), crgtol)
-        warning('CRG:checkWarning', 'inconsistent distance definition of header data "reference_line_start/end_x/y" and "reference_line_start/end_lon/lat"')
-        ierr = 1;
-    end
-end
+% if isfield(data.head, 'xend') && isfield(data.head, 'eend')
+%     dxy = sqrt((data.head.xend-data.head.xbeg)^2 + (data.head.yend-data.head.ybeg)^2);
+%     dll = crg_wgs84_dist([data.head.nbeg data.head.ebeg], [data.head.nend data.head.eend]);
+%     if abs(dxy-dll) > max(crgeps*(dxy+dll), crgtol)
+%         warning('CRG:checkWarning', 'inconsistent distance definition of header data "reference_line_start/end_x/y" and "reference_line_start/end_lon/lat"')
+%         ierr = 1;
+%     end
+% end
 
 %% check for consistent altitude definitions (we already checked for existing start)
 
 % local rectangular coordinate system <> WGS84 world geodetic system
-if isfield(data.head, 'zend') && isfield(data.head, 'aend')
-    dxy = data.head.zend - data.head.zbeg;
-    dll = data.head.aend - data.head.abeg;
-    if dxy*dll < -crgtol^2 || abs(dxy-dll) > max(crgeps*abs(dxy+dll)/2, crgtol)
-        warning('CRG:checkWarning', 'inconsistent definition of header data "reference_line_start/end_z" and "reference_line_start/end_alt"')
-        ierr = 1;
-    end
-end
+% if isfield(data.head, 'zend') && isfield(data.head, 'aend')
+%     dxy = data.head.zend - data.head.zbeg;
+%     dll = data.head.aend - data.head.abeg;
+%     if dxy*dll < -crgtol^2 || abs(dxy-dll) > max(crgeps*abs(dxy+dll)/2, crgtol)
+%         warning('CRG:checkWarning', 'inconsistent definition of header data "reference_line_start/end_z" and "reference_line_start/end_alt"')
+%         ierr = 1;
+%     end
+% end
+crg_check_wgs84(data);
 
 %% set ok-flag
 

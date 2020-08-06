@@ -17,25 +17,24 @@ function [ier] = crg_write(data, file)
 %
 %   See also CRG_INTRO.
 
-%   Copyright 2005-2017 OpenCRG - Daimler AG - Jochen Rauh
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               lib
+% file name:             crg_write.m 
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_write.m 369 2019-09-12 20:52:13Z jorauh@EMEA.CORPDIR.NET $
+% *****************************************************************
 
 %% force check
 
@@ -99,7 +98,6 @@ if isfield(opts, 'scls'), c{end+1} = sprintf('%s = %24.16e','refline_search_clos
 % CRG message options
 if isfield(opts, 'wmsg'), c{end+1} = sprintf('%s = %24.16e','warn_msgs           ', opts.wmsg); end
 if isfield(opts, 'wcvl'), c{end+1} = sprintf('%s = %24.16e','warn_curv_local     ', opts.wcvl); end
-if isfield(opts, 'wcvg'), c{end+1} = sprintf('%s = %24.16e','warn_curv_global    ', opts.wcvg); end
 if isfield(opts, 'lmsg'), c{end+1} = sprintf('%s = %24.16e','log_msgs            ', opts.lmsg); end
 if isfield(opts, 'leva'), c{end+1} = sprintf('%s = %24.16e','log_eval            ', opts.leva); end
 if isfield(opts, 'levf'), c{end+1} = sprintf('%s = %24.16e','log_eval_freq       ', opts.levf); end
@@ -205,6 +203,7 @@ if isfield(head, 'eend'), c{end+1} = sprintf('%s = %24.16e','reference_line_end_
 if isfield(head, 'nend'), c{end+1} = sprintf('%s = %24.16e','reference_line_end_lat   ', head.nend); end
 if isfield(head, 'abeg'), c{end+1} = sprintf('%s = %24.16e','reference_line_start_alt ', head.abeg); end
 if isfield(head, 'aend'), c{end+1} = sprintf('%s = %24.16e','reference_line_end_alt   ', head.aend); end
+if isfield(head, 'rccl'), c{end+1} = sprintf('%s = %24.16e','reference_line_curv_check', head.rccl); end    % //TODO: flag name
 
 crgdat.struct = sdf_add(crgdat.struct, 'ROAD_CRG', c);
 

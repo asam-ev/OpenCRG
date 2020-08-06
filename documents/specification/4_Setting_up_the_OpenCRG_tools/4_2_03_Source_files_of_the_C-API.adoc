@@ -1,0 +1,16 @@
+==== Source files of the C-API
+
+The source files of the C-API are stored in `_open-crg_/c-api/baselib/src/` and comprise
+the following:
+
+`/src/crgContactPoint.c`:: Contact point management
+`/src/crgEvalpk.c`:: Routines for evaluating
+`/src/crgEvaluv2xy.c`:: Routines for evaluating x/y-coordinates from u/v-coordinates
+`/src/crgEvalxy2uv.c`:: Routines for evaluating u/v-coordinates from x/y-coordinates
+`/src/crgEvalz.c`:: Routines for evaluating z-values
+`/src/crgLoader.c`:: Routines for decoding files and loading data
+`/src/crgMgr.c`:: Overall data management
+`/src/crgMsg.c`:: Message and log handling
+`/src/crgOptionMgmt.c`:: Management of options and modifiers
+`/src/crgPortability.c`:: Routines which might be subject to portability issues
+`/src/crgStatistics.c`:: Routines for calculating data set statistics
