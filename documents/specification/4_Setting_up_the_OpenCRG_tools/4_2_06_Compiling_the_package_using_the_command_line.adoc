@@ -1,0 +1,15 @@
+==== Compiling the C-API using the command line
+
+The C-API can be compiled manually, for example, to compile only selected sample programs.
+
+===== Prerequisites
+
+* You downloaded and unpacked the OpenCRG software package.
+* A C-compiler is installed on your computer.
+
+===== Steps
+
+The procedure depends on the C-compiler. When compiling, observe the following hints:
+
+* Set your include file search path to `baselib/inc`.
+* Always compile in combination with all .c-files in `baselib/src`.

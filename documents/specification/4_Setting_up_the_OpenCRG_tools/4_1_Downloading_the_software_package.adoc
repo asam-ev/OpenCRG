@@ -1,0 +1,20 @@
+=== Downloading the software package
+
+The latest stable version of OpenCRG is available on the ASAM website. The software package contains:
+
+* Sample OpenCRG files
+* Source code of the C-API, incl. test programs and samples
+* Matlab tools, incl. test scripts and samples
+* OpenCRG documentation
+
+==== Steps
+
+. Open https://www.asam.net/standards/detail/opencrg/.
+. Navigate to the _Download_ area.
+. Follow the instructions to download the software package.
+. Download the zip-archive.
+. Unpack the archive into a local directory.
+
+==== What to do next
+* Compile the C source code.
+* Initialize the Matlab tools.

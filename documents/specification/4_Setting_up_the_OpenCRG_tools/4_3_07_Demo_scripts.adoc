@@ -1,0 +1,26 @@
+==== Demo scripts
+
+The demo scripts for the Matlab tools are located in `_open-crg_/matlab/demo/` and comprise the following:
+
+`/demo/crg_demo.m`:: Create a set of demo files. 
+`/demo/crg_demo_belgian_block.m`:: Load and visualize `../crg-bin/belgian_block.crg`.
+`/demo/crg_demo_convert2bin.m`:: Convert `../crg-txt/handmade_curved.crg`  to
+binary representation.
+`/demo/crg_demo_convert2txt.m`:: Convert `../crg-bin/belgian_block.crg` to text
+representation.
+`/demo/crg_demo_country_road.m`:: Load and visualize `../crg-bin/country_road.crg`.
+//TODO: country_road.crg is missing
+`/demo/crg_demo_gen_refline.m`:: Generate an OpenCRG file with a smooth
+reference line.
+`/demo/crg_demo_gen_sl_mue.m`:: Generate a synthetic OpenCRG file with friction
+coefficients.
+`/demo/crg_demo_gen_sl_road.m`:: Generate a synthetic OpenCRG file representing
+a complete road.
+`/demo/crg_demo_gen_sl_surf.m`:: Generate a synthetic OpenCRG file representing a straight road.
+`/demo/crg_demo_gen_surface.m`:: Generate a surface OpenCRG file.
+// TODO: what's a surface OpenCRG file?
+`/demo/crg_demo_gen_syntheticStraight.m`:: Generate a synthetic OpenCRG file representing a straight road.
+`/demo/crg_demo_gen_target.m`:: Generate a surface OpenCRG file.
+`/demo/crg_demo_map_transformation.m`:: Perform geodetic transformations.
+//TODO: How does this fit with the current geo-referencing work.
+`/demo/crg_demo_scale_data.m`:: Scale OpenCRG data.

@@ -1,0 +1,15 @@
+=== Setting up the Matlab tools
+
+include::4_3_01_Contents_of_the_Matlab_tools.adoc[]
+
+include::4_3_02_Library_files_of_the_Matlab_tools.adoc[]
+
+include::4_3_03_Initializing_the_Matlab_tools.adoc[]
+
+include::4_3_04_Getting_help.adoc[]
+
+include::4_3_05_Testing_the_Matlab_tools.adoc[]
+
+include::4_3_06_Test_scripts.adoc[]
+
+include::4_3_07_Demo_scripts.adoc[]
