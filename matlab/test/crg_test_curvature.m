@@ -3,25 +3,24 @@
 % Examples are included.
 % The file comments are optimized for the matlab publishing makro.
 
-%   Copyright penCRG - ASAM e.V.
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               test
+% file name:             crg_test_curvature.m
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_test_map_pro.m 1 2020-04-30 15:30:00Z rruhdorfer $
+% *****************************************************************
 
 %% Test proceedings
 %
@@ -63,13 +62,9 @@ toc
 disp("----- Test 2 a: standard check 'crg_write' (with curvature check local) -----");
 % set opts warn_curv_local
 data.opts.wcvl = 1;
-% disable opts warn_curv_global to make file writeable
-data.opts.wcvg = 0;
 crg_write(data,'crgcurvtest_local.crg');
 
 %% Test 2 b
 disp("----- Test 2 b: standard check 'crg_read' (with curvature check local) -----");
-% warn_curv_global disabled (!) -> only warn_curv_local
 data = crg_read('crgcurvtest_local.crg');
 disp("warn_curv_local: " + data.opts.wcvl);
-disp("warn_curv_global: " + data.opts.wcvg);

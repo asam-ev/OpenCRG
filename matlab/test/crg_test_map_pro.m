@@ -3,25 +3,24 @@
 % Examples are included.
 % The file comments are optimized for the matlab publishing makro.
 
-%   Copyright OpenCRG - ASAM e.V.
+% *****************************************************************
+% ASAM OpenCRG Matlab API
 %
-%   Licensed under the Apache License, Version 2.0 (the "License");
-%   you may not use this file except in compliance with the License.
-%   You may obtain a copy of the License at
+% OpenCRG version:           1.2.0
 %
-%       http://www.apache.org/licenses/LICENSE-2.0
+% package:               test
+% file name:             crg_test_map_pro.m
+% author:                ASAM e.V.
 %
-%   Unless required by applicable law or agreed to in writing, software
-%   distributed under the License is distributed on an "AS IS" BASIS,
-%   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%   See the License for the specific language governing permissions and
-%   limitations under the License.
 %
-%   More Information on OpenCRG open file formats and tools can be found at
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
 %
-%       http://www.opencrg.org
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
 %
-%   $Id: crg_test_map_pro.m 1 2020-04-24 15:30:00Z rruhdorfer $
+% *****************************************************************
 
 %% Test proceedings
 %
@@ -43,7 +42,7 @@ crg_orig = crg_read('../crg-bin/3DMap_Axis1318611_Cobblestoneroad_5mm.crg');
 %% Test1 ( orig data consistency no map pro entry )
 
 % check data consistency
-%crg_orig = crg_check_wgs84(crg_orig);
+crg_orig = crg_check_wgs84(crg_orig);
 crg_wgs84_crg2html(crg_orig, '3DMap_Axis1318611_Cobblestoneroad_5mm_orig.html');
 
 
@@ -95,7 +94,7 @@ hold on
 plot(crg_orig_wgs(:,2), crg_orig_wgs(:,1), 'rx');
 plot(crg_new_wgs(:,2), crg_new_wgs(:,1), 'bo');
 text(crg_orig_wgs(1:10:end,2),crg_orig_wgs(1:10:end,1),num2cell(crg_orig_puv(1:10:end,1)),'VerticalAlignment','bottom','HorizontalAlignment','right')
-u=text(crg_orig_wgs(1,2),crg_orig_wgs(1,1),'  \leftarrow U [m]');
+u=text(crg_orig_wgs(1,2),crg_orig_wgs(1,1),'  \leftarrow u [m]');
 set(u,'Rotation',atand((crg_orig_wgs(1,1)-crg_orig_wgs(end,1))/(crg_orig_wgs(1,2)-crg_orig_wgs(end,2))));
 %annotation('textarrow',pos(1)+cx*(x-rx(1)),pos(2)+cy*(y-ry(1)),'String','u')
 hold off
@@ -109,7 +108,7 @@ set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 subplot(2,1,2)
 bar(crg_orig_puv(:,1), dist, 'w');
 title('CRG reference line difference between corresponding u-positions')
-xlabel('U [m]')
+xlabel('u [m]')
 ylabel('distance on sphere [m]')
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
