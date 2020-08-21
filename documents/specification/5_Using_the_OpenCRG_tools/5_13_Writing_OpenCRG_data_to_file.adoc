@@ -1,0 +1,34 @@
+=== Writing OpenCRG files
+
+With the Matlab tools, OpenCRG files can be created from OpenCRG data in memory. These file use the KRBI format. Therefore, road data must be converted to type _single_ before writing it to file.
+
+==== Prerequisites
+
+* You have loaded or generated an OpenCRG data set.
+
+==== Related C functions
+
+The C-API does not provide functions for writing OpenCRG data.
+
+==== Related Matlab functions
+
+`[ier] = crg_write(data, file)`::
+Write the OpenCRG data in `data` to the OpenCRG file `file`. The file uses the KRBI format. Therefore, road data must be converted to type _single_ first. `ier` indicates whether any errors occurred while writing the file.
+
+`[data] = crg_single(data)`::
+Convert road data in `data` to type _single_.
+
+// TODO: should we still mention iplos_write(), as it is used by crg_write()? I assume it is not that relevant to users.
+
+==== Examples
+
+===== Matlab examples
+
+----
+% write CRG file 
+ier = crg_write(crg_single(data), 'demo.crg');
+----
+
+==== Related topics
+
+// TODO: add related topics in the end.

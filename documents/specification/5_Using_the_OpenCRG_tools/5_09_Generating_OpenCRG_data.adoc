@@ -1,22 +1,51 @@
 === Generating OpenCRG data
 
+With the Matlab tools, synthetic OpenCRG data can be generated. Section-wise curvature, banking and slope can be defined independently via polynominals of grade 2.
 
 ==== Prerequisites
 
-
+None.
 
 ==== Corresponding C functions
 
+The C-API does not provide functions for generating OpenCRG data.
 
 ==== Corresponding Matlab functions
 
+`[data] = crg_gen_csb2crg0(inc, u, v, c, s, b)`::
+Generate a synthetic OpenCRG struct `data` with a regular grid, curvature, slope, and banking. `inc` specifies the increments in both u-direction and v-direction. `u` and `v` specify the extend of the reference line. `c` specifies the curvature. `s` specifies the slope. 
+
+`[data, err] = crg_gen_ppxy2phi(ppxy, uinc, opts)`::
+Generate a partial OpenCRG struct `data` with reference line heading information by evaluating the given smooth polynomial `ppxy` in pp-form. `uinc` specifies the reference line increment. The optional struct `opts` specifies the discretization method, although the default method should be used in all cases. `err` contains the position error after forward integration.
+
+`[ppxy] = crg_gen_pxy2ppxy(pxy, opts)`::
+Generate a smooth polynomial `ppxy` in pp-form from the given reference points `pxy`. The optional `opts` struct holds parameters for internal spline fit and spline smoothing functions.
+
+`[v] = crg_check_uv_descript(uv_descript, posmode)`::
+Check whether the uv-description `uv_descript` is in a valid form and generate the associated v-profile `v`. 
 
 ==== Examples
 
-===== C examples
-
-
 ===== Matlab examples
 
+----
+% minimal grid setup
+u =   [  0    900   ];
+v =   [ -2.50   2.5 ];
+inc = [  0.04   0.02];
+
+% generate synthetical straight OpenCRG file
+data = crg_gen_csb2crg0(inc, u, v);
+
+% add z-values
+[nu nv] = size(data.z);
+
+z = 0.01*peaks(nv);
+z = repmat(z, ceil(nu/nv), 1);
+
+data.z(1:nu,:) = single(z(1:nu,:));
+----
+
+For more elaborate examples, see the Matlab demo files.
 
 ==== Related topics

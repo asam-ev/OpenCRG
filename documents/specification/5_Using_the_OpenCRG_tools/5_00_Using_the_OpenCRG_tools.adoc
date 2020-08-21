@@ -19,3 +19,9 @@ include::5_08_Manipulating_OpenCRG_data.adoc[]
 include::5_09_Generating_OpenCRG_data.adoc[]
 
 include::5_10_Visualizing_OpenCRG_data.adoc[]
+
+include::5_11_Mapping_OpenCRG_data_to_geographical_positions.adoc[]
+
+include::5_12_Checking_OpenCRG_data.adoc[]
+
+include::5_13_Writing_OpenCRG_data_to_file.adoc[]

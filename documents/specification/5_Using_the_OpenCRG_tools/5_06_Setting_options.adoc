@@ -11,7 +11,6 @@ With Matlab, options are set by directly accessing the `opts` field of a data se
 Options, whether defined in an OpenCRG file or via function calls, are applied automatically when executing an evaluation call.
 ====
 
-
 ==== Prerequisites
 
 - You have loaded an OpenCRG data set.
@@ -20,17 +19,66 @@ Options, whether defined in an OpenCRG file or via function calls, are applied a
 
 ==== Corresponding C functions
 
+`int crgContactPointOptionSetInt( int cpId, unsigned int optionId, int optionValue )`::
+Set the integer option `optionId` of the contact point `cpId` to the value `optionValue`.
 
+`int crgContactPointOptionSetDouble( int cpId, unsigned int optionId, double optionValue )`::
+Set the double option `optionId` of the contact point `cpId` to the value `optionValue`.
+
+`int crgContactPointOptionGetInt( int cpId, unsigned int optionId, int* optionValue )`::
+Get the current value of the integer option `optionId` of the contact point `cpId` and store it in `option value`.
+
+`int crgContactPointOptionGetDouble( int cpId, unsigned int optionId, double* optionValue )`::
+Get the current value of the double option `optionId` of the contact point `cpId` and store it in `option value`.
+
+`void crgContactPointOptionsPrint( int cpId )`::
+Print the current option settings of the contact point `cpId`.
+
+`int crgContactPointOptionRemove( int cpId, unsigned int optionId )`::
+Remove the option `optionID` from the contact point `cpId`.
+
+`int crgContactPointOptionRemoveAll( int cpId )`::
+Remove all options from the contact point `cpId`.
+
+`void crgContactPointSetDefaultOptions( int cpId )`::
+Set all options of the contact point `cpId` to their default values.
 
 ==== Corresponding Matlab functions
 
+Options are set by directly accessing the `opts` field of a data set using dot notation.
 
 ==== Examples
 
 ===== C examples
 
+----
+/* load CRG file */
+int dataSetId = crgLoaderReadFile( 'demo.crg' );
+
+/* create contact point */
+int cpId = crgContactPointCreate( dataSetId );
+
+/* set border mode options to "Return NaN" */
+crgContactPointOptionSetInt( cpId, dCrgCpOptionBorderModeU, dCrgBorderModeNone );
+crgContactPointOptionSetInt( cpId, dCrgCpOptionBorderModeV, dCrgBorderModeNone );
+
+/* evaluate z at (u,v) = [100 0] */
+crgEvaluv2z( cpId, 100, 0, &z );
+----
 
 ===== Matlab examples
+
+----
+% load CRG file 
+data = crg_read('demo.crg');
+
+% set border mode options to "Return NaN"
+data.opts.bdmu = 0;
+data.opts.bdmv = 0;
+
+% plot road surface in u/v-coordinates
+crg_show_road_uv2surface(data, u, v);
+----
 
 
 ==== Related topics

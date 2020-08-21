@@ -1,4 +1,4 @@
-=== Creating a contact point
+=== Creating and deleting contact points
 
 In order to evaluate data with the C-API, the user must create one or more _contact points_. Contact points provide access to a given data set. A contact point is identified by a unique integer ID. This ID is returned by the contact-point creation method. The number of contact points per data set is not limited.
 
@@ -15,12 +15,17 @@ When creating multi-thread applications to parallelize evaluation calls, create 
 ==== Corresponding C functions
 
 `int cpId = crgContactPointCreate( int dataSetId )`::
-Create a contact point with the ID `cpId` for a data set with the ID `dataSetId`.
+Create a contact point with the ID `cpId` for the data set `dataSetId`.
 
+`int crgContactPointDelete( int cpId )`::
+Delete the contact point with the ID `cpId`.
+
+`int crgContactPointDeleteAll( int dataSetId )`::
+Delete all contact points associated with the data set `dataSetId`.
 
 ==== Corresponding Matlab functions
 
-n/a
+The Matlab tools do not use contact points.
 
 ==== Examples
 
