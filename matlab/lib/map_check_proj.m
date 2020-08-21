@@ -1,6 +1,6 @@
 function [pro] = map_check_proj(pro)
-% MAP_CHECK_PROJ MAP check and update PROJ struct.
-%   [PRO] = MAP_CHECK_PROJ(PRO, LOC) checks and updates PROJ struct.
+% MAP_CHECK_PROJ Check and update map projection struct.
+%   [PRO] = MAP_CHECK_PROJ(PRO, LOC) checks and updates map projection struct.
 %%
 %   Inputs:
 %   PRO     projection name or PROJ struct 

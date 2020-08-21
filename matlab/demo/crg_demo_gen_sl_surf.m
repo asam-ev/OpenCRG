@@ -86,7 +86,7 @@ Vms = 72/3.6;
 L1Hz = Vms/1; P1 = 4; L1Seq = (0:uinc:P1*L1Hz);
 L3Hz = Vms/3; P3 = 7; L3Seq = (0:uinc:P3*L3Hz);
 
-%% create longitudenal and lateral profile(s) like this
+%% create longitudinal and lateral profile(s) like this
 
 % u ----> coordinate          begin                                 middle sections                        end
 % v ----> coordinate          left                                  origin                                 right
@@ -95,7 +95,7 @@ L3Hz = Vms/3; P3 = 7; L3Seq = (0:uinc:P3*L3Hz);
 %  w ---> width of whole road
 %  c ---> center of road
 %   p --> profile
-%   r --> raughness (random)
+%   r --> roughness (random)
 %    _ -> name_sect
 %    _ -> name_prof
 %                 offset or ampltitude to origin

@@ -1,17 +1,17 @@
 function [data] = crg_check_opts(data)
-%CRG_CHECK_OPTS CRG check opts data.
-%   [DATA] = CRG_CHECK_OPTS(DATA) checks CRG options data for consistency
-%   of definitions and values.
+%CRG_CHECK_OPTS Check OpenCRG options data.
+%   [DATA] = CRG_CHECK_OPTS(DATA) checks OpenCRG options data for consistent
+%   definitions and values.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    is a checked, purified, and eventually completed version of
-%           the function input argument DATA
+%   DATA    input DATA with checked options data.
 %
 %   Examples:
-%   data = crg_check_opts(data) checks CRG options data.
+%   data = crg_check_opts(data)
+%       Checks OpenCRG options data.
 %
 %   See also CRG_CHECK, CRG_INTRO.
 
@@ -34,7 +34,7 @@ function [data] = crg_check_opts(data)
 %
 % *****************************************************************
 
-%% remove ok flag, initialize error/warning counter
+%% remove ok flag, initialize error counter
 
 if isfield(data, 'ok')
     data = rmfield(data, 'ok');

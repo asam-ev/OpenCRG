@@ -1,7 +1,8 @@
 function [enh ell pro] = map_geod2pmap_tm(llh, ell, pro)
-% MAP_GEOD2PMAP_TM MAP forward projection: transverse mercator.
+% MAP_GEOD2PMAP_TM Forward transverse mercator projection.
 %   [ENH ELL PRO] = MAP_GEOD2PMAP_TM(LLH, ELL, PRO) converts points from
-%   GEOD to PMAP system using forward transverse mercator projection.
+%   geodetic coordinates to map coordinates using forward transverse mercator
+%   projection.
 %
 %   Inputs:
 %   LLH     (n, 3) array of points in GEOD system
@@ -15,7 +16,7 @@ function [enh ell pro] = map_geod2pmap_tm(llh, ell, pro)
 %
 %   Examples:
 %   enh = map_geod2pmap_tm(llh, ell, pro)
-%       converts points from GEOD to PMAP system.
+%       Converts points from GEOD to PMAP system.
 %
 %   See also MAP_INTRO.
 
@@ -38,7 +39,7 @@ function [enh ell pro] = map_geod2pmap_tm(llh, ell, pro)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % PRO
 if nargin < 3
@@ -101,7 +102,7 @@ enh = [e' n' llh(:,3)];
 end
 % All above formulas are mainly based on the Ordnance Survey publication:
 % http://www.ordnancesurvey.co.uk/oswebsite/gps/ ...
-%   information/index.html (Overrview)
+%   information/index.html (Overview)
 %   docs/A_Guide_to_Coordinate_Systems_in_Great_Britain.pdf (User Guide)
 %   docs/ProjectionandTransformationCalculations.xls (VB implementation)
 % last accessed 2012-08-30

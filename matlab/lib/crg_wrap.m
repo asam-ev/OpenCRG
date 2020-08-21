@@ -1,17 +1,17 @@
 function [data] = crg_wrap(data)
-%CRG_WRAP re-wraps heading angles to +/- pi range.
-%   [DATA] = CRG_WRAP(DATA) re-wraps CRG heading angle data to regular
-%   +/- pi range.
+%CRG_WRAP Wraps heading angles to +/- pi range.
+%   [DATA] = CRG_WRAP(DATA) wraps OpenCRG heading angle data in road parameters
+%   and road data to a +/- pi range.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    struct array with updated contents.
+%   DATA    struct array with updated heading angles.
 %
 %   Examples:
 %   data = crg_wrap(data);
-%       wraps CRG core and head data +/- pi range.
+%       Wraps heading angles in road parameters and road data to a +/- pi range.
 %
 %   See also CRG_INTRO.
 

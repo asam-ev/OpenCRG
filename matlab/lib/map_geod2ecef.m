@@ -1,11 +1,11 @@
 function [xyz ell] = map_geod2ecef(llh, ell)
-% MAP_GEOD2ECEF MAP convert points from GEOD to ECEF system.
-%   [XYZ ELL] = MAP_GEOD2ECEF(LLH, ELL) converts points from GEOD to ECEF
-%   system.
+% MAP_GEOD2ECEF Convert points from geodetic system to ECEF system.
+%   [XYZ ELL] = MAP_GEOD2ECEF(LLH, ELL) converts points from a geodetic system 
+%   to ECEF system.
 %
 %   Inputs:
 %   LLH     (n, 3) array of points in GEOD system
-%   ELL     opt. ELLI struct array
+%   ELL     optional ELLI struct array
 %
 %   Outputs:
 %   XYZ     (n, 3) array of points in ECEF system
@@ -13,7 +13,7 @@ function [xyz ell] = map_geod2ecef(llh, ell)
 %
 %   Examples:
 %   xyz = map_geod2ecef(llh, ell)
-%       converts points from GEOD to ECEF system.
+%       Converts points from GEOD to ECEF system.
 %
 %   See also MAP_INTRO.
 

@@ -1,11 +1,11 @@
 function [enh ell pro] = map_geod2pmap(llh, ell, pro)
-% MAP_GEOD2PMAP MAP forward projection.
+% MAP_GEOD2PMAP Forward map projection.
 %   [ENH ELL PRO] = MAP_GEOD2PMAP_TM(LLH, ELL, PRO) converts points from
-%   GEOD to PMAP system using a forward projection.
+%   geodetic coordinates to map coordinates using a forward projection.
 %
 %   Inputs:
 %   LLH     (n, 3) array of points in GEOD system
-%   ELL     opt. ELLI struct array
+%   ELL     optional ELLI struct array
 %   PRO     opt. PROJ struct array
 %
 %   Outputs:
@@ -15,7 +15,7 @@ function [enh ell pro] = map_geod2pmap(llh, ell, pro)
 %
 %   Examples:
 %   enh = map_geod2pmap_tm(llh, ell, pro)
-%       converts points from GEOD to PMAP system.
+%       Converts points from geodetic to map coordinates.
 %
 %   See also MAP_INTRO.
 
@@ -38,7 +38,7 @@ function [enh ell pro] = map_geod2pmap(llh, ell, pro)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % PRO
 if nargin < 3

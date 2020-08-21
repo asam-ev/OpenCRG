@@ -1,17 +1,17 @@
 function [data] = crg_single(data)
-%CRG_SINGLE single type conversion of core data.
-%   [DATA] = CRG_SINGLE(DATA) makes CRG data type conversion to
-%   single for core data vectors and arrays as far as not already done.
+%CRG_SINGLE Convert OpenCRG road data to type single.
+%   [DATA] = CRG_SINGLE(DATA) converts OpenCRG road data to type
+%   single.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    struct array with updated contents.
+%   DATA    input DATA with road data converted to type single.
 %
 %   Examples:
-%   data = crg_single(data);
-%       converts CRG core data to single type.
+%   data = crg_single(data); 
+%       Converts CRG road data to type single.
 %
 %   See also CRG_INTRO.
 
@@ -35,7 +35,7 @@ function [data] = crg_single(data)
 % *****************************************************************
 
 
-%% convert core vectors and arrays to single type
+%% convert core vectors and arrays to type single
 
 % core elevation grid data
 if isfield(data, 'z'), data.z = single(data.z); end

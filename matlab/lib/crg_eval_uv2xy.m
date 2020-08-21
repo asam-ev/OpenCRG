@@ -1,19 +1,19 @@
 function [pxy, data] = crg_eval_uv2xy(data, puv)
-%CRG_UV2XY CRG tranform point in uv to xy.
-%   [PXY, DATA] = CRG_UV2XY(DATA, PUV) transforms points given in uv
-%   coordinate system to xy coordinate system.
+%CRG_UV2XY Evaluate inertial coordinates of grid positions.
+%   [PXY, DATA] = CRG_UV2XY(DATA, PUV) Evaluate the x/y-positions
+%   of the given u/v-positions.
 %
 %   Inputs:
 %       DATA    struct array as defined in CRG_INTRO.
-%       PUV     (np, 2) array of points in uv system
+%       PUV     (np, 2) array of points in u/v-system
 %
 %   Outputs:
-%       PXY     (np, 2) array of points in xy system
+%       PXY     (np, 2) array of points in x/y-system
 %       DATA    struct array as defined in CRG_INTRO.
 %
 %   Examples:
-%   pxy = crg_eval_uv2xy(data, puv) transforms puv positions to pxy
-%   positions.
+%   pxy = crg_eval_uv2xy(data, puv)
+%       Transforms u/v-positions to x/y-positions.
 %
 %   See also CRG_INTRO.
 
@@ -36,7 +36,7 @@ function [pxy, data] = crg_eval_uv2xy(data, puv)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -67,7 +67,7 @@ if ~isfield(data, 'rx')
     return
 end
 
-%% for closed refline: map u values to valid interval
+%% for closed reference line: map u values to valid interval
 
 if data.opts.rflc==1 && data.dved.ulex~=0
     puv(:,1) = mod(puv(:,1)-data.dved.ubex, data.dved.ulex) + data.dved.ubex;
@@ -99,9 +99,9 @@ for ip = 1:np
     pui = puv(ip, 1);
     pvi = puv(ip, 2);
 
-    % find u interval in constantly spaced u axis
+    % find u-interval in constantly spaced u-axis
     ui = (pui - ubeg) / uinc;
-    iu = min(max(0, floor(ui)), nu-2); % find u interval
+    iu = min(max(0, floor(ui)), nu-2); % find u-interval
     ui = ui - iu; % may be < 0 or > 1 to allow extrapolation
 
     if ui < 0 % extrapolation beyond ubeg: simple transformation

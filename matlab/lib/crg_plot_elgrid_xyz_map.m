@@ -1,7 +1,7 @@
 function [data] = crg_plot_elgrid_xyz_map(data, iu, iv)
-% CRG_PLOT_ELGRID_XYZ_MAP CRG road elevation grid XYZ map.
-%   DATA = CRG_PLOT_ELGRID_XYZ_MAP(DATA, IU, IV) plots CRG elevation
-%   grid XYZ map in current axes object.
+% CRG_PLOT_ELGRID_XYZ_MAP Plot z-values as curved 3-dimensional image.
+%   DATA = CRG_PLOT_ELGRID_XYZ_MAP(DATA, IU, IV) plots z-values as
+%   3-dimensional image over a curved grid in the current axes object.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -16,9 +16,9 @@ function [data] = crg_plot_elgrid_xyz_map(data, iu, iv)
 %
 %   Examples:
 %   data = crg_plot_elgrid_xyz_map(data)
-%       plots full elevation grid data.
+%       Plots all z-values.
 %   data = crg_plot_elgrid_xyz_map(data, [1000 2000], [10 30])
-%       plots selected elevation grid data part.
+%       Plots z-values in the selected area of the grid.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -40,7 +40,7 @@ function [data] = crg_plot_elgrid_xyz_map(data, iu, iv)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -53,7 +53,7 @@ end
 
 [nu nv] = size(data.z);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -100,7 +100,7 @@ for i = 1:nuiu
 end
 z = double(data.z(iu(1):iu(2),iv(1):iv(2)));
 
-%% plot elgrid XYZ perspective map
+%% plot elevation grid XYZ perspective map
 
 data = crg_surf(data, x', y', z');
 

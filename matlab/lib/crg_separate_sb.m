@@ -1,8 +1,8 @@
 function [data] = crg_separate_sb(data, swlen, bwlen)
-% CRG_SEPARATE_SB generate slope and banking.
+% CRG_SEPARATE_SB Separate slope and banking.
 %   [DATA] = CRG_SEPARATE_SB(DATA, SWLEN, BWLEN) finds and filters slope
-%   and banking of a CRG surface, and separates the filtered result from
-%   the elevation grid - leaving the total elevation information untouched.
+%   and banking in OpenCRG road data. It separates the filtered result from
+%   the road data - leaving the total elevation information unchanged.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -48,7 +48,7 @@ function [data] = crg_separate_sb(data, swlen, bwlen)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -61,7 +61,7 @@ end
 
 [nu] = size(data.z, 1);
 
-%% build full v vector
+%% build full v-vector
 
 if isfield(data.head, 'vinc')
     vmin = data.head.vmin;
@@ -72,7 +72,7 @@ else
     v = double(data.v);
 end
 
-%% build full rz vector
+%% build full rz-vector
 
 if isfield(data, 'rz')
     rz = data.rz;

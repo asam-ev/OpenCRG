@@ -1,7 +1,8 @@
 function [data] = crg_plot_refline_xy_overview_map(data, iu)
-% CRG_PLOT_REFLINE_XY_OVERVIEW_MAP CRG road refline XY overview map plot.
-%   DATA = CRG_PLOT_REFLINE_XY_OVERVIEW_MAP(DATA, IU) plots CRG refline map
-%   in current axes object.
+% CRG_PLOT_REFLINE_XY_OVERVIEW_MAP Plot reference line in x/y-coordinates.
+%   DATA = CRG_PLOT_REFLINE_XY_OVERVIEW_MAP(DATA, IU) plots the reference line
+%   in x/y-coordinates in the current axes object. The plot can be limited to a
+%   selected range on the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -13,9 +14,9 @@ function [data] = crg_plot_refline_xy_overview_map(data, iu)
 %
 %   Examples:
 %   data = crg_plot_refline_xy_overview_map(data)
-%       plots full map.
+%       Plot the entire reference line.
 %   data = crg_show_refline_xy_overview_map(data, [1000 2000])
-%       plots full map and highlights selected part.
+%       Plots selected range of the reference line.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -37,7 +38,7 @@ function [data] = crg_plot_refline_xy_overview_map(data, iu)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -50,7 +51,7 @@ end
 
 nu = size(data.z, 1);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -74,14 +75,14 @@ else
     ry = interp1([data.head.ubeg data.head.uend], [data.head.ybeg data.head.yend], u);
 end
 
-%% plot refline XY overview map
+%% plot reference line overview map
 
 if iu(1)>1 || iu(2)<nu
-    plot(rx, ry, ':') % plot total refline
+    plot(rx, ry, ':') % plot total reference line
     hold on
 end
 
-plot(rx(iu(1):iu(2)), ry(iu(1):iu(2)), '-') % plot selected refline part
+plot(rx(iu(1):iu(2)), ry(iu(1):iu(2)), '-') % plot selected reference line part
 
 hold on
 plot(rx(iu(1)), ry(iu(1)), '>') % mark start of selected part

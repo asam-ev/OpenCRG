@@ -1,7 +1,7 @@
 function [data] = crg_show_road_uv2surface(data, u, v)
-% CRG_SHOW_ELGRID_UV2SURFACE CRG road 3D surface visualizer.
-%   DATA = CRG_SHOW_ELGRID_UV2SURFACE(DATA, U, V) visualizes CRG road 3D
-%   surface info for a given uv grid.
+% CRG_SHOW_ELGRID_UV2SURFACE Visualize the road surface on a given grid.
+%   DATA = CRG_SHOW_ELGRID_UV2SURFACE(DATA, U, V) visualizes the road surface 
+%   via orthographic images and 3-dimensional surface plots on a given grid.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -34,7 +34,7 @@ function [data] = crg_show_road_uv2surface(data, u, v)
 %
 % *****************************************************************
 
-%% first check & fix & complement DATA
+%% first check, fix and complement DATA
 
 %% check if already succesfully checked
 
@@ -55,7 +55,7 @@ else
     data = crg_figure(data);
 end
 
-%% refline XY overview map
+%% reference line XY overview map
 
 subplot(2,2,1)
 

@@ -1,7 +1,8 @@
 function [data] = crg_plot_elgrid_limits(data, iu, iv)
-% CRG_PLOT_ELGRID_LIMITS CRG road elevation grid limits.
-%   DATA = CRG_PLOT_ELGRID_LIMITS(DATA, IU, IV) plots CRG elevation
-%   grid limits in current axes object.
+% CRG_PLOT_ELGRID_LIMITS Plot the outer grid limits.
+%   DATA = CRG_PLOT_ELGRID_LIMITS(DATA, IU, IV) plots the outer limits of the
+%   grid in the current axis object. The plot can be limited to a selected area
+%   of the grid.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -53,7 +54,7 @@ end
 
 [nu nv] = size(data.z);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -92,7 +93,7 @@ ir = max(iv(1), data.ir(iu(1):iu(2)));
 vl = v(il);
 vr = v(ir);
 
-%% plot elgrid NaN limits
+%% plot elevation grid NaN limits
 
 
 plot(u, [vl; vr], '-')

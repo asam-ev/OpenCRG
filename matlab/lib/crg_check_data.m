@@ -1,18 +1,19 @@
 function [data] = crg_check_data(data)
-% CRG_CHECK_DATA CRG check, fix, and complement data.
-%   [DATA] = CRG_CHECK_DATA(DATA) checks CRG data for consistency
-%   and accuracy, fixes slight accuracy problems giving some info, and
-%   complements the CRG data as far as possible.
+% CRG_CHECK_DATA Check, fix, and complement OpenCRG data.
+%   [DATA] = CRG_CHECK_DATA(DATA) checks OpenCRG data for consistency and
+%   accuracy, fix slight accuracy problems, and complement and condense the
+%   OpenCRG data as far as possible.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    is a checked, purified, and eventually completed version of
-%           the function input argument DATA
+%   DATA    is a checked, cleaned-up, and potentially completed version of
+%           the input DATA.
 %
 %   Examples:
-%   data = crg_check_data(data) checks and complements CRG data.
+%   data = crg_check_data(data)
+%       Checks and complements CRG data.
 %
 %   See also CRG_INTRO.
 
@@ -35,7 +36,7 @@ function [data] = crg_check_data(data)
 %
 % *****************************************************************
 
-%% remove ok flag, initialize error/warning counter
+%% remove ok flag, initialize error counter
 
 if isfield(data, 'ok')
     data = rmfield(data, 'ok');
@@ -71,7 +72,7 @@ if nu < 2 || nv < 2
     error('CRG:checkError', 'size of DATA.z too small')
 end
 
-%% evaluate/condense DATA.u and evaluate/complete DATA.head
+%% evaluate and condense DATA.u and evaluate and complete DATA.head
 %   DATA.head.ubeg
 %   DATA.head.uend
 %   DATA.head.uinc
@@ -146,7 +147,7 @@ else
 end
 data.u = single(data.u);
 
-%% evaluate/condense DATA.v and evaluate/complete DATA.head
+%% evaluate and condense DATA.v and evaluate and complete DATA.head
 %   DATA.head.vmin
 %   DATA.head.vmax
 %   DATA.head.vinc (only for constant v spacing)
@@ -169,7 +170,7 @@ switch length(data.v)
         vinc_min = min(diff(double(data.v)));
         vinc_max = max(diff(double(data.v)));
         if (vinc_max-vinc_min) < crgeps*(vmax-vmin)
-            vinc = (vmax-vmin)/(nv-1);  % constant v spacing assumed
+            vinc = (vmax-vmin)/(nv-1);  % constant v-spacing assumed
         else
             vinc = -vinc_min;   % variable spacing remembered by negative value
         end
@@ -254,7 +255,7 @@ if vinc > 0
     data.head.vinc = vinc;
 end
 
-%% evaluate/condense/remove DATA.p and evaluate/complete DATA.head
+%% evaluate, condense or remove DATA.p and evaluate and complete DATA.head
 %   DATA.head.pbeg
 %   DATA.head.pend
 %   DATA.head.poff
@@ -285,7 +286,7 @@ if isfield(data, 'p')
     pmin = min(unwrap(double(data.p)));
     pmax = max(unwrap(double(data.p)));
     if (pmax-pmin) <= crgeps*pi
-        pbeg = atan2(sin(pmin)+sin(pmax), cos(pmin)+cos(pmax)); % constant heading (straight refline) assumed
+        pbeg = atan2(sin(pmin)+sin(pmax), cos(pmin)+cos(pmax)); % constant heading (straight reference line) assumed
         pend = pbeg;
     end
 
@@ -324,7 +325,7 @@ end
 pmin = min([unwrap(double(data.p)) data.head.pbeg data.head.pend]);
 pmax = max([unwrap(double(data.p)) data.head.pbeg data.head.pend]);
 if (pmax-pmin) <= crgeps*pi
-    data.p = atan2(sin(pmin)+sin(pmax), cos(pmin)+cos(pmax));  % constant heading (straight refline) assumed
+    data.p = atan2(sin(pmin)+sin(pmax), cos(pmin)+cos(pmax));  % constant heading (straight reference line) assumed
     if abs(data.p) <= crgeps*pi
         data = rmfield(data, 'p'); % zero heading assumed
         data.head.pbeg = 0;
@@ -339,7 +340,7 @@ if ~isfield(data.head, 'poff')
     data.head.poff = 0;
 end
 
-%% evaluate/condense/remove DATA.s and evaluate/complete DATA.head
+%% evaluate, condense or remove DATA.s and evaluate and complete DATA.head
 %   DATA.head.sbeg
 %   DATA.head.send
 
@@ -416,7 +417,7 @@ if smax-smin <= crgeps
     data.head.send = data.head.sbeg;
 end
 
-%% evaluate/condense/remove DATA.b and evaluate/complete DATA.head
+%% evaluate, condense or remove DATA.b and evaluate and complete DATA.head
 %   DATA.head.bbeg
 %   DATA.head.bend
 
@@ -741,8 +742,8 @@ end
 %% subfunction crg_check_data_rflc
 
 function [data] = crg_check_data_rflc(data)
-%CRG_CHECK_DATA_DATA_RFLC check if refline can be closed.
-%   [DATA] = CRG_CHECK_DATA_RFLC(DATA) checks CRG data if refline
+%CRG_CHECK_DATA_DATA_RFLC check if reference line can be closed.
+%   [DATA] = CRG_CHECK_DATA_RFLC(DATA) checks CRG data if reference line
 %   extrapolations at begin and end can be connected to build a closed
 %   track.
 %
@@ -795,13 +796,13 @@ data.dved.ubex = data.head.ubeg;
 data.dved.uenx = data.head.uend;
 data.dved.ulex = 0;
 
-% return if refline is straight
+% return if reference line is straight
 
 if ~isfield(data, 'rx')
     return
 end
 
-% return if refline does not extrapolate in roughly opposite directions
+% return if reference line does not extrapolate in roughly opposite directions
 
 dotprod = pbec*penc + pbes*pens;
 if dotprod < 0.5
@@ -822,13 +823,13 @@ if dubeg > 0
     return
 end
 
-% closed refline without cut, potentially discontinuous in position and heading
+% closed reference line without cut, potentially discontinuous in position and heading
 
 data.dved.ubex = data.head.ubeg + dubeg*dotprod/2;
 data.dved.uenx = data.head.uend + duend*dotprod/2;
 data.dved.ulex = data.dved.uenx - data.dved.ubex;
 
-% return if refline does extrapolate roughly parallel
+% return if reference line does extrapolate roughly parallel
 
 crossprod = pbec*pens - pbes*penc;
 if abs(crossprod) < eps
@@ -849,7 +850,7 @@ if dubeg > 0
     return
 end
 
-% closed refline with cut, potentially discontinuous in heading
+% closed reference line with cut, potentially discontinuous in heading
 
 data.dved.ubex = data.head.ubeg + dubeg;
 data.dved.uenx = data.head.uend + duend;

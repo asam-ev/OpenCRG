@@ -1,8 +1,7 @@
 function [data] = crg_gen_csb2crg0(inc, u, v, c, s, b)
-% CRG_GEN_CSB2CRG0 syntetical CRG-file generation.
+% CRG_GEN_CSB2CRG0 Generate synthetic OpenCRG data.
 %   [DATA] = CRG_GEN_CSB2CRG0(INC, U, V, C, S, B) generates a
-%   syntetic CRG struct with a v-spaced grid with length u, increments inc,
-%   curvature c, slope s, and banking b.
+%   synthetic OpenCRG struct with a regular grid, curvature, slope, and banking.
 %
 %   Inputs:
 %   INC     increment (default: [0.1 0.1])
@@ -20,6 +19,7 @@ function [data] = crg_gen_csb2crg0(inc, u, v, c, s, b)
 %           c(i,2): polynomial
 %   S       (nx2)-matrix of polynomial slope values
 %           s(i,1): u-length
+
 %           s(i,2): polynomial
 %   B       (nx2)-matrix of polynomial banking values
 %           b(i,1): u-length
@@ -27,7 +27,7 @@ function [data] = crg_gen_csb2crg0(inc, u, v, c, s, b)
 
 %
 %   Outputs:
-%   DATA    syntetic generated CRG file
+%   DATA    synthetic generated OpenCRG data struct
 %
 %   Examples:
 %   ulength = 350;
@@ -91,7 +91,7 @@ if ~exist('b', 'var'), b = {}; end
 if ~exist('s', 'var'), s = {}; end
 
 if isempty(inc)     , inc = [0.01 0.01]; end    % default increment
-if length(inc) == 1 , inc = [inc  0.01]; end    % default vinc
+if length(inc) == 1 , inc = [inc  0.01]; end    % default v-increment
 
 if length(u) < 1 || length(u) > 2
     error('CRG:checkError', 'check of u-spacing was not successful')
@@ -101,7 +101,7 @@ if length(v) < 1
     error('CRG:checkError', 'check of v-spacing was not successful')
 end
 
-%% evaluate/condense u
+%% evaluate and condense u
 % ubeg
 % uend
 % uinc
@@ -120,10 +120,10 @@ switch length(u)
         error('CRG:checkError', 'illegal size of u');
 end
 
-%% evaluate/condense v
+%% evaluate and condense v
 % vmin
 % vmax
-% vinc (only for constant v spacing)
+% vinc (only for constant v-spacing)
 
 if ~issorted(v)
     error('CRG:checkError', 'vector DATA.v must be sorted')
@@ -135,7 +135,7 @@ switch length(v)
         vmin = -vmax;
         vinc = inc(2);
         nv = ((2*vmax) / vinc)+1;
-    case 2 % right/left edge of road
+    case 2 % right and left edge of road
         vmin = double(v(1));
         vmax = double(v(2));
         vinc = inc(2);
@@ -146,7 +146,7 @@ switch length(v)
         nv = length(v);
 end
 
-%% build minimal CRG structure dout
+%% build minimal OpenCRG structure dout
 
 data = struct;
 data.head = struct;
@@ -174,7 +174,7 @@ if ~isfield(data, 'ok')
     error('CRG:csb2crg0Error', 'check minimal CRG content was not completely successful')
 end
 
-%% Set Counters to initial values
+%% set counters to initial values
 
 err_cnt  = 0;
 warn_cnt = 0;

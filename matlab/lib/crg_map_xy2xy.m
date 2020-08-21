@@ -1,7 +1,7 @@
 function [ data ] = crg_map_xy2xy( data, crg_xy, iu, iv )
-%CRG_MAP_XY2XY inertial mapping
+%CRG_MAP_XY2XY Map z-values from inertial coordinate system to another.
 %   [DATA] = CRG_MAP_XY2XY(DATA, CRG_XY, IU, IV) maps z-values of CRG_XY
-%   in x,y to DATA in x,y
+%   in x/y-coordinates to the inertial x/y-coordinate system of DATA.
 %
 %   Inputs:
 %   DATA        struct array as defined in CRG_INTRO
@@ -17,8 +17,8 @@ function [ data ] = crg_map_xy2xy( data, crg_xy, iu, iv )
 %   DATA        struct array as defined in CRG_INTRO
 %
 %   Examples:
-%   data = crg_map_xy2xy(data, crg_xy, iu, iv) inertial mapping of
-%   z-values from crg_xy to data (range of iu/iv).
+%   data = crg_map_xy2xy(data, crg_xy, iu, iv)
+%       Map z-values from crg_xy to data in range of iu and iv.
 %
 %   See also CRG_INTRO
 
@@ -54,7 +54,7 @@ if length(iu) < 2, iu = [iu nu];                   end
 ceps = data.opts.ceps;
 ctol = data.opts.ctol;
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);

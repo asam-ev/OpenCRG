@@ -1,7 +1,7 @@
 function [pxyz, data] = crg_eval_enh2xyz(data, penh)
-%CRG_EVAL_ENH2XYZ CRG tranform point in enh to xyz.
+%CRG_EVAL_ENH2XYZ Transform points in enh to xyz.
 %   [PXYZ, DATA] = CRG_EVAL_ENH2XYZ(DATA, PENH) transforms points given in
-%   enh coordinate system to xyz coordinate system.
+%   enh coordinates to xyz coordinates.
 %
 %   inputs:
 %       DATA    struct array as defined in CRG_INTRO.

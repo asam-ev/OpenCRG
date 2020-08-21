@@ -1,7 +1,8 @@
 function [data] = crg_plot_refline_slope_bank(data, iu)
-% CRG_PLOT_REFLINE_SLOPE_BANK CRG road refline slope and banking plot.
-%   DATA = CRG_PLOT_REFLINE_SLOPE_BANK(DATA, IU) plots CRG refline slope
-%   and banking in current axes object.
+% CRG_PLOT_REFLINE_SLOPE_BANK Plot slope and banking along the reference line..
+%   DATA = CRG_PLOT_REFLINE_SLOPE_BANK(DATA, IU) plots slope and banking along
+%   the reference line in the current axes object. The plot can be limited to a
+%   selected range on the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -13,9 +14,9 @@ function [data] = crg_plot_refline_slope_bank(data, iu)
 %
 %   Examples:
 %   data = crg_plot_refline_slope(data)
-%       plots full refline data.
+%       Plots slope and banking for the entire reference line.
 %   data = crg_plot_refline_slope(data, [1000 2000])
-%       plots selected refline data part.
+%       Plots slope and banking for the selected range on the reference line.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -37,7 +38,7 @@ function [data] = crg_plot_refline_slope_bank(data, iu)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -50,7 +51,7 @@ end
 
 nu = size(data.z, 1);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -80,7 +81,7 @@ else
     bk = zeros(1, nuiu) + data.head.bbeg;
 end
 
-%% plot refline slope and banking
+%% plot reference line slope and banking
 
 [us sl] = stairs(u, sl);
 

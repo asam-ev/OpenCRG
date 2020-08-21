@@ -1,21 +1,21 @@
 function [ppxy] = crg_gen_pxy2ppxy(pxy, opts)
-% CRG_GEN_PXY2PPXY CRG generates (smooth) polynomial through refpoints.
-%   [PPXY] = CRG_GEN_PXY2PPXY(PXY, OPTS) generates a (smooth spline)
-%   polynomial (in pp-form) through the given refpoints.
+% CRG_GEN_PXY2PPXY Generates smooth polynomial from reference points.
+%   [PPXY] = CRG_GEN_PXY2PPXY(PXY, OPTS) generates a smooth spline
+%   polynomial in pp-form from the given reference points.
 %
 %   Inputs:
 %   PXY     (np, 2) array of points in xy system
-%   OPTS    stuct for method options (optional)
+%   OPTS    struct for method options (optional)
 %       .sf_incr    splinefit break increment (default: 2.0)
-%       .ss_spar    splsmooth smooting parameter (default: depends on data)
+%       .ss_spar    spl_smooth smoothing parameter (default: depends on data)
 %
 %   Outputs:
 %   PPXY    complex piecewise polynomial (e.g. spline) in pp-form
-%           describing the (smoothed) refline.
+%           describing the smoothed refline.
 %
 %   Examples:
 %   [ppxy] = crg_gen_pxy2ppxy(pxy)
-%       generates a smooth spline of given refpoints.
+%       Generates a smooth spline polynomial of given reference points.
 %
 %   See also CRG_GEN_PPXY2PHI, CRG_INTRO.
 
@@ -44,7 +44,7 @@ if nargin < 2
     opts = struct;
 end
 
-%% complex handling of real xy points makes some things simpler ...
+%% complex handling of real x/y-points makes some things simpler ...
 
 cxy = complex(pxy(:, 1)', pxy(:, 2)');
 

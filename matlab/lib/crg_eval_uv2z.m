@@ -1,19 +1,19 @@
 function [pz, data] = crg_eval_uv2z(data, puv)
-%CRG_EVAL_UV2Z CRG evaluate  z at grid position uv.
-%   [PZ, DATA] = CRG_EVAL_UV2Z(DATA, PUV) evaluates z at grid positions
-%   given in uv coordinate system.
+%CRG_EVAL_UV2Z Evaluate z at grid position.
+%   [PZ, DATA] = CRG_EVAL_UV2Z(DATA, PUV) evaluates the z-values at
+%   the given u/v-positions.
 %
 %   Inputs:
 %       DATA    struct array as defined in CRG_INTRO.
-%       PUV     (np, 2) array of points in uv system
+%       PUV     (np, 2) array of points in u/v-system
 %
 %   Outputs:
-%       PZ      (np) vector of z values
+%       PZ      (np) vector of z-values
 %       DATA    struct array as defined in CRG_INTRO.
 %
 %   Examples:
-%   pz = crg_eval_uv2z(data, puv) evaluates z at grid positions given by
-%   puv points in uv coordinate system.
+%   pz = crg_eval_uv2z(data, puv) 
+%       Evaluates the z-values at the given u/v-positions.
 %
 %   See also CRG_INTRO.
 
@@ -36,7 +36,7 @@ function [pz, data] = crg_eval_uv2z(data, puv)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -45,7 +45,7 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% for closed refline: map u values to valid interval
+%% for closed reference line: map u-values to valid interval
 
 if data.opts.rflc==1 && data.dved.ulex~=0
     puv(:,1) = mod(puv(:,1)-data.dved.ubex, data.dved.ulex) + data.dved.ubex;
@@ -112,7 +112,7 @@ for ip = 1 : np
     pui = puv(ip, 1);
     pvi = puv(ip, 2);
 
-    % repeat/reflect border mode maps u value into [ubeg uend] interval
+    % repeat/reflect border mode maps u-value into [ubeg uend] interval
     switch bdmu % border_mode_u
         case 3 % repeat
             pui = mod(pui-ubeg, ulen) + ubeg;
@@ -122,7 +122,7 @@ for ip = 1 : np
             pui = pui + ubeg;
     end
 
-    % repeat/reflect border mode maps v value into [vmin vmax] interval
+    % repeat/reflect border mode maps v-value into [vmin vmax] interval
     switch bdmv % border_mode_v
         case 3 % repeat
             pvi = mod(pvi-vmin, vwid) + vmin;
@@ -132,7 +132,7 @@ for ip = 1 : np
             pvi = pvi + vmin;
     end
 
-    % find u interval in constantly spaced u axis
+    % find u-interval in constantly spaced u-axis
     ui = (pui - ubeg) / uinc;
     iu = min(max(0, floor(ui)), nu-2); % find u interval
     du = ui-iu;
@@ -140,14 +140,14 @@ for ip = 1 : np
     iu = iu + 1; % MATLAB counts from 1
 
     if vinc ~= 0
-        % find v interval in constanty spaced v axis
+        % find v-interval in constanty spaced v-axis
         vi = (pvi - vmin) / vinc;
-        iv = min(max(0, floor(vi)), nv-2); % find v interval
+        iv = min(max(0, floor(vi)), nv-2); % find v-interval
         dv = vi-iv;
         vi = min(max(0, dv), 1); % limit to [0 1] border interval
         iv = iv + 1; % MATLAB counts from 1
     else
-        % find v interval in variably spaced v axis
+        % find v-interval in variably spaced v-axis
         i0 = nvm1;
         iv = 0;
         while 1
@@ -190,7 +190,7 @@ for ip = 1 : np
     end
     piz = piz + min(max(vmin, pvi), vmax)*pib;
 
-    % extrapolating border mode in u direction
+    % extrapolating border mode in u-direction
     if ui ~= du % ui was limited to [0 1] border interval
         switch bdmu % border_mode_u
             case 1 % set zero
@@ -200,7 +200,7 @@ for ip = 1 : np
         end
     end
 
-    % extrapolating border mode in v direction
+    % extrapolating border mode in v-direction
     if vi ~= dv % vi was limited to [0 1] border interval
         switch bdmv % border_mode_v
             case 1 % set zero
@@ -212,13 +212,13 @@ for ip = 1 : np
 
     % smoothing zone at start
     urel = max(0, pui-ubeg);
-    if bdss>urel % inside smooting zone
+    if bdss>urel % inside smoothing zone
         piz = urel/bdss*(piz-zbeg) + zbeg;
     end
 
     % smoothing zone at end
     urel = max(0, uend-pui);
-    if bdse>urel % inside smooting zone
+    if bdse>urel % inside smoothing zone
         piz = urel/bdse*(piz-zend) + zend;
     end
 

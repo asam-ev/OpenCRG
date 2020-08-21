@@ -1,16 +1,21 @@
 function [data, ierr] = crg_check_curvature(data, ierr)
-% CRG_CHECK_CURVATURE CRG check CRG curvature data.
-%   [DATA] = CRG_CHECK_CURVATURE(DATA) checks CRG reference line curvature
+% CRG_CHECK_CURVATURE Check OpenCRG curvature data.
+%   [DATA] = CRG_CHECK_CURVATURE(DATA) checks reference line curvature in `data`
+%   globally and locally. The global curvature check fails if two or more
+%   lateral cuts intersect inside the road limits. In this case, the local
+%   curvature check still succeeds, if such an intersection falls into a region
+%   of NaN values.
+
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    is a checked, purified, and eventually completed version of
-%           the function input argument DATA
+%   DATA    input DATA with checked curvature data.
 %
 %   Examples:
-%   data = crg_check_curvature(data) checks CRG reference line curvature.
+%   data = crg_check_curvature(data)
+%       Checks CRG reference line curvature.
 %
 %   See also CRG_INTRO.
 

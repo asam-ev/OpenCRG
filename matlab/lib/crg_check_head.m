@@ -1,17 +1,17 @@
 function [data] = crg_check_head(data)
-% CRG_CHECK_HEAD CRG check head data.
-%   [DATA] = CRG_CHECK_HEAD(DATA) checks CRG head data for consistency
-%   of definitions and values.
+% CRG_CHECK_HEAD Check OpenCRG road parameters data.
+%   [DATA] = CRG_CHECK_HEAD(DATA) checks OpenCRG road parameters data for
+%   consistent definitions and values.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    is a checked, purified, and eventually completed version of
-%           the function input argument DATA
+%   DATA    input DATA with checked road parameters data.
 %
 %   Examples:
-%   data = crg_check_head(data) checks CRG header data.
+%   data = crg_check_head(data)
+%       Checks CRG road parameters data.
 %
 %   See also CRG_CHECK, CRG_INTRO.
 

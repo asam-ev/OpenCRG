@@ -1,7 +1,9 @@
 function [data] = crg_show_peaks(data, pindex, su, sv, iu, iv)
-% CRG_SHOW_PEAKS CRG peak visualizer.
-%   DATA = CRG_SHOW_PEAKS(DATA, PINDEX, SU, SV, IU, IV) visualizes peaks
-%   on CRG road 3D surface info.
+% CRG_SHOW_PEAKS Visualize peaks.
+%   DATA = CRG_SHOW_PEAKS(DATA, PINDEX, SU, SV, IU, IV) visualizes peaks in
+%   OpenCRG data. Peaks are usually identified via CRG_PEAKFINDER. 
+%   The plots and the display of peaks in these plots can be
+%   limited to a selected area of the grid.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -20,10 +22,10 @@ function [data] = crg_show_peaks(data, pindex, su, sv, iu, iv)
 %
 %   Examples:
 %   data = crg_show_peaks(data, pindex)
-%       shows peaks on full CRG.
-%   data = crg_show_peakds(data, pindex, [1000 2000], [10 20])
-%       shows peaks on partial CRG.
-%   See also CRG_INTRO.
+%       Visualizes the full CRG.
+%   data = crg_show_peaks(data, pindex, [1000 2000], [10 20])
+%       Visualizes the selected part of the CRG.
+%   See also CRG_INTRO, CRG_PEAKFINDER.
 
 % *****************************************************************
 % ASAM OpenCRG Matlab API
@@ -44,7 +46,7 @@ function [data] = crg_show_peaks(data, pindex, su, sv, iu, iv)
 %
 % *****************************************************************
 
-%% first check & fix & complement DATA
+%% first check, fix and complement DATA
 [nu nv] = size(data.z);
 
 if nargin < 6 || isempty(iv),   iv =  [1 nv]; end
@@ -74,7 +76,7 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 
 if iu(1)<1 || iu(1) >= iu(2) || iu(2) > nu
@@ -96,7 +98,7 @@ else
     data = crg_figure(data);
 end
 
-%% refline XY overview map
+%% reference line XY overview map
 
 subplot(2,2,1)
 data = crg_plot_refline_xy_overview_map(data, iu);
@@ -126,7 +128,7 @@ hold off
 end % function crg_show_peaks
 
 function [data] = crg_vis_peaks(data, pindex, uv, su, sv)
-% CRG_VIS_PEAKS peak visualizer.
+% CRG_VIS_PEAKS Visualize peak.
 %   DATA = CRG_VIS_PEAKS(DATA, PINDEX, UV, SU, SV) visualizes peaks.
 %
 %   Inputs:
@@ -141,7 +143,7 @@ function [data] = crg_vis_peaks(data, pindex, uv, su, sv)
 %
 %   Examples:
 %   data = crg_vis_peaks(data, pindex)
-%       shows peaks on full CRG.
+%       Visualize peaks on full CRG.
 %   See also CRG_SHOW_PEAKS, INTRO.
 
 %% build uv-grid

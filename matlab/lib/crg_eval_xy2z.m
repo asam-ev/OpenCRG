@@ -1,7 +1,7 @@
 function [pz, data] = crg_eval_xy2z(data, pxy)
 %CRG__EVAL_XY2Z CRG evaluate z at position xy.
-%   [PZ, DATA] = CRG_EVAL_XY2Z(DATA, PXY) evaluates z at grid positions
-%   given in xy coordinate system. This function combines the calls of
+%   [PZ, DATA] = CRG_EVAL_XY2Z(DATA, PXY) evaluates the z-values at
+%   the given x/y-positions. This function combines the calls of
 %   CRG_EVAL_XY2UV and CRG_EVAL_UV2Z.
 %
 %   inputs:
@@ -13,8 +13,8 @@ function [pz, data] = crg_eval_xy2z(data, pxy)
 %       DATA    struct array as defined in CRG_INTRO, with history added
 %
 %   Examples:
-%   [pz, data] = crg_eval_xy2z(data, pxy) evaluates z at grid positions
-%   given in xy coordinate system.
+%   [pz, data] = crg_eval_xy2z(data, pxy)
+%       Evaluates the z-values at the given x/y-positions.
 %
 %   See also CRG_EVAL_XY2UV, CRG_EVAL_UV2Z, CRG_INTRO.
 

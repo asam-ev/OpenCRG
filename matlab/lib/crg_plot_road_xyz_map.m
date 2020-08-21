@@ -1,7 +1,8 @@
 function [data] = crg_plot_road_xyz_map(data, iu, iv)
-% CRG_PLOT_ROAD_XYZ_MAP CRG road XYZ map.
-%   DATA = CRG_PLOT_ROAD_XYZ_MAP(DATA, IU, IV) plots CRG road map
-%   in current axes object.
+% CRG_PLOT_ROAD_XYZ_MAP Plot road surface as curved 3-dimensional image.
+%   DATA = CRG_PLOT_ROAD_XYZ_MAP(DATA, IU, IV) plots the road surface as
+%   3-dimensional image over a curved grid in the current axes object.
+%   The plot can be limited to a selected area of the grid.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -16,9 +17,9 @@ function [data] = crg_plot_road_xyz_map(data, iu, iv)
 %
 %   Examples:
 %   data = crg_plot_road_xyz_map(data)
-%       plots full CRG info.
+%       Plots entire road surface.
 %   data = crg_plot_road_xyz_map(data, [1000 2000], [10 30])
-%       plots partial CRG info.
+%       Plots road surface for the selected part of the grid.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -53,7 +54,7 @@ end
 
 [nu nv] = size(data.z);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
