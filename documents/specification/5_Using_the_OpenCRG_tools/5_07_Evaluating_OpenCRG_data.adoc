@@ -12,10 +12,10 @@ Evaluation routines provide access to road data. Evaluation routines can further
 ==== Corresponding C functions
 
 `void crgEvaluv2z( int cpId, double u, double v, double* z )`::
-Evaluate the `z`-position at a given `u`/`v`-position for contact point `cpId`.
+Evaluate the `z`-value at a given `u`/`v`-position for contact point `cpId`.
 
 `void crgEvalxy2z( int cpId, double u, double v, double* z )`::
-Evaluate the `z`-position at a given `x`/`y`-position for contact point `cpId`.
+Evaluate the `z`-value at a given `x`/`y`-position for contact point `cpId`.
 
 `void crgEvaluv2xy( int cpId, double u, double v, double* x, double* y )`::
 Evaluate the `x`/`y`-position of a given `u`/`v`-position for contact point `cpId`.
@@ -26,13 +26,16 @@ Evaluate the `u`/`v`-position of a given `x`/`y`-position for contact point `cpI
 `void crgEvaluv2pk( int cpId, double u, double v, double* phi, double* crv )`::
 Evaluate the heading angle `phi` and the curvature `crv` at a given `u`/`v`-position for contact point `cpId`.
 
+`int crgEvalxy2pk( int cpId, double x, double y, double* phi, double* curv )`::
+Evaluate the heading angle `phi` and the curvature `crv` at a given `x`/`y`-position for contact point `cpId`.
+
 ==== Corresponding Matlab functions
 
 `[pz, data] = crg_eval_uv2z(data, puv)`::
-Evaluate the `z`-positions at the given `u`/`v`-positions for data set `data`.
+Evaluate the `z`-values at the given `u`/`v`-positions for data set `data`.
 
 `[pz, data] = crg_eval_xy2z(data, pxy)`::
-Evaluate the `z`-positions at the given `x`/`y`-positions for data set `data`.
+Evaluate the `z`-values at the given `x`/`y`-positions for data set `data`.
 
 `[pxy, data] = crg_eval_uv2xy(data, puv)`::
 Evaluate the `x`/`y`-positions of the given `u`/`v`-positions for data set `data`.

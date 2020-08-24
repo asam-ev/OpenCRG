@@ -9,7 +9,7 @@ The Matlab tools comprise scripts for the following tasks:
  * Generating OpenCRG files
  * Analyzing OpenCRG data
 
-The Matlab tools are especially suitable for applications, where extended functionalities for processing, analysis and visualisation. Typical use cases include generating OpenCRG files either synthetically or from measurement data and numerical simulations of driving dynamics.
+The Matlab tools are especially suitable for applications, where extended functionalities for processing, analysis and visualisation are needed. Typical use cases include generating OpenCRG files either synthetically or from measurement data and numerical simulations of driving dynamics.
 
 When an OpenCRG file is loaded, all data associated with that file is stored in a single structure array. This structure array has the following fields:
 
@@ -20,14 +20,18 @@ When an OpenCRG file is loaded, all data associated with that file is stored in 
 `struct`:: Structure array
 `filenm`:: File name of the associated OpenCRG file
 `z`:: Array of z-values
-`u`:: Vector of u-values
-`v`:: Vector of v-values
+`u`:: Definition of u-values
+`v`:: Definition of v-values
 `b`:: Vector of banking values (optional)
 `p`:: Vector of heading angles (optional)
 `s`:: Vector of slope values (optional)
+`mpro`:: Map projection data
+`fopt`:: Figure options
 
 A minimal OpenCRG data set must at least define u, v and z. 
 
+For more detailled information on individual fields and subfields, run `crg_intro` from the Matlab Terminal.
+
 //TODO: Can crg_check calculate u and v from data.head?
-//TODO: 
+
 

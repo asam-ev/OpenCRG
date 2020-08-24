@@ -17,13 +17,23 @@ You have loaded an OpenCRG data set.
 
 ==== Corresponding C functions
 
-`int crgDataSetModifierSetInt( int dataSetId, int mod, int val )`::
-Set modifier `mod` of the data set `dataSetId` to the value `val`.
+`int crgDataSetModifierSetInt( int dataSetId, unsigned int modId, int modValue )`::
+Set the integer modifier `modId` of the data set `dataSetId` to the value `modValue`.
 
-`int crgDataSetModifierSetDouble( int dataSetId, int mod, double val )`::
-Set modifier `mod` of the data set `dataSetId` to the value `val`.
+`int crgDataSetModifierSetDouble( int dataSetId, unsigned int modId, double modValue )`::
+Set the double modifier `modId` of the data set `dataSetId` to the value `modValue`.
 
-//TODO: there is also a function "crgDataSetModifierRemove" which seems to remove individual modifiers.
+`int crgDataSetModifierGetInt( int dataSetId, unsigned int modId, int* modValue )`::
+Get the current value of the integer modifier `modID` of the data set `dataSetId` and store it in `modValue`.
+
+`extern void crgDataSetModifiersPrint( int dataSetId )`::
+Print the current modifier settings of the data set `dataSetId`.
+
+`int crgDataSetModifierGetDouble( int dataSetId, unsigned int modId, double* modValue )`::
+Get the current value of the double modifier `modID`of the data set `dataSetId` and store it in `modValue`.
+
+`int crgDataSetModifierRemove( int dataSetId, unsigned int modId )`::
+Remove the modifier `modID` from the data set `dataSetId`.
 
 `int crgDataSetModifierRemoveAll( int dataSetId )`::
 Remove all modifiers from the data set `dataSetId`.
@@ -34,7 +44,7 @@ Set all modifiers of the data set `dataSetId` to their default values.
 `void crgDataSetModifiersApply( int dataSetId )`::
 Apply set modifiers to the data set `dataSetId`. If no modifiers are defined, the default modifier values are applied.
 
-//TODO: Does this remove the modifiers from data set like the Matlab API?
+//TODO: Does applying modifiers remove thems from the data set like with the Matlab API?
 
 ==== Corresponding Matlab functions
 

@@ -1,23 +1,133 @@
 === Visualizing OpenCRG data
 
+The C-API does not provide functions for visualizing OpenCRG data. However, the C-API provides some methods for displaying information about an OpenCRG data set.
 
+The Matlab tools provide a large collection of functions for visualizing OpenCRG data. `crg_show()` creates several figures visualizing different aspects of an OpenCRG data set. Each of these figures can be created individually by calling the respective `crg_show_*()` function. These figure make use of subplots themselves. These plots can be created individually by calling the respective `crg_plot_*()` function.
 
 ==== Prerequisites
 
-
+- You have loaded an OpenCRG data set.
+- You have set and applied modifiers.
+- You have set options.
 
 ==== Corresponding C functions
 
+`void crgDataPrintHeader( int dataSetId )`::
+Print the header information of `dataSetId`.
+
+`void crgDataPrintChannelInfo( int dataSetId )`::
+Print information about the channels in `dataSetId`.
+
+`void crgDataPrintRoadInfo( int dataSetId );`::
+Print information about the road in `dataSetId`.
 
 ==== Corresponding Matlab functions
 
+`[data] = crg_show(data, iu, iv)`::
+Create several figures visualizing different aspects of OpenCRG data in `data`. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_show_refline_map(data, iu)`::
+Visualize the reference line defined in `data` in a figure with several subplots. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_show_refpnts_and_refline(data, pxy)`::
+Visualize the reference points in `pxy` in relation to the reference line in `data`.
+
+`[data] = crg_show_refline_elevation(data, iu)`::
+Visualize the z-values in `data` along the reference line defined in `data` in a figure with several subplots. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_show_elgrid_cuts_and_limits(data, iu, iv)`::
+Visualize the z-values in `data` as longitudinal and latitudinal cuts as well as the outer limits of the grid. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_show_road_surface(data, iu, iv)`::
+Visualize the z-values in `data` via orthographic images and 3-dimensional surface plots. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_show_road_surface(data, iu, iv)`::
+Visualize the road surface described in `data` via orthographic images and 3-dimensional surface plots. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_show_road_uv2surface(data, u, v)`::
+Visualize the road surface described in `data` via orthographic images and 3-dimensional surface plots on a grid given by the vectors `u` and `v`.
+
+`[data] = crg_show_info(data)`::
+Display information about `data` in a text box.
+
+`[ ] = crg_show_isequal(dd, out)`::
+Visualize `dd`, the result of comparing two OpenCRG files. `dd` is usually the return value of `crg_isequal()`. `out` can be set to `html` to publish the result as HTML.
+
+`[data] = crg_show_peaks(data, pindex, su, sv, iu, iv)`::
+Visualize peaks at `pindex` in `data`. `pindex` is usually the return value of `crg_peakfinder()`. `su` and `sv` can be used to limit the visualization of peaks to an area of the grid. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_plot_refline_xy_overview_map(data, iu)`::
+Plot the reference line using x/y-coordinates. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_plot_refline_curvature(data, iu)`::
+Plot curvature along the reference line in `data`. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_plot_refline_elevation(data, iu)`::
+Plot z-values along the reference line in `data`. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_plot_refline_heading(data, iu)`::
+Plot the heading angle along the reference line of `data`. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_plot_refline_slope_bank(data, iu)`::
+Plot slope and banking along the reference line of `data`. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_plot_refline_xyz_map(data, iu)`::
+Plot the reference line using x/y/z-coordinates. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_plot_refline_xy_map_and_curv(data, iu)`::
+Plot the reference line using x/y-coordinates as well as its curvature. `iu` can be used to limit the plots to a range on the reference line.
+
+`[data] = crg_plot_elgrid_limits(data, iu, iv)`::
+Plot the outer limits of the data in `data` in the current axis object. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_plot_elgrid_cross_sect(data, iu, iv)`::
+Plot z-values of `data` over v for various u-coordinates. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_plot_elgrid_long_sect(data, iu, iv)`::
+Plot z-values of `data` over u for various v-coordinates. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_plot_elgrid_uvz_map(data, iu, iv)`::
+Plot z-values in `data` as orthographic image over an uncurved grid using u/v-coordinates. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_plot_elgrid_xyz_map(data, iu, iv)`::
+Plot z-values in `data` as 3-dimensional image over a curved grid using x/y-coordinates. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_plot_refpnt_distances(data, pxy)`::
+Plot the distance of a series of reference points `pxy` to the reference line described in `data`. The reference points use x/y-coordinates. 
+
+`[data] = crg_plot_road_uvz_map(data, iu, iv)`::
+Plot the road surface in `data` as orthographic image over an uncurved grid. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_plot_road_xyz_map(data, iu, iv)`::
+Plot the road surface in `data` as 3-dimensional image over a curved grid. `iu` and `iv` can be used to limit the plots to an area of the grid.
+
+`[data] = crg_plot_road_uv2uvz_map(data, u, v)`::
+Plot the road surface in `data` as orthographic image over an uncurved grid given by the vectors `u` and `v`.
+
+`[data] = crg_plot_road_uv2xyz_map(data, u, v)`::
+Plot the road surface in `data` as 3-dimensional image over a curved grid given by the vectors `u` and `v`. 
+
+`[data] = crg_surf(data, x, y, z)`::
+Create a 3-dimensional surface plot of `z` over `x` and `y` using figure options defined in `data`.
+
+`[data] = crg_figure(data)`::
+Set up an OpenCRG figure using the figure options in `data.fopt`.
+
+`[ ] = copy_ax2fig()`::
+Copy the current axis object to a new figure. This function is most useful if called by a mouse-click action in a subplot of a complex figure.
 
 ==== Examples
 
-===== C examples
-
-
 ===== Matlab examples
 
+----
+% load CRG file 
+data = crg_read('demo.crg');
+
+%% visualize the entire road
+crg = crg_show(data);
+----
 
 ==== Related topics
+
+// TODO: add related topics in the end.

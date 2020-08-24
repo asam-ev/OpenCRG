@@ -1,0 +1,77 @@
+=== Mapping OpenCRG data to geographical positions
+
+//TODO: More information needed. What sort of conceptual information is necessary for using the map projection feature effectively?
+
+==== Prerequisites
+
+* You have loaded an OpenCRG data set.
+* The OpenCRG contains map projection data.
+
+==== Corresponding C functions
+
+The C-API does not provide functions for visualizing OpenCRG data.
+
+==== Corresponding Matlab functions
+
+`map_intro[]`::
+Display introductory information on handling geographic data.
+
+//TODO: Should this appear in this section or rather in the section about visualization
+`[file] = map_wgs2html(llh, file, opts)`::
+Generate a HTML file `file` to display WGS 84 positions `llh` as a track in a web-based map using OpenLayers. `opts` contains various options for changing the generated HTML file. 
+
+`[enh ell pro] = map_geod2pmap(llh, ell, pro)`::
+Convert points `llh` from geodetic coordinates to map coordinates using a forward projection. An ellipsoid struct `ell` and a map projection struct `pro` may be optionally provided.
+
+`[enh ell pro] = map_geod2pmap_tm(llh, ell, pro)`::
+Convert points `llh` from geodetic coordinates to map coordinates using forward transverse mercator projection. An ellipsoid struct `ell` and a map projection struct `pro` may be optionally provided.
+
+`map_pmap2geod_tm[]`::
+Convert points `enh` from map coordinates to geodetic coordinates using backward transverse mercator projection. An ellipsoid struct `ell` and a map projection struct `pro` may be optionally provided.
+
+`[xyz ell] = map_geod2ecef(llh, ell)`::
+Converts points `llh` from a geodetic system to ECEF system. An ellipsoid struct `ell` may be optionally provided.
+
+`[xyzb tran] = map_ecef2ecef(xyza, tran, fwbw)`::
+Transforms points `xyza` from one ECEF datum to another. A transformation struct `tran` specifying the transformation may be optionally provided. The optional `fwbw` flag specifies, whether to use forward or backward transformation.
+
+`[llh ell] = map_ecef2geod(xyz, ell)`::
+Converts points from a ECEF system to a geodetic system. An ellipsoid struct `ell` may be optionally provided.
+
+`[enh dat] = map_global2plocal(llh, dat)`::
+Convert points from global geodetic coordinates `llh` to local map coordinates `enh` by transformation from global to local ellipsoid and forward projection on local ellipsoid. `dat` contains information necessary for the conversion. 
+
+`[llh dat] = map_plocal2global(enh, dat)`::
+Convert points from local map coordinates `enh` to global geodetic coordinates `llh` by backward projection on a local ellipsoid and datum transformation from a local to global ellipsoid. `dat` contains information necessary for the conversion. 
+
+`[phi ell pro] = map_ptm_north2initiallat(north, ell, pro)`::
+Compute the initial latitude values `phi` for given northings `north`. Utiliy function needed for transverse mercator projections.
+
+`[marc ell pro] = map_ptm_phi2marc(phi, ell, pro)`::
+Compute the meridional arc `marc` for given latitudes `phi`. Utiliy function needed for transverse mercator projections.
+
+`[dat] = map_check(dat)`::
+Check and update `dat` as used in `map_global2plocal` and `map_plocal2global`.
+
+`[ell] = map_check_elli(ell)`::
+Check and update ellipsoid struct `ell`.
+
+`[pro] = map_check_proj(pro)`::
+Check and update map projection struct `pro`.
+
+`[tran] = map_check_tran(tran)`::
+Check and update datum transformation struct `tran`.
+
+//TODO: What about the crg_wgs84_*.m functions? Are they still usable or are they deprecated now?
+
+==== Examples
+
+===== Matlab examples
+
+
+//TODO: Simple introductory example needed
+
+
+==== Related topics
+
+// TODO: add related topics in the end.
