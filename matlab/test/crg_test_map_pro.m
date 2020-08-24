@@ -45,6 +45,7 @@ crg_orig = crg_read('../crg-bin/3DMap_Axis1318611_Cobblestoneroad_5mm.crg');
 % check data consistency
 crg_orig = crg_check_wgs84(crg_orig);
 crg_wgs84_crg2html(crg_orig, '3DMap_Axis1318611_Cobblestoneroad_5mm_orig.html');
+web('3DMap_Axis1318611_Cobblestoneroad_5mm_orig.html', '-browser');
 % //TODO: use crg_wgs84_crg2html(crg_orig, 'crg_refline_Hoki_HoeKi_Grafing.html');
 
 %% Test2 ( add map pro entry and check data consistency)
@@ -67,6 +68,7 @@ crg_new.mpro=map_check(mpro);
 % check data consistency
 crg_new=crg_check_wgs84(crg_new);
 crg_wgs84_crg2html(crg_new, '3DMap_Axis1318611_Cobblestoneroad_5mm_new_map.html');
+web('3DMap_Axis1318611_Cobblestoneroad_5mm_new_map.html', '-browser');
 
 % write crg with new mpro entry
 crg_write(crg_new,'3DMap_Axis1318611_Cobblestoneroad_5mm_new_map.crg');
