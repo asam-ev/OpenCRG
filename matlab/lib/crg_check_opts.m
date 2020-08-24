@@ -145,12 +145,12 @@ if isfield(data.opts, 'wmsg')
 else
     data.opts.wmsg = -1;
 end
-if isfield(data.opts, 'wclv')
-    if data.opts.wclv<-1 || data.opts.wclv~=round(data.opts.wclv)
-        error('CRG:checkError', 'illegal option data "warn_curv_local": %d', data.opts.wclv)
+if isfield(data.opts, 'wcvl')
+    if data.opts.wcvl<-1 || data.opts.wcvl~=round(data.opts.wcvl)
+        error('CRG:checkError', 'illegal option data "warn_curv_local": %d', data.opts.wcvl)
     end
 else
-    data.opts.wclv = -1;
+    data.opts.wcvl = -1;
 end
 if isfield(data.opts, 'wcvg')
     if data.opts.wcvg<-1 || data.opts.wcvg~=round(data.opts.wcvg)
