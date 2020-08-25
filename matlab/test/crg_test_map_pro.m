@@ -36,17 +36,17 @@ clear all;
 clc;
 
 % read crg data
-crg_orig = crg_read('../crg-bin/3DMap_Axis1318611_Cobblestoneroad_5mm.crg');
-% //TODO: use crg_orig = crg_read('../crg-bin/crg_refline_Hoki_HoeKi_Grafing.crg');
-% //TODO: missing wgs84 coordinates in crg_refline_Hoki_HoeKi_Grafing.crg
+crg_orig = crg_read('../crg-bin/crg_refline_Hoki_HoeKi_Grafing_WGS.crg');
 
 %% Test1 ( orig data consistency no map pro entry )
 
 % check data consistency
 crg_orig = crg_check_wgs84(crg_orig);
-crg_wgs84_crg2html(crg_orig, '3DMap_Axis1318611_Cobblestoneroad_5mm_orig.html');
-web('3DMap_Axis1318611_Cobblestoneroad_5mm_orig.html', '-browser');
-% //TODO: use crg_wgs84_crg2html(crg_orig, 'crg_refline_Hoki_HoeKi_Grafing.html');
+
+% create html
+opts.mpol = 1000; % nr of polyline points, see crg_wgs84_crg2html.m
+crg_wgs84_crg2html(crg_orig, 'crg_refline_Hoki_HoeKi_Grafing_WGS.html', opts);
+web('crg_refline_Hoki_HoeKi_Grafing_WGS.html', '-browser');
 
 %% Test2 ( add map pro entry and check data consistency)
 
@@ -67,11 +67,13 @@ crg_new.mpro=map_check(mpro);
 
 % check data consistency
 crg_new=crg_check_wgs84(crg_new);
-crg_wgs84_crg2html(crg_new, '3DMap_Axis1318611_Cobblestoneroad_5mm_new_map.html');
-web('3DMap_Axis1318611_Cobblestoneroad_5mm_new_map.html', '-browser');
+
+% create html
+crg_wgs84_crg2html(crg_new, 'crg_refline_Hoki_HoeKi_Grafing_WGS_new_map.html', opts);
+web('crg_refline_Hoki_HoeKi_Grafing_WGS_new_map.html', '-browser');
 
 % write crg with new mpro entry
-crg_write(crg_new,'3DMap_Axis1318611_Cobblestoneroad_5mm_new_map.crg');
+crg_write(crg_new,'crg_refline_Hoki_HoeKi_Grafing_WGS_new_map.crg');
 
 %% Test3 (examine differences)
 
@@ -92,7 +94,7 @@ hold on
 plot(crg_orig_wgs(:,2), crg_orig_wgs(:,1), 'rx');
 plot(crg_new_wgs(:,2), crg_new_wgs(:,1), 'bo');
 text(crg_orig_wgs(1:10:end,2),crg_orig_wgs(1:10:end,1),num2cell(crg_orig_puv(1:10:end,1)),'VerticalAlignment','bottom','HorizontalAlignment','right')
-u=text(crg_orig_wgs(1,2),crg_orig_wgs(1,1),'  \leftarrow u [m]');
+u=text(crg_orig_wgs(1,2),crg_orig_wgs(1,1),'  \rightarrow u [m]');
 set(u,'Rotation',atand((crg_orig_wgs(1,1)-crg_orig_wgs(end,1))/(crg_orig_wgs(1,2)-crg_orig_wgs(end,2))));
 %annotation('textarrow',pos(1)+cx*(x-rx(1)),pos(2)+cy*(y-ry(1)),'String','u')
 hold off
