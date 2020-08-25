@@ -96,7 +96,6 @@ plot(crg_new_wgs(:,2), crg_new_wgs(:,1), 'bo');
 text(crg_orig_wgs(1:10:end,2),crg_orig_wgs(1:10:end,1),num2cell(crg_orig_puv(1:10:end,1)),'VerticalAlignment','bottom','HorizontalAlignment','right')
 u=text(crg_orig_wgs(1,2),crg_orig_wgs(1,1),'  \rightarrow u [m]');
 set(u,'Rotation',atand((crg_orig_wgs(1,1)-crg_orig_wgs(end,1))/(crg_orig_wgs(1,2)-crg_orig_wgs(end,2))));
-%annotation('textarrow',pos(1)+cx*(x-rx(1)),pos(2)+cy*(y-ry(1)),'String','u')
 hold off
 title('CRG reference line points')
 xlabel('Longitude [°]')
@@ -137,5 +136,4 @@ function [wgs, puv] = generateWGS84coords(data)
 
     pxy = crg_eval_uv2xy(data, puv);
     wgs = crg_wgs84_xy2wgs(data, pxy);
-    % [pz, data] = crg_eval_uv2z(data, puv([1 end],:));
 end

@@ -1,13 +1,17 @@
-function [data, ierr] = crg_check_curvature(data, ierr)
+function [data, ierr, idxArr] = crg_check_curvature(data, ierr)
 % CRG_CHECK_CURVATURE CRG check CRG curvature data.
 %   [DATA] = CRG_CHECK_CURVATURE(DATA) checks CRG reference line curvature
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
+%   IERR    number of previous errors
 %
 %   Outputs:
 %   DATA    is a checked, purified, and eventually completed version of
 %           the function input argument DATA
+%   IERR    summed up number of errors
+%   IDXARR  array containing start and end index, where local error occured
+%           if no local error occured an empty error is returned
 %
 %   Examples:
 %   data = crg_check_curvature(data) checks CRG reference line curvature.
@@ -33,10 +37,12 @@ function [data, ierr] = crg_check_curvature(data, ierr)
 %
 % *****************************************************************
 
+
 %% some local variables
 
 crgeps = data.opts.ceps;
 icerr = 0;
+idxArr = [];
 
 %% check for rc field (reference line curvature)
 
@@ -64,7 +70,6 @@ end
 
 ierr = ierr + icerr;
 
-
 %% local curvature check
 
 if isfield(data.opts, 'wcvl') && data.opts.wcvl > 0 && icerr > 0
@@ -72,31 +77,52 @@ if isfield(data.opts, 'wcvl') && data.opts.wcvl > 0 && icerr > 0
     data.ok = 0;
     
     % reference line points
-    ur=data.head.ubeg:data.head.uinc:data.head.uend;
+    uges=data.head.ubeg:data.head.uinc:data.head.uend;
+    uinc=data.head.uinc;
+    %%
 
-    % radii right / left
-    rright = 1./data.rc(data.rc < 0);
-    uright = ur(data.rc < 0);
-    rleft = 1./data.rc(data.rc >= 0);
-    uleft = ur(data.rc >= 0);
+    % indices l/r curvature
+    vek_rc=[data.rc(1),data.rc,data.rc(end)];
+    idx_right=vek_rc< 0;
+    idx_left =vek_rc>=0;
 
-    % radii inside grid
-    rright = rright(rright > data.head.vmin);
-    uright = uright(rright > data.head.vmin);
-    rleft = rleft(rleft < data.head.vmax);
-    uleft = uleft(rleft < data.head.vmax);
+    % min max v values from curvature radius
+    min_max_v = NaN(size(vek_rc));
+    min_max_v(idx_right)=ceil(1./vek_rc(idx_right)./data.head.uinc).*data.head.uinc; 
+    min_max_v(idx_left) =floor(1./vek_rc(idx_left)./data.head.uinc).*data.head.uinc;
+
+    % max grid cells array
+    rightNaNBorder=data.head.vmin.*(ones(size(vek_rc)));
+    leftNaNBorder =data.head.vmax.*(ones(size(vek_rc)));
+
+    % check, where curvature radius > grid
+    idx_CurvAreaRight=min_max_v > data.head.vmin  & idx_right;
+    idx_CurvAreaLeft =min_max_v < data.head.vmax  & idx_left;
+
+    % create curvature radius border array
+    rightNaNBorder(idx_CurvAreaRight) = min_max_v(idx_CurvAreaRight);
+    leftNaNBorder(idx_CurvAreaLeft)   = min_max_v(idx_CurvAreaLeft);
 
     % get z at border
-    zright = crg_eval_uv2z(data,[uright',rright']);
-    zleft  = crg_eval_uv2z(data,[uleft',rleft']);
+    zleft  = crg_eval_uv2z(data,[uges',(leftNaNBorder +uinc)']);
+    zright = crg_eval_uv2z(data,[uges',(rightNaNBorder-uinc)']);
 
     % check if z isnan
-    if sum(isnan(zright)) + sum(isnan(zleft)) == 0 
+    if sum(isnan(zleft))==size(data.z,1) && sum(isnan(zright))==size(data.z,1) 
         warning('local curvature check succeeded - critical curvature areas in NaN regions')
         ierr = ierr - icerr;
     else
         warning('local curvature check failed - critical curvature areas in z-value regions')
         ierr = ierr + 1;
+        % find indices
+        iLeft = find(~isnan(zleft));
+        iRight = find(~isnan(zright));
+        if ~isempty(iLeft)
+            idxArr = [iLeft(1) iLeft(end)];
+        end
+        if ~isempty(iRight)
+            idxArr = [iRight(1) iRight(end)];
+        end
     end
     
     % remove temp ok
