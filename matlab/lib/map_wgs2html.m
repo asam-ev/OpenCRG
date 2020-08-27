@@ -1,12 +1,12 @@
 function [file] = map_wgs2html(llh, file, opts)
-% MAP_WGS2HTML MAP generate HTML file to show WGS84 data in browser
-%   [FILE] = MAP_WGS2HTML(LLH, FILE, OPTS) generates html file to display
-%   wgs84 positions as track in browser map using OpenLayers.
+% MAP_WGS2HTML Generate HTML file to show WGS84 data in browser
+%   [FILE] = MAP_WGS2HTML(LLH, FILE, OPTS) generates a HTML file to display
+%   WGS 84 positions as a track in a web-based map using OpenLayers.
 %
 %   Inputs:
-%   LLH     (n, 3) or (n, 2) array of points in GEOD system (WGS84 based)*
-%   FILE    opt. name of html file (default: 'wgs.html')
-%   OPTS    opt. struct for method options
+%   LLH     (n, 3) or (n, 2) array of points in GEOD system (WGS 84 based)*
+%   FILE    optional name of html file (default: 'wgs.html')
+%   OPTS    optional struct for method options
 %   .title  string for browser title (default: 'Track Overview')
 %   .header html code of page header (default: ...)
 %   .height map height as string with unit (default: '85%')
@@ -18,10 +18,10 @@ function [file] = map_wgs2html(llh, file, opts)
 %   .twidthin width of inner track polyline (default: 7)*
 %   .twidthout width of outer track polyline (default: 10)*
 %   .beg_nm string for "mouse-over" hint at start marker (default: ...)*
-%   .beg_pu html code for "click" popup at start marker (default: ...)*
-%   .course_pu html code for "click" popup at polyline (default: undefined)*
+%   .beg_pu html code for "click" pop-up at start marker (default: ...)*
+%   .course_pu html code for "click" pop-up at polyline (default: undefined)*
 %   .end_nm string for "mouse-over" hint at end marker (default: ...)*
-%   .end_pu html code for "click" popup at end marker (default: ...)*
+%   .end_pu html code for "click" pop-up at end marker (default: ...)*
 %
 %   *       may also be a cell array of ... to allow for multiple tracks
 %           If LLH is a cell array, related OPTS may be defined by single
@@ -34,14 +34,13 @@ function [file] = map_wgs2html(llh, file, opts)
 %   data = [48.786826,9.084312; 48.884134,9.183340]/180*pi;
 %   map_wgs2html(data, 'demo.html');
 %   web('demo.html', '-browser');
-%   generates demo.html in current directory and shows the Solitude
-%   trigonometric base line.
+%   Generates 'demo.html' in the current directory with one track.
 %
 %   data{1} = [48.786826,9.084312; 48.884134,9.183340]/180*pi;
 %   data{2} = [48.786894,9.082922; 48.785995,9.084947]/180*pi;
 %   map_wgs2html(data, 'demo.html');
 %   web('demo.html', '-browser');
-%   generates demo.html with two tracks.
+%   Generates 'demo.html' with two tracks.
 %
 %   See also MAP_INTRO.
 
@@ -64,7 +63,7 @@ function [file] = map_wgs2html(llh, file, opts)
 %
 % *****************************************************************
 
-%% process required args 
+%% process required arguments 
 
 lc = iscell(llh);
 if lc
@@ -81,7 +80,7 @@ else
     wgs{1} = llh(:,1:2)*180/pi;
 end
 
-%% handle optional args
+%% handle optional arguments
 
 % FILE
 

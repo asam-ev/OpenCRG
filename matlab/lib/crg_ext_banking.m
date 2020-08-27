@@ -1,10 +1,10 @@
 function [ data ] = crg_ext_banking( data, pp )
-% CRG_EXT_BANKING extracts banking of a crg-file.
+% CRG_EXT_BANKING Extract banking from OpenCRG data.
 %   DATA = CRG_EXT_BANKING(DATA, PP) extracts banking.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
-%   PP is the smooting parameter [0...1] (default 0.01)
+%   PP      smoothing parameter [0...1] (default 0.01)
 %       0: LS-straight line
 %       1: cubic spline interpolant
 %
@@ -35,7 +35,7 @@ function [ data ] = crg_ext_banking( data, pp )
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);

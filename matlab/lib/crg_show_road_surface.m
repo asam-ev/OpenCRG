@@ -1,7 +1,8 @@
 function [data] = crg_show_road_surface(data, iu, iv)
-% CRG_SHOW_ELGRID_SURFACE CRG road 3D surface visualizer.
-%   DATA = CRG_SHOW_ELGRID_SURFACE(DATA, IU, IV) visualizes CRG road 3D
-%   surface info.
+% CRG_SHOW_ELGRID_SURFACE Visualize the road surface.
+%   DATA = CRG_SHOW_ELGRID_SURFACE(DATA, IU, IV) visualizes the road surface 
+%   via orthographic images and 3-dimensional surface plots. The plots can be
+%   limited to a selected area of the grid.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -16,9 +17,9 @@ function [data] = crg_show_road_surface(data, iu, iv)
 %
 %   Examples:
 %   data = crg_show_road_cuts_surface(data)
-%       shows full CRG info.
+%       Visualizes the full CRG.
 %   data = crg_show_road_cuts_surface(data, [1000 2000], [10 20])
-%       shows partial CRG info.
+%       Visualizes the selected part of the CRG.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -40,7 +41,7 @@ function [data] = crg_show_road_surface(data, iu, iv)
 %
 % *****************************************************************
 
-%% first check & fix & complement DATA
+%% first check, fix and complement DATA
 
 %% check if already succesfully checked
 
@@ -55,7 +56,7 @@ end
 
 [nu nv] = size(data.z);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -81,7 +82,7 @@ else
     data = crg_figure(data);
 end
 
-%% refline XY overview map
+%% reference line XY overview map
 
 subplot(2,2,1)
 data = crg_plot_refline_xy_overview_map(data, iu);

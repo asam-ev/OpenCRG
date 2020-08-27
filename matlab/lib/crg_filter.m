@@ -1,7 +1,7 @@
 function [data] = crg_filter(data, iu, iv, fm, mask, wopt)
-% CRG_FILTER filters crg data in uv.
-%   DATA = CRG_FILTER(DATA, IU, IV, FM, MASK, WOPT) applies filtermask on
-%   CRG data.
+% CRG_FILTER Filters OpenCRG data.
+%   DATA = CRG_FILTER(DATA, IU, IV, FM, MASK, WOPT) applies a filter mask on
+%   OpenCRG data.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -70,7 +70,7 @@ if length(iv) == 1, iv = [1 iv]; end
 if length(iu) == 1, iu = [1 iu]; end
 
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -79,7 +79,7 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if iu(1)<1 || iu(1) >= iu(2) || iu(2) > nu
     error('CRG:cutError', 'illegal IU index values iu=[%d %d] with nu=%d', iu(1), iu(2), nu);
@@ -156,7 +156,7 @@ data.z(iu(1):iu(end), iv(1):iv(end)) = z';
 
 clear z;
 
-%% delete slope/banking
+%% delete slope and banking
 
 if isfield(data, 's')
     data = rmfield(data, 's');
@@ -205,7 +205,7 @@ function [fmask, nf] = binf(koef, norm)
 fmask = 1;
 nf = 1;
 
-% Implemtation:
+% Implementation:
 % 1. convolution with [1,1] (n-k-1) times
 % 2. concolution with [-1,1] k times
 % 3. normalize with 1/2^(n-k-1)

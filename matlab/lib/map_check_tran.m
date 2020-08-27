@@ -1,16 +1,16 @@
 function [tran] = map_check_tran(tran)
-% MAP_CHECK_TRAN MAP check and update TRAN struct.
+% MAP_CHECK_TRAN Check and update datum transformation struct.
 %   [TRAN] = MAP_CHECK_TRAN(TRAN) checks and updates TRAN struct.
 %%
 %   Inputs:
-%   TRAN    opt. transformation name or TRAN struct
+%   TRAN    optional transformation name or TRAN struct
 %
 %   Outputs:
 %   TRAN    TRAN struct
 %
 %   Examples:
 %   tran = map_check_tran(tran)
-%       checks and updates TRAN struct.
+%       Checks and updates TRAN struct.
 %
 %   See also MAP_INTRO.
 

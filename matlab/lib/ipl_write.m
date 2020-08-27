@@ -1,5 +1,5 @@
 function [ier] = ipl_write(data, filename, type)
-% IPL_WRITE IPLOS file writer.
+% IPL_WRITE Write IPLOS file.
 %   IER = IPL_WRITE(DATA, FILENAME, TYPE) writes IPLOS data file
 %
 %   Inputs:
@@ -22,7 +22,8 @@ function [ier] = ipl_write(data, filename, type)
 %               = -1    not successful
 %
 %   Example
-%   ier = ipl_write(data, filename, type) writes an IPLOS file
+%   ier = ipl_write(data, filename, type)
+%      Writes an IPLOS file.
 %
 %   See also IPL_READ, IPL_DEMO.
 

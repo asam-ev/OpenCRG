@@ -1,7 +1,7 @@
 function [phi ell pro] = map_ptm_north2initiallat(north, ell, pro)
-% MAP_PTM_NORTH2INITIALLAT MAP transverse mercator utility function.
+% MAP_PTM_NORTH2INITIALLAT Transverse mercator utility function.
 %   [PHI ELL PRO] = MAP_PTM_NORTH2INITIALLAT(PHI, ELL, PRO) computes the 
-%   initial value for latitude needed for transverse mercator projections.
+%   initial latitude values needed for the transverse mercator projections.
 %
 %   Inputs:
 %   NORTH   (n) vector of northings
@@ -9,13 +9,13 @@ function [phi ell pro] = map_ptm_north2initiallat(north, ell, pro)
 %   PRO     opt. PROJ struct array
 %
 %   Outputs:
-%   PHI     (n) vector of initialo values for latitude
+%   PHI     (n) vector of initial latitude values
 %   ELL     ELLI struct array
 %   PRO     PROJ struct array
 %
 %   Examples:
 %   phi = map_ptm_north2initiallat(north, ell, pro)
-%       calculates initial latitude values.
+%       Calculates initial latitude values.
 %
 %   See also MAP_INTRO, MAP_PMAP2GEOD_TM.
 
@@ -38,7 +38,7 @@ function [phi ell pro] = map_ptm_north2initiallat(north, ell, pro)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % PRO
 if nargin < 3
@@ -67,7 +67,7 @@ nn0 = north-n0;
 marc = 0;
 phi = p0;
 
-aeps = eps(a); % nn0 has magitude of ellipsoid axis
+aeps = eps(a); % nn0 has magnitude of ellipsoid axis
 
 i = 0;
 m = 10;

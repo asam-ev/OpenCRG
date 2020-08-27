@@ -1,14 +1,14 @@
 function [penh, data] = crg_eval_xyz2enh(data, pxyz)
 %CRG_EVAL_XYZ2ENH CRG tranform point in xyz to enh.
 %   [PENH, DATA] = CRG_EVAL_XYZ2ENH(DATA, PXYZ) transforms points given in
-%   xyz coordinate system to enh coordinate system.
+%   xyz-coordinates to enh coordinates.
 %
 %   inputs:
 %       DATA    struct array as defined in CRG_INTRO.
-%       PXYZ    (np, 3) array of points in xyz system (CRG local)
+%       PXYZ    (np, 3) array of points in xyz-system (CRG local)
 %
 %   outputs:
-%       PENH    (np, 3) array of points in enh system (CRG global)
+%       PENH    (np, 3) array of points in enh-system (CRG global)
 %       DATA    struct array as defined in CRG_INTRO
 %
 %   Examples:
@@ -37,7 +37,7 @@ function [penh, data] = crg_eval_xyz2enh(data, pxyz)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);

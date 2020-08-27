@@ -1,6 +1,6 @@
 function [] = crg_demo_gen_syntheticStraight()
-% CRG_DEMO_GEN_SYNTHETICSTRAIGHTREFLINE CRG demo to generate a synthtec straigth crg file.
-%   CRG_DEMO_GEN_SYNTHETICSTRAIGHT() demonstrates how a simple straight crg file can be
+% CRG_DEMO_GEN_SYNTHETICSTRAIGHTREFLINE CRG demo to generate a synthetic straigth OpenCRG file.
+%   CRG_DEMO_GEN_SYNTHETICSTRAIGHT() demonstrates how a simple straight OpenCRG file can be
 %   generated.
 %
 %   Example:
@@ -36,7 +36,7 @@ inc = [  0.04   0.02];
 filename = 'simpleStraight.crg';
 ct = 'CRG generated file';
 
-%% generate synthetical straight crg file
+%% generate synthetical straight OpenCRG file
 
 data = crg_gen_csb2crg0(inc, u, v);
 

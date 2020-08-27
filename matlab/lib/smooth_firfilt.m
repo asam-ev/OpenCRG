@@ -1,10 +1,10 @@
 function [y] = smooth_firfilt(x, w, opts)
-% SMOOTH_FIRFILT smoothen input signals with symmetric FIR filter.
-%   Y = SMOOTH_FIRFILT(X, W, OPTS) smoothens inputs signals using
+% SMOOTH_FIRFILT Smooth input signals with symmetric FIR filter.
+%   Y = SMOOTH_FIRFILT(X, W, OPTS) filters the input signals using
 %   symmetric moving average (and some relatives of it) FIR filtering.
 %
 %   Inputs:
-%   X       Data to be smoothened. If X is a matrix, SMOOTH_FILTER operates
+%   X       Data to be filtered. If X is a matrix, SMOOTH_FILTER operates
 %           on the columns of X.
 %   W       FIR filter window width on each side of the center value.
 %   OPTS    (optional) stuct array with
@@ -27,17 +27,17 @@ function [y] = smooth_firfilt(x, w, opts)
 %                   'sine' uses a sine window.
 %
 %   Outputs:
-%   Y       Smoothened data.
+%   Y       Filtered data.
 %
 %   Examples:
 %   y = smooth_firfilt(x, 10)
-%       generates results using symmetric moving average of 2*10+1 input
+%       Generates results using symmetric moving average of 2*10+1 input
 %       values using (line) reflection at begin and end of input data.
 %   opts = struct
 %   opts.reflect = 'point';
 %   opts.window = 'triangular';
 %   y = smooth_firfilt(x, 10, opts)
-%       generates results using symmetric triangular weithted average of
+%       Generates results using symmetric triangular weithted average of
 %       2*10+1 input values using poiint reflection at begin and end of
 %       input data.
 

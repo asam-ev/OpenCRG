@@ -1,17 +1,17 @@
 function [data] = crg_check_single(data)
-%CRG_CHECK_SINGLE single type check of core data.
-%   [DATA] = CRG_CHECK_SINGLE(DATA) makes CRG data type check for
-%   core data vectors and arrays.
+%CRG_CHECK_SINGLE Check of core OpenCRG data for type single.
+%   [DATA] = CRG_CHECK_SINGLE(DATA) checks whether OpenCRG data in core data 
+%   vectors and arrays is of type single.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    struct array with unchanged contents.
+%   DATA    input DATA with unchanged contents.
 %
 %   Examples:
 %   data = crg_check_single(data);
-%       checks CRG core data to single type.
+%       Checks CRG core data for single type.
 %
 %   See also CRG_INTRO.
 

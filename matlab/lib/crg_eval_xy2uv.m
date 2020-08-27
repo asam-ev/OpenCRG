@@ -1,22 +1,20 @@
 function [puv, data] = crg_eval_xy2uv(data, pxy)
 %CRG_EVAL_XY2UV CRG tranform point in xy to uv.
-%   [PUV, DATA] = CRG_EVAL_XY2UV(DATA, PXY) transforms points given in
-%   xy coordinate system to uv coordinate system. IF available, history of
-%   a previous evaluations is used to start the search approprieately.
+%   [PUV, DATA] = CRG_EVAL_XY2UV(DATA, PXY) Evaluate the x/y-positions of
+%   the given u/v-positions. IF available, history of a previous evaluations
+%   is used to start the search approprieately.
 %
 %   inputs:
 %       DATA    struct array as defined in CRG_INTRO.
-%       PXY     (np, 2) array of points in xy system
+%       PXY     (np, 2) array of points in x/y-system
 %
 %   outputs:
-%       PUV     (np, 2) array of points in uv system
+%       PUV     (np, 2) array of points in u/v-system
 %       DATA    struct array as defined in CRG_INTRO, with history added
 %
 %   Examples:
-%   [puv, data] = crg_eval_xy2uv(data, pxy) transforms pxy points to puv
-%   History information is updated in data on return from function.
-%   [puv, data] = crg_eval_xy2uv(data, pxy) transforms pxy points to puv
-%   History information is updated in data on return from function.
+%   [puv, data] = crg_eval_xy2uv(data, pxy)
+%       Transforms x/y-positions to u/v-positions.
 %
 %   See also CRG_INTRO.
 
@@ -39,7 +37,7 @@ function [puv, data] = crg_eval_xy2uv(data, pxy)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);

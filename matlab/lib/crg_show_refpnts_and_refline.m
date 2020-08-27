@@ -1,18 +1,18 @@
 function [data] = crg_show_refpnts_and_refline(data, pxy)
-% CRG_SHOW_REFLINE_MAP CRG road refpnts and refline visualizer.
-%   DATA = CRG_SHOW_REFLINE_MAP(DATA, IU) visualizes CRG reference points
-%   resulting refline map.
+% CRG_SHOW_REFLINE_MAP CRG Visualize reference points and reference line.
+%   DATA = CRG_SHOW_REFLINE_MAP(DATA, IU) visualizes the given reference points
+%   and the resulting reference line map.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
-%   PXY     (np, 2) array of points in xy system
+%   PXY     (np, 2) array of points in x-y coordinate system
 %
 %   Outputs:
 %   DATA    struct array as defined in CRG_INTRO
 %
 %   Examples:
 %   data = crg_show_refpnts_and_refline(data, pxy)
-%       shows CRG refpnts and refline map info.
+%       Visualizes the reference points pxy in relation to the reference line.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -53,7 +53,7 @@ else
     data = crg_figure(data);
 end
 
-%% refpoints and refline XY overview map
+%% reference points and reference line XY overview map
 
 subplot(3,2,1)
 
@@ -65,7 +65,7 @@ title('CRG reference points in reference line XY overview map')
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
-%% refpoint distances from refline
+%% reference point distances from refline
 
 subplot(3,2,2)
 
@@ -74,21 +74,21 @@ data = crg_plot_refpnt_distances(data, pxy);
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
-%% refline XY overview map
+%% reference line XY overview map
 
 subplot(3,2,3)
 data = crg_plot_refline_xy_overview_map(data);
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
-%% refline heading plot
+%% reference line heading plot
 
 subplot(3,2,4)
 data = crg_plot_refline_heading(data);
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
-%% refline XY map with norm. curvature
+%% reference line XY map with norm. curvature
 
 subplot(3,2,5)
 data = crg_plot_refline_xy_map_and_curv(data);
@@ -96,7 +96,7 @@ set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
 
-%% refline curvature plot
+%% reference line curvature plot
 
 subplot(3,2,6)
 data = crg_plot_refline_curvature(data);

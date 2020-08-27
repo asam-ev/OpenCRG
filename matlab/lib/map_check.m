@@ -1,5 +1,5 @@
 function [dat] = map_check(dat)
-% MAP_CHECK MAP check and update DAT struct.
+% MAP_CHECK MAP Check and update DAT struct.
 %   [DAT] = MAP_CHECK(DAT) checks and updates DAT struct as used in
 %   MAP_GLOBAL2PLOCAL and MAP_PLOCAL2GLOBAL.
 %
@@ -19,7 +19,7 @@ function [dat] = map_check(dat)
 %
 %   Examples:
 %   dat = map_check(dat)
-%       checks and updates DAT struct.
+%       Checks and updates DAT struct.
 %
 %   See also MAP_INTRO, MAP_GLOBAL2PLOCAL, MAP_PLOCAL2GLOBAL.
 
@@ -42,7 +42,7 @@ function [dat] = map_check(dat)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % DAT
 if nargin < 1, dat = []; end

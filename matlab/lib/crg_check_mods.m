@@ -1,7 +1,7 @@
 function [data] = crg_check_mods(data)
 %CRG_CHECK_MODS check mods data.
-%   [DATA] = CRG_CHECK_MODS(DATA) checks CRG mods data for consistency
-%   of definitions and values, and provides missing defaults.
+%   [DATA] = CRG_CHECK_MODS(DATA) checks OpenCRG modifiers data for consistent
+%   definitions and values, and provides missing defaults.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
@@ -89,7 +89,7 @@ data.mods = mods;
 
 %% check singular value ranges and set missing defaults
 
-% CRG scaling
+% OpenCRG scaling
 if isfield(data.mods, 'slth')
     if data.mods.slth <= 0
         error('CRG:checkError', 'illegal DATA.mods.slth=%d', data.mods.slth)
@@ -101,7 +101,7 @@ if isfield(data.mods, 'swth')
     end
 end
 
-% CRG elevation grid NaN handling
+% OpenCRG elevation grid NaN handling
 if isfield(data.mods, 'gnan')
     if data.mods.gnan<0 || data.mods.gnan>2 || data.mods.gnan~=round(data.mods.gnan)
         error('CRG:checkError', 'illegal DATA.mods.gnan=%d', data.mods.gnan)
@@ -130,7 +130,7 @@ if byoff ~= 0
     if ~isfield(data.mods, 'rloz'), data.mods.rloz = 0; end % default
 end
 
-% CRG re-positioning: refline by refpoint (overwrites "by offset")
+% CRG re-positioning: reference line by reference point (overwrites "by offset")
 byref = 0;
 if isfield(data.mods, 'rpfu'), byref = 1; end
 if isfield(data.mods, 'rptu'), byref = 1; end

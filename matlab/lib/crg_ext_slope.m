@@ -1,10 +1,10 @@
 function [ data ] = crg_ext_slope( data, p )
-% CRG_EXT_SLOPE extracts slope of a crg-file.
+% CRG_EXT_SLOPE Extract slope from OpenCRG data.
 %   DATA = CRG_EXT_SLOPE(DATA, P) extracts slope.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
-%   P is the smooting parameter [0...1] (default 0.01)
+%   P       smoothing parameter [0...1] (default 0.01)
 %       0: LS-straight line
 %       1: cubic spline interpolant
 %
@@ -13,7 +13,7 @@ function [ data ] = crg_ext_slope( data, p )
 %
 %   Examples:
 %   data = crg_ext_slope( data, 0.01 )
-%       extracts slope.
+%       Extracts slope.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -50,7 +50,7 @@ if p < 0 || p > 1
     error('CRG:checkError', 'smoothness parameter not in intervall [0,1]')
 end
 
-%% slope/banking exists
+%% slope and banking exist
 
 if isfield(data, 's')
     data = crg_s2z(data);
@@ -86,7 +86,7 @@ end
 
 nu = size(data.z,1);
 
-puv = zeros(nu, 2);                   % get rz values
+puv = zeros(nu, 2);                   % get rz-values
 puv(:,1) = u;
 pz = crg_eval_uv2z(data, puv);
 
@@ -126,7 +126,7 @@ data.z = single(z');
 
 clear nxui dout;
 
-%% add slope/banking content
+%% add slope and banking content
 
 data.s = single(xui);
 data.head.sbeg = xui(1);

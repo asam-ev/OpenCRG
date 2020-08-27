@@ -1,6 +1,6 @@
 function [ data ] = crg_rerender( crg, inc, v )
-%CRG_RERENDER renders the crg-file with new spacing in u and v
-%   [DATA] = CRG_RERENDER( CRG, INC, V ) renders CRG with
+%CRG_RERENDER Re-render OpenCRG data for a new u/v-grid
+%   [DATA] = CRG_RERENDER( CRG, INC, V ) re-renders OpenCRG data with new
 %   u/v-increment and v-spacing.
 %
 %   Inputs:
@@ -17,7 +17,8 @@ function [ data ] = crg_rerender( crg, inc, v )
 %   DATA    struct array as defined in CRG_INTRO
 %
 %   Examples:
-%   data = crg_rerender(crg, inc, v) rerenders crg with u/v-spacing
+%   data = crg_rerender(crg, inc, v)
+%       Re-renders crg with u/v-spacing
 %
 %   See also CRG_INTRO
 
@@ -47,7 +48,7 @@ if nargin < 2 || isempty(inc), inc = crg.head.uinc; end
 
 dvinc = 0.01; % default v-inc
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(crg, 'ok')
     crg = crg_check(crg);
@@ -120,7 +121,7 @@ if isfield(crg, 'p')
     end
 end
 
-%% seperate slope banking
+%% separate slope banking
 
 if isfield(crg,'s')     % slope
     ts = crg.s;
@@ -148,7 +149,7 @@ if exist('tb', 'var') || exist('ts', 'var')
     end
 end
 
-%% add pseudo values to check basic crg-file
+%% add pseudo-values to check basic crg data
 
 data.v = single(vi);
 

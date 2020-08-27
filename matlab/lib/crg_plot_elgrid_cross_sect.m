@@ -1,7 +1,7 @@
 function [data] = crg_plot_elgrid_cross_sect(data, iu, iv)
-% CRG_PLOT_ELGRID_CROSS_SECT CRG road elevation grid cross sections.
-%   DATA = CRG_PLOT_ELGRID_CROSS_SECT(DATA, IU, IV) plots CRG elevation
-%   grid cross sections in current axes object.
+% CRG_PLOT_ELGRID_CROSS_SECT Plot z-values over latitudinal cuts.
+%   DATA = CRG_PLOT_ELGRID_CROSS_SECT(DATA, IU, IV) plots z-values over v for
+%   various u-coordinates. The plot can be limited to a selected area of the grid.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -16,9 +16,9 @@ function [data] = crg_plot_elgrid_cross_sect(data, iu, iv)
 %
 %   Examples:
 %   data = crg_plot_elgrid_cross_sect(data)
-%       plots full elevation grid data.
+%       Plots all z-values.
 %   data = crg_plot_elgrid_cross_sect(data, [1000 2000], [10 30])
-%       plots selected elevation grid data part.
+%       Plots z-values in the selected area of the grid.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -53,7 +53,7 @@ end
 
 [nu nv] = size(data.z);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -93,8 +93,8 @@ ju = [iu(1):ceil(nuiu/9):iu(2)-1 iu(2)];
 %% plot elgrid cross sections
 
 % MATLAB bug in verison 7.13 (R2011b):
-% using a matrix of singles as input to PLOT causes MATLAB to crash or hang
-% workaround: cast matrix to double data type
+% Using a matrix of singles as input to PLOT causes MATLAB to crash or hang.
+% Workaround: Cast matrix to double data type.
 % (see MATLAB service request 1-GAYXED of 2012-01-09)
 plot(v,double(data.z(ju, iv(1):iv(2))), '-')
 

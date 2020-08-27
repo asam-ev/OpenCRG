@@ -1,6 +1,7 @@
 function [] = crg_show_isequal(dd, out)
 % CRG_SHOW_ISEQUAL CRG_comparison of two crg_files data core visualizer.
-%   CRG_SHOW_ISEQUAL(DD) visualize crg-file comparison
+%   CRG_SHOW_ISEQUAL(DD) Visualize the result of comparing two OpenCRG files.
+%   Comparisons are usually done using CRG_ISEQUAL.
 %
 %   Inputs:
 %   DD      struct array as defined in CRG_ISEQUAL
@@ -8,7 +9,9 @@ function [] = crg_show_isequal(dd, out)
 %           html:   html visualization
 %
 %   Examples:
-%   crg_show_isequal(dd, 'html') visualizes crg_isequal results.
+%   crg_show_isequal(dd, 'html')
+%       Visualizes dd, the results of CRG_ISEQUAL, and displays them in the default web browser
+%       default web browser
 %
 %   See also CRG_INTRO, CRG_ISEQUAL.
 

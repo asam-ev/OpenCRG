@@ -1,6 +1,7 @@
 function [sdf_block, sdf_out] = sdf_cut(sdf_in, blockname)
-% SDF_CUT SDF (structured data file) block cut.
-%   [SDF_BLOCK SDF_OUT] = SDF_CUT(SDF_IN, BLOCKNAME) cuts block from SDF
+% SDF_CUT Cut block from struct data file
+%   [SDF_BLOCK SDF_OUT] = SDF_CUT(SDF_IN, BLOCKNAME) cuts a block from a struct
+%   data file.
 %
 %   Inputs:
 %   SDF_IN      cell array of struct data file lines

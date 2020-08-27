@@ -1,6 +1,7 @@
 function [data] = crg_show_refline_map(data, iu)
-% CRG_SHOW_REFLINE_MAP CRG road refline map visualizer.
-%   DATA = CRG_SHOW_REFLINE_MAP(DATA, IU) visualizes CRG refline map info
+% CRG_SHOW_REFLINE_MAP Visualize the reference line.
+%   DATA = CRG_SHOW_REFLINE_MAP(DATA, IU) visualizes the reference line via
+%   several plots. The plots can be limited to a selected range on the line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -12,9 +13,9 @@ function [data] = crg_show_refline_map(data, iu)
 %
 %   Examples:
 %   data = crg_show_refline_map(data)
-%       shows full CRG info.
+%       Visualizes the full reference line.
 %   data = crg_show_refline_map(data, [1000 2000])
-%       shows selected CRG info.
+%       Visualizes the selected part of the reference line.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -49,7 +50,7 @@ end
 
 nu = size(data.z, 1);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -68,7 +69,7 @@ else
     data = crg_figure(data);
 end
 
-%% refline XY overview map
+%% reference line XY overview map
 
 subplot(2,2,1)
 data = crg_plot_refline_xy_overview_map(data, iu);
@@ -76,7 +77,7 @@ set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 a1 = gca;
 
-%% refline heading plot
+%% reference line heading plot
 
 subplot(2,2,2)
 data = crg_plot_refline_heading(data, iu);
@@ -84,7 +85,7 @@ set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 a2 = gca;
 
-%% refline XY map with norm. curvature
+%% reference line XY map with norm. curvature
 
 subplot(2,2,3)
 data = crg_plot_refline_xy_map_and_curv(data, iu);
@@ -92,7 +93,7 @@ set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 a3 = gca;
 
-%% refline curvature plot
+%% reference line curvature plot
 
 subplot(2,2,4)
 data = crg_plot_refline_curvature(data, iu);

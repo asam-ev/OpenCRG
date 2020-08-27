@@ -1,6 +1,7 @@
 %% Demo file generation CRG_DEMO
-% Building a set of demo files with differ specifications.
-% Do not alter this CRG-file. If necessary add new demo files. Several test proceedings require these data-structures.
+% Building a set of demo files with different specifications.
+% Do not alter this CRG-file. If necessary, add new demo files. Several test
+% proceedings require these data-structures.
 % The file comments are optimized for the matlab publishing makro.
 
 % *****************************************************************
@@ -27,9 +28,9 @@
 %
 % Demo 1-9
 %
-% * generate minimal crg-structure
-% * alter, add specifications (change increment, add slope ec.)
-% * write CRG-file
+% * generate minimal OpenCRG struct
+% * change or add specifications (change increment, add slope ec.)
+% * write OpenCRG file
 % * show results
 %
 
@@ -40,7 +41,7 @@ close all
 % display results
 dispRes = 0;
 
-% build minimum crg-struct
+% build minimal OpenCRG struct
 uinc = 0.01;
 vinc = 0.01;
 
@@ -52,7 +53,7 @@ v = -(nv-1)/2*vinc:vinc:(nv-1)/2*vinc;
 z = 0.01*peaks(nv);
 z = repmat(z, nu/nv, 1);
 
-%% Demo1: crg defined by z matrix and scalar u and v specs
+%% Demo1: CRG defined by z-matrix and scalar u and v specs
 
 data.u = (nu-1)*uinc;
 data.v = (nv-1)*vinc/2;

@@ -1,16 +1,16 @@
 function [ell] = map_check_elli(ell)
-% MAP_CHECK_ELLI MAP check and update ELLI struct.
-%   [ELL] = MAP_CHECK_ELLI(ELL) checks and updates ELLI struct.
+% MAP_CHECK_ELLI MAP check and update ellipsoid struct.
+%   [ELL] = MAP_CHECK_ELLI(ELL) checks and updates ellipsoid struct.
 %
 %   Inputs:
-%   ELL     opt. ellipsoid name (default: 'WGS84') or ELLI struct 
+%   ELL     optional ellipsoid name (default: 'WGS84') or ELLI struct 
 %
 %   Outputs:
 %   ELL     ELLI struct
 %
 %   Examples:
 %   ell = map_check_elli(ell)
-%       checks and updates ELLI struct.
+%       Checks and updates ELLI struct.
 %
 %   See also MAP_INTRO.
 

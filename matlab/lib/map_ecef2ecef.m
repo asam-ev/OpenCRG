@@ -1,21 +1,22 @@
 function [xyzb tran] = map_ecef2ecef(xyza, tran, fwbw)
-% MAP_ECEF2ECEF MAP executes a datum transformation.
-%   XYZB = MAP_ECEF2ECEF(XYZA, TRAN, FWBW) executes datum transformation.
+% MAP_ECEF2ECEF Datum transformation in ECEF system.
+%   XYZB = MAP_ECEF2ECEF(XYZA, TRAN, FWBW) transforms points from one ECEF datum
+%   to another.
 %
 %   Inputs:
-%   XYZA    (n, 3) array of points of datum A
-%   TRAN    opt. TRAN struct array
-%   FWBW    opt. forward/backward mode flag
+%   XYZA    (n, 3) array of points using datum A
+%   TRAN    optional TRAN struct array
+%   FWBW    optional forward/backward mode flag
 %       'F' forward transformation (default)
 %       'B' backward transformation
 %
 %   Outputs:
-%   XAZB    (n, 3) array of points of datum B
+%   XAZB    (n, 3) array of points using datum B
 %   TRAN    TRAN struct array
 %
 %   Examples:
 %   xyz = map_ecef2ecef(xyz, tran, 'B')
-%       executes datum transformation in backward direction.
+%       Executes datum transformation in backward direction.
 %
 %   See also MAP_INTRO.
 
@@ -38,7 +39,7 @@ function [xyzb tran] = map_ecef2ecef(xyza, tran, fwbw)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % FWBW
 if nargin < 3 || isempty(fwbw) 
@@ -66,7 +67,7 @@ if strcmp(nm, 'NOP') % no transformation
     return
 end
 
-% 7 parameter Helmert transformation
+% 7-parameter Helmert transformation
 
 rx = tran.rx;
 ry = tran.ry;
@@ -79,12 +80,12 @@ ds = tran.ds;
 %% prepare transformation matrix
 
 switch nm
-    case 'HL7' % 7 parameter linear Helmert transformation
+    case 'HL7' % 7-parameter linear Helmert transformation
         % linearized inverse (transposed) cardan rotation matrix
         s = [1              -rz              +ry; ...
             +rz               1              -rx; ...
             -ry             +rx                1]';
-    case 'HN7' % 7 parameter nonlin Helmert transformation
+    case 'HN7' % 7-parameter nonlin Helmert transformation
         % nonlinear inverse (transposed) cardan rotation matrix
         c1 = cos(rx);
         s1 = sin(rx);
@@ -96,7 +97,7 @@ switch nm
         s = [c2*c3           -c2*s3           s2; ...
             c1*s3+s1*s2*c3 c1*c3-s1*s2*s3 -s1*c2; ...
             s1*s3-c1*s2*c3 s1*c3+c1*s2*s3  c1*c2]';
-    case 'HS7' % 7 parameter simple Helmert transformation
+    case 'HS7' % 7-parameter simple Helmert transformation
         % linearized inverse (transposed) cardan rotation matrix
         if strcmp(fwbw, 'B')
             ds = -ds;

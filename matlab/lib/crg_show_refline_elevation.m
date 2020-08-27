@@ -1,7 +1,8 @@
 function [data] = crg_show_refline_elevation(data, iu)
-% CRG_SHOW_REFLINE_ELEVATION CRG road refline elevation visualizer.
-%   DATA = CRG_SHOW_REFLINE_ELEVATION(DATA, IU) visualizes CRG refline
-%   elevation info.
+% CRG_SHOW_REFLINE_ELEVATION Visualize elevation along the reference line.
+%   DATA = CRG_SHOW_REFLINE_ELEVATION(DATA, IU) creates several plots visualizing
+%   elevation along the reference line. The plots can be limited to a selected
+%   range on the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -13,9 +14,9 @@ function [data] = crg_show_refline_elevation(data, iu)
 %
 %   Examples:
 %   data = crg_show_refline_elevation(data)
-%       shows full CRG info.
+%       Plots the entire grid.
 %   data = crg_show_refline_elevation(data, [1000 2000])
-%       shows selected CRG info.
+%       Plots the selected area of the grid.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -50,7 +51,7 @@ end
 
 nu = size(data.z, 1);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -69,14 +70,14 @@ else
     data = crg_figure(data);
 end
 
-%% refline XY overview map
+%% reference line XY overview map
 
 subplot(2,2,1)
 data = crg_plot_refline_xy_overview_map(data, iu);
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
-%% refline slope and banking plot
+%% reference line slope and banking plot
 
 subplot(2,2,2)
 data = crg_plot_refline_slope_bank(data, iu);
@@ -84,7 +85,7 @@ set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 a2 = gca;
 
-%% refline 3D plot
+%% reference line 3D plot
 
 subplot(2,2,3)
 data = crg_plot_refline_xyz_map(data, iu);
@@ -92,7 +93,7 @@ set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
 
-%% refline elevation plot
+%% reference line elevation plot
 
 subplot(2,2,4)
 data = crg_plot_refline_elevation(data, iu);
@@ -100,7 +101,7 @@ set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 a4 = gca;
 
-%%  link axes
+%% link axes
 
 linkaxes([a2 a4], 'x')
 
