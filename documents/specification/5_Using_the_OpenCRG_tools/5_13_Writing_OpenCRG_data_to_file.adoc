@@ -12,8 +12,10 @@ The C-API does not provide functions for writing OpenCRG data.
 
 ==== Related Matlab functions
 
-`[ier] = crg_write(data, file)`::
+`[ier] = crg_write(data, file, type)`::
 Write the OpenCRG data in `data` to the OpenCRG file `file`. The file uses the KRBI format. Therefore, road data must be converted to type _single_ first. `ier` indicates whether any errors occurred while writing the file.
+//REVIEW the below line
+`type` is an optional argument, default is krbi (binary), can be changed to lrfi (ascii single precision)
 
 `[data] = crg_single(data)`::
 Convert road data in `data` to type _single_.
