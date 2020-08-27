@@ -60,16 +60,16 @@ if ~isfield(data, 'ok')
     ierr = ierr + 1;
 end
 
-%% check mpro consistency
+%% check data consistency
 
-data = crg_check_mpro(data);
+data = crg_check_data(data);
 if ~isfield(data, 'ok')
     ierr = ierr + 1;
 end
 
-%% check data consistency
+%% check mpro consistency
 
-data = crg_check_data(data);
+data = crg_check_mpro(data);
 if ~isfield(data, 'ok')
     ierr = ierr + 1;
 end

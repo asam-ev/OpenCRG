@@ -111,6 +111,9 @@ data.head = rmfield(data.head, 'xend');
 data.head = rmfield(data.head, 'yend');
 data.head = rmfield(data.head, 'zbeg');
 data.head = rmfield(data.head, 'zend');
+data.head = rmfield(data.head, 'eend');
+data.head = rmfield(data.head, 'nend');
+data.head = rmfield(data.head, 'aend');
 
 dout = crg_check(data);
 
