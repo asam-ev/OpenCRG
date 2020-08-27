@@ -29,6 +29,9 @@ The Matlab tools do not use contact points.
 
 ==== Examples
 
+//REVIEW: maybe add this to the upper description
+The contact point is relevant for the use of OpenCRG within the simulation. The contact point for example can be the touching point of the tire with the modelled road.
+
 ===== C examples
 
 ----

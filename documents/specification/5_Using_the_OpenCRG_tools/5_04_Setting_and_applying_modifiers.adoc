@@ -44,7 +44,8 @@ Set all modifiers of the data set `dataSetId` to their default values.
 `void crgDataSetModifiersApply( int dataSetId )`::
 Apply set modifiers to the data set `dataSetId`. If no modifiers are defined, the default modifier values are applied.
 
-//TODO: Does applying modifiers remove thems from the data set like with the Matlab API?
+//TODO: Does applying modifiers remove them the applied modifier from the data set like with the Matlab API?
+//REVIEW: Max wird das testen, und prüfen ob ein CRG_write mit der C-API überhaupt möglich ist.
 
 ==== Corresponding Matlab functions
 
@@ -52,6 +53,8 @@ Apply set modifiers to the data set `dataSetId`. If no modifiers are defined, th
 Apply modifiers in `data.mods` to the OpenCRG data in `data`. Afterwards, remove all modifiers from `data.mods`. If `data.mods` does not exist, default modifier values are applied. If `data.mods` is empty, no modifiers are applied.
 
 ==== Examples
+
+Below find two corresponding examples how to read and apply modifiers to an OpenCRG File
 
 ===== C examples
 

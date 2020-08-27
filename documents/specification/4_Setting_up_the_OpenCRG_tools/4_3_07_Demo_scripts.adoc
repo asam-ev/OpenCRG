@@ -10,6 +10,7 @@ binary representation.
 representation.
 `/demo/crg_demo_country_road.m`:: Load and visualize `../crg-bin/country_road.crg`.
 //TODO: country_road.crg is missing
+//TODO Roland: rename file and insert here
 `/demo/crg_demo_gen_refline.m`:: Generate an OpenCRG file with a smooth
 reference line.
 `/demo/crg_demo_gen_sl_mue.m`:: Generate a synthetic OpenCRG file with friction
@@ -17,10 +18,10 @@ coefficients.
 `/demo/crg_demo_gen_sl_road.m`:: Generate a synthetic OpenCRG file representing
 a complete road.
 `/demo/crg_demo_gen_sl_surf.m`:: Generate a synthetic OpenCRG file representing a straight road.
-`/demo/crg_demo_gen_surface.m`:: Generate a surface OpenCRG file.
-// TODO: what's a surface OpenCRG file?
+`/demo/crg_demo_gen_surface.m`:: Generate a OpenCRG file for a given reference line from measurement data.
 `/demo/crg_demo_gen_syntheticStraight.m`:: Generate a synthetic OpenCRG file representing a straight road.
 `/demo/crg_demo_gen_target.m`:: Generate a surface OpenCRG file.
-`/demo/crg_demo_map_transformation.m`:: Perform geodetic transformations.
+`/demo/crg_demo_map_transformation.m`:: Perform geodetic transformations (e.g UTM -> WGS84).
 //TODO: How does this fit with the current geo-referencing work.
+//REVIEW hier werden bereits die neuen Funktionen verwendet
 `/demo/crg_demo_scale_data.m`:: Scale OpenCRG data.

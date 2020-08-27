@@ -1,6 +1,13 @@
 === Mapping OpenCRG data to geographical positions
 
 //TODO: More information needed. What sort of conceptual information is necessary for using the map projection feature effectively?
+// - an OpenCRG File is necessary that has a geo reference / representing real world data
+// - Transformation parameters are needed, either as included coordinate system, by providing the name of an projected coordinate system (global crg coordinate system) or by providig the transformation parameters themself 
+// - transformation parameters are ellipsoide parameters from the projected and the geographic coordinate system
+// - e.g UTM and WGS84 use the same ellipsoides while for example Gauß-Krüger uses different parameters
+// - for the transition from the origin to the target ellipsoide (datum transformation) a 3D similarty transformation (3 Translation, 3 roatation, 1 scale factor) is necessary. The parameters shall be provided by the user
+
+//TODO draw schema image for the transitions  @ Sebastian
 
 ==== Prerequisites
 

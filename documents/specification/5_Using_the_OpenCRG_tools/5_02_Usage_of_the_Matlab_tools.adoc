@@ -33,5 +33,6 @@ A minimal OpenCRG data set must at least define u, v and z.
 For more detailled information on individual fields and subfields, run `crg_intro` from the Matlab Terminal.
 
 //TODO: Can crg_check calculate u and v from data.head?
+//REVIEW: as u and v are mandetory values it is not possible to calculate these values, the other way arround will work. THe header can be filled in when u and v is given.
 
 

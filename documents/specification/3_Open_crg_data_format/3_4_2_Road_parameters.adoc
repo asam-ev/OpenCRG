@@ -90,11 +90,11 @@ line
 |Global offset for y-coordinates
 
 |`REFERENCE_LINE_START_PHI`
-|Double-precision floating-point number (default: ????)
+|Double-precision floating-point number (default: 0.0)
 |Heading angle at start position
 
 |`REFERENCE_LINE_END_PHI`
-|Double-precision floating-point number (default: ????)
+|Double-precision floating-point number (default: 0.0)
 |Heading angle at end position
 
 |`REFERENCE_LINE_OFFSET_PHI`
@@ -116,27 +116,27 @@ line
 // TODO what are the defaults for WGS 84 coordinates?
 
 |`REFERENCE_LINE_START_LON`
-|Double-precision floating-point number (default: ????)
+|Double-precision floating-point number
 |Longitude of the start position in WGS 84 coordinates
 
 |`REFERENCE_LINE_START_LAT`
-|Double-precision floating-point number (default: ????)
+|Double-precision floating-point number 
 |Latitude of start position in WGS 84 coordinates
 
 |`REFERENCE_LINE_END_LON`
-|Double-precision floating-point number (default: ????)
+|Double-precision floating-point number
 |Longitude of end position in WGS 84 coordinates
 
 |`REFERENCE_LINE_END_LAT`
-|Double-precision floating-point number (default: ????)
+|Double-precision floating-point number
 |Latitude of end position in WGS 84 coordinates
 
 |`REFERENCE_LINE_START_ALT`
-|Double-precision floating-point number (default: ????)
+|Double-precision floating-point number
 |Altitude of start position in WGS 84 coordinates
 
 |`REFERENCE_LINE_END_ALT`
-|Double-precision floating-point number (default: ????)
+|Double-precision floating-point number
 |Altitude of end position in WGS 84 coordinates
 
 |===

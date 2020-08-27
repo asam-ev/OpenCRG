@@ -57,6 +57,8 @@ Evaluate the curvature values `crv` at given `u`-positions for data set `data`.
 // crg_eval_llh2xyz
 // crg_eval_xyz2enh
 // crg_eval_xyz2llh
+//REVIEW: diese funktionen sind valide, hier werden die Mapping Funktionen aufgerufen
+//TODO check the header files for description
 
 
 ==== Examples

@@ -39,6 +39,7 @@ Check OpenCRG data in `data` for consistency and accuracy, fix slight accuracy p
 Check reference line curvature in `data` globally and locally. The global curvature check fails if two or more lateral cuts intersect inside the road limits. In this case, the local curvature check still succeeds, if such an intersection falls into a region of NaN values.
 
 //TODO: Is `crg_check_curvature2.m`going to replace `crg_check_curvature.m`?
+//REVIEW the curvature2 is deleted
 
 `[data] = crg_check_single(data)`::
 Check whether OpenCRG data in core data vectors and arrays of `data` is of type single.
@@ -72,3 +73,5 @@ data = crg_check(data);
 ----
 
 ==== Related Topics
+
+// TODO: add related topics in the end.

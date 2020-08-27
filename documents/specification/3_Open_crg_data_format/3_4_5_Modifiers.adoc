@@ -18,6 +18,8 @@ An OpenCRG data set can be re-located by rotating and shifting the data set in x
 
 OpenCRG data can be scaled in multiple ways. Scaling factors can be applied to length, width, z-values, slope and banking. If a factor of 0 is specified for elevation data, that modifier is ignored. For length and width only factors greater than 0 are valid.
 // TODO Do the slope/banking factors only scale explicitely stated slope/banking or calculated slope/banking as well?
+//REVIEW The result after applying the modifier is the same for calculated and stated banking/slope. Open Question ist the modifier automatically applied when the banking/slope is calculated?
+//TODO Sebastian: Test how the modifiere is applied for calculated/extracted banking/slope
 
 The curvature of the reference line can be scaled by a factor, resulting in a different end point. Scaling the curvature by a factor of 0 results in a straight line.
 

@@ -14,12 +14,12 @@ The OpenCRG software package contains various sample files demonstrating differe
 |   +---handmade_curved.crg.................curved road
 |   +---handmade_curved_banked_sloped.crg...curved road with banking and slope
 |   +---handmade_curved_minimalist.crg......minimal CRG file
-|   +---handmade_platform.crg...............????
+|   +---handmade_platform.crg...............level road with alternating height values for smoothing example
 |   +---handmade_sloped.crg.................straight road with slope
 |   +---handmade_sloped_opts.crg............straight road with slope and options
 |   +---handmade_straight.crg...............straight road (LRFI format)
 |   +---handmade_straight_double.crg........straight road (LDRI format)
 |   +---handmade_straight_minimalist.crg....minimal OpenCRG file
-|   +---handmade_vtest.crg..................????
+|   +---handmade_vtest.crg..................human readable test relating to v-options
 |   +---testOptionBorderMode.crg............testing different border mode options
 ----

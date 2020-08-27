@@ -49,6 +49,8 @@ Options are set by directly accessing the `opts` field of a data set using dot n
 
 ==== Examples
 
+Below find two corresponding examples how to read and apply options to an OpenCRG File
+
 ===== C examples
 
 ----

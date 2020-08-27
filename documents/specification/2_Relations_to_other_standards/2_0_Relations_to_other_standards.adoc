@@ -14,9 +14,7 @@ image::odr_rel_open_x.png[img1, 900, title = "Relation between OpenDRIVE, OpenCR
 
 === Backward compatibility to earlier releases
 
-//REVIEW: Is this statement correct?
-
-ASAM OpenCRG 1.2. is backward comaptible to OpenCRG 1.1.2
+ASAM OpenCRG 1.2.0 is backward comaptible to OpenCRG 1.1.2
 
 === References to other standards
 
