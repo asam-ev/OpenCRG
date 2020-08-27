@@ -1,4 +1,6 @@
 ==== Road data
+:imagesdir: images/
+:stem: latexmath
 
 The _road data_ section contains the actual road surface data. Road surface data is not limited to road elevation, although this is the primary use case. For example, an OpenCRG file may contain friction coefficients or color values.
 

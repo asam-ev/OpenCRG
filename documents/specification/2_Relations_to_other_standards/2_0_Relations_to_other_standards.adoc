@@ -1,5 +1,5 @@
 == Relations to other standards (preliminary)
-:imagesdir: ../images/
+:imagesdir: images/
 :stem: latexmath
 
 === Positioning of ASAM OpenCRG within ASAM activities
@@ -14,7 +14,9 @@ image::odr_rel_open_x.png[img1, 900, title = "Relation between OpenDRIVE, OpenCR
 
 === Backward compatibility to earlier releases
 
-#TODO#
+//REVIEW: Is this statement correct?
+
+ASAM OpenCRG 1.2. is backward comaptible to OpenCRG 1.1.2
 
 === References to other standards
 

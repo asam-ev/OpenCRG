@@ -1,4 +1,6 @@
 ==== Data definition
+:imagesdir: images/
+:stem: latexmath
 
 The _data definition_ section defines the format and sequence of data in the following road data section. If an OpenCRG file contains a _road data_ section, a _data definition_ section is therefore mandatory.
 
@@ -106,3 +108,7 @@ D:long section 30,m                ! 1.40 m left of reference line
 D:long section 31,m                ! 1.50 m left of reference line
 $!********************************
 ----
+
+TODO: is this image helpful? If yes redo in higher quality
+
+image::OpenCRG_coord_sys.png[title="Overlay u/v-coordinate system"]
