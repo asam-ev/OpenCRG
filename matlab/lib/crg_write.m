@@ -1,4 +1,4 @@
-function [ier] = crg_write(data, file)
+function [ier] = crg_write(data, file, type)
 % CRG_WRITE Write OpenCRG file.
 %   IER = CRG_WRITE(DATA, FILE) writes OpenCRG data to file. The file uses the 
 %   KRBI format.
@@ -6,6 +6,7 @@ function [ier] = crg_write(data, file)
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %   FILE    file to write
+%   TYPE    file type, either binary 'KRBI' (default) or ascii 'LRFI'
 %
 %   Outputs:
 %   IER     error flag
@@ -35,6 +36,11 @@ function [ier] = crg_write(data, file)
 % https://www.asam.net/standards/detail/opencrg/
 %
 % *****************************************************************
+
+%% set default
+if nargin < 3
+  type = 'KRBI';
+end
 
 %% force check
 
@@ -358,8 +364,8 @@ else
 end
 crgdat.kd_dat = [crgdat.kd_dat single(data.z)];
 
-% write all CRG data as IPLOS-KRBI data file
+% write all CRG data as data file with specified type (default = 'KRBI')
 
-ier = ipl_write(crgdat, file, 'KRBI');
+ier = ipl_write(crgdat, file, type);
 
 end
