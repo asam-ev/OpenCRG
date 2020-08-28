@@ -1,23 +1,23 @@
 $CT
-Einfahrbahn Untertürkheim "heide.crg"
-Planabschnitt 13: Heidestrecke (Belgisch Pflaster)
-.
-Messung:
-========
-Photogrammetrische Vermessung Einfahrbahn Stuttgart-Untertürkheim,
-1997-2000.
-.
-Andreas Eichhorn, Wolfgang Möhlenbrink,
-Universität Stuttgart,
-Institut für Anwendungen der Geoddäsie im Bauwesen.
-.
-Helmut Schittenhelm,
-DaimlerChrysler, Forschung Fahrzeugsystemdynamik (FT1/FD).
-.
-Bereitstellung im CRG-Format:
-=============================
-Jochen Rauh,
-DaimlerChrysler, Forschung Fahrzeugsystemdynamik (REI/AR), 2005.
+% *****************************************************************
+% ASAM OpenCRG Matlab Example File
+%
+% OpenCRG version:           1.2.0
+%
+% package:               crg-bin
+% file name:             belgian_block.crg
+% author:                ASAM e.V.
+%
+%
+% C by ASAM e.V., 2020
+% Any use is limited to the scope described in the license terms.
+% The license terms can be viewed at www.asam.net/license
+%
+% More Information on ASAM OpenCRG can be found here:
+% https://www.asam.net/standards/detail/opencrg/
+%
+% data provided by DaimlerChrysler, Forschung Fahrzeugsystemdynamik (REI/AR), 2005.
+% *****************************************************************
 .
 Literatur:
 ==========
