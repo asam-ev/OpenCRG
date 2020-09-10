@@ -1,0 +1,169 @@
+==== Map projection data
+:imagesdir: images/
+:stem: latexmath
+
+The _map projection data_ section contains information necessary for mapping road data to geographic positions. The _map projection data_ section is optional.
+
+A _map projection data_ section shall at least specify a map projection, either by providing the name of the projection or the projection parameters themselves.
+
+If geodetic coordinates use a global ellipsoid other than WGS84, the ellipsoid shall be specified, either by providing the name of the ellipsoid or the semi-major and the semi-minor axis in case of a user-defined ellipsoid.
+
+A map projection can involve a datum transformation, for example with Gauss-Krüger projections of WGS-84 coordinates. In this case, both a local ellipsoid as well as a transformation type including all 7 parameters shall be specified.
+
+
+===== Keyword
+
+----
+$ROAD_CRG_MPRO
+----
+
+===== Contents
+
+|===
+|Parameter | Values |Description
+
+|`GELL_A`
+|Double-precision floating-point number (default: 0.0)
+|Semi-major axis of user-defined global ellipsoid.
+
+|`GELL_B`
+|Double-precision floating-point number (default: gell_a)
+|Semi-minor axis of user-defined global ellipsoid.
+
+|`GELL_NM`
+|WGS84, USERDEFINED, AIRY1830, AIRYMODIFIED1849, BESSEL1841, BESSELMODIFIED, BESSELNAMIBIAGLM, BESSELDHDN, CLARKE1866, CLARKE1866AUTHALICSPHERE, CLARKE1880IGN, GRS1980, GRS1980AUTHALICSPHERE, INTERNATIONAL1924, INTERNATIONAL1924AUTHALICSPHERE, KRASSOWSKY1940 (default: WGS84)
+|Identifier of the global ellipsoid.
+
+//TODO: do we need further explanation of the values?
+
+//WGS84::
+//USERDEFINED:: 
+//AIRY1830:: 
+//AIRYMODIFIED1849:: 
+//BESSEL1841:: 
+//BESSELMODIFIED:: 
+//BESSELNAMIBIAGLM:: 
+//BESSELDHDN:: 
+//CLARKE1866:: 
+//CLARKE1866AUTHALICSPHERE:: 
+//CLARKE1880IGN:: 
+//GRS1980:: 
+//GRS1980AUTHALICSPHERE:: 
+//INTERNATIONAL1924:: 
+//INTERNATIONAL1924AUTHALICSPHERE::
+//KRASSOWSKY1940::
+
+
+|`TRAN_NM`
+|NOP, HL7, HN7, HS7 (default: NOP)
+a|Identifier of datum transformation type.
+
+NOP:: No transformation.
+HL7:: 7-parameter linear Helmert transformation.
+HN7:: 7-parameter nonlinear Helmert transformation.
+HS7:: 7-parameter simple Helmert transformation.
+
+|`TRAN_DS`
+|Double-precision floating-point number (default: 0.0)
+|Helmert transformation parameter: scalar scaling factor minus one.
+
+|`TRAN_RX`
+|Double-precision floating-point number (default: 0.0)
+|Helmert transformation parameter: rotation around the x-axis.
+
+|`TRAN_RY`
+|Double-precision floating-point number (default: 0.0)
+|Helmert transformation parameter: rotation around the y-axis.
+
+|`TRAN_RZ`
+|Double-precision floating-point number (default: 0.0)
+|Helmert transformation parameter: rotation around the z-axis.
+
+|`TRAN_TX`
+|Double-precision floating-point number (default: 0.0)
+|Helmert transformation parameter: translation along the x-axis.
+
+|`TRAN_TY`
+|Double-precision floating-point number (default: 0.0)
+|Helmert transformation parameter: translation along the y-axis.
+
+|`TRAN_TZ`
+|Double-precision floating-point number (default: 0.0)
+|Helmert transformation parameter: translation along the z-axis.
+
+|`LELL_A`
+|Double-precision floating-point number (default: 0.0)
+|Semi-major axis of the local ellipsoid.
+
+|`LELL_B`
+|Double-precision floating-point number (default: lell_a)
+|Semi-minor axis of the local ellipsoid.
+
+|`LELL_NM`
+|WGS84, USERDEFINED, AIRY1830, AIRYMODIFIED1849, BESSEL1841, BESSELMODIFIED, BESSELNAMIBIAGLM, BESSELDHDN, CLARKE1866, CLARKE1866AUTHALICSPHERE, CLARKE1880IGN, GRS1980, GRS1980AUTHALICSPHERE, INTERNATIONAL1924, INTERNATIONAL1924AUTHALICSPHERE, KRASSOWSKY1940 (default: WGS84)
+|Identifier of the local ellipsoid.
+
+//TODO: do we need further explanation of the values?
+
+//WGS84::
+//USERDEFINED:: 
+//AIRY1830:: 
+//AIRYMODIFIED1849:: 
+//BESSEL1841:: 
+//BESSELMODIFIED:: 
+//BESSELNAMIBIAGLM:: 
+//BESSELDHDN:: 
+//CLARKE1866:: 
+//CLARKE1866AUTHALICSPHERE:: 
+//CLARKE1880IGN:: 
+//GRS1980:: 
+//GRS1980AUTHALICSPHERE:: 
+//INTERNATIONAL1924:: 
+//INTERNATIONAL1924AUTHALICSPHERE::
+//KRASSOWSKY1940::
+
+|`PROJ_NM`
+|GK3_0 ... GK3_119, GK6_0 ... GK6_59, UTM_01C ... UTM_60X, TM_0 ... TM_359
+a|Identifier of the map projection
+
+GK3_0 ... GK3_119:: Gauss-Krüger with 3-degree zones with appended zone number.
+GK6_0 ... GK6_59:: Gauss-Krüger with 6-degree zones with appended zone number.
+UTM_01C ... UTM_60X:: Universal transverse mercator with appended zone number and band letter.
+TM_0 ... TM_359:: Transverse mercator, with appended center meridian (degree east).
+
+//TODO can you define projections without appendix (e. g. 'GK3' or 'TM')?
+
+//TODO When are these parameters used? How do they interact with 'proj_nm'?
+
+|`PROJ_F0`
+|Double-precision floating-point number (default: 1.0)
+|Map projection parameter: center meridian scaling.
+
+|`PROJ_P0`
+|Double-precision floating-point number (default: 0.0)
+|Map projection parameter: latitude of origin.
+
+|`PROJ_L0`
+|Double-precision floating-point number (default: 0.0)
+|Map projection parameter: longitude of origin.
+
+|`PROJ_E0`
+|Double-precision floating-point number (default: 0.0)
+|Map projection parameter: false easting.
+
+|`PROJ_N0`
+|Double-precision floating-point number (default: 0.0)
+|Map projection parameter: false northing.
+
+|===
+
+===== Rules
+
+//TODO add rules
+
+===== Examples
+
+//TODO add example
+----
+$ROAD_CRG_MPRO
+----

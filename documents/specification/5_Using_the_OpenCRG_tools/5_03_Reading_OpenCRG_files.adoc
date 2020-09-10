@@ -33,4 +33,4 @@ data = crg_read('demo.crg');
 
 ==== Related topics
 
-// TODO: add related topics in the end.
+* <<Sample OpenCRG files>>

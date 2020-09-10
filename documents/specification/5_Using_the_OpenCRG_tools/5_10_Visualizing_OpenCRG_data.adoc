@@ -130,4 +130,6 @@ crg = crg_show(data);
 
 ==== Related topics
 
+* <<Reading an OpenCRG file>>
+
 // TODO: add related topics in the end.

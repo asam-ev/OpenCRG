@@ -9,11 +9,22 @@ Using the provided make files is the most convenient way of compiling the C-API.
 * You have set up a standard _make_ environment on your computer.
 
 ===== Steps
+
 . Open a command line interpreter.
 . Change to the `c-api` directory.
 . Run `make`.
 
 ===== Result
+
 * A library containing all object files of the basic library is generated in `c-api/baselib/lib/`.
 * Executable test files are generated in `c-api/test/bin/`.
 * Executable demo files are generated in `c-api/demo/bin/`.
+
+===== What to do next
+
+Test the C-API to ensure that it is set up correctly.
+
+===== Related topics
+
+* <<Downloading the software package>>
+* <<Testing the C-API>>

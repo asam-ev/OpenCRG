@@ -1,25 +1,29 @@
-=== Sample files
+=== Sample OpenCRG files
 
 The OpenCRG software package contains various sample files demonstrating different use cases.
-----
-+---*crg-bin*...............................sample files with binary road data
-|   +---belgian_block.crg...................binary data set for complex tests
-+---*crg-txt*...............................sample files with human-readable road data
-|   +---fileref.crg.........................referencing another CRG file
-|   +---fileref_mods.crg....................referencing another CRG file and modifiers
-|   +---fileref_opts.crg....................referencing another CRG file and options
-|   +---handmade_arc.crg....................180° arc
-|   +---handmade_banked.crg.................straight road with banking
-|   +---handmade_circle.crg.................circular road
-|   +---handmade_curved.crg.................curved road
-|   +---handmade_curved_banked_sloped.crg...curved road with banking and slope
-|   +---handmade_curved_minimalist.crg......minimal CRG file
-|   +---handmade_platform.crg...............level road with alternating height values for smoothing example
-|   +---handmade_sloped.crg.................straight road with slope
-|   +---handmade_sloped_opts.crg............straight road with slope and options
-|   +---handmade_straight.crg...............straight road (LRFI format)
-|   +---handmade_straight_double.crg........straight road (LDRI format)
-|   +---handmade_straight_minimalist.crg....minimal OpenCRG file
-|   +---handmade_vtest.crg..................human readable test relating to v-options
-|   +---testOptionBorderMode.crg............testing different border mode options
-----
+
+Sample files with binary road data are stored in `_open-crg_/crg-bin/` and comprise
+the following:
+
+`belgian_block.crg`:: Binary data set for complex tests.
+
+Sample files with human-readable road data are stored in `_open-crg_/crg-txt/` and comprise
+the following:
+
+`fileref.crg`:: Referencing another CRG file.
+`fileref_mods.crg`:: Referencing another CRG file and modifiers.
+`fileref_opts.crg`:: Referencing another CRG file and options.
+`handmade_arc.crg`:: 180° arc.
+`handmade_banked.crg`:: Straight road with banking.
+`handmade_circle.crg`:: Circular road.
+`handmade_curved.crg`:: Curved road.
+`handmade_curved_banked_sloped.crg`:: Curved road with banking and slope.
+`handmade_curved_minimalist.crg`:: Minimal OpenCRG file.
+`handmade_platform.crg`:: Level road with alternating height values.
+`handmade_sloped.crg`:: Straight road with slope.
+`handmade_sloped_opts.crg`:: Straight road with slope and options.
+`handmade_straight.crg`:: Straight road (LRFI format).
+`handmade_straight_double.crg`:: Straight road (LDRI format).
+`handmade_straight_minimalist.crg`:: Minimal OpenCRG file.
+`handmade_vtest.crg`:: Human-readable test relating to v-options.
+`testOptionBorderMode.crg`:: Testing different border mode options.

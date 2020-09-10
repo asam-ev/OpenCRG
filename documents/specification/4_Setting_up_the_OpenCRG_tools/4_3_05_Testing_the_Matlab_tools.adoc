@@ -16,3 +16,7 @@ All test files and demo files may further be used as examples on how to use the 
 . Run `crg_demo` to create the required OpenCRG data structures and write them to file.
 . Run `crg_demo___demoname__`, to run the demo of the respective name.
 . Run `crg_test___testname__`, to run the test of the respective name.
+
+===== Related topics
+
+* <<Initializing the Matlab tools>>

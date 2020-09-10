@@ -3,5 +3,5 @@
 The header files of the C-API are stored in `_open-crg_/c-api/baselib/inc/` and comprise
 the following:
 
-`/inc/crgBaseLib.h`:: Provides the interface to the OpenCRG methods. Include this header file when writing your own applications.
-`/inc/crgBaseLibPrivate.h`:: Used internally by the library's components. Includes `crgBaseLib.h`.
+`crgBaseLib.h`:: Provides the interface to the OpenCRG methods. Include this header file when writing your own applications.
+`crgBaseLibPrivate.h`:: Used internally by the library's components. Includes `crgBaseLib.h`.

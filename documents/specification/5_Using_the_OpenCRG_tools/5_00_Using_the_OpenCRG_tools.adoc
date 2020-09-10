@@ -1,4 +1,4 @@
-=== Using the OpenCRG tools
+== Using the OpenCRG tools
 
 include::5_01_Usage_of_the_C-API.adoc[]
 

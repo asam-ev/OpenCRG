@@ -4,7 +4,7 @@
 
 === Positioning of ASAM OpenCRG within ASAM activities
 
-ASAM OpenDCRG is part of the ASAM simulation standards that focus on simulation data for the automotive environment. Next to ASAM OpenCRG, ASAM Provides other standards for the simulation domain, like ASAM OpenDRIVE and ASAM openSCENARIO.
+ASAM OpenCRG is part of the ASAM simulation standards that focus on simulation data for the automotive environment. Next to ASAM OpenCRG, ASAM Provides other standards for the simulation domain, like ASAM OpenDRIVE and ASAM openSCENARIO.
 
 === Relation of ASAM OpenCRG to OpenDRIVE and OpenSCENARIO
 
@@ -14,10 +14,13 @@ image::odr_rel_open_x.png[img1, 900, title = "Relation between OpenDRIVE, OpenCR
 
 === Backward compatibility to earlier releases
 
-ASAM OpenCRG 1.2.0 is backward comaptible to OpenCRG 1.1.2
+ASAM OpenCRG 1.2.0 is backward compatible to OpenCRG 1.1.2.
 
 === References to other standards
 
-ISO 8855 for right handed coordinate systems
-ISO 8601 for time / date
-Georeferencing (ISO DIN 19111)
+//TODO is this complete?
+
+* ISO 8855 for right handed coordinate systems
+* ISO 8601 for time / date
+* ISO 8859-1 for plain-text encoding
+* Georeferencing (ISO DIN 19111)

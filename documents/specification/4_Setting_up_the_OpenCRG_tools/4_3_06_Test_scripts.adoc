@@ -4,18 +4,18 @@ The test scripts for the Matlab tools are stored in `_open-crg_/matlab/test/` an
 
 //TODO: check descriptions again once code comments have been reviewed
 
-`/test/crg_test_append.m`:: Test concatenating two OpenCRG files.
-`/test/crg_test_continuesTrack.m`:: Test the reference line continuation option.
-`/test/crg_test_curvature.m`:: Test global and local curvature as well as reading and writing flags.
-`/test/crg_test_eval_uv2iuiv.m`:: Test the transformation of u/v-coordinates to index positions.
-`/test/crg_test_ext_sb.m`:: Extract slope and banking from an OpenCRG file.
-`/test/crg_test_filter.m`:: Test the application of various filters on OpenCRG data.
-`/test/crg_test_gen_csb2crg0.m`:: Generate synthetic road with curvature, banking and slope
-`/test/crg_test_gen_road.m`:: Generate synthetic road and write it to an OpenCRG file.
-`/test/crg_test_isequal.m`:: Test whether the results of various invariant modifications to an OpenCRG file are equal to the unmodified file.
-`/test/crg_test_limiter.m`:: Test limiting z-values to a specific range.
-`/test/crg_test_map_pro.m`:: Test functions related to map projection.
-`/test/crg_test_map_uv2uvAxy2xy.m`:: Test mapping z-values from one OpenCRG file to another.
-`/test/crg_test_options.m`:: Display results of various options settings.
-`/test/crg_test_peakfinder.m`:: Test whether artificially created peaks can be found by the Matlab tools.
-`/test/crg_test_rerender.m`:: Test whether OpenCRG files can be re-rendered with different u/v-spacings.
+`crg_test_append.m`:: Test concatenating two OpenCRG files.
+`crg_test_continuesTrack.m`:: Test the reference line continuation option.
+`crg_test_curvature.m`:: Test global and local curvature as well as reading and writing flags.
+`crg_test_eval_uv2iuiv.m`:: Test the transformation of u/v-coordinates to index positions.
+`crg_test_ext_sb.m`:: Extract slope and banking from an OpenCRG file.
+`crg_test_filter.m`:: Test the application of various filters on OpenCRG data.
+`crg_test_gen_csb2crg0.m`:: Generate synthetic road with curvature, banking and slope
+`crg_test_gen_road.m`:: Generate synthetic road and write it to an OpenCRG file.
+`crg_test_isequal.m`:: Test whether the results of various invariant modifications to an OpenCRG file are equal to the unmodified file.
+`crg_test_limiter.m`:: Test limiting z-values to a specific range.
+`crg_test_map_pro.m`:: Test functions related to map projection.
+`crg_test_map_uv2uvAxy2xy.m`:: Test mapping z-values from one OpenCRG file to another.
+`crg_test_options.m`:: Display results of various options settings.
+`crg_test_peakfinder.m`:: Test whether artificially created peaks can be found by the Matlab tools.
+`crg_test_rerender.m`:: Test whether OpenCRG files can be re-rendered with different u/v-spacings.

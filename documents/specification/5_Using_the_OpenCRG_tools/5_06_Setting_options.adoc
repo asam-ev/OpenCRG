@@ -49,9 +49,9 @@ Options are set by directly accessing the `opts` field of a data set using dot n
 
 ==== Examples
 
-Below find two corresponding examples how to read and apply options to an OpenCRG File
-
 ===== C examples
+
+The following example shows how to set options using the C-API.
 
 ----
 /* load CRG file */
@@ -70,6 +70,8 @@ crgEvaluv2z( cpId, 100, 0, &z );
 
 ===== Matlab examples
 
+The following example shows how to set options using the Matlab tools.
+
 ----
 % load CRG file 
 data = crg_read('demo.crg');
@@ -82,5 +84,6 @@ data.opts.bdmv = 0;
 crg_show_road_uv2surface(data, u, v);
 ----
 
-
 ==== Related topics
+
+* <<Options>>

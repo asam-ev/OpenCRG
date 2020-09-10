@@ -7,7 +7,7 @@ The latest stable version of OpenCRG is available on the ASAM website. The softw
 * Matlab tools, incl. test scripts and samples
 * OpenCRG documentation
 
-==== Steps
+===== Steps
 
 . Open https://www.asam.net/standards/detail/opencrg/.
 . Navigate to the _Download_ area.
@@ -15,6 +15,14 @@ The latest stable version of OpenCRG is available on the ASAM website. The softw
 . Download the zip-archive.
 . Unpack the archive into a local directory.
 
-==== What to do next
+===== What to do next
+
 * Compile the C source code.
 * Initialize the Matlab tools.
+
+===== Related topics
+
+* <<Compiling the C-API using _make_ files>>
+* <<Compiling the C-API using a shell script>>
+* <<Compiling the C-API using the command line>>
+* <<Initializing the Matlab tools>>

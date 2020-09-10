@@ -20,3 +20,7 @@ You have initialized the Matlab tools.
 ===== Result
 
 The help text is displayed in the Command Window.
+
+===== Related topics
+
+* <<Initializing the Matlab tools>>

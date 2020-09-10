@@ -34,7 +34,7 @@ u =   [  0    900   ];
 v =   [ -2.50   2.5 ];
 inc = [  0.04   0.02];
 
-% generate synthetical straight OpenCRG file
+% generate synthetical straight OpenCRG data
 data = crg_gen_csb2crg0(inc, u, v);
 
 % add z-values
@@ -50,4 +50,4 @@ For more elaborate examples, see the Matlab demo files.
 
 ==== Related topics
 
-// TODO: add related topics in the end.
+* <<Writing OpenCRG files>>

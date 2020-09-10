@@ -1,18 +1,19 @@
 === Mapping OpenCRG data to geographical positions
 
-//TODO: More information needed. What sort of conceptual information is necessary for using the map projection feature effectively?
-// - an OpenCRG File is necessary that has a geo reference / representing real world data
-// - Transformation parameters are needed, either as included coordinate system, by providing the name of an projected coordinate system (global crg coordinate system) or by providig the transformation parameters themself 
-// - transformation parameters are ellipsoide parameters from the projected and the geographic coordinate system
-// - e.g UTM and WGS84 use the same ellipsoides while for example Gauß-Krüger uses different parameters
-// - for the transition from the origin to the target ellipsoide (datum transformation) a 3D similarty transformation (3 Translation, 3 roatation, 1 scale factor) is necessary. The parameters shall be provided by the user
+//TODO should we change the title?
+
+The C-API does not provide functions for handling geographical references. Instead, the C-API ignores any data associated with map projections.
+
+The Matlab tools provide a large collection of functions for visualising, converting or transforming geographic data. These functions are generic and may also be used for data other than OpenCRG data.
+
+Map projection data can be defined either in the OpenCRG file or by accessing the relevant fields of the loaded OpenCRG data.
 
 //TODO draw schema image for the transitions  @ Sebastian
 
 ==== Prerequisites
 
 * You have loaded an OpenCRG data set.
-* The OpenCRG contains map projection data.
+* The OpenCRG data contains the required map projection data.
 
 ==== Corresponding C functions
 
@@ -25,7 +26,7 @@ Display introductory information on handling geographic data.
 
 //TODO: Should this appear in this section or rather in the section about visualization
 `[file] = map_wgs2html(llh, file, opts)`::
-Generate a HTML file `file` to display WGS 84 positions `llh` as a track in a web-based map using OpenLayers. `opts` contains various options for changing the generated HTML file. 
+Generate a HTML file `file` to display WGS-84 positions `llh` as a track in a web-based map using OpenLayers. `opts` contains various options for changing the generated HTML file. 
 
 `[enh ell pro] = map_geod2pmap(llh, ell, pro)`::
 Convert points `llh` from geodetic coordinates to map coordinates using a forward projection. An ellipsoid struct `ell` and a map projection struct `pro` may be optionally provided.
@@ -37,13 +38,13 @@ Convert points `llh` from geodetic coordinates to map coordinates using forward 
 Convert points `enh` from map coordinates to geodetic coordinates using backward transverse mercator projection. An ellipsoid struct `ell` and a map projection struct `pro` may be optionally provided.
 
 `[xyz ell] = map_geod2ecef(llh, ell)`::
-Converts points `llh` from a geodetic system to ECEF system. An ellipsoid struct `ell` may be optionally provided.
+Convert points `llh` from a geodetic system to ECEF system. An ellipsoid struct `ell` may be optionally provided.
 
 `[xyzb tran] = map_ecef2ecef(xyza, tran, fwbw)`::
 Transforms points `xyza` from one ECEF datum to another. A transformation struct `tran` specifying the transformation may be optionally provided. The optional `fwbw` flag specifies, whether to use forward or backward transformation.
 
 `[llh ell] = map_ecef2geod(xyz, ell)`::
-Converts points from a ECEF system to a geodetic system. An ellipsoid struct `ell` may be optionally provided.
+Convert points from a ECEF system to a geodetic system. An ellipsoid struct `ell` may be optionally provided.
 
 `[enh dat] = map_global2plocal(llh, dat)`::
 Convert points from global geodetic coordinates `llh` to local map coordinates `enh` by transformation from global to local ellipsoid and forward projection on local ellipsoid. `dat` contains information necessary for the conversion. 
@@ -75,10 +76,57 @@ Check and update datum transformation struct `tran`.
 
 ===== Matlab examples
 
+The following example shows the conversion of WGS-84 coordinates to UTM coordinates. As the example position is located Bavaria, the grid zone is 32U. Both UTM and WGS 84 use the same ellipsoid. Thus, a datum transformation is not required.
 
-//TODO: Simple introductory example needed
+----
+% example position ASAM e.V. 
+% (Altlaufstraße 40, 85635 Höhenkirchen-Siegertsbrunn)
+org_llh = [	48.02331, 11.71584, 584.0]; % WGS84
 
+% create mpro
+mpro.gell.nm='WGS84';   % global datum
+mpro.proj.nm='UTM_32U'; % map projection including local datum
+
+% WGS84 llh degree -> WGS84 llh radian
+llh = [pi/180*org_llh(1), pi/180*org_llh(2), org_llh(3)];
+
+% transform WGS84 llh radian -> UTM_32U
+enh_utm = map_geod2pmap_tm(llh, mpro.gell, mpro.proj)
+
+----
+
+The following example shows the conversion WGS-84 coordinates to UTM coordinates. As the example position is located Bavaria, the grid zone is 32U. Both UTM and WGS 84 use the same ellipsoid. Thus, a datum transformation is not required.
+
+----
+% example position ASAM e.V. 
+% (Altlaufstraße 40, 85635 Höhenkirchen-Siegertsbrunn)
+org_llh = [	48.02331, 11.71584, 584.0]; % WGS84
+
+% create mpro
+mpro.gell.nm='WGS84';
+mpro.lell.nm='BESSELDHDN';
+mpro.proj.nm='GK3_4';
+mpro.tran.nm='HN7';     % transformation
+% 7 Parameter Helmerttransformation (example for Bavaria from LDBV)
+mpro.tran.ds = -5.2379 * 0.000001;
+mpro.tran.rx = (0.7201 / 3600) * (pi / 180);
+mpro.tran.ry = (0.1112 / 3600) * (pi / 180);
+mpro.tran.rz = (-1.7209 / 3600) * (pi / 180);
+mpro.tran.tx = -604.7365;
+mpro.tran.ty = -72.3946;
+mpro.tran.tz = -424.402;
+mpro=map_check(mpro);
+
+% WGS84 llh degree -> WGS84 llh radian
+llh = [pi/180*org_llh(1), pi/180*org_llh(2), org_llh(3)];
+
+% transform WGS84 llh radian -> GK3 zone 4 (BESSELDHDN)
+% transformation includes datum transformation, see map_global2plocal.m
+enh_gk = map_global2plocal(llh, mpro)
+----
 
 ==== Related topics
+
+* <<Map projection data>>
 
 // TODO: add related topics in the end.

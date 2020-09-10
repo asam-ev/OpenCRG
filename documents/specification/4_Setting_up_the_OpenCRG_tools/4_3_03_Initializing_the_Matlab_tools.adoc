@@ -20,3 +20,12 @@ You have downloaded and unpacked the OpenCRG software package.
 ===== Result
 
 The Matlab tools are added to the search path. Matlab's current directory points to the newly created directory for temporary data.
+
+===== What to do next
+
+Test the Matlab tools to ensure that they are set up correctly.
+
+===== Related topics
+
+* <<Downloading the software package>>
+* <<Testing the Matlab tools>>

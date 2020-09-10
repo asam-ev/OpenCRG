@@ -17,9 +17,6 @@ The Matlab tools cover the following use cases:
 
 The C-API does not provide functions for manipulating OpenCRG data.
 
-//TODO: is this true? I did not find any.
-//REVIEW: only by using modifiers, the data can not be changed using the C-AP
-
 ==== Corresponding Matlab functions
 
 `[data, roff2] = crg_append(data1, data2)`::
@@ -33,13 +30,9 @@ Find and filter slope and banking in road data of `data`. Slope and banking are 
 
 `[data] = crg_b2z(data, b)`::
 Apply new banking `b` to the OpenCRG data in `data`. Merge existing banking into the road data.
-//TODO: Please check whether this is true. Got this from reading the code; the code comments seem somewhat misleading (they talk about "extracting banking").
-//REVIEW: is True
 
 `[data] = crg_s2z(data, rz)`::
 Apply new slope defined by `rz` to the OpenCRG data in `data`. Merge existing slope into the road data.
-//TODO: Please check whether this is true. Got this from reading the code; the code comments seem somewhat misleading (they talk about "separating slope")..
-//REVIEW: is True
 
 `[data] = crg_ext_slope(data, p)`::
 Extract the slope from OpenCRG data in `data`. `pp` is a smoothing parameter.
@@ -72,9 +65,27 @@ Re-render OpenCRG data in `crg` as `data` with new u/v-increment `inc` and v-spa
 
 ===== Matlab examples
 
-//TODO: Which examples would be of interest?
-//REVIEW use one of the given example files crg_test_ext_sb.m
+The following example shows how to manipulate data using the Matlab tools.
+
+----
+% load OpenCRG data
+data = crg_read('demo.crg');
+
+% extract banking with smoothing
+exdata = crg_ext_banking(data, 0.0000000000003);
+
+% extract slope
+exdata = crg_ext_slope(exdata);
+
+% visualize results
+crg_show_refline_elevation(exdata);
+crg_show_elgrid_surface(exdata)
+crg_show_road_surface(exdata);
+----
 
 ==== Related topics
 
+* <<Reading an OpenCRG file>>
+
 // TODO: add related topics in the end.
+

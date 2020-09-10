@@ -52,18 +52,25 @@ Evaluate the heading angles `phi` at given `u`-positions for data set `data`.
 `[crv, data] = crg_eval_u2crv(data, pu)`::
 Evaluate the curvature values `crv` at given `u`-positions for data set `data`.
 
-//TODO: What are coordinates in the following functions? Are these functions still valid?
-// crg_eval_enh2xyz
-// crg_eval_llh2xyz
-// crg_eval_xyz2enh
-// crg_eval_xyz2llh
-//REVIEW: diese funktionen sind valide, hier werden die Mapping Funktionen aufgerufen
-//TODO check the header files for description
+//TODO are these descriptions correct?
 
+`[pxyz, data] = crg_eval_enh2xyz(data, penh)`::
+Evaluate the `x`/`y`-positions of the given map positions `penh` for data set `data`.
+
+`[pxyz, data] = crg_eval_llh2xyz(data, pllh)`::
+Evaluate the `x`/`y`-positions of the given geographic coordinates `pllh` for data set `data`.
+
+`[penh, data] = crg_eval_xyz2enh(data, pxyz)`::
+Evaluate the map positions `penh` of the given `x`/`y`-positions for data set `data`.
+
+`[pllh, data] = crg_eval_xyz2llh(data, pxyz)`::
+Evaluate the geographic coordinates `pllh` of the given `x`/`y`-positions for data set `data`.
 
 ==== Examples
 
 ===== C examples
+
+The following example shows how to evaluate z-values using the C-API.
 
 ----
 double z;
@@ -80,6 +87,8 @@ crgEvaluv2z( cpId, 100, 0, &z );
 
 ===== Matlab examples
 
+The following example shows how to evaluate z-values using the Matlab tools.
+
 ----
 % load CRG file 
 data = crg_read('demo.crg');
@@ -91,4 +100,4 @@ pz = crg_eval_uv2z(data, [100 0]);
 ==== Related Topics
 
 - <<Reading an OpenCRG file>>
-- <<Creating a contact point>>
+- <<Creating and deleting contact points>>

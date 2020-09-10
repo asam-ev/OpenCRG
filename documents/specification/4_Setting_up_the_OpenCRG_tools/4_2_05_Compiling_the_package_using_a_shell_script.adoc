@@ -19,5 +19,15 @@ In contrast to using the make files, no library containing the object files of t
 . Execute the script.
 
 ===== Result
+
 * Executable test files are generated in `c-api/test/bin/`.
 * Executable demo files are generated in `c-api/demo/bin/`.
+
+===== What to do next
+
+Test the C-API to ensure that it is set up correctly.
+
+===== Related topics
+
+* <<Downloading the software package>>
+* <<Testing the C-API>>
