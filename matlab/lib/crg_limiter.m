@@ -92,6 +92,16 @@ data.z(iu(1):iu(2), iv(1):iv(end)) = z';
 
 %% delete slope and banking
 
+
+if isfield(data, 's') || isfield(data, 'b')
+    if isfield(data.head, 'zend')
+        data.head = rmfield(data.head, 'zend');
+    end
+    if isfield(data.head, 'aend')
+        data.head = rmfield(data.head, 'aend');
+    end
+end
+
 if isfield(data, 's')
     data = rmfield(data, 's');
     data.head = rmfield(data.head, 'sbeg');

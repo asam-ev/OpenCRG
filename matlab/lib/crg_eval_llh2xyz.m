@@ -1,5 +1,5 @@
 function [pxyz, data] = crg_eval_llh2xyz(data, pllh)
-%CRG_EVAL_ENH2XYZ Tranform points in llh to xyz.
+%CRG_EVAL_LLH2XYZ Tranform points in llh to xyz.
 %   [PXYZ, DATA] = CRG_EVAL_LLH2XYZ(DATA, PLLH) transforms points given in
 %   llh coordinates to xyz coordinates.
 %
