@@ -1,6 +1,6 @@
-= OpenCRG Version 1.1.2
+= OpenCRG Version 1.2.0
 :revnumber: 1.1.2 
-:revdate: 14.01.2020
+:revdate: 30.09.2020
 :toc: left 
 :toclevels: 2
 :sectnums:
