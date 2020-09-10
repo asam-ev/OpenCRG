@@ -1,4 +1,4 @@
-== Open CRG data format
+== OpenCRG data format
 :imagesdir: ../images/
 :stem: latexmath
 :sampledir: ../../crg-text

@@ -2,7 +2,8 @@
 
 The optional _options_ section defines values for options. Options influence the evaluation of OpenCRG data. They do not modify the road data itself.
 
-A creator of an OpenCRG file must not rely on applications evaluating the data with options set to the values specified in the OpenCRG file. Applications define default values for options themselves. An application may, however, use options provided in an OpenCRG file to override these default values. A creator of an OpenCRG file may thus use the _options_ section to express the intended option settings.
+//TODO think again, how to make this paragraph more understandable.
+A creator of an OpenCRG file must not rely on applications evaluating the data with options set to the values specified in the OpenCRG file. Applications shall define default values for options themselves. An application may, however, use options provided in an OpenCRG file to override these default values. A creator of an OpenCRG file may thus use the _options_ section to express the intended option settings.
 
 An OpenCRG file may specify options without having a section containing actual road data. Such a file may be referenced in another OpenCRG file, which contains the actual data, and be used as a control file.
 
@@ -10,15 +11,7 @@ Border mode options and border offset options influence the returned z-values wh
 
 Border-smoothing options provide a linear ascend or descend of z-values along a defined range at the beginning and the end of the road. These options can be used to smooth abrupt changes in road data at the beginning or the end of the road for example, in order to reduce unwanted high-frequency input in vibration simulation.
 
-When the u-coordinate exceeds the defined range, the corresponding x/y-coordinates are calculated by either extrapolating the reference line or evaluating the reference line as closed track. The reference-line-continuation option defines whether the reference line is extrapolated or treated as closed track. The reference line can only be treated as closed track if the following conditions are met:
-
-// TODO List conditions for treating a refline as closed track.
-
-// TODO Describe how to use history manipulation and history search criteria options to speed up evaluation.
-
-// TODO explain how to use logging and message options
-
-// TODO explain how to use check options
+When the u-coordinate exceeds the defined range, the corresponding x/y-coordinates are calculated by either extrapolating the reference line or evaluating the reference line as closed track. The reference-line-continuation option defines whether the reference line is extrapolated or treated as closed track.
 
 ===== Keyword
 
@@ -76,28 +69,6 @@ a| Mode for computing x/y-positions if a given u-coordinate is positioned outsid
 0:: Extrapolate the reference line at both ends.
 1:: Treat reference line as closed track, if possible.
 
-|`REFLINE_SEARCH_INIT_U`
-|Double-precision floating-point number (default: 0.0)
-|????
-
-|`REFLINE_SEARCH_INIT_U_FRACTION`
-|Double-precision floating-point number (default: 0.0)
-|????
-
-// TODO Research default value
-// TODO Research description
-
-|`REFLINE_SEARCH_CLOSE`
-|Double-precision floating-point number (default: ???)
-|????
-
-// TODO Research default value
-// TODO Research description
-
-|`REFLINE_SEARCH_FAR`
-|Double-precision floating-point number (default: ???)
-|????
-
 |`WARN_MSGS`
 |-1, 0, [1;∞[ (default: -1)
 a|Number of warning messages displayed.
@@ -122,89 +93,25 @@ a|Number of warning messages displayed: global curvature limit exceeded.
 0:: None
 [1;∞[:: Max. number
 
-|`LOG_MSGS`
-|-1, 0, [1;∞[ (default: -1)
-a|Number of logged messages.
-
--1:: All
-0:: None
-[1;∞[:: Max. number
-
-|`LOG_EVAL`
-|-1, 0, [1;∞[ (default: 20)
-a|Number of logged evaluation inputs and results.
-
--1:: All
-0:: None
-[1;∞[:: Max. number
-
-// TODO I don't get this --> research
-|`LOG_EVAL_FREQ`
-|-1, 0, [1;∞[ (default: -1)
-a|????
-
--1:: All
-0:: None
-[1;∞[:: Max. number
-
-|`LOG_HIST`
-|-1, 0, [1;∞[ (default: -1)
-a|Number of logged evaluation inputs and results.
-
--1:: All
-0:: None
-[1;∞[:: Max. number
-
-// TODO I don't get this --> research
-|`LOG_HIST_FREQ`
-|-1, 0, [1;∞[ (default: -1)
-a|????
-
--1:: All
-0:: None
-[1;∞[:: Max. number
-
-|`LOG_STAT`
-|-1, 0, [1;∞[ (default: -1)
-a|????
-
--1:: All
-0:: None
-[1;∞[:: Max. number
-
-// TODO I don't get this --> research
-|`LOG_STAT_FREQ`
-|-1, 0, [1;∞[ (default: -1)
-a|????
-
--1:: All
-0:: None
-[1;∞[:: Max. number
-
-// TODO these options are used to check tolerances and accuracies of road data. How do these checks work? Check against what? Why should I set a different option? To what value should I set them?
-
 |`CHECK_EPS`
-|???? (default: 1e-6)
-a|????
+| [1e-6; 1e-2] (default: 1e-6)
+a|Expected minimal accuracy, used for numerical consistency checks.
 
 |`CHECK_INC`
-|???? (default: 1e-3)
-a|????
+|less than 0.001*(1-CHECK_EPS) or abs(round(CHECK_INC=0.001 * (1-CHECK_EPS)) 0.001 * (1-CHECK_EPS) * CHECK_INC) > CHECK_EPS * max(0.001 * (1-CHECK_EPS); CHECK_INC) (default: 1e-3)
+a|Expected minimum increment, used for numerical consistency checks.
 
 |`CHECK_TOL`
-|???? (default: 0.1*CHECK_INC)
-a|????
+|[CHECK_EPS*CHECK_INC; 0.5*CHECK_INC] (default: 0.1*CHECK_INC)
+a|Expected absolute tolerance, used for numerical consistency checks.
 
 |`CHECK_PRO`
-|???? (default: 5e-3)
-a|????
+|[0.1*CHECK_INC; 1] (default: 5e-3)
+a|Expected projection tolerance, used for numerical consistency checks.
 
 |`CHECK_WGS`
-|???? (default: 10)
-a|????
-
-
-
+|[0.1*CHECK_INC; 1000] (default: 10)
+a|Expected WGS 84 tolerance, used for numerical consistency checks.
 |===
 
 ===== Rules
@@ -230,4 +137,5 @@ BORDER_SMOOTH_UEND  = 0.5 ! over the last 2 m, decrease z-values linearly
 $!*********************
 ----
 
-// TODO add example about history manipulation
+
+

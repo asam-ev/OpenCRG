@@ -76,5 +76,3 @@ data = crg_check(data);
 ==== Related Topics
 
 * <<Reading an OpenCRG file>>
-
-// TODO: add related topics in the end.

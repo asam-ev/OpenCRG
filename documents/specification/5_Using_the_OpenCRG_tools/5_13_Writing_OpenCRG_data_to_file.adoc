@@ -1,6 +1,6 @@
 === Writing OpenCRG files
 
-With the Matlab tools, OpenCRG files can be created from OpenCRG data in memory. These file use the KRBI format. Therefore, road data must be converted to type _single_ before writing it to file.
+With the Matlab tools, OpenCRG files can be created from OpenCRG data in memory. These files use KRBI or LRFI format. Therefore, road data must be converted to type _single_ before writing it to file.
 
 ==== Prerequisites
 

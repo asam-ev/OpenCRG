@@ -87,5 +87,3 @@ crg_show_road_surface(exdata);
 
 * <<Reading an OpenCRG file>>
 
-// TODO: add related topics in the end.
-

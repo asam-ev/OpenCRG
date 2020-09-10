@@ -52,19 +52,19 @@ Evaluate the heading angles `phi` at given `u`-positions for data set `data`.
 `[crv, data] = crg_eval_u2crv(data, pu)`::
 Evaluate the curvature values `crv` at given `u`-positions for data set `data`.
 
-//TODO are these descriptions correct?
-
 `[pxyz, data] = crg_eval_enh2xyz(data, penh)`::
-Evaluate the `x`/`y`-positions of the given map positions `penh` for data set `data`.
+Evaluate the local `x`/`y`/'z'-positions of the given global positions `penh` (easting, northing, height) for data set `data`.
 
 `[pxyz, data] = crg_eval_llh2xyz(data, pllh)`::
-Evaluate the `x`/`y`-positions of the given geographic coordinates `pllh` for data set `data`.
+Evaluate the local `x`/`y`/'z'-positions of the given geographic coordinates `pllh`(latitude, longitude, height) for data set `data`.
+`data` must have appropriate map projection data.
 
 `[penh, data] = crg_eval_xyz2enh(data, pxyz)`::
-Evaluate the map positions `penh` of the given `x`/`y`-positions for data set `data`.
+Evaluate the global map positions `penh`(easting, northing, height) of the given local `x`/`y`/'z'-positions-positions for data set `data`.
 
 `[pllh, data] = crg_eval_xyz2llh(data, pxyz)`::
-Evaluate the geographic coordinates `pllh` of the given `x`/`y`-positions for data set `data`.
+Evaluate the geographic coordinates `pllh` (latitude, longitude, height) of the given local `x`/`y`/'z'-positions for data set `data`.
+`data` must have appropriate map projection data.
 
 ==== Examples
 
@@ -101,3 +101,4 @@ pz = crg_eval_uv2z(data, [100 0]);
 
 - <<Reading an OpenCRG file>>
 - <<Creating and deleting contact points>>
+- <<Map projection data>>

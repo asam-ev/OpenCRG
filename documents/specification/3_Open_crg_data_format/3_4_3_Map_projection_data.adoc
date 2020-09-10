@@ -2,14 +2,18 @@
 :imagesdir: images/
 :stem: latexmath
 
+// TODO: How do we use "WGS 84" in compound nouns?
+// TODO: maybe add georeferencing literature to bibliography (check map_intro.m, map_ecef2ecef.m)
+
 The _map projection data_ section contains information necessary for mapping road data to geographic positions. The _map projection data_ section is optional.
 
 A _map projection data_ section shall at least specify a map projection, either by providing the name of the projection or the projection parameters themselves.
 
-If geodetic coordinates use a global ellipsoid other than WGS84, the ellipsoid shall be specified, either by providing the name of the ellipsoid or the semi-major and the semi-minor axis in case of a user-defined ellipsoid.
+If geodetic coordinates use a global ellipsoid other than WGS 84, the ellipsoid shall be specified, either by providing the name of the ellipsoid or the semi-major and the semi-minor axis in case of a user-defined ellipsoid.
 
 A map projection can involve a datum transformation, for example with Gauss-Krüger projections of WGS-84 coordinates. In this case, both a local ellipsoid as well as a transformation type including all 7 parameters shall be specified.
 
+// TODO describe TM without zone string but with map projection parameters.
 
 ===== Keyword
 
@@ -34,26 +38,6 @@ $ROAD_CRG_MPRO
 |WGS84, USERDEFINED, AIRY1830, AIRYMODIFIED1849, BESSEL1841, BESSELMODIFIED, BESSELNAMIBIAGLM, BESSELDHDN, CLARKE1866, CLARKE1866AUTHALICSPHERE, CLARKE1880IGN, GRS1980, GRS1980AUTHALICSPHERE, INTERNATIONAL1924, INTERNATIONAL1924AUTHALICSPHERE, KRASSOWSKY1940 (default: WGS84)
 |Identifier of the global ellipsoid.
 
-//TODO: do we need further explanation of the values?
-
-//WGS84::
-//USERDEFINED:: 
-//AIRY1830:: 
-//AIRYMODIFIED1849:: 
-//BESSEL1841:: 
-//BESSELMODIFIED:: 
-//BESSELNAMIBIAGLM:: 
-//BESSELDHDN:: 
-//CLARKE1866:: 
-//CLARKE1866AUTHALICSPHERE:: 
-//CLARKE1880IGN:: 
-//GRS1980:: 
-//GRS1980AUTHALICSPHERE:: 
-//INTERNATIONAL1924:: 
-//INTERNATIONAL1924AUTHALICSPHERE::
-//KRASSOWSKY1940::
-
-
 |`TRAN_NM`
 |NOP, HL7, HN7, HS7 (default: NOP)
 a|Identifier of datum transformation type.
@@ -65,7 +49,7 @@ HS7:: 7-parameter simple Helmert transformation.
 
 |`TRAN_DS`
 |Double-precision floating-point number (default: 0.0)
-|Helmert transformation parameter: scalar scaling factor minus one.
+|Helmert transformation parameter: scalar scaling factor minus one (`tran_ds = m - 1`).
 
 |`TRAN_RX`
 |Double-precision floating-point number (default: 0.0)
@@ -103,33 +87,15 @@ HS7:: 7-parameter simple Helmert transformation.
 |WGS84, USERDEFINED, AIRY1830, AIRYMODIFIED1849, BESSEL1841, BESSELMODIFIED, BESSELNAMIBIAGLM, BESSELDHDN, CLARKE1866, CLARKE1866AUTHALICSPHERE, CLARKE1880IGN, GRS1980, GRS1980AUTHALICSPHERE, INTERNATIONAL1924, INTERNATIONAL1924AUTHALICSPHERE, KRASSOWSKY1940 (default: WGS84)
 |Identifier of the local ellipsoid.
 
-//TODO: do we need further explanation of the values?
-
-//WGS84::
-//USERDEFINED:: 
-//AIRY1830:: 
-//AIRYMODIFIED1849:: 
-//BESSEL1841:: 
-//BESSELMODIFIED:: 
-//BESSELNAMIBIAGLM:: 
-//BESSELDHDN:: 
-//CLARKE1866:: 
-//CLARKE1866AUTHALICSPHERE:: 
-//CLARKE1880IGN:: 
-//GRS1980:: 
-//GRS1980AUTHALICSPHERE:: 
-//INTERNATIONAL1924:: 
-//INTERNATIONAL1924AUTHALICSPHERE::
-//KRASSOWSKY1940::
-
 |`PROJ_NM`
-|GK3_0 ... GK3_119, GK6_0 ... GK6_59, UTM_01C ... UTM_60X, TM_0 ... TM_359
+|GK3_0 ... GK3_119, GK6_0 ... GK6_59, UTM_01C ... UTM_60X, TM_0 ... TM_359, TM
 a|Identifier of the map projection
 
 GK3_0 ... GK3_119:: Gauss-Krüger with 3-degree zones with appended zone number.
 GK6_0 ... GK6_59:: Gauss-Krüger with 6-degree zones with appended zone number.
 UTM_01C ... UTM_60X:: Universal transverse mercator with appended zone number and band letter.
 TM_0 ... TM_359:: Transverse mercator, with appended center meridian (degree east).
+TM:: Transverse mercator using map projection parameters `PROJ_*` (user-defined or default).
 
 //TODO can you define projections without appendix (e. g. 'GK3' or 'TM')?
 
@@ -159,11 +125,13 @@ TM_0 ... TM_359:: Transverse mercator, with appended center meridian (degree eas
 
 ===== Rules
 
-//TODO add rules
+* The map projection data section shall contain enough information to execute the desired transformation.
+* For UTM, defining the zone number and band letter shall be sufficient.
 
 ===== Examples
 
-//TODO add example
 ----
 $ROAD_CRG_MPRO
+
+PROJ_NM = 'UTM_32U'
 ----

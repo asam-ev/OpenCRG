@@ -18,8 +18,6 @@ $ROAD_CRG
 
 The _road parameters_ section contains parameters as key-value pairs.
 
-// TODO are the parameter values Double-precision floating-point numbers?
-
 |===
 |Parameter | Values |Description
 
@@ -112,8 +110,6 @@ line
 |`REFERENCE_LINE_OFFSET_Z`
 |Double-precision floating-point number (default: 0.0)
 |Global offset for elevation
-
-// TODO what are the defaults for WGS 84 coordinates?
 
 |`REFERENCE_LINE_START_LON`
 |Double-precision floating-point number
