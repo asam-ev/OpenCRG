@@ -9,8 +9,6 @@ binary representation.
 `crg_demo_convert2txt.m`:: Convert `../crg-bin/belgian_block.crg` to text
 representation.
 `crg_demo_country_road.m`:: Load and visualize `../crg-bin/country_road.crg`.
-//TODO: country_road.crg is missing
-//TODO Roland: rename file and insert here
 `crg_demo_gen_refline.m`:: Generate an OpenCRG file with a smooth
 reference line.
 `crg_demo_gen_sl_mue.m`:: Generate a synthetic OpenCRG file with friction
@@ -22,6 +20,4 @@ a complete road.
 `crg_demo_gen_syntheticStraight.m`:: Generate a synthetic OpenCRG file representing a straight road.
 `crg_demo_gen_target.m`:: Generate a surface OpenCRG file.
 `crg_demo_map_transformation.m`:: Perform geodetic transformations (e.g UTM -> WGS84).
-//TODO: How does this fit with the current geo-referencing work.
-//REVIEW hier werden bereits die neuen Funktionen verwendet
 `crg_demo_scale_data.m`:: Scale OpenCRG data.

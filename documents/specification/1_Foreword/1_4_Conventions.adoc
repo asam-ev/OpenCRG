@@ -71,12 +71,9 @@ This documentation uses the following typographical conventions:
 
 ==== Curvature
 
-//TODO is this true?
-
 For curvature indications, the following convention applies: 
 
 *	Positive curvature: left curve (counter-clockwise motion) 
 *	Negative curvature: right curve (clockwise motion) 
 
 `[green]#Curvature == 1/radius#`
-

@@ -10,7 +10,7 @@ Curved regular grids use a reference line coordinate system. The road centerline
 
 A curved regular grid can be placed in an inertial x/y-coordinate system by providing a high-precision start position in x/y-coordinates. To avoid drift when integrating along the reference line, an optional high-precision end position in x/y-coordinates can be provided. If such a position is provided, both forward integration and backward integration can be used for calculating the position of the reference line. The given start and end positions can be compared to the integration results to distribute errors along the reference line.
 
-// TODO maybe add an image
+// TODO add an image
 
 image::banking_slope.png[banking_slope, title="schematic drawing of banking and slope"]
 

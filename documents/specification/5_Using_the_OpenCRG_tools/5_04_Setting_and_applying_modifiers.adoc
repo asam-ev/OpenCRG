@@ -45,7 +45,7 @@ Set all modifiers of the data set `dataSetId` to their default values.
 Apply set modifiers to the data set `dataSetId`. If no modifiers are defined, the default modifier values are applied.
 
 //TODO: Does applying modifiers remove them the applied modifier from the data set like with the Matlab API?
-//REVIEW: Max wird das testen, und prüfen ob ein CRG_write mit der C-API überhaupt möglich ist.
+//REVIEW: Max wird testen, ob Modifier nach Anwendung verschwinden.
 
 ==== Corresponding Matlab functions
 

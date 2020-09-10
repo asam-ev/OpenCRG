@@ -8,7 +8,7 @@ In contrast to using the make files, no library containing the object files of t
 ===== Prerequisites
 
 * You downloaded and unpacked the OpenCRG software package.
-* Your computers provides an environment for executing shell scripts.
+* Your computer provides an environment for executing shell scripts.
 * You have installed a C-compiler on your computer.
 
 ===== Steps

@@ -1,8 +1,6 @@
 === Mapping OpenCRG data to geographical positions
 
-//TODO should we change the title?
-
-The C-API does not provide functions for handling geographical references. Instead, the C-API ignores any data associated with map projections.
+The C-API does not provide functions for handling geographical coordinates. Instead, the C-API ignores any data associated with map projections.
 
 The Matlab tools provide a large collection of functions for visualising, converting or transforming geographic data. These functions are generic and may also be used for data other than OpenCRG data.
 
@@ -24,7 +22,6 @@ The C-API does not provide functions for visualizing OpenCRG data.
 `map_intro[]`::
 Display introductory information on handling geographic data.
 
-//TODO: Should this appear in this section or rather in the section about visualization
 `[file] = map_wgs2html(llh, file, opts)`::
 Generate a HTML file `file` to display WGS-84 positions `llh` as a track in a web-based map using OpenLayers. `opts` contains various options for changing the generated HTML file. 
 
@@ -34,8 +31,8 @@ Convert points `llh` from geodetic coordinates to map coordinates using a forwar
 `[enh ell pro] = map_geod2pmap_tm(llh, ell, pro)`::
 Convert points `llh` from geodetic coordinates to map coordinates using forward transverse mercator projection. An ellipsoid struct `ell` and a map projection struct `pro` may be optionally provided.
 
-`map_pmap2geod_tm[]`::
-Convert points `enh` from map coordinates to geodetic coordinates using backward transverse mercator projection. An ellipsoid struct `ell` and a map projection struct `pro` may be optionally provided.
+`[llh ell pro] = map_pmap2geod_tm(enh, ell, pro)`::
+Convert points `enh` from map coordinates to geodetic coordinates `llh` using backward transverse mercator projection. An ellipsoid struct `ell` and a map projection struct `pro` may be optionally provided.
 
 `[xyz ell] = map_geod2ecef(llh, ell)`::
 Convert points `llh` from a geodetic system to ECEF system. An ellipsoid struct `ell` may be optionally provided.
@@ -70,7 +67,7 @@ Check and update map projection struct `pro`.
 `[tran] = map_check_tran(tran)`::
 Check and update datum transformation struct `tran`.
 
-//TODO: What about the crg_wgs84_*.m functions? Are they still usable or are they deprecated now?
+//TODO: Add descriptions for wgs84_* functions.
 
 ==== Examples
 
@@ -95,7 +92,7 @@ enh_utm = map_geod2pmap_tm(llh, mpro.gell, mpro.proj)
 
 ----
 
-The following example shows the conversion WGS-84 coordinates to UTM coordinates. As the example position is located Bavaria, the grid zone is 32U. Both UTM and WGS 84 use the same ellipsoid. Thus, a datum transformation is not required.
+The following example shows the conversion WGS-84 coordinates to GK3 coordinates. As the example position is located Bavaria, the zone number is 4. A datum transformation is required, as GK3 uses the BESSELDHDN ellipsoid, which is different from the WGS-84 ellipsoid.
 
 ----
 % example position ASAM e.V. 
@@ -107,7 +104,7 @@ mpro.gell.nm='WGS84';
 mpro.lell.nm='BESSELDHDN';
 mpro.proj.nm='GK3_4';
 mpro.tran.nm='HN7';     % transformation
-% 7 Parameter Helmerttransformation (example for Bavaria from LDBV)
+% 7 Parameter Helmert transformation (example for Bavaria from LDBV)
 mpro.tran.ds = -5.2379 * 0.000001;
 mpro.tran.rx = (0.7201 / 3600) * (pi / 180);
 mpro.tran.ry = (0.1112 / 3600) * (pi / 180);
@@ -127,6 +124,5 @@ enh_gk = map_global2plocal(llh, mpro)
 
 ==== Related topics
 
+* <<Reading an OpenCRG file>>
 * <<Map projection data>>
-
-// TODO: add related topics in the end.

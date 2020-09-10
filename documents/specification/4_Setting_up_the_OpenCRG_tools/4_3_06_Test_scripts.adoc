@@ -2,8 +2,6 @@
 
 The test scripts for the Matlab tools are stored in `_open-crg_/matlab/test/` and comprise the following:
 
-//TODO: check descriptions again once code comments have been reviewed
-
 `crg_test_append.m`:: Test concatenating two OpenCRG files.
 `crg_test_continuesTrack.m`:: Test the reference line continuation option.
 `crg_test_curvature.m`:: Test global and local curvature as well as reading and writing flags.
