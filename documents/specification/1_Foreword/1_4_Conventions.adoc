@@ -57,6 +57,9 @@ must not
 This documentation uses the following typographical conventions:
 
 .Typographical conventions
+
+//TODO check whether code snippets are actually blue
+
 [%header, cols=2*]
 |===
 |Mark-up					|Definition
@@ -67,6 +70,8 @@ This documentation uses the following typographical conventions:
 |===
 
 ==== Curvature
+
+//TODO is this true?
 
 For curvature indications, the following convention applies: 
 

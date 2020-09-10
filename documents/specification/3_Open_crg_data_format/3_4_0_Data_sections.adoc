@@ -4,6 +4,9 @@ include::3_4_1_Header_information.adoc[]
 
 include::3_4_2_Road_parameters.adoc[]
 
+//TODO change path after position is decided
+include::3_4_3_Map_projection_data.adoc[]
+
 include::3_4_3_Data_definition.adoc[]
 
 include::3_4_4_Options.adoc[]

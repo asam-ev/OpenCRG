@@ -23,3 +23,9 @@ You have compiled the C-API.
 executables are stored in `_open-crg_/c-api/demo/bin/`.
 . Run `[program] -help` to display information about the available options.
 . Run `[program] [options] <OpenCRG file>` to run the program with the set options for the selected OpenCRG file.
+
+===== Related topics
+
+* <<Compiling the C-API using _make_ files>>
+* <<Compiling the C-API using a shell script>>
+* <<Compiling the C-API using the command line>>

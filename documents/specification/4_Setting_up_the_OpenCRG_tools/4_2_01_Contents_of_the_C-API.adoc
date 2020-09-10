@@ -2,6 +2,6 @@
 
 The C-API is located in `_open-crg_/c-api/` and comprises the following:
 
-`/c-api/baselib/`:: Base library for working with OpenCRG files in C
-`/c-api/demo/`:: Sample programs demonstrating the use of the C-API
-`/c-api/test/`:: Programs for testing the C-API
+`baselib/`:: Base library for working with OpenCRG files in C.
+`demo/`:: Sample programs demonstrating the use of the C-API.
+`test/`:: Programs for testing the C-API.

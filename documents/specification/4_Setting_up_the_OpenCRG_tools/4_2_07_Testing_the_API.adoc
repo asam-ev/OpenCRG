@@ -1,10 +1,10 @@
-==== Testing the API
+==== Testing the C-API
 
 The software package provides programs for testing various aspects of the C-API. Successfully running these test programs ensures that the C-API is set up correctly. These tests are also used for acceptance tests of the C-API.
 
 ===== Prerequisites
 
-* You have compiled the software package.
+* You have compiled the C-API.
 * Your computers provides an environment for executing shell scripts.
 * You have installed _gnuplot_ on your computer for creating images.
 
@@ -17,3 +17,9 @@ The software package provides programs for testing various aspects of the C-API.
 
 * The C-API is set up successfully.
 * Images illustrating the various options and modifiers are created.
+
+===== Related topics
+
+* <<Compiling the C-API using _make_ files>>
+* <<Compiling the C-API using a shell script>>
+* <<Compiling the C-API using the command line>>

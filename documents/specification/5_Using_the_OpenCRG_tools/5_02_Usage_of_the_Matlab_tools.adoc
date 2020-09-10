@@ -1,38 +1,35 @@
-==== Usage of the Matlab tools
+=== Usage of the Matlab tools
 
 The Matlab tools comprise scripts for the following tasks:
 
- * Reading OpenCRG files
- * Modifying OpenCRG data
- * Evaluating OpenCRG data
- * Visualizing OpenCRG data
- * Generating OpenCRG files
- * Analyzing OpenCRG data
+ * Reading OpenCRG files.
+ * Setting modifiers and options.
+ * Evaluating OpenCRG data.
+ * Manipulating OpenCRG data.
+ * Generating OpenCRG data.
+ * Visualizing and analyzing OpenCRG data.
+ * Mapping OpenCRG data to geographical positions.
+ * Writing OpenCRG file.
 
 The Matlab tools are especially suitable for applications, where extended functionalities for processing, analysis and visualisation are needed. Typical use cases include generating OpenCRG files either synthetically or from measurement data and numerical simulations of driving dynamics.
 
 When an OpenCRG file is loaded, all data associated with that file is stored in a single structure array. This structure array has the following fields:
 
-`head`:: Structure array containing data corresponding to the _road parameters_ section and the _data definition_ section
-`mods`:: Structure array containing modifiers read from file or set via function calls
-`opts`:: Structure array containing options read from file or set via function calls
-`ct`:: Cell array containing _header information_ text (mandatory when writing to file, otherwise optional)
-`struct`:: Structure array
-`filenm`:: File name of the associated OpenCRG file
-`z`:: Array of z-values
-`u`:: Definition of u-values
-`v`:: Definition of v-values
-`b`:: Vector of banking values (optional)
-`p`:: Vector of heading angles (optional)
-`s`:: Vector of slope values (optional)
-`mpro`:: Map projection data
-`fopt`:: Figure options
+`head`:: Structure array containing data corresponding to the _road parameters_ section and the _data definition_ section.
+`mods`:: Structure array containing modifiers read from file or set via function calls.
+`opts`:: Structure array containing options read from file or set via function calls.
+`ct`:: Cell array containing _header information_ text (mandatory when writing to file, otherwise optional).
+`struct`:: Optional cell array of further structured data, used for file output.
+`filenm`:: File name of the associated OpenCRG file.
+`z`:: Array of z-values.
+`u`:: Definition of u-values.
+`v`:: Definition of v-values.
+`b`:: Vector of banking values (optional).
+`p`:: Vector of heading angles (optional).
+`s`:: Vector of slope values (optional).
+`mpro`:: Map projection data.
+`fopt`:: Figure options.
 
 A minimal OpenCRG data set must at least define u, v and z. 
 
 For more detailled information on individual fields and subfields, run `crg_intro` from the Matlab Terminal.
-
-//TODO: Can crg_check calculate u and v from data.head?
-//REVIEW: as u and v are mandetory values it is not possible to calculate these values, the other way arround will work. THe header can be filled in when u and v is given.
-
-

@@ -15,6 +15,9 @@ If no data format is defined, road data is considered to use KRBI format.
 
 Lines starting with `D:` define a channel in the _road data_ section. A channel definition defines both the type of data and the unit. A channel corresponds to a column in the _road data_ section. Channel definitions appear in the same sequence as the corresponding columns appear in the _road data_ section.
 
+// TODO: re-do image in higher quality
+image::OpenCRG_coord_sys.png[title="A channel corresponds to a column in the _road data_ section."]
+
 Lines starting with `U:` define a virtual channel. A virtual channel does not contain original data. Instead, data in a virtual channel is derived from data and definitions provided elsewhere in the file. Virtual channels may safely be ignored.
 
 // TODO research how units are handled
@@ -108,7 +111,3 @@ D:long section 30,m                ! 1.40 m left of reference line
 D:long section 31,m                ! 1.50 m left of reference line
 $!********************************
 ----
-
-TODO: is this image helpful? If yes redo in higher quality
-
-image::OpenCRG_coord_sys.png[title="Overlay u/v-coordinate system"]

@@ -32,14 +32,11 @@ Check OpenCRG road parameters in `data` for consistent definitions and values.
 `crg_check_mpro`::
 Checks OpenCRG map projection data in `data` for consistent definitions and values.
 
-`data] = crg_check_data(data)`::
+`[data] = crg_check_data(data)`::
 Check OpenCRG data in `data` for consistency and accuracy, fix slight accuracy problems, and complement and condense the OpenCRG data as far as possible.
 
 `[data, ierr] = crg_check_curvature(data, ierr)`::
 Check reference line curvature in `data` globally and locally. The global curvature check fails if two or more lateral cuts intersect inside the road limits. In this case, the local curvature check still succeeds, if such an intersection falls into a region of NaN values.
-
-//TODO: Is `crg_check_curvature2.m`going to replace `crg_check_curvature.m`?
-//REVIEW the curvature2 is deleted
 
 `[data] = crg_check_single(data)`::
 Check whether OpenCRG data in core data vectors and arrays of `data` is of type single.
@@ -50,6 +47,8 @@ Check whether the start position and the end position in `data` are consistenly 
 ==== Examples
 
 ===== C examples
+
+The following example shows how to check OpenCRG data using the C-API.
 
 ----
 /* load CRG file */
@@ -64,6 +63,8 @@ if ( !crgCheck( dataSetId ) )
 
 ===== Matlab examples
 
+The following example shows how to check OpenCRG data explicitly using the Matlab tools.
+
 ----
 % load CRG file 
 data = crg_read('demo.crg');
@@ -73,5 +74,7 @@ data = crg_check(data);
 ----
 
 ==== Related Topics
+
+* <<Reading an OpenCRG file>>
 
 // TODO: add related topics in the end.

@@ -13,3 +13,12 @@ The procedure depends on the C-compiler. When compiling, observe the following h
 
 * Set your include file search path to `baselib/inc`.
 * Always compile in combination with all .c-files in `baselib/src`.
+
+===== What to do next
+
+Test the C-API to ensure that it is set up correctly.
+
+===== Related topics
+
+* <<Downloading the software package>>
+* <<Testing the C-API>>

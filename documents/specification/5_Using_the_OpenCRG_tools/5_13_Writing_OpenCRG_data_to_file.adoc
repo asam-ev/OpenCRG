@@ -13,18 +13,16 @@ The C-API does not provide functions for writing OpenCRG data.
 ==== Related Matlab functions
 
 `[ier] = crg_write(data, file, type)`::
-Write the OpenCRG data in `data` to the OpenCRG file `file`. The file uses the KRBI format. Therefore, road data must be converted to type _single_ first. `ier` indicates whether any errors occurred while writing the file.
-//REVIEW the below line
-`type` is an optional argument, default is krbi (binary), can be changed to lrfi (ascii single precision)
+Write the OpenCRG data in `data` to the OpenCRG file `file`. By default the file uses the KRBI format. The optional argument `type` may be used to specify LRFI format instead. Therefore, road data must be converted to type _single_ first. `ier` indicates whether any errors occurred while writing the file.
 
 `[data] = crg_single(data)`::
 Convert road data in `data` to type _single_.
 
-// TODO: should we still mention iplos_write(), as it is used by crg_write()? I assume it is not that relevant to users.
-// REVIEW: correct nicht übernehmen, IPLOS ist Daimler intern und für die Community nicht wichtig. Die ipl_write und ipl_read funktionen werden innerhalb der crg_write und crg_read funktion verwendet, jedoch nicht standalone.
 ==== Examples
 
 ===== Matlab examples
+
+The following example shows how to write the OpenCRG data in `data` to a KRBI file using the Matlab tools.
 
 ----
 % write CRG file 
@@ -33,4 +31,4 @@ ier = crg_write(crg_single(data), 'demo.crg');
 
 ==== Related topics
 
-// TODO: add related topics in the end.
+* <<Road data>>

@@ -54,9 +54,9 @@ Apply modifiers in `data.mods` to the OpenCRG data in `data`. Afterwards, remove
 
 ==== Examples
 
-Below find two corresponding examples how to read and apply modifiers to an OpenCRG File
-
 ===== C examples
+
+The following example shows how to set and apply modifiers using the C-API.
 
 ----
  /* load CRG file */
@@ -79,6 +79,8 @@ crgDataSetModifiersApply( dataSetId );
 
 ===== Matlab examples
 
+The following example shows how to set and apply modifiers using the Matlab tools.
+
 ----
 % load CRG file 
 data = crg_read('demo.crg');
@@ -97,3 +99,7 @@ data.mods.rloz = 10;
 /* apply modifiers to data set */
 data = crg_mods(data);
 ----
+
+==== Related topics
+
+* <<Modifiers>>

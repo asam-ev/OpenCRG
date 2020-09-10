@@ -1,12 +1,10 @@
 === Curved regular grids
+:imagesdir: images/
+:stem: latexmath
 
 A curved regular grid represents road surface data in proximity of an arbitrary road-center line. The road surface is tiled into a curved grid. Longitudinal cuts are parallel to the road-center line. Lateral cuts are orthogonal to the road-center line. One road data value is assigned to each tile. Road surface data usually represents road elevation but may also be used for other data, for example friction coefficients.
 
-// TODO add some images illustrating the concept of curved regular grids
-
-.Curved regular grid
-[caption="Figure 1: "]
-image::missing_image.jpg
+image::opencrg_introductory_example.png[img2, 900, title = "OpenCRG road surface description using u/v-coordinates and x/y-coordinates."]
 
 Curved regular grids use a reference line coordinate system. The road centerline is given by a curved reference line. A curved reference line is defined by series of low-precision heading angles. The u-direction follows the tangent of the reference line. The v-direction is orthogonal to the u-direction. Road surface data is given in z-direction orthogonal to the u/v-plane.
 
