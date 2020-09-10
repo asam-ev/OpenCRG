@@ -3,11 +3,11 @@ function [] = copy_ax2fig()
 %   COPY_AX2FIG() copies the current axes object to a new figure.
 %   This function is most useful if called by a mouse click action in a
 %   subplot of a complex figure.
-%   -   If the subplot is a surface plot, then a colorbar is also attached
-%       to the new figure.
-%   -   If the subplot has a legend, then a legend will also attached to
-%       the new figure.
-%   In order for the function to work, each subplot must be have it's
+%   -   If the subplot is a surface plot, a colorbar is attached to the new
+%       figure.
+%   -   If the subplot has a legend, a legend will be attached to the new 
+%       figure.
+%   In order for the function to work, each subplot must be have its
 %   ButtonDownFcn set to COPY_AX2FIG. To set this property for the current
 %   axes object:
 %       set(    gca             , 'ButtonDownFcn','copy_ax2fig')
@@ -15,10 +15,10 @@ function [] = copy_ax2fig()
 %   for all children of the current axis object, or more individually
 %       set(axis_handle,'ButtonDownFcn','copy_ax2fig');
 %       set(line_handle,'ButtonDownFcn','copy_ax2fig');
-%   The line_handle represents the handle for either a line, surface,
-%   or plot handle. If there are multiple line objects, each needs to be
-%   set. With both the line and axis object set, it doesn't matter whether
-%   the axis object or line object is clicked on.
+%   'line_handle' represents either a line handle, a surface handle, or a plot
+%   handle. If there are multiple line objects, all must be set. 
+%   With both the line object and the axis object set, it does not matter
+%   whether the axis object or the line object is clicked on.
 %
 %   Example:
 %   figure

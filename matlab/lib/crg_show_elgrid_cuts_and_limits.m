@@ -1,7 +1,8 @@
 function [data] = crg_show_elgrid_cuts_and_limits(data, iu, iv)
-% CRG_SHOW_ELGRID_CUTS_AND_LIMITS CRG road elevation grid 2D visualizer.
-%   DATA = CRG_SHOW_ELGRID_CUTS_AND_LIMITS(DATA, IU, IV) visualizes CRG
-%   elevation grid cuts and limits info.
+% CRG_SHOW_ELGRID_CUTS_AND_LIMITS Visualize the cuts and limits of the CRG
+%   DATA = CRG_SHOW_ELGRID_CUTS_AND_LIMITS(DATA, IU, IV) visualizes the z-values
+%   in `data` as longitudinal and latitudinal cuts as well as the outer limits
+%   of the grid. The plots can be limited to a selected area of the grid.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -16,9 +17,9 @@ function [data] = crg_show_elgrid_cuts_and_limits(data, iu, iv)
 %
 %   Examples:
 %   data = crg_show_elgrid_cuts_and_limits(data)
-%       shows full CRG info.
+%       Visualizes the full CRG.
 %   data = crg_show_elgrid_cuts_and_limits(data, [1000 2000], [10 20])
-%       shows partial CRG info.
+%       Visualizes the selected part of the CRG.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -53,7 +54,7 @@ end
 
 [nu nv] = size(data.z);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -79,14 +80,14 @@ else
     data = crg_figure(data);
 end
 
-%% refline XY overview map
+%% reference line XY overview map
 
 subplot(2,2,1)
 data = crg_plot_refline_xy_overview_map(data, iu);
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
-%% elevation grid limits
+%% grid limits
 
 subplot(2,2,2)
 data = crg_plot_elgrid_limits(data, iu, iv);
@@ -94,14 +95,14 @@ set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 a2 = gca;
 
-%% cross sections
+%% latitudinal cuts
 
 subplot(2,2,3)
 data = crg_plot_elgrid_cross_sect(data, iu, iv);
 set(    gca             , 'ButtonDownFcn','copy_ax2fig')
 set(get(gca, 'Children'), 'ButtonDownFcn','copy_ax2fig')
 
-%% long sections
+%% longitudinal cuts
 
 subplot(2,2,4)
 data = crg_plot_elgrid_long_sect(data, iu, iv);

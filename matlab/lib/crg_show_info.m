@@ -1,6 +1,6 @@
 function [data] = crg_show_info(data)
-% CRG_SHOW_INFO CRG road text info visualizer.
-%   DATA = CRG_SHOW_INFO(DATA) visualizes CRG info in text form.
+% CRG_SHOW_INFO Display information about the CRG.
+%   DATA = CRG_SHOW_INFO(DATA) displays information about the CRG in text form.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -10,7 +10,7 @@ function [data] = crg_show_info(data)
 %
 %   Examples:
 %   data = crg_show_info (data)
-%       shows full text info.
+%       Shows text info.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -63,7 +63,7 @@ c{end+1} = sprintf('%s = %20.12g','length                   ', nu);
 c{end+1} = sprintf('%s = %20.12g','width                    ', nv);
 c{end+1} = '';
 
-% HEAD
+% road parameters
 
 head = data.head;
 
@@ -109,7 +109,7 @@ if isfield(head, 'aend'), c{end+1} = sprintf('%s = %20.12g','reference_line_end_
 
 c{end+1} = '';
 
-% MODS
+% modifiers
 
 mods = data.mods;
 
@@ -142,7 +142,7 @@ if isfield(mods, 'rptz'), c{end+1} = sprintf('%s = %20.12g','refpoint_z         
 if isfield(mods, 'rptp'), c{end+1} = sprintf('%s = %20.12g','refpoint_phi             ', mods.rptp); end
 c{end+1} = '';
 
-% OPTS
+% options
 
 opts = data.opts;
 

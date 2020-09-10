@@ -1,13 +1,15 @@
 function [ident, dd] = crg_isequal( bcrg, acrg )
-% CRG_ISEQUAL compares two CRG-files if equal
-%   [IDENT, DD] = CRG_ISEQUAL( BCRG, ACRG ) checks if isequal
+% CRG_ISEQUAL Compare two OpenCRG data sets.
+%   [IDENT, DD] = CRG_ISEQUAL( BCRG, ACRG ) checks whether two OpenCRG data sets
+%   are identical and returns the results of the comparison for further
+%   processing.
 %
 %   Input:
 %       BCRG    struct array as defined in CRG_INTRO
 %       ACRG    struct array as defined in CRG_INTRO
 %
 %   Output:
-%       IDENT   [true, false] identical boolian variable
+%       IDENT   [true, false] identical boolean variable
 %       DD      struct array with further comparison informations
 %               warn    warning messages
 %               err     error messages
@@ -18,8 +20,8 @@ function [ident, dd] = crg_isequal( bcrg, acrg )
 %               rmean   arithmetic average(relative)
 %
 %   Example:
-%   [crgIsEqual, dd] = crg_isequal( crg_one, crg_two, 'html') compares two
-%   CRG-files if equal and visualize on default system web browser
+%   [crgIsEqual, dd] = crg_isequal( crg_one, crg_two)
+%   Compares two OpenCRG data sets.
 %
 %   See also CRG_INTRO
 

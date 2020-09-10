@@ -1,21 +1,21 @@
 function [data, err] = crg_gen_ppxy2phi(ppxy, uinc, opts)
-% CRG_GEN_PPXY2PHI CRG generate refline heading out of polynomial.
+% CRG_GEN_PPXY2PHI Generate reference line heading from polynomial.
 %   [DATA, ERR] = CRG_GEN_PPXY2PHI(PPXY, UINC, OPTS) generates a
-%   patial CRG struct with refline heading information by evaluating the
-%   given (smooth) polynomial (in pp-form).
+%   partial OpenCRG struct with reference line heading information by evaluating
+%   the given smooth polynomial in pp-form.
 %
 %   Inputs:
 %   PPXY    complex piecewise polynomial (e.g. spline) in pp-form
-%           describing the (smoothed) refline.
-%   UINC    refline increment
-%   OPTS    stuct for method options (optional, no default)
+%           describing the smoothed reference line.
+%   UINC    reference line increment
+%   OPTS    struct for method options (optional, no default)
 %   .meth   selects discretization method (optional, default: 8)
 %           The default method should always work, the others are left
 %           over from development to allow further discussions.
 %           (description of methods in subfunction codes below)
 %
 %   Outputs:
-%   DATA    partial CRG data structure (see CRG_INTRO) consisting of
+%   DATA    partial OpenCRG data structure (see CRG_INTRO) consisting of
 %           DATA.u
 %           DATA.p
 %           DATA.head.ubeg
@@ -32,7 +32,7 @@ function [data, err] = crg_gen_ppxy2phi(ppxy, uinc, opts)
 %
 %   Examples:
 %   [data, err] = crg_crg_gen_ppxy2phi(ppxy, uinc)
-%       generates a CRG refline.
+%       Generates a CRG reference line.
 %
 %   See also CRG_GEN_PXY2PPXY, CRG_INTRO.
 

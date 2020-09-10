@@ -1,7 +1,7 @@
 function [data] = crg_plot_road_uv2xyz_map(data, u, v)
-% CRG_PLOT_ROAD_UV2XYZ_MAP CRG road XYZ map.
-%   DATA = CRG_PLOT_ROAD_UV2XYZ_MAP(DATA, U, V) plots CRG road map
-%   in current axes object for a given uv grid.
+% CRG_PLOT_ROAD_UV2XYZ_MAP Plot road surface over a given curved grid.
+%   DATA = CRG_PLOT_ROAD_UV2XYZ_MAP(DATA, U, V) plots the road surface as
+%   3-dimensional image over a given curved grid in the current axes object.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -12,7 +12,8 @@ function [data] = crg_plot_road_uv2xyz_map(data, u, v)
 %
 %   Examples:
 %   data = crg_plot_road_uv2xyz_map(data, 0:0.1:100, -2:0.1:2)
-%       plots CRG road.
+%       Plots entire road surface on a grid given by u = 0:0.1:100
+%       and v = -2:0.1:2.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -34,7 +35,7 @@ function [data] = crg_plot_road_uv2xyz_map(data, u, v)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);

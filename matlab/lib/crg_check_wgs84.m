@@ -1,14 +1,14 @@
 function [data] = crg_check_wgs84(data)
-% CRG_CHECK_WGS84 CRG check wgs84 data consistency.
-%   [DATA] = CRG_CHECK_WGS84(DATA) checks CRG wgs84 data for consistency
-%   of definitions and values.
+% CRG_CHECK_WGS84 Check OpenCRG WGS84 data.
+%   [DATA] = CRG_CHECK_WGS84(DATA) checks whether the start position and the end
+%   position are consistenly defined in both x/y/z-coordinates and
+%   WGS84-coordinates.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    is a checked, purified, and eventually completed version of
-%           the function input argument DATA
+%   DATA    input DATA with checked WGS84 data.
 %
 %   Examples:
 %   data = crg_check_wgs84(data) checks CRG wgs84 data consistency.
@@ -104,10 +104,10 @@ if isfield(data, 'mpro')
     end
     
 else
-    %% check for consistent start/end distance (we already checked for existing start and pairs in crg_check_head)
+    %% check for consistent start-end distance (we already checked for existing start and pairs in crg_check_head)
     
     % local rectangular coordinate system <> WGS84 world geodetic system
-    if isfield(data.head, 'eend')
+    if isfield(data.head, 'xend') && isfield(data.head, 'eend')
         dxy = sqrt((data.head.xend-data.head.xbeg)^2 + (data.head.yend-data.head.ybeg)^2);
         dll = crg_wgs84_dist([data.head.nbeg data.head.ebeg], [data.head.nend data.head.eend]);
         if abs(dxy-dll) > max(crgeps*(dxy+dll)/2, crgwgs)
@@ -120,7 +120,7 @@ end
 %% check for consistent altitude definitions (we already checked for existing start in crg_check_head)
 
 % local rectangular coordinate system <> WGS84 world geodetic system
-if isfield(data.head, 'aend')
+if isfield(data.head, 'zend') && isfield(data.head, 'aend')
     dxy = data.head.zend - data.head.zbeg;
     dll = data.head.aend - data.head.abeg;
     if dxy*dll < -crgtol^2 || abs(dxy-dll) > max(crgeps*abs(dxy+dll)/2, crgtol)

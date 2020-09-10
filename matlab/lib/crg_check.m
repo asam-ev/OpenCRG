@@ -1,18 +1,17 @@
 function [data] = crg_check(data)
-% CRG_CHECK CRG check, fix, and complement data.
-%   [DATA] = CRG_CHECK(DATA) checks CRG data for consistency
-%   and accuracy, fixes slight accuracy problems giving some info, and
-%   complements the CRG data as far as possible.
+% CRG_CHECK Run all OpenCRG data checks.
+%   [DATA] = CRG_CHECK(DATA) runs all available checks for the given OpenCRG data.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    is a checked, purified, and eventually completed version of
-%           the function input argument DATA
+%   DATA    is a checked, cleaned-up, and potentially completed version of
+%           the input DATA.
 %
 %   Examples:
-%   data = crg_check(data) checks and complements CRG data.
+%   data = crg_check(data)
+%   Runs all checks on data.
 %
 %   See also CRG_INTRO.
 
@@ -35,18 +34,18 @@ function [data] = crg_check(data)
 %
 % *****************************************************************
 
-%% initialize error/warning counter
+%% initialize error counter
 
 ierr = 0;
 
-%% check opts consistency
+%% check options for consistency
 
 data = crg_check_opts(data);
 if ~isfield(data, 'ok')
     ierr = ierr + 1;
 end
 
-%% check mods consistency
+%% check modifiers for consistency
 
 data = crg_check_mods(data);
 if ~isfield(data, 'ok')
@@ -60,16 +59,16 @@ if ~isfield(data, 'ok')
     ierr = ierr + 1;
 end
 
-%% check mpro consistency
+%% check data consistency
 
-data = crg_check_mpro(data);
+data = crg_check_data(data);
 if ~isfield(data, 'ok')
     ierr = ierr + 1;
 end
 
-%% check data consistency
+%% check map projection data consistency
 
-data = crg_check_data(data);
+data = crg_check_mpro(data);
 if ~isfield(data, 'ok')
     ierr = ierr + 1;
 end

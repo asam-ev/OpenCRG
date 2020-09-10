@@ -1,6 +1,7 @@
 function [sdf_out] = sdf_add(sdf_in, blockname, sdf_block)
-% SDF_ADD SDF (structured data file) block add.
-%   [SDF_OUT] = SDF_CUT(SDF_IN, BLOCKNAME) adds block to SDF
+% SDF_ADD Add block to struct data file.
+%   [SDF_OUT] = SDF_ADD(SDF_IN, BLOCKNAME, SDF_BLOCK) adds a block to a struct
+%   data file.
 %
 %   Inputs:
 %   SDF_IN      cell array of struct data file lines

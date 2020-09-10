@@ -1,17 +1,17 @@
 function [data] = crg_check_mpro(data)
-% CRG_CHECK_MPRO CRG check mpro data.
-%   [DATA] = CRG_CHECK_MPRO(DATA) checks CRG mpro data for consistency
-%   of definitions and values.
+% CRG_CHECK_MPRO Check OpenCRG map projection data.
+%   [DATA] = CRG_CHECK_MPRO(DATA) checks OpenCRG map projection data for
+%   consistent definitions and values.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    is a checked, purified, and eventually completed version of
-%           the function input argument DATA
+%   DATA    input DATA with checked map projection data.
 %
 %   Examples:
-%   data = crg_check_mpro(data) checks CRG mapping projection data.
+%   data = crg_check_mpro(data)
+%       Checks CRG map projection data.
 %
 %   See also CRG_CHECK, CRG_INTRO.
 

@@ -1,11 +1,12 @@
-function [ier] = crg_write(data, file)
-% CRG_WRITE CRG road file writer.
-%   IER = CRG_WRITE(DATA, FILE) writes CRG (curved regular grid)
-%   road data file
+function [ier] = crg_write(data, file, type)
+% CRG_WRITE Write OpenCRG file.
+%   IER = CRG_WRITE(DATA, FILE) writes OpenCRG data to file. The file uses the 
+%   KRBI format.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %   FILE    file to write
+%   TYPE    file type, either binary 'KRBI' (default) or ascii 'LRFI'
 %
 %   Outputs:
 %   IER     error flag
@@ -36,6 +37,11 @@ function [ier] = crg_write(data, file)
 %
 % *****************************************************************
 
+%% set default
+if nargin < 3
+  type = 'KRBI';
+end
+
 %% force check
 
 data = crg_check(data);
@@ -65,7 +71,7 @@ crgdat.struct = sdf_add(crgdat.struct, 'CT', c);
 
 opts = data.opts;
 
-% get/check/remove default opts
+% get,check or remove default options
 default = struct;
 default = crg_check_opts(default);
 f = fieldnames(opts);
@@ -140,7 +146,7 @@ if isfield(mods, 'scrv'), c{end+1} = sprintf('%s = %24.16e','scale_curvature    
 if isfield(mods, 'gnan'), c{end+1} = sprintf('%s = %24.16e','grid_nan_mode       ', mods.gnan); end
 if isfield(mods, 'gnao'), c{end+1} = sprintf('%s = %24.16e','grid_nan_offset     ', mods.gnao); end
 
-% CRG re-positioning: refline by offset
+% CRG re-positioning: reference line by offset
 if isfield(mods, 'rlrx'), c{end+1} = sprintf('%s = %24.16e','refline_rotcenter_x ', mods.rlrx); end
 if isfield(mods, 'rlry'), c{end+1} = sprintf('%s = %24.16e','refline_rotcenter_y ', mods.rlry); end
 if isfield(mods, 'rlop'), c{end+1} = sprintf('%s = %24.16e','refline_offset_phi  ', mods.rlop); end
@@ -148,7 +154,7 @@ if isfield(mods, 'rlox'), c{end+1} = sprintf('%s = %24.16e','refline_offset_x   
 if isfield(mods, 'rloy'), c{end+1} = sprintf('%s = %24.16e','refline_offset_y    ', mods.rloy); end
 if isfield(mods, 'rloz'), c{end+1} = sprintf('%s = %24.16e','refline_offset_z    ', mods.rloz); end
 
-% CRG re-positioning: refline by refpoint
+% CRG re-positioning: reference line by reference point
 if isfield(mods, 'rptu'), c{end+1} = sprintf('%s = %24.16e','refpoint_u         ', mods.rptu); end
 if isfield(mods, 'rpfu'), c{end+1} = sprintf('%s = %24.16e','refpoint_u_fraction', mods.rpfu); end
 if isfield(mods, 'rpou'), c{end+1} = sprintf('%s = %24.16e','refpoint_u_offset  ', mods.rpou); end
@@ -358,8 +364,8 @@ else
 end
 crgdat.kd_dat = [crgdat.kd_dat single(data.z)];
 
-% write all CRG data as IPLOS-KRBI data file
+% write all CRG data as data file with specified type (default = 'KRBI')
 
-ier = ipl_write(crgdat, file, 'KRBI');
+ier = ipl_write(crgdat, file, type);
 
 end

@@ -1,6 +1,6 @@
 function [ data ] = crg_limiter( data, mmlim, iu, iv )
-% CRG_LIMITER limits z-values of a crg-file.
-%   DATA = CRG_LIMITER( DATA, MMLIM, IU, IV ) limits z-values.
+% CRG_LIMITER Limits z-values in OpenCRG data.
+%   DATA = CRG_LIMITER( DATA, MMLIM, IU, IV ) limits z-values in OpenCRG data.
 %
 %   Inputs:
 %   DATA        struct array as defined in CRG_INTRO
@@ -19,7 +19,7 @@ function [ data ] = crg_limiter( data, mmlim, iu, iv )
 %
 %   Examples:
 %   data = crg_limiter( data, mmlim, iu, iv )
-%       limits z-values.
+%       Limits z-values.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -52,7 +52,7 @@ if length(iv) < 2, iv = [iv nv];                end
 if length(iu) < 2, iu = [iu nu];                end
 if length(mmlim) <2, mmlim = [mmlim mmlim];     end
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -90,7 +90,7 @@ z(z > mmlim(2)) = mmlim(2);
 
 data.z(iu(1):iu(2), iv(1):iv(end)) = z';
 
-%% delete slope/banking
+%% delete slope and banking
 
 if isfield(data, 's')
     data = rmfield(data, 's');

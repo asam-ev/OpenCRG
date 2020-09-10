@@ -3,7 +3,7 @@ function [] = map_intro()
 %   MAP_INTRO introduces MAP routines and their data structures
 %
 %   Definitions:
-%   ECEF    earth centered earth fixed system data
+%   ECEF    earth-centered, earth-fixed system data
 %           [0 0 0] center of mass of the Earth
 %           (n,1)   x   intersects at 0 latitude (Equator)
 %           (n,2)   y   intersects at 0 longitude (Greenwich)
@@ -25,8 +25,8 @@ function [] = map_intro()
 %           'USERDEFINED': numeric axis parameters are kept
 %           other: numeric axis parameters are overwritten for known ids
 %           - known ids are defined in MAP_CHECK_ELLI function
-%       .a  opt. semi-major axis
-%       .b  opt. semi-minor axis (default: a)
+%       .a  optional semi-major axis
+%       .b  optional semi-minor axis (default: a)
 %
 %           derived ELLI parameters defined by .a, .b:
 %
@@ -50,11 +50,11 @@ function [] = map_intro()
 %           and parameters
 %       .nm transformation type
 %           'NOP': no transformation (default)
-%           'HL7': 7 parameter linear Helmert transformation
+%           'HL7': 7-parameter linear Helmert transformation
 %           - rotations assumed to be small
-%           'HN7': 7 parameter nonlin Helmert transformation
+%           'HN7': 7-parameter nonlinear Helmert transformation
 %           - rotations may be large
-%           'HS7': 7 parameter simple Helmert transformation
+%           'HS7': 7-parameter simple Helmert transformation
 %            - similar to 'HL7'
 %            - as found in most literature sources
 %            - scaling only on diagonal elements
@@ -76,7 +76,7 @@ function [] = map_intro()
 %           'GK6': Gauss-Krueger with 6deg zones
 %           'UTM': universal transverse mercator
 %           'TM': transverse mercator
-%           Separated by '_' the zone substing is appended to the
+%           Separated by '_' the zone substring is appended to the
 %           projection identifier. The zone substring defines the
 %           - zone number (GK3: 0...119, GK6: 0...59)
 %           - grid zone designator (UTM) (zone number 01...60 and
@@ -123,7 +123,7 @@ function [] = map_intro()
 % *****************************************************************
 
 %   The MAP routines use algorithms which can be found in many places in
-%   literature and many implementations of various authos. Just to mention
+%   literature and many implementations of various authors. Just to mention
 %   some sources of implementations which were used:
 %
 %   Geodetic Transformation Toolbox of Peter Wasmeier,
@@ -152,7 +152,7 @@ function [] = map_intro()
 %   http://www.epsg.org/guides/docs/G7-2.pdf
 %
 
-%% add application directory and required subdriectories to path
+%% add application directory and required subdirectories to path
 
 % map_init
 

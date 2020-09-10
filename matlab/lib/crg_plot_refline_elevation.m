@@ -1,7 +1,8 @@
 function [data] = crg_plot_refline_elevation(data, iu)
-% CRG_PLOT_REFLINE_ELEVATION CRG road refline elevation plot.
-%   DATA = CRG_PLOT_REFLINE_ELEVATION(DATA, IU) plots CRG refline elevation
-%   in current axes object.
+% CRG_PLOT_REFLINE_ELEVATION Plot the z-values along the reference line.
+%   DATA = CRG_PLOT_REFLINE_ELEVATION(DATA, IU) plots z-values along the
+%   reference line in the current axes object. The plot can be limited to a
+%   selected range on the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -13,9 +14,9 @@ function [data] = crg_plot_refline_elevation(data, iu)
 %
 %   Examples:
 %   data = crg_plot_refline_elevation(data)
-%       plots full refline data.
+%       Plots all z-values.
 %   data = crg_plot_refline_elevation(data, [1000 2000])
-%       plots selected refline data part.
+%       Plots z-values for the selected range on reference line.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -37,7 +38,7 @@ function [data] = crg_plot_refline_elevation(data, iu)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -50,7 +51,7 @@ end
 
 nu = size(data.z, 1);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -74,7 +75,7 @@ else
     rz = zeros(1, nuiu) + data.head.zbeg;
 end
 
-%% plot refline elevation
+%% plot reference line elevation
 
 plot(u, rz, '-')
 

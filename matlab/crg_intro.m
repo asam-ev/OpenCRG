@@ -5,7 +5,7 @@ function [] = crg_intro()
 %   The methods of the CRG package communicate to each other by a single
 %   DATA struct array consisting of:
 %
-%   - core reference line data, which defines the curved reference line
+%   - Core reference line data, which defines the curved reference line.
 %     This data is checked and complemented by equivalent head data where
 %     available. Vectors of length 1 (u, p, s) or 2 (u) are complemented
 %     by equivalent head data by crg_check. Vectors (p, s) with constant
@@ -14,13 +14,13 @@ function [] = crg_intro()
 %                   length(u) == 1: length of reference line
 %                   length(u) == 2: start/end value of u
 %       DATA.p      (optional) vector of phi values (single)
-%                   length(p) == 1: straight refline
-%                   length(p) == nu-1: curved refline
+%                   length(p) ==    1: straight reference line
+%                   length(p) == nu-1: curved reference line
 %       DATA.s      (optional) vector of slope values (single)
-%                   length(s) == 1: constant slope
+%                   length(s) ==    1: constant slope
 %                   length(s) == nu-1: variable slope
 %
-%   - core elevation grid data, which defines the regular grid
+%   - Core elevation grid data, which defines the regular grid.
 %     This data is checked and complemented by equivalent head data where
 %     available. Vectors of length 1 (v, b) or 2 (v) are complemented
 %     by equivalent head data by crg_check. Vector v with constant
@@ -28,19 +28,19 @@ function [] = crg_intro()
 %     condensed in crg_check.
 %       DATA.z      array(nu, nv) of z (height) values (single)
 %       DATA.v      vector of v values (single)
-%                   length(v) == 1: defines half width of road
-%                   length(v) == 2: defines right/left edge of road
-%                   length(v) == nv: defines length cut positions
+%                   length(v) ==  1: defines half width of road
+%                   length(v) ==  2: defines right/left edge of road
+%                   length(v) == nv: defines positions of longitudinal cuts
 %       DATA.b      (optional) vector of banking values (single)
-%                   length(b) == 1: constant banking
+%                   length(b) ==  1: constant banking
 %                   length(b) == nu: variable banking
 %
-%   - head data, which is read/writen from/to CRG file headers
-%     This data is checked and complemented with equivalent core data where
-%     available. Defaults are used for missing CRG curved and local
-%     rectangular coordinate systems. WGS84 data is optional.
+%   - Head data, which is read from or written to OpenCRG road parameters
+%     section. This data is checked and complemented with equivalent core data
+%     where available. Defaults are used for missing CRG curved and local
+%     inertial coordinate systems. WGS84 data is optional.
 %       DATA.head   struct array of data scalars
-%                   (and equivalent CRG file header keyword)
+%                   (and equivalent OpenCRG file header keyword)
 %                   with these struct elements:
 %         CRG curved coordinate system: longitudinal axis
 %           ubeg (reference_line_start_u)
@@ -56,18 +56,18 @@ function [] = crg_intro()
 %         CRG curved coordinate system: banking
 %           bbeg (reference_line_start_b)
 %           bend (reference_line_end_b)
-%         local rectangular coordinate system: location
+%         Local inertial coordinate system: location
 %           xbeg (reference_line_start_x)
 %           ybeg (reference_line_start_y)
 %           xend (reference_line_end_x)
 %           yend (reference_line_end_y)
 %           xoff (reference_line_offset_x)
 %           yoff (reference_line_offset_y)
-%         local rectangular coordinate system: heading
+%         Local inertial coordinate system: heading
 %           pbeg (reference_line_start_phi)
 %           pend (reference_line_end_phi)
 %           poff (reference_line_offset_phi)
-%         local rectangular coordinate system: elevation
+%         Local inertial coordinate system: elevation
 %           zbeg (reference_line_start_z)
 %           zend (reference_line_end_z)
 %           zoff (reference_line_offset_z)
@@ -80,8 +80,8 @@ function [] = crg_intro()
 %           abeg (reference_line_start_alt)
 %           aend (reference_line_end_alt)
 %
-%   - map projection data, which is read/writen from/to CRG file headers
-%     This data is checked and expanded/overwritten where appropriate.
+%   - Map projection data, which is read from or written to OpenCRG file headers.
+%     This data is checked, expanded or overwritten where appropriate.
 %     Defaults are used where explicit settings are missing, see map_intro
 %     for details.
 %       DATA.mpro   (optional) struct array
@@ -91,27 +91,27 @@ function [] = crg_intro()
 %           lell   ELLI struct of local geodetic datum
 %           proj   PROJ struct of map projection
 %
-%   - file data, which complements the CRG file
-%       DATA.ct     cell array of comment text, reqired for file output
-%       DATA.struct (optional) cell array of further structured data, used
-%                   for file output, may contain opts data for later CRG
+%   - File data about the OpenCRG file.
+%       DATA.ct     cell array of comment text, required for file output
+%       DATA.struct optional cell array of further structured data, used
+%                   for file output, may contain opts data for later OpenCRG
 %                   file processing.
-%       DATA.filenm name of read crg data file
+%       DATA.filenm name of OpenCRG file
 %
-%   - mods data, which defines further CRG modifiers
-%     This data is read from CRG file headers or otherwise set,
-%     and is evaluated and applied by CRG_MODS. The mods are evaluated in
-%     sequence as they appear below, and are cleared after they are
-%     applied. An empty mods array inhibits any default settings.
+%   - Modifier data, which defines further OpenCRG modifiers
+%     This data is read from OpenCRG file headers or otherwise set,
+%     and then evaluated and applied by CRG_MODS. The modifiers are evaluated in
+%     as they appear below, and are cleared after they are applied.
+%     An empty mods array inhibits any default settings.
 %       DATA.mods   struct array of data scalars
-%                   (and equivalent CRG file opts keywords)
+%                   (and equivalent OpenCRG file opts keywords)
 %                   with these struct elements:
 %         CRG scaling (default: no scaling)
 %           - scale elevation data
 %           szgd (scale_z_grid): scale elevation grid
 %           sslp (scale_slope): scale slope information
 %           sbkg (scale_banking): scale banking information
-%           - scale refline data (resets refline position to origin)
+%           - scale reference line data (resets reference line position to origin)
 %           slth (scale_length): scale u information
 %           swth (scale_width): scale v information
 %           scrv (scale_curvature): scale reference line's curvature
@@ -122,7 +122,7 @@ function [] = crg_intro()
 %               = 2: keep last value in cross section
 %           gnao (grid_nan_offset): z offset to be applied at NaN positions
 %               (default: 0)
-%         CRG re-positioning: refline by offset (default: "by refpoint")
+%         CRG re-positioning: reference line by offset (default: "by refpoint")
 %           first rotate:
 %           rlrx (refline_rotcenter_x): rotation center (default: xbeg)
 %           rlry (refline_rotcenter_y): rotation center (default: ybeg)
@@ -131,7 +131,7 @@ function [] = crg_intro()
 %           rlox (refline_offset_x): translate by rlox
 %           rloy (refline_offset_y): translate by rloy
 %           rloz (refline_offset_z): translate by rloz
-%         CRG re-positioning: refline by refpoint (overwrites "by offset")
+%         CRG re-positioning: reference line by refpoint (overwrites "by offset")
 %         - position (u,v) on reference line:
 %           rpfu (refpoint_u_fraction) relative u (default: 0)
 %             or: rptu (refpoint_u) absolute u
@@ -145,11 +145,11 @@ function [] = crg_intro()
 %           rptz (refpoint_z) target position (default: 0)
 %           rptp (refpoint_phi) target orientation (default: 0)
 %
-%   - opts data, which defines further CRG processing options
-%     This data is read from CRG file headers or set by
+%   - Options data, which defines further OpenCRG processing options
+%     This data is read from OpenCRG file headers or set by
 %     crg_opts_set.
 %       DATA.opts   struct array of data scalars
-%                   (and equivalent CRG file opts keywords)
+%                   (and equivalent OpenCRG file opts keywords)
 %                   with these struct elements:
 %         CRG elevation grid border modes in u and v directions
 %           bdmu (border_mode_u): at beginning and end (default: 2)
@@ -180,7 +180,7 @@ function [] = crg_intro()
 %           lmsg (log_msgs): log messages (default: -1)
 %           leva (log_eval): evaluation inputs and results (default: 20)
 %           levf (log_eval_freq): how often (default: 1)
-%           lhst (log_hist): refline search history (default: -1)
+%           lhst (log_hist): reference line search history (default: -1)
 %           lhsf (log_hist_freq): how often (default: 100000)
 %           lsta (log_stat): evaluation statistics (default: -1)
 %           lstf (log_stat_freq): how often (default: 100000)
@@ -192,13 +192,13 @@ function [] = crg_intro()
 %           cwgs (check_wgs): expected wgs  tolerance (default: 10)
 %
 %   - status data
-%       DATA.ok     ok-flag signaling previous check result is o.k.
-%                   (generated by CRG_CHECK*)
+%       DATA.ok     ok-flag, signaling that the data has been successfully
+%                   checked. (generated by CRG_CHECK*)
 %
-%   - derived data (generated by CRG_CHECK for efficient internal use)
-%       DATA.rx     vector(nu) of reference line x positions
-%       DATA.ry     vector(nu) of reference line y positions
-%       DATA.rz     vector(nu) of reference line z positions
+%   - Derived data (generated by CRG_CHECK for efficient internal use)
+%       DATA.rx     vector(nu) of reference line x-positions
+%       DATA.ry     vector(nu) of reference line y-positions
+%       DATA.rz     vector(nu) of reference line z-positions
 %       DATA.rc     vector(nu-2) of reference line curvature
 %       DATA.il     vector(nu) of index to leftmost valid in cross section
 %       DATA.ir     vector(nu) of index to rightmost valid in cross section
@@ -207,12 +207,12 @@ function [] = crg_intro()
 %           pbes        sin(data.head.pbeg)
 %           penc        cos(data.head.pend)
 %           pens        sin(data.head.pend)
-%           ubex        u start value at extrapolated refline crossing
-%           uenx        u end value at extrapolated refline crossing
-%           ulex        u roundtrip length of closed extrapolated refline
+%           ubex        u start value at extrapolated reference line crossing
+%           uenx        u end value at extrapolated reference line crossing
+%           ulex        u roundtrip length of closed extrapolated reference line
 %                       = 0: no crossing, no closed track exists
 %
-%   - evaluation history data (generated by CRG_CHECK and CRG_EVAL_XY2UV)
+%   - Evaluation history data (generated by CRG_CHECK and CRG_EVAL_XY2UV)
 %       DATA.hist   struct array of history data with these elements:
 %           m       max. size of history
 %           o       history option
@@ -222,48 +222,48 @@ function [] = crg_intro()
 %                   =-1: forget history, restart search from beginning.
 %                   =-2: forget history, restart search from end.
 %           c       square of distance limit for close search
-%           f       square of distance limit for far   search
+%           f       square of distance limit for far search
 %           n       number of stacked history results
 %           i       vector(m) of history interval pointers
 %           x       vector(m) of history x positions
 %           y       vector(m) of history x positions
 %
-%   - figure options - to overwrite the default figure labels
+%   - Figure options to overwrite the default figure labels
 %       DATA.fopt   struct array of figure options used by crg_figure
 %           ori     orientation (default: 'landscape')
-%                   figure orientation, may be 'landscape' or 'portrait'
+%                   valid values: 'landscape' or 'portrait'
 %           tit     title (default is set in crg_show_* or crg_figure)
 %                   string defining annotation top middle
 %           fnm     filename (default: DATA.filenm)
 %                   string defining annotation bottom left
 %           dat     datestr (default: datestr(now, 31))
 %                   string defining annotation bottom right
-%           mod     mod divisor argument, to generate periodic 3d surface
+%           mod     mod divisor argument, to generate periodic 3-dimensional surface
 %                   colormap representation (default: 0.0)
-%           asp     daspect argument for z-axis scaling in 3d plots
+%           asp     aspect argument for z-axis scaling in 3d plots
 %                   (default: 0.1)
 %           lit     light visibility off/on for surfaces (default: 0)
 %
-%   A minimal CRG data structure consists of "core reference line data"
+%   A minimal OpenCRG data structure consists of "core reference line data"
 %   with a scalar DATA.u and "core elevation grid data" with a 2x2 array
 %   DATA.z and a scalar DATA.v only.
 %   Adding more "core reference line data" and "core elevation grid data"
 %   yields a complete CRG, which might be further complemented with a
-%   partial or full set of "head data", "opts data" and/or "mods data".
+%   partial or full set of "head data", "opts data" or "mods data".
 %   The consistency of a given CRG is checked by CRG_CHECK, which also
 %   supplements missing head data as defined above.
 %   Modifiers of a given CRG are only applied by an explicit call to
 %   CRG_MODS, while options are evaluated without extra activation.
-%   Before writing a CRG file, DATA.ct has to be defined to provide some
+%   Before writing an OpenCRG file, DATA.ct has to be defined to provide some
 %   textual information about the CRG contents.
 %   Data type of "core reference line data" and "core elevation grid data"
 %   is "single". Global accuracy is still ensured by the "head data", which
 %   complements the core data and is stored in "double" precision.
 %
 %   Examples:
-%   crg = crg_read('demo.crg') reads a CRG file.
-%   crg = crg_show(crg) shows contents of a CRG data structure.
-%   [pz crg] = crg_eval_xy2z(crg,[0.3 0.7]) evaluates CRG at xy=(0.3,0.7).
+%   crg = crg_read('demo.crg') reads the OpenCRG file 'demo.crg'.
+%   crg = crg_show(crg) visualizes the contents of a CRG data structure.
+%   [pz crg] = crg_eval_xy2z(crg,[0.3 0.7]) evaluates CRG at x=(0.3), y=(0.7).
 %
 %   See also MAP_INTRO,
 %   CRG_INIT,

@@ -1,8 +1,9 @@
 function [llh dat] = map_plocal2global(enh, dat)
-% MAP_LOCAL2GLOBL MAP backward projection: projected local to global.
+% MAP_LOCAL2GLOBL Backward projection: projected local to global.
 %   [LLH DAT] = MAP_LOCAL2GLOBL(ENH, DAT) converts points from
-%   local PMAP to global GEOD system by backward projection on local
-%   ellipsoid and datum transformation from local to global ellipsoid.
+%   local map coordinates to global geodetic coordinates by backward projection 
+%   on a local ellipsoid and datum transformation from a local to global
+%   ellipsoid.
 %
 %   Inputs:
 %   ENH     (n, 3) array of points in PMAP system
@@ -22,7 +23,7 @@ function [llh dat] = map_plocal2global(enh, dat)
 %
 %   Examples:
 %   llh = map_plocal2global(enh, dat)
-%       converts points from PMAP to GEOD system.
+%       Converts points from map coordinates to global geodetic coordinates.
 %
 %   See also MAP_INTRO.
 
@@ -45,7 +46,7 @@ function [llh dat] = map_plocal2global(enh, dat)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % DAT
 if nargin < 2, dat = []; end

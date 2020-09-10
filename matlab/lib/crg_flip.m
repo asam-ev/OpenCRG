@@ -1,7 +1,7 @@
 function [data] = crg_flip(data)
-% CRG_FLIP flip CRG data structure.
-%   DATA = CRG_FLIP(DATA) flips a CRG data structure, i.e. swaps start
-%   and end, while leaving the mods and opts sub-structures untouched.
+% CRG_FLIP Flip OpenCRG data.
+%   DATA = CRG_FLIP(DATA) flips a OpenCRG data struct, swapping start
+%   and end while leaving the modifiers and options unchanged.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
@@ -11,7 +11,7 @@ function [data] = crg_flip(data)
 %
 %   Examples:
 %   crg = crg_flip(crg)
-%       flips the CRG contents.
+%       Flips the CRG contents.
 
 % *****************************************************************
 % ASAM OpenCRG Matlab API

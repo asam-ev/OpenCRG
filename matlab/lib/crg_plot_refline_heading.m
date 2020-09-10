@@ -1,7 +1,8 @@
 function [data] = crg_plot_refline_heading(data, iu)
-% CRG_PLOT_REFLINE_HEADING CRG road refline heading plot.
-%   DATA = CRG_PLOT_REFLINE_HEADING(DATA, IU) plots CRG refline heading
-%   in current axes object.
+% CRG_PLOT_REFLINE_HEADING Plot heading angle along the reference line.
+%   DATA = CRG_PLOT_REFLINE_HEADING(DATA, IU) plots the heading angle along
+%   the reference line in the current axes object. The plot can be limited to a
+%   selected range on the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -13,9 +14,9 @@ function [data] = crg_plot_refline_heading(data, iu)
 %
 %   Examples:
 %   data = crg_plot_refline_heading(data)
-%       plots full refline data.
+%       Plots the heading angle for the entire reference line.
 %   data = crg_plot_refline_heading(data, [1000 2000])
-%       plots selected refline data part.
+%       Plots the heading angle for the selected range on the reference line.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -37,7 +38,7 @@ function [data] = crg_plot_refline_heading(data, iu)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -50,7 +51,7 @@ end
 
 nu = size(data.z, 1);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -74,7 +75,7 @@ else
     ph = zeros(1, nuiu) + data.head.pbeg;
 end
 
-%% plot refline heading
+%% plot reference line heading
 
 stairs(u, 180/pi*ph, '-')
 

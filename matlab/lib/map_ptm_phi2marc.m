@@ -1,12 +1,12 @@
 function [marc ell pro] = map_ptm_phi2marc(phi, ell, pro)
-% MAP_PTM_ENH2LLH MAP transverse mercator utility function.
+% MAP_PTM_ENH2LLH Transverse mercator utility function: meridional arc.
 %   [MARC ELL PRO] = MAP_PTM_PHI2MARC(PHI, ELL, PRO) computes the 
 %   meridional arc needed for transverse mercator projections.
 %
 %   Inputs:
 %   PHI     (n) vector of latitudes
-%   ELL     opt. ELLI struct array
-%   PRO     opt. PROJ struct array
+%   ELL     optional ELLI struct array
+%   PRO     optional PROJ struct array
 %
 %   Outputs:
 %   MARC    (n) vector of meridional arc values
@@ -15,7 +15,7 @@ function [marc ell pro] = map_ptm_phi2marc(phi, ell, pro)
 %
 %   Examples:
 %   marc = map_ptm_phi2marc(phi, ell, pro)
-%       calulates meridional arc values.
+%       Calulates meridional arc values.
 %
 %   See also MAP_INTRO, MAP_GEOD2PMAP_TM, MAP_PTM_NORTH2INITIALLAT.
 
@@ -38,7 +38,7 @@ function [marc ell pro] = map_ptm_phi2marc(phi, ell, pro)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % PRO
 if nargin < 3

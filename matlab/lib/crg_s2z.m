@@ -1,7 +1,7 @@
 function [data] = crg_s2z(data, rz)
-% CRG_S2Z separates slope from elevation grid.
-%   CRG_S2Z(DATA, RZ) separates slope defined by refline elevation profile
-%   from elevation grid.
+% CRG_S2Z Apply slope to OpenCRG data.
+%   CRG_S2Z(DATA, RZ) applies new slope to an OpenCRG struct. Existing 
+%   slope data is merged into the road data.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -15,11 +15,11 @@ function [data] = crg_s2z(data, rz)
 %
 %   Examples:
 %   crg = crg_s2z(crg)
-%       merges existing slope information into the elevation grid.
+%       Merges existing slope information into the elevation grid.
 %   crg = crg_s2z(crg, [crg.head.zbeg crg.head.zend])
-%       separates constant slope from elevation grid
+%       Apply constant slope to elevation grid
 %   crg = crg_s2z(crg, rz)
-%       separates slope defined by refline elevation profile.
+%       Apply slope defined by reference line elevation profile.
 
 % *****************************************************************
 % ASAM OpenCRG Matlab API
@@ -40,7 +40,7 @@ function [data] = crg_s2z(data, rz)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -53,7 +53,7 @@ end
 
 [nu] = size(data.z,1);
 
-%% handle optional args
+%% handle optional arguments
 
 if nargin < 2
     rz = (data.head.zbeg + data.head.zend) / 2;
@@ -94,7 +94,7 @@ if isfield(data.head, 'abeg')
     data.head.aend = data.head.abeg + (rz(end)-rz(1));
 end
 
-%% apply refline elevation profile
+%% apply reference line elevation profile
 
 for i = 1:nu
     data.z(i,:) = single(double(data.z(i,:)) + (rzold(i) - rz(i)));

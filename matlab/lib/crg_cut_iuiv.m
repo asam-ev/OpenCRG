@@ -1,6 +1,6 @@
 function [data] = crg_cut_iuiv(data, iu, iv)
-% CRG_CUT_IUIV cuts out a part of a CRG road.
-%   DATA = CRG_CUT_IUIV(DOUT, IU, IV) cuts out a part of a CRG road.
+% CRG_CUT_IUIV Cut out a part of a OpenCRG road.
+%   DATA = CRG_CUT_IUIV(DOUT, IU, IV) cuts out a part of a OpenCRG road.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -15,7 +15,7 @@ function [data] = crg_cut_iuiv(data, iu, iv)
 %
 %   Examples:
 %   data = crg_cut_iuiv(data, [1000 2000], [10 30])
-%       cuts selected elevation grid data part.
+%       Cuts selected elevation grid data part.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -37,7 +37,7 @@ function [data] = crg_cut_iuiv(data, iu, iv)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -50,7 +50,7 @@ end
 
 [nu nv] = size(data.z);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2 || isempty(iu)
     iu =  [1 nu];
@@ -152,7 +152,7 @@ else
     end
 end
 
-%% build refline slope
+%% build reference line slope
 
 if isfield(data, 's') && length(data.s)>1
     dout.s = data.s(iu(1):iu(2)-1);
@@ -200,7 +200,7 @@ if isfield(data, 'struct')
     dout.struct = data.struct;
 end
 
-%% suppelment comment text
+%% supplement comment text
 
 if isfield(data, 'ct')
     dout.ct = data.ct;

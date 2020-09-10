@@ -1,6 +1,6 @@
 function [data] = crg_figure(data)
-% CRG_FIGURE CRG figure setup.
-%   DATA = CRG_FIGURE(DATA) sets up a CRG figure.
+% CRG_FIGURE OpenCRG figure setup.
+%   DATA = CRG_FIGURE(DATA) sets up an OpenCRG figure.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -10,7 +10,7 @@ function [data] = crg_figure(data)
 %
 %   Examples:
 %   data = crg_figure(data)
-%       sets up a CRG figure.
+%       Sets up a CRG figure.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -41,7 +41,7 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% check/complement figure opts
+%% check and complement figure options
 
 if isfield(data, 'fopt')
     fopt = data.fopt;

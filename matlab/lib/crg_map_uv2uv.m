@@ -1,7 +1,7 @@
 function [ data ] = crg_map_uv2uv( data, crg_uv, iu, iv )
-%CRG_MAP_UV2UV mapping crg-z-values in u,v to crg-file
-%   [DATA] = CRG_MAP_UV2UV(DATA, CRG_UV, IU, IV) mapps z-values of CRG_UV
-%   in u,v to DATA in uv
+%CRG_MAP_UV2UV Map z-values from one grid to another.
+%   [DATA] = CRG_MAP_UV2UV(DATA, CRG_UV, IU, IV) maps z-values of CRG_UV
+%   in u/v-coordinates to the u/v-grid of DATA.
 %
 %   Inputs:
 %   DATA        struct array as defined in CRG_INTRO
@@ -17,8 +17,8 @@ function [ data ] = crg_map_uv2uv( data, crg_uv, iu, iv )
 %   DATA        struct array as defined in CRG_INTRO
 %
 %   Examples:
-%   data = crg_map_uv2uv(data, crg_uv, iu, iv) mapps z-values from
-%   crg_uv to data in uv in range of iu/iv.
+%   data = crg_map_uv2uv(data, crg_uv, iu, iv)
+%   Maps z-values from crg_uv to data in range of iu and iv.
 %
 %   See also CRG_INTRO
 
@@ -54,7 +54,7 @@ if length(iu) < 2, iu = [iu nu];                   end
 ceps = data.opts.ceps;
 ctol = data.opts.ctol;
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -105,7 +105,7 @@ z = reshape(z, xnu, xnv);
 
 clear ux vx;
 
-%% rerender crg_uv for equal space
+%% re-render crg_uv for equal space
 
 if abs(uinc - crg_uv.head.uinc) > max(ceps*(uinc + data.head.uinc), ctol)
    tuinc = uinc;
@@ -137,7 +137,7 @@ else
     crg = crg_uv;
 end
 
-%% build adding uv grid
+%% build adding uv-grid
 
 cubeg = crg.head.ubeg;
 cuend = crg.head.uend;

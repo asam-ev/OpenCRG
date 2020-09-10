@@ -1,8 +1,8 @@
 function [data] = crg_plot_refline_xy_map_and_curv(data, iu)
-% CRG_PLOT_REFLINE_XY_MAP_AND_CURV CRG road refline XY map and curv plot.
-%   DATA = CRG_PLOT_REFLINE_XY_MAP_AND_CURV(DATA, IU) plots CRG refline map
-%   with norm. neg. curvature representation as orthogonal of reference
-%   line in current axes object.
+% CRG_PLOT_REFLINE_XY_MAP_AND_CURV Plot reference line including curvature.
+%   DATA = CRG_PLOT_REFLINE_XY_MAP_AND_CURV(DATA, IU) plots the reference line
+%   in x/y-coordinates and its curvature in the current axes object. The plot
+%   can be limited to a selected range on the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -14,9 +14,9 @@ function [data] = crg_plot_refline_xy_map_and_curv(data, iu)
 %
 %   Examples:
 %   data = crg_plot_refline_xy_map_and_curv(data)
-%       plots full map.
+%       Plot the entire reference line.
 %   data = crg_plot_refline_xy_map_and_curv(data, [1000 2000])
-%       plots selected map part.
+%       Plots selected range of the reference line.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -38,7 +38,7 @@ function [data] = crg_plot_refline_xy_map_and_curv(data, iu)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -51,7 +51,7 @@ end
 
 nu = size(data.z, 1);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -83,18 +83,18 @@ else
     rcmax = 0;
 end
 
-% generate norm. curvature as orthogonal of refline
-% global curvature scaled to 0.1 of selected refline length
+% generate norm. curvature as orthogonal of reference line
+% global curvature scaled to 0.1 of selected reference line length
 
 rrmax = nuiu*data.head.uinc;
 rcmax = rcmax + data.opts.ceps;
 
-cnorm = -0.1 * rrmax/rcmax; % scale to 0.1 of selected refline size
+cnorm = -0.1 * rrmax/rcmax; % scale to 0.1 of selected reference line size
 
 rxc = rx - cnorm*rc.*sin(ph);
 ryc = ry + cnorm*rc.*cos(ph);
 
-%% plot refline XY map with norm. curvature
+%% plot reference line XY map with norm. curvature
 
 plot(rx, ry, '-', rxc, ryc, '-')
 

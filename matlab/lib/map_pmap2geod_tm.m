@@ -1,7 +1,8 @@
 function [llh ell pro] = map_pmap2geod_tm(enh, ell, pro)
-% MAP_PMAP2GEOD_TM MAP backward projection: transverse mercator.
+% MAP_PMAP2GEOD_TM Backward projection: transverse mercator.
 %   [LLH ELL PRO] = MAP_PMAP2GEOD_TM(ENH, ELL, PRO) converts points from
-%   PMAP to GEOD system using backward transverse mercator projection.
+%   map coordinates to geodetic coordinates using backward transverse mercator
+%   projection.
 %
 %   Inputs:
 %   ENH     (n, 3) array of points in PMAP system
@@ -15,7 +16,7 @@ function [llh ell pro] = map_pmap2geod_tm(enh, ell, pro)
 %
 %   Examples:
 %   llh = map_pmap2geod_tm(enh, ell, pro)
-%       converts points from PMAP to GEOD system.
+%       Converts points from map coordinates to geodetic coordinates.
 %
 %   See also MAP_INTRO.
 
@@ -38,7 +39,7 @@ function [llh ell pro] = map_pmap2geod_tm(enh, ell, pro)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % PRO
 if nargin < 3

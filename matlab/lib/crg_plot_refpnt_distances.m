@@ -1,18 +1,18 @@
 function [data] = crg_plot_refpnt_distances(data, pxy)
-% CRG_PLOT_REFPNT_DISTANCES CRG road refpoint distance plot.
-%   DATA = CRG_PLOT_REFPNT_DISTANCES(DATA, PXY) plots CRG reference point
-%   distances from reference line in current axes object.
+% CRG_PLOT_REFPNT_DISTANCES Plot distance of reference points to reference line.
+%   DATA = CRG_PLOT_REFPNT_DISTANCES(DATA, PXY) plots the distance between a
+%   series of reference points and the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
-%   PXY     (np, 2) array of points in xy system
+%   PXY     (np, 2) array of points in x/y-coordinates
 %
 %   Outputs:
 %   DATA    struct array as defined in CRG_INTRO
 %
 %   Examples:
 %   data = crg_plot_refpnt_distances(data, pxy)
-%       plots refpoint distances.
+%       Plots the distances to the reference points.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -34,7 +34,7 @@ function [data] = crg_plot_refpnt_distances(data, pxy)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -52,7 +52,7 @@ vstd  = std (puv(:,2));
 vstd1 = [data.head.ubeg data.head.uend NaN data.head.ubeg data.head.uend];
 vstd2 = [vmean+vstd     vmean+vstd     NaN vmean-vstd     vmean-vstd    ];
 
-%% plot refpoint distances from reference line
+%% plot reference point distances from reference line
 
 plot(puv(:,1), puv(:,2), '.')
 

@@ -1,7 +1,7 @@
 function [data] = crg_b2z(data, b)
-% CRG_B2Z applies banking to elevation grid.
-%   CRG_B2Z(DATA, B) applies a new banking to the CRG struct, which
-%   may or may not already contain separated banking information.
+% CRG_B2Z Apply banking to OpenCRG data.
+%   CRG_B2Z(DATA, B) applies new banking to an OpenCRG struct. Existing 
+%   banking data is merged into the road data.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -14,11 +14,11 @@ function [data] = crg_b2z(data, b)
 %
 %   Examples:
 %   crg = crg_b2z(crg)
-%       merges existing banking information into the elevation grid.
+%       Merges existing banking information into the elevation grid.
 %   crg = crg_b2z(crg, 0.03)
-%       extracts a 3.0% banking from the elevation grid
+%       Apply a 3.0% banking from the elevation grid
 %   crg = crg_b2z(crg, b)
-%       extracts banking defined by b from the elevation grid.
+%       Apply banking defined by b from the elevation grid.
 
 % *****************************************************************
 % ASAM OpenCRG Matlab API
@@ -39,7 +39,7 @@ function [data] = crg_b2z(data, b)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -52,7 +52,7 @@ end
 
 [nu] = size(data.z,1);
 
-%% handle optional args
+%% handle optional arguments
 
 if nargin < 2 || isempty(b)
     b = 0;
@@ -62,7 +62,7 @@ if length(b)~=1 && length(b)~=nu
     error('CRG:b2zError', 'illegal size of B')
 end
 
-%% build full v vector
+%% build full v-vector
 
 if isfield(data.head, 'vinc')
     vmin = data.head.vmin;
@@ -85,7 +85,7 @@ else
     bold = zeros(1, nu);
 end
 
-%% put new banking
+%% set new banking
 
 data.head.bbeg = b(1);
 data.head.bend = b(end);

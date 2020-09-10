@@ -1,7 +1,7 @@
 function [data] = crg_plot_road_uv2uvz_map(data, u, v)
-% CRG_PLOT_ROAD_UV2UVZ_MAP CRG road UVZ map.
-%   DATA = CRG_PLOT_ROAD_UV2UVZ_MAP(DATA, U, V) plots CRG road
-%   UVZ map in current axes object for a given uv grid.
+% CRG_PLOT_ROAD_UV2UVZ_MAP Plot road surface over a given uncurved grid.
+%   DATA = CRG_PLOT_ROAD_UV2UVZ_MAP(DATA, U, V) plots the road surface as
+%   an orthographic image over a given uncurved grid in the current axes object.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -12,7 +12,8 @@ function [data] = crg_plot_road_uv2uvz_map(data, u, v)
 %
 %   Examples:
 %   data = crg_plot_road_uv2uvz_map(data, 0:0.1:100, -2:0.1:2)
-%       plots CRG road.
+%       Plots entire road surface on a grid given by u = 0:0.1:100
+%       and v = -2:0.1:2.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -34,7 +35,7 @@ function [data] = crg_plot_road_uv2uvz_map(data, u, v)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -48,7 +49,7 @@ end
 nuiu = length(u);
 nviv = length(v);
 
-% grid coordinates in refline system
+% grid coordinates in reference line system
 z = zeros(nuiu, nviv);
 puv = zeros(nviv, 2);
 for i = 1:nuiu

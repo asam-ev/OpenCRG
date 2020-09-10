@@ -1,21 +1,22 @@
 function [iu, iv] = crg_eval_uv2iuiv(data, u, v)
-%CRG_UV2IUIV CRG evaluate index iu, iv of distance u,v.
-%   [IU, IV] = CRG_UV2IUIV(DATA, U, V) transforms distances in uv to
-%   index iu,iv.
+%CRG_UV2IUIV Evaluate index position of grid positions.
+%   [IU, IV] = CRG_UV2IUIV(DATA, U, V) Evaluate the index positions
+%   of the given u/v-positions.
 %
 %   Inputs:
 %       DATA    struct array as defined in CRG_INTRO.
-%       U       (np, 1) array of u-values in uv system
-%       V       (np, 1) array of v-values in uv system
+%       U       (np, 1) array of u-values in u/v-system
+%       V       (np, 1) array of v-values in u/v-system
 %
 %   Outputs:
-%       IU      (np, 1) array of u-index positions in uv system
-%       IV      (np, 1) array of v-index positions in uv system
+%       IU      (np, 1) array of u-index positions in u/v-system
+%       IV      (np, 1) array of v-index positions in u/v-system
 %
 %   Examples:
-%   [iu, iv] = crg_eval_uv2iuiv(data, u, v) transforms uv distance
-%   to index positions, so that the range of u,v is always included.
-%   The index positions are clipped to 1  and length(u) or length(v).
+%   [iu, iv] = crg_eval_uv2iuiv(data, u, v)
+%       Transforms u/v-positions to index positions, so that the range of u,v is
+%       always included.
+%       The index positions are clipped to 1 and length(u) or length(v).
 %
 %   See also CRG_INTRO.
 
@@ -38,7 +39,7 @@ function [iu, iv] = crg_eval_uv2iuiv(data, u, v)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -47,7 +48,7 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% for closed refline: map u values to valid interval
+%% for closed reference line: map u-values to valid interval
 
 if data.opts.rflc==1 && data.dved.ulex~=0
     u = mod(u-data.dved.ubex, data.dved.ulex) + data.dved.ubex;

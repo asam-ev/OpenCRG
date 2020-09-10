@@ -1,17 +1,17 @@
 function [data] = crg_check_head(data)
-% CRG_CHECK_HEAD CRG check head data.
-%   [DATA] = CRG_CHECK_HEAD(DATA) checks CRG head data for consistency
-%   of definitions and values.
+% CRG_CHECK_HEAD Check OpenCRG road parameters data.
+%   [DATA] = CRG_CHECK_HEAD(DATA) checks OpenCRG road parameters data for
+%   consistent definitions and values.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Outputs:
-%   DATA    is a checked, purified, and eventually completed version of
-%           the function input argument DATA
+%   DATA    input DATA with checked road parameters data.
 %
 %   Examples:
-%   data = crg_check_head(data) checks CRG header data.
+%   data = crg_check_head(data)
+%       Checks CRG road parameters data.
 %
 %   See also CRG_CHECK, CRG_INTRO.
 
@@ -273,37 +273,8 @@ if isfield(data.head, 'vmin') && isfield(data.head, 'vmax')
     end
 end
 
-%% check for consistent start/end distance (we already checked for existing start and pairs)
-
-%TODO: resolve redundancy issue (explained below)
-% suggestions:
-% - call crg_check_wgs84(data); AND
-% - remove the call from crg_check.m line 80
-% OR
-% - remove the check here AND leave it in crg_check.m
-
-% local rectangular coordinate system <> WGS84 world geodetic system
-% if isfield(data.head, 'xend') && isfield(data.head, 'eend')
-%     dxy = sqrt((data.head.xend-data.head.xbeg)^2 + (data.head.yend-data.head.ybeg)^2);
-%     dll = crg_wgs84_dist([data.head.nbeg data.head.ebeg], [data.head.nend data.head.eend]);
-%     if abs(dxy-dll) > max(crgeps*(dxy+dll), crgtol)
-%         warning('CRG:checkWarning', 'inconsistent distance definition of header data "reference_line_start/end_x/y" and "reference_line_start/end_lon/lat"')
-%         ierr = 1;
-%     end
-% end
-
-%% check for consistent altitude definitions (we already checked for existing start)
-
-% local rectangular coordinate system <> WGS84 world geodetic system
-% if isfield(data.head, 'zend') && isfield(data.head, 'aend')
-%     dxy = data.head.zend - data.head.zbeg;
-%     dll = data.head.aend - data.head.abeg;
-%     if dxy*dll < -crgtol^2 || abs(dxy-dll) > max(crgeps*abs(dxy+dll)/2, crgtol)
-%         warning('CRG:checkWarning', 'inconsistent definition of header data "reference_line_start/end_z" and "reference_line_start/end_alt"')
-%         ierr = 1;
-%     end
-% end
-crg_check_wgs84(data);
+%% check for consistent start/end distance & altitude definitions
+[data] = crg_check_wgs84(data);
 
 %% set ok-flag
 

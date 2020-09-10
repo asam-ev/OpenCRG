@@ -1,6 +1,8 @@
 function [data] = crg_show(data, iu, iv)
-% CRG_SHOW CRG road visualizer.
-%   DATA = CRG_SHOW_ELGRID_SURFACE(DATA, IU, IV) visualizes CRG road info.
+% CRG_SHOW CRG Visualize CRG data.
+%   DATA = CRG_SHOW(DATA, IU, IV) creates several figures visualizing different
+%   aspects of an OpenCRG data set. The plots can be limited to a selected area
+%   of the grid.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -15,9 +17,9 @@ function [data] = crg_show(data, iu, iv)
 %
 %   Examples:
 %   data = crg_show(data)
-%       shows full CRG info.
+%       Visualizes the full CRG.
 %   data = crg_show(data, [1000 2000], [10 20])
-%       shows partial CRG info.
+%       Visualizes the selected part of the CRG.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -52,7 +54,7 @@ end
 
 [nu nv] = size(data.z);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];

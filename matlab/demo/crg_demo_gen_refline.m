@@ -91,17 +91,11 @@ crgrefl=crg_check(crgrefl);
 % using two WGS84-XY pairs of the measurement data. In this demo, we can
 %  use the WGS84 info of the demo file used as measurement.
 
-wgsmeas1 = [crgmeas.head.nbeg crgmeas.head.ebeg];
-wgsmeas2 = [crgmeas.head.nend crgmeas.head.eend];
-
-pxymeas1 = [crgmeas.head.xbeg crgmeas.head.ybeg];
-pxymeas2 = [crgmeas.head.xend crgmeas.head.yend];
-
 pxyrefl = [ ...
     crgrefl.head.xbeg crgrefl.head.ybeg;
     crgrefl.head.xend crgrefl.head.yend];
 
-wgsrefl = crg_wgs84_wgsxy2wgs(wgsmeas1, wgsmeas2, pxymeas1, pxymeas2, pxyrefl);
+[wgsrefl, ~] = crg_wgs84_xy2wgs(crgmeas, pxyrefl);
 
 crgrefl.head.nbeg = wgsrefl(1,1);
 crgrefl.head.ebeg = wgsrefl(1,2);

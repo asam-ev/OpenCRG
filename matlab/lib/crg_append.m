@@ -1,11 +1,11 @@
 function [data, roff2] = crg_append(data1, data2)
-%CRG_APPEND CRG append a second compatible CRG to a first CRG.
+%CRG_APPEND Append a second compatible CRG to a first CRG.
 %   [CRG] = CRG_APPEND(DATA1, DATA2) appends a second compatible CRG to a
-%   first one by using an overlap of one uinc increment, which defines
-%   re-postioning of the second CRG for a smooth joint connection.
-%   The last cross cut of DATA1 and the first cross cut of DATA2 will be
-%   dropped due to overlap.
-%   Incomplete or inconsistent WGS84 lon/lat or alt values at the interface
+%   first one. For a smooth connection, the second CRG is re-positioned so that
+%   both CRG overlap for one longitudinal increment.
+%   The last latitudinal cut of DATA1 and the first latitudinal cut of DATA2
+%   are dropped.
+%   Incomplete or inconsistent WGS84 values at the intersection
 %   will result in omitting the WGS84 information in the result.
 %
 %   Inputs:
@@ -14,7 +14,7 @@ function [data, roff2] = crg_append(data1, data2)
 %
 %   Outputs:
 %   DATA    struct array as defined in CRG_INTRO.
-%   ROFF2   struct with refline offset applied to DATA2
+%   ROFF2   struct with reference line offset applied to DATA2
 %       .rlox (refline_offset_x): translate by rlox
 %       .rloy (refline_offset_y): translate by rloy
 %       .rloz (refline_offset_z): translate by rloz
@@ -22,7 +22,7 @@ function [data, roff2] = crg_append(data1, data2)
 %
 %   Examples:
 %   crg = crg_append(crg1, crg2);
-%   appends a second CRG to a first one.
+%   Appends a second CRG to a first one.
 %
 %   See also CRG_INTRO.
 
@@ -45,7 +45,7 @@ function [data, roff2] = crg_append(data1, data2)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data1, 'ok')
     data1 = crg_check(data1);
@@ -115,19 +115,19 @@ if abs(data1.head.send - data2.head.sbeg) > ceps1
     data2 = crg_check(data2);
 end
 
-%% reposition first uinc interval of second CRG to last uinc interval of first CRG
+%% re-position first uinc interval of second CRG to last uinc interval of first CRG
 
 % next to last refline point of first CRG
 xend1_1 = data1.head.xend - uinc1*data1.dved.penc;
 yend1_1 = data1.head.yend - uinc1*data1.dved.pens;
 zend1_1 = data1.head.zend - uinc1*data1.head.send;
 
-% heading of last refline interval of first CRG
+% heading of last reference line interval of first CRG
 
 pend1 = data1.head.pend;
 
-% offset modifiers to apply to second CRG to match it's first refline
-% point to the second last refline point of the first CRG
+% offset modifiers to apply to second CRG to match it's first reference line
+% point to the second last reference line point of the first CRG
 
 roff2=struct; % reset mods
 
@@ -135,8 +135,8 @@ roff2.rlox = xend1_1 - data2.head.xbeg;
 roff2.rloy = yend1_1 - data2.head.ybeg;
 roff2.rloz = zend1_1 - data2.head.zbeg;
 
-% offset modifier to apply to second CRG to match it's first refline
-% interval heading to the last refline interval heading of the first CRG
+% offset modifier to apply to second CRG to match its first reference line
+% interval heading to the last reference line interval heading of the first CRG
 
 roff2.rlop = pend1 - data2.head.pbeg;
 
@@ -149,7 +149,7 @@ data2 = crg_mods(data2);
 
 data = struct;
 
-%% build uv information
+%% build u/v-information
 
 data.head.ubeg = ubeg1;
 data.head.uinc = uinc1;
@@ -163,14 +163,14 @@ if isfield(data1.head, 'vinc')
 end
 data.v = data1.v;
 
-%% build p information
+%% build heading information
 
 if isfield(data1, 'rx') || isfield(data2, 'rx') % at least one curved CRG
     data.p = zeros(1, nu-1, 'single');
 
     if isfield(data2, 'p'), data.p(nu1-1:end  ) = data2.p; end
     if isfield(data1, 'p'), data.p(    1:nu1-1) = data1.p; end
-elseif isfield(data1, 'p') % nonzero heading
+elseif isfield(data1, 'p') % non-zero heading
     data.p = data1.p;
 end
 
@@ -183,7 +183,7 @@ data.head.xend = data2.head.xend;
 data.head.ybeg = data1.head.ybeg;
 data.head.yend = data2.head.yend;
 
-%% build s information
+%% build slope information
 
 if isfield(data1, 's') || isfield(data2, 's') % at least one CRG with slope
     data.s = zeros(1, nu-1, 'single');
@@ -200,7 +200,7 @@ data.head.send = data2.head.send;
 data.head.zbeg = data1.head.zbeg;
 data.head.zend = data2.head.zend;
 
-%% build b information
+%% build banking information
 
 if isfield(data1, 'b') || isfield(data2, 'b') % at least one CRG with banking
     data.b = zeros(1, nu, 'single');
@@ -254,7 +254,7 @@ end
 
 %% build elevation grid
 
-% drop last cross cut of first CRG and first cross cut of second CRG
+% drop last lateral cut of first CRG and first lateral cut of second CRG
 data.z = [data1.z(1:end-1,:); data2.z(2:end,:)];
 
 %% force check

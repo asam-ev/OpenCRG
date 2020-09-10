@@ -26,7 +26,7 @@
 %
 % * Test global & local curvature
 % * Test writing and reading flag:
-%   'data.head.rccl' <-> 'reference_line_curv_check'
+%   'data.opts.wcvl' <-> 'warn_curv_local'
 % * .. 
 %
 
@@ -36,35 +36,59 @@ close all;
 clear all;
 clc;
 
-% read crg data
-disp("----- Pre: standard check 'crg_read' -----");
-data = crg_read('../crg-bin/crgcurvtest.crg');
+% read and show crg data
+
+% File 1: failing global and local curvature test
+disp("----- Pre File 1: standard check 'crg_read' -----");
+data0 = crg_read('../crg-bin/crgcurvtestfails_WGS.crg');
+
+% File 2: failing global but succeeding local curvature test
+disp("----- Pre File 2: standard check 'crg_read' -----");
+data1 = crg_read('../crg-bin/crgcurvtestOK_WGS.crg');
 
 ierr = 0;
 
-%% Test 1 a
-disp("----- Test 1 a: global & local curvature check -----");
-tic;
-% set opts warn_curv_local
-data.opts.wcvl = 1;
-crg_check_curvature(data, ierr);
-toc
+%% Test 1
+disp("----- Test 1: global & local curvature check -----");
+% set opts warn_curv_local (if not set)
+if ~isfield(data0.opts, 'wcvl')
+    data0.opts.wcvl = 1;
+end
+[data0, ierr, idxArr0] = crg_check_curvature(data0, ierr);
 
-%% Test 1 b
-disp("----- Test 1 b: global & local curvature check - variant -----");
-tic;
-% set opts warn_curv_local
-data.opts.wcvl = 1;
-crg_check_curvature2(data, ierr);
-toc
+%% Test 2
+disp("----- Test 2: global & local curvature check -----");
+% set opts warn_curv_local (if not set)
+if ~isfield(data1.opts, 'wcvl')
+    data1.opts.wcvl = 1;
+end
+[data1, ierr, idxArr1] = crg_check_curvature(data1, ierr);
 
-%% Test 2 a
-disp("----- Test 2 a: standard check 'crg_write' (with curvature check local) -----");
-% set opts warn_curv_local
-data.opts.wcvl = 1;
-crg_write(data,'crgcurvtest_local.crg');
+%% plotting test files and error regions
+% preparing data for plots (set temp ok)
+data0.ok = 1;
 
-%% Test 2 b
-disp("----- Test 2 b: standard check 'crg_read' (with curvature check local) -----");
-data = crg_read('crgcurvtest_local.crg');
-disp("warn_curv_local: " + data.opts.wcvl);
+disp("----- plotting -----");
+figure;
+subplot(2,2,1)
+hold on
+crg_plot_refline_xyz_map(data0);
+if ~isempty(idxArr0)
+    crg_plot_refline_xyz_map(data0, idxArr0);   % error region
+end
+hold off
+legend('ref line','start','end','error region','start','end')
+title('File 1: failing global and local curvature test')
+subplot(2,2,2)
+hold on
+crg_plot_refline_xyz_map(data1);
+if ~isempty(idxArr1)
+    crg_plot_refline_xyz_map(data1, idxArr1);   % error region
+end
+hold off
+legend('ref line','start','end','error region','start','end')
+title('File 2: failing global but succeeding local curvature test')
+subplot(2,2,3)
+crg_plot_road_xyz_map(data0);
+subplot(2,2,4)
+crg_plot_road_xyz_map(data1);

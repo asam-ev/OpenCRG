@@ -1,18 +1,19 @@
 function [crv, data] = crg_eval_u2crv(data, pu)
-%CRG_U2PHI CRG evaluate curvature crv in reference line u posititon.
-%   [CRV, DATA] = CRG_U2CRV(DATA, PU) evaluates curvature crv at
-%   reference line u positions pu.
+%CRG_U2PHI Evaluate curvature at reference line posititons.
+%   [CRV, DATA] = CRG_U2CRV(DATA, PU) evaluates the curvature at
+%   given u-positions.
 %
 %   Inputs:
 %       DATA    struct array as defined in CRG_INTRO.
-%       PU      (np) vector of reference line u positions
+%       PU      (np) vector of reference line u-positions
 %
 %   Outputs:
 %       CRV     (np) vector of curvature values
 %       DATA    struct array as defined in CRG_INTRO.
 %
 %   Examples:
-%   crv = crg_eval_u2crv(data, pu) evaluates crv at pu points.
+%   crv = crg_eval_u2crv(data, pu)
+%       Evaluates the curvature at u-positions.
 %
 %   See also CRG_INTRO.
 
@@ -35,7 +36,7 @@ function [crv, data] = crg_eval_u2crv(data, pu)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -55,7 +56,7 @@ if ~isfield(data, 'rc')
       return
 end
 
-%% for closed refline: map u values to valid interval
+%% for closed reference line: map u-values to valid interval
 
 if data.opts.rflc==1 && data.dved.ulex~=0
     pu = mod(pu-data.dved.ubex, data.dved.ulex) + data.dved.ubex;

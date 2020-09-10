@@ -1,11 +1,11 @@
 function [enh dat] = map_global2plocal(llh, dat)
-% MAP_GLOBAL2PLOCAL MAP forward projection: global to projected local.
+% MAP_GLOBAL2PLOCAL Forward projection: global to projected local.
 %   [ENH DAT] = MAP_GLOBAL2PLOCAL(LLH, DAT) converts points from
-%   global GEOD to local PMAP system by datum transformation from global to
-%   local ellipsoid and forward projection on local ellipsoid.
+%   global geodetic coordinates to local map coordinates by transformation from
+%   a global to a local ellipsoid and forward projection on a local ellipsoid.
 %
 %   Inputs:
-%   LLH     (n, 3) array of points in WGS84 GEOD system
+%   LLH     (n, 3) array of points in WGS 84
 %   DAT     struct array with
 %       .lell   ELLI struct of local geodetic datum
 %       .gell   ELLI struct of global geodetic datum
@@ -13,7 +13,7 @@ function [enh dat] = map_global2plocal(llh, dat)
 %       .proj   PROJ struct of map projection
 %
 %   Outputs:
-%   ENH     (n, 3) array of points in PMAP system
+%   ENH     (n, 3) array of points in map coordinate system
 %   DAT     struct array with
 %       .lell   ELLI struct of local geodetic datum
 %       .gell   ELLI struct of global geodetic datum
@@ -22,7 +22,7 @@ function [enh dat] = map_global2plocal(llh, dat)
 %
 %   Examples:
 %   enh = map_global2plocal(llh, dat)
-%       converts points from PMAP to GEOD system.
+%       Converts points from global geodetic coordinates to local map coordinates.
 %
 %   See also MAP_INTRO.
 
@@ -45,7 +45,7 @@ function [enh dat] = map_global2plocal(llh, dat)
 %
 % *****************************************************************
 
-%% check/complement inputs
+%% check and complement inputs
 
 % DAT
 if nargin < 2, dat = []; end

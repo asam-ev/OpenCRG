@@ -1,7 +1,8 @@
 function [data] = crg_plot_refline_xyz_map(data, iu)
-% CRG_PLOT_REFLINE_XYZ_MAP CRG road refline XYZ map 3D plot.
-%   DATA = CRG_PLOT_REFLINE_XYZ_MAP(DATA, IU) plots CRG refline XYZ map 3D
-%   plot in current axes object.
+% CRG_PLOT_REFLINE_XYZ_MAP Plot reference line in x/y/z-coordinates.
+%   DATA = CRG_PLOT_REFLINE_XYZ_MAP(DATA, IU) plots the reference line
+%   in x/y/z-coordinates in the current axes object. The plot can be limited to
+%   a selected range on the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -13,9 +14,9 @@ function [data] = crg_plot_refline_xyz_map(data, iu)
 %
 %   Examples:
 %   data = crg_plot_refline_xyz_map(data)
-%       plots full refline data.
+%       Plot the entire reference line.
 %   data = crg_plot_refline_xyz_map(data, [1000 2000])
-%       plots selected refline data part.
+%       Plots selected range of the reference line.
 %   See also CRG_INTRO.
 
 % *****************************************************************
@@ -37,7 +38,7 @@ function [data] = crg_plot_refline_xyz_map(data, iu)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -50,7 +51,7 @@ end
 
 nu = size(data.z, 1);
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     iu =  [1 nu];
@@ -82,7 +83,7 @@ else
     rz = zeros(1, nuiu) + data.head.zbeg;
 end
 
-%% plot refline XYZ map
+%% plot reference line XYZ map
 
 plot3(rx, ry, rz, '-')
 hold on
@@ -90,7 +91,7 @@ hold on
 plot3(rx(  1), ry(  1), rz(  1), '>') % mark start
 plot3(rx(end), ry(end), rz(end), 's') % mark end
 
-fasp = 0.1; % z aspect ratio 0.1 magnifies z axis by 10
+fasp = 0.1; % z aspect ratio 0.1 magnifies z-axis by 10
 if isfield(data, 'fopt') && isfield(data.fopt, 'asp')
     fasp = data.fopt.asp;
 end
