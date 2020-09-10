@@ -82,9 +82,9 @@ crg_show(data);
 
 dat = crg_read('../crg-bin/country_road.crg');
 
-data = crg_limiter(dat, -31.45, [62500 63000], [25 150]);
+data = crg_limiter(dat, -31.45, [5000 5500], [25 150]);
 
-crg_show(data, [62000 63500]);
+crg_show(data, [5000 5500]);
 
 %% Test6 ( real dataset incl. u/v start/stop)
 

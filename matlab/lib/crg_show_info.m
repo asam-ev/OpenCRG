@@ -162,8 +162,8 @@ if isfield(opts, 'sfar'), c{end+1} = sprintf('%s = %20.12g','refline_search_far 
 if isfield(opts, 'scls'), c{end+1} = sprintf('%s = %20.12g','refline_search_close     ', opts.scls); end
 %     % CRG message options
 %     if isfield(opts, 'wmsg'), c{end+1} = sprintf('%s = %20.12g','warn_msgs                ', opts.wmsg); end
-%     if isfield(opts, 'wcvl'), c{end+1} = sprintf('%s = %20.12g','warn_curv_local          ', opts.wcvl); end
-%     if isfield(opts, 'wcvg'), c{end+1} = sprintf('%s = %20.12g','warn_curv_global         ', opts.wcvg); end
+if isfield(opts, 'wcvl'), c{end+1} = sprintf('%s = %20.12g','warn_curv_local          ', opts.wcvl); end
+if isfield(opts, 'wcvg'), c{end+1} = sprintf('%s = %20.12g','warn_curv_global         ', opts.wcvg); end
 %     if isfield(opts, 'lmsg'), c{end+1} = sprintf('%s = %20.12g','log_msgs                 ', opts.lmsg); end
 %     if isfield(opts, 'leva'), c{end+1} = sprintf('%s = %20.12g','log_eval                 ', opts.leva); end
 %     if isfield(opts, 'levf'), c{end+1} = sprintf('%s = %20.12g','log_eval_freq            ', opts.levf); end

@@ -123,7 +123,7 @@ end
 
 %% separate slope banking
 
-if isfield(crg,'s')     % slope
+if isfield(crg, 's')     % slope
     ts = crg.s;
 
     crg = rmfield(crg, 's');
@@ -131,7 +131,9 @@ if isfield(crg,'s')     % slope
     crg.head = rmfield(crg.head, 'send');
     crg.head = rmfield(crg.head, 'zbeg');
     crg.head = rmfield(crg.head, 'zend');
-
+    if isfield(crg.head, 'aend')
+        crg.head = rmfield(crg.head, 'aend');
+    end
 end
 
 if isfield(crg,'b')     % banking
@@ -181,6 +183,9 @@ if exist('ts', 'var')     % slope
     data.head.send = data.s(end);
     data.head = rmfield(data.head, 'zbeg');
     data.head = rmfield(data.head, 'zend');
+    if isfield(crg.head, 'aend')
+        crg.head = rmfield(crg.head, 'aend');
+    end
 end
 
 if exist('tb', 'var')     % banking
