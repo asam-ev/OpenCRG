@@ -1,5 +1,5 @@
 function [data] = crg_check_single(data)
-%CRG_CHECK_SINGLE Check of core OpenCRG data for type single.
+%CRG_CHECK_SINGLE Check core OpenCRG data for type single.
 %   [DATA] = CRG_CHECK_SINGLE(DATA) checks whether OpenCRG data in core data 
 %   vectors and arrays is of type single.
 %

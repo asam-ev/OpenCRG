@@ -2,7 +2,7 @@
 
 The C-API does not provide functions for handling geographical coordinates. Instead, the C-API ignores any data associated with map projections.
 
-The Matlab tools provide a large collection of functions for visualising, converting or transforming geographic data. These functions are generic and may also be used for data other than OpenCRG data.
+The Matlab tools provide a large collection of functions for visualising, converting or transforming geographic data. Many of these functions are generic and may also be used for data other than OpenCRG data.
 
 Map projection data can be defined either in the OpenCRG file or by accessing the relevant fields of the loaded OpenCRG data.
 
@@ -21,6 +21,9 @@ The C-API does not provide functions for visualizing OpenCRG data.
 
 `map_intro[]`::
 Display introductory information on handling geographic data.
+
+`[data] = crg_wgs84_crg2html(data, file, opts)`::
+Generate a HTML file `file` to display OpenCRG data `data` as a track in a web-based map using OpenLayers. `opts` contains various options for changing the generated HTML file. 
 
 `[file] = map_wgs2html(llh, file, opts)`::
 Generate a HTML file `file` to display WGS-84 positions `llh` as a track in a web-based map using OpenLayers. `opts` contains various options for changing the generated HTML file. 
@@ -67,7 +70,23 @@ Check and update map projection struct `pro`.
 `[tran] = map_check_tran(tran)`::
 Check and update datum transformation struct `tran`.
 
-//TODO: Add descriptions for wgs84_* functions.
+`[url] = crg_wgs84_wgs2url(wgs, opts)`::
+Generate a URL `url` for showing WGS-84 coordinates `wgs` using Google Maps. `opts.label` contains a label for the positions.
+
+`[wgs, data] = crg_wgs84_xy2wgs(data, pxy)`::
+Transform points `pxy` given in local x/y-coordinates to WGS-84 coordinates `wgs` using the provided OpenCRG data `data` as reference.
+
+`[wgs] = crg_wgs84_wgsxy2wgs(wgs1, wgs2, pxy1, pxy2, pxy, eps, tol, dmin)`::
+Transforms points `pxy` given in local x/y-coordinates to WGS-84 coordinates. This transformation uses two references both in WGS-84 coordinates (`wgs1`, `wgs2`) and in local x/y-coordinates (`pxy1`, `pxy2`). `eps`, `tol` and `dmin` define requirements for numerical consistency.
+
+`[dist dbeg dend] = crg_wgs84_dist(wgs1, wgs2)`::
+Evaluate the distances `dist` and bearings `dbeg` and `dend` between the WGS-84 positions in `wgs1` and `wgs2`. `dbeg` is the bearing as seen from `wgs1`. `dend` is the bearing as seen from `wgs2`.
+
+`[wgs2 dend] = crg_wgs84_invdist(wgs1, dbeg, dist)`::
+Calculate WGS-84 positions `wgs2` defined by a WGS-84 base position `wgs1`, a bearing `dbeg`, and a distance `dist`. `dend` is the bearing as seen from `wgs2`.
+
+`[data] = crg_wgs84_setend(data, dref)`::
+Set missing WGS-84 end coordinate with given beginning-to-end direction for the reference line.
 
 ==== Examples
 

@@ -1,6 +1,6 @@
 function [data] = crg_mods(data)
-%CRG_MODS apply modifiers on data.
-%   [DATA] = CRG_MODS(DATA) applies modifiers defined in DATA.mods to CRG
+%CRG_MODS Apply modifiers to data.
+%   [DATA] = CRG_MODS(DATA) applies modifiers defined in DATA.mods to OpenCRG
 %   data and removes them from DATA.mods afterwards.
 %   If DATA.mods does not exist, default modifiers will be used.
 %   If DATA.mods is empty, no modifiers will be applied.
@@ -13,7 +13,7 @@ function [data] = crg_mods(data)
 %
 %   Examples:
 %   data = crg_mods(data),
-%       applies mods on CRG data.
+%       Applies mods to OpenCRG data.
 %
 %   See also CRG_INTRO.
 
@@ -37,7 +37,7 @@ function [data] = crg_mods(data)
 % *****************************************************************
 
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -46,7 +46,7 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% apply mods
+%% apply modifiers
 
 data = crg_mods_scale(data);
 data = crg_mods_gnan(data);
@@ -58,7 +58,7 @@ end
 %% subfunction crg_mods_scale
 
 function [data] = crg_mods_scale(data)
-%CRG_MODS_SCALE apply scaling mods.
+%CRG_MODS_SCALE Apply scaling mods.
 %   [DATA] = CRG_MODS_SCALE(DATA) applies scaling modifiers.
 %
 %   Inputs:
@@ -102,7 +102,7 @@ slth = 1.0;
 swth = 1.0;
 scrv = 1.0;
 
-%% read and clear mods
+%% read and clear modifiers
 
 todo = 0;
 
@@ -142,13 +142,13 @@ if isfield(data.mods, 'scrv') % scale_curvature
     data.mods = rmfield(data.mods, 'scrv');
 end
 
-%% return if no relevant mods are found
+%% return if no relevant modifiers are found
 
 if todo == 0
     return
 end
 
-%% apply mods
+%% apply modifiers
 
 done = 0;
 
@@ -221,7 +221,7 @@ if scrv ~= 1.0 % scale reference line's curvature
     end
 end
 
-%% return if no relevant mods are applied
+%% return if no relevant modifiers are applied
 
 if done == 0
     return
@@ -241,7 +241,7 @@ end
 %% subfunction crg_mods_byoff
 
 function [data] = crg_mods_byoff(data)
-%CRG_MODS_BYOFF pply mods for refline pos by offset.
+%CRG_MODS_BYOFF Apply mods for reference line position by offset.
 %   [DATA] = CRG_MODS_BYOFF(DATA) applies modifiers
 %   related to the reference line position by setting an offset.
 %
@@ -253,7 +253,7 @@ function [data] = crg_mods_byoff(data)
 %
 %   Examples:
 %   data = crg_mods_byoff(data);
-%       applies related mods on CRG data.
+%       Applies related mods on CRG data.
 %
 %   See also CRG_INTRO.
 
@@ -420,7 +420,7 @@ end
 %% subfunction crg_mods_byref
 
 function [data] = crg_mods_byref(data)
-%CRG_MODS_BYREF apply mods for refline by refpoint.
+%CRG_MODS_BYREF Apply modifiers for reference line by reference point.
 %   [DATA] = CRG_MODS_BYREF(DATA) applies modifiers related
 %   to the reference line position by setting a refpoint's position.
 %
@@ -432,7 +432,7 @@ function [data] = crg_mods_byref(data)
 %
 %   Examples:
 %   data = crg_mods_byref(data)
-%       applies related mods on CRG data.
+%       Applies related mods on CRG data.
 %
 %   See also CRG_INTRO.
 
@@ -455,7 +455,7 @@ function [data] = crg_mods_byref(data)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok') || data.ok ~= 0
     data = crg_check_data(data);
@@ -473,7 +473,7 @@ rpty = 0;
 rptz = 0;
 rptp = 0;
 
-%% read and clear mods
+%% read and clear modifiers
 
 todo = 0;
 
@@ -541,22 +541,22 @@ if isfield(data.mods, 'rptp') % refpoint_phi
     data.mods = rmfield(data.mods, 'rptp');
 end
 
-%% return if no relevant mods are found
+%% return if no relevant modifiers are found
 
 if todo == 0
     return
 end
 
-%% find current refpoint position and orientation
+%% find current reference point position and orientation
 
 [pxy data] = crg_eval_uv2xy(data, [rptu rptv]);
 [pz  data] = crg_eval_uv2z (data, [rptu rptv]);
 
 [phi data] = crg_eval_u2phi(data, rptu);
 
-%% calculate offsets needed to move refpoint to target position
+%% calculate offsets needed to move reference point to target position
 
-rlop = rptp - phi; % rotation around refline start point
+rlop = rptp - phi; % rotation around reference line start point
 
 dx = pxy(1, 1) - data.head.xbeg;
 dy = pxy(1, 2) - data.head.ybeg;
@@ -581,7 +581,7 @@ end
 %% subfunction crg_mods_gnan
 
 function [data] = crg_mods_gnan(data)
-%CRG_MODS_GNAN apply mods for elevation grid NaN.
+%CRG_MODS_GNAN Apply modifiers for elevation grid NaN.
 %   [DATA] = CRG_MODS_GNAN(DATA) applies modifiers related to the
 %   handling of NaN in the elevation grid.
 %
@@ -593,7 +593,7 @@ function [data] = crg_mods_gnan(data)
 %
 %   Examples:
 %   data = crg_mods_gnan(data);
-%       executes related mods on CRG data.
+%       Executes related modifiers on OpenCRG data.
 %
 %   See also CRG_INTRO.
 
@@ -621,7 +621,7 @@ function [data] = crg_mods_gnan(data)
 gnan = 2;
 gnao = 0;
 
-%% read and clear mods
+%% read and clear modifiers
 
 todo = 0;
 
@@ -637,13 +637,13 @@ if isfield(data.mods, 'gnao') % grid_nan_offset
     data.mods = rmfield(data.mods, 'gnao');
 end
 
-%% return if no relevant mods are found
+%% return if no relevant modifiers are found
 
 if todo == 0
     return
 end
 
-%% apply mods
+%% apply modifiers
 
 done = 0;
 
@@ -667,7 +667,7 @@ switch gnan
         error('CRG:checkError', 'illegal value of data.mods.gnan = %d', gnan)
 end
 
-%% return if no relevant mods are applied
+%% return if no relevant modifiers are applied
 
 if done == 0
     return

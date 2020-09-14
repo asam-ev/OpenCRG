@@ -1,5 +1,5 @@
 function [data] = ipl_read(filename, opts)
-% IPL_READ IPLOS file reader.
+% IPL_READ Read IPLOS file.
 %   DATA = IPL_READ(FILENAME, OPTS) reads IPLOS data file
 %
 %   Inputs:

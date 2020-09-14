@@ -1,5 +1,5 @@
 function [data] = crg_check_mods(data)
-%CRG_CHECK_MODS check mods data.
+%CRG_CHECK_MODS Check modifier data.
 %   [DATA] = CRG_CHECK_MODS(DATA) checks OpenCRG modifiers data for consistent
 %   definitions and values, and provides missing defaults.
 %

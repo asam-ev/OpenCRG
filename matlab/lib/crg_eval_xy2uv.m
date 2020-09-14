@@ -1,5 +1,5 @@
 function [puv, data] = crg_eval_xy2uv(data, pxy)
-%CRG_EVAL_XY2UV CRG tranform point in xy to uv.
+%CRG_EVAL_XY2UV Transform points in xy to uv.
 %   [PUV, DATA] = CRG_EVAL_XY2UV(DATA, PXY) Evaluate the x/y-positions of
 %   the given u/v-positions. IF available, history of a previous evaluations
 %   is used to start the search approprieately.

@@ -1,7 +1,7 @@
 function [ier] = crg_write(data, file, type)
 % CRG_WRITE Write OpenCRG file.
-%   IER = CRG_WRITE(DATA, FILE) writes OpenCRG data to file. The file uses the 
-%   KRBI format.
+%   IER = CRG_WRITE(DATA, FILE) writes OpenCRG data to file. The data must be of
+%   type single.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.

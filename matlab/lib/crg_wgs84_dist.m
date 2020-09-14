@@ -1,19 +1,19 @@
 function [dist dbeg dend] = crg_wgs84_dist(wgs1, wgs2)
-%CRG_WGS84_DIST CRG evaluate distance and bearing between WGS84 positions.
+%CRG_WGS84_DIST Evaluate distance and bearing between WGS-84 positions.
 %   [DIST DBEG DEND] = CRG_WGS84_DIST(WGS1, WGS2) evaluates distance and
-%   bearing for given WGS84 positions. Since the earth is approximately a
+%   bearing for given WGS-84 positions. Since the earth is approximately a
 %   sphere, the bearing (azimut direction) following a straight line along
 %   a great-circle arc will change from start to end in general.
 %
 %   Inputs:
-%   WGS1    (np, 2) arrays of latitude/longitude (north/east) wgs84
+%   WGS1    (np, 2) arrays of latitude/longitude (north/east) WGS-84
 %           coordinate pairs (in degrees)
-%   WGS2    (np, 2) arrays of latitude/longitude (north/east) wgs84
+%   WGS2    (np, 2) arrays of latitude/longitude (north/east) WGS-84
 %           coordinate pairs (in degrees)
 %
 %   Outputs:
 %   DIST    (np) vector of distance values
-%   DBEG    (np) vector of direction (bearing) values at begin (in rad)
+%   DBEG    (np) vector of direction (bearing) values at beginning (in rad)
 %   DEND    (np) vector of direction (bearing) values at end (in rad)
 %
 %   Examples:
@@ -22,7 +22,7 @@ function [dist dbeg dend] = crg_wgs84_dist(wgs1, wgs2)
 %   wgs2 = [51.477678, 0.000000] % WGS84 "zero meridian way crossing"
 %                                % (there is no real landmark)
 %   [dist dbeg dend] = crg_wgs84_dist(wgs1, wgs2)
-%   evaluates the distance and bearing between two positions in Greenwich.
+%   Evaluates the distance and bearing between two positions in Greenwich.
 %   (The WGS84 zero is about 100m east of the Greenwich Prime Meridian).
 %
 %   See also CRG_INTRO.

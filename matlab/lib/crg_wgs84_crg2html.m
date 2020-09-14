@@ -1,7 +1,7 @@
 function [data] = crg_wgs84_crg2html(data, file, opts)
-%CRG_WGS84_CRG2HTML CRG generate html file to show wgs info in Google maps
-%   CRG_WGS84_CRG2HTML(DATA, FILE, OPTS) generates html file
-%   to show WGS84 coordinates (start, track, end) in Google maps
+%CRG_WGS84_CRG2HTML Generate HTML file to visualize OpenCRG data in a map.
+%   CRG_WGS84_CRG2HTML(DATA, FILE, OPTS) generates a HTML file to display
+%   OpenCRG data as a track in a web-based map using OpenLayers.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO
@@ -18,7 +18,7 @@ function [data] = crg_wgs84_crg2html(data, file, opts)
 %   Examples:
 %   data = crg_wgs84_wgs2html(data, 'crg-demo.html');
 %   web('crg-demo.html', '-browser')
-%   generates crg-demo.html in current directory and shows it.
+%   Generates crg-demo.html in current directory and shows it.
 %
 %   See also CRG_INTRO.
 
@@ -41,7 +41,7 @@ function [data] = crg_wgs84_crg2html(data, file, opts)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -50,7 +50,7 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% handle optional args
+%% handle optional arguments
 
 mpol = 100;         % maximum number of polyline points
 minc = 1.0;         % minimum polyline point u increment
@@ -77,13 +77,13 @@ else
     end
 end
 
-%% check if WGS84 end is available
+%% check if WGS-84 end is available
 
 if ~isfield(data.head, 'eend')
     error('CRG:wgs84Error', 'WGS84 coordinates along road are missing')
 end
 
-%% generate WGS84 coordinates
+%% generate WGS-84 coordinates
 
 npol = min(mpol, ceil((data.head.uend-data.head.ubeg)/minc));
 

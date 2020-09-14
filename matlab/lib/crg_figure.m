@@ -1,5 +1,5 @@
 function [data] = crg_figure(data)
-% CRG_FIGURE OpenCRG figure setup.
+% CRG_FIGURE Set up OpenCRG figure.
 %   DATA = CRG_FIGURE(DATA) sets up an OpenCRG figure.
 %
 %   Inputs:

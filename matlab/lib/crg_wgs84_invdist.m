@@ -1,12 +1,12 @@
 function [wgs2 dend] = crg_wgs84_invdist(wgs1, dbeg, dist)
-%CRG_WGS84_INVDIST CRG calculate WGS84 position by distance and bearing.
-%   [WGS2 DEND] = CRG_WGS84_INVDIST(WGS1, DBEG, DIST) calculates a WGS84
-%   position defined by a reference position, distance, and bearing.
+%CRG_WGS84_INVDIST Calculate WGS-84 positions by distance and bearing.
+%   [WGS2 DEND] = CRG_WGS84_INVDIST(WGS1, DBEG, DIST) calculates a WGS-84
+%   position defined by a base position, a distance, and a bearing.
 %
 %   Inputs:
-%   WGS1    (np, 2) arrays of latitude/longitude (north/east) wgs84
+%   WGS1    (np, 2) arrays of latitude/longitude (north/east) WGS-84
 %           coordinate pairs (in degrees)
-%   DBEG    (np) vector of direction (bearing) values at begin (in rad)
+%   DBEG    (np) vector of direction (bearing) values at beginning (in rad)
 %   DIST    (np) vector of distance values
 %
 %   Outputs:
@@ -20,8 +20,8 @@ function [wgs2 dend] = crg_wgs84_invdist(wgs1, dbeg, dist)
 %   dist = 103.53748             % distance to target position
 %   dbeg = 1.7141940             % initial bearing
 %   [wgs2 dend] = crg_wgs84_invdist(wgs1, dbeg, dist)
-%   calculates the position of the "zero meridian way crossing"
-%   (The WGS84 zero is about 100m east of the Greenwich Prime Meridian).
+%   Calculates the position of the "zero meridian way crossing".
+%   (The WGS-84 zero is about 100m east of the Greenwich Prime Meridian).
 %
 %   See also CRG_INTRO.
 
@@ -44,7 +44,7 @@ function [wgs2 dend] = crg_wgs84_invdist(wgs1, dbeg, dist)
 %
 % *****************************************************************
 
-%% call wgs84dist
+%% call wgs84invdist
 
 wgs1 = wgs1 * pi/180;
 dbeg = dbeg';

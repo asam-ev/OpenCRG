@@ -1,11 +1,11 @@
 function [data] = crg_wgs84_setend(data, dref)
-%CRG_WGS84_SETEND CRG set WGS84 end coordinate.
-%   [DATA] = CRG_WGS84_SETEND(DATA, DREF) sets missing WGS84 end
-%   coordinate with given refline beg->end direction.
+%CRG_WGS84_SETEND Set WGS-84 end coordinate.
+%   [DATA] = CRG_WGS84_SETEND(DATA, DREF) sets missing WGS-84 end
+%   coordinate with given beginning-to-end direction for the reference line.
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
-%   DREF    direction (bearing) for refline beg->end (in deg)
+%   DREF    direction (bearing) of reference line from beginning to end (in deg)
 %           = -90 -> x-axis to west
 %           =   0 -> x-axis to north
 %           = +90 -> x-axis to east (default)
@@ -16,7 +16,7 @@ function [data] = crg_wgs84_setend(data, dref)
 %
 %   Examples:
 %   [data] = crg_wgs84_setend(data)
-%   sets missing WGS84 position with x-axis east orientation of beg->end
+%   Sets missing WGS84 position with x-axis east orientation of beg->end
 %
 %   See also CRG_INTRO.
 
@@ -39,7 +39,7 @@ function [data] = crg_wgs84_setend(data, dref)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -48,28 +48,28 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if nargin < 2
     dref = 90;
 end
 
-%% simplyfy data access
+%% simplify data access
 
 xbeg = data.head.xbeg;
 ybeg = data.head.ybeg;
 xend = data.head.xend;
 yend = data.head.yend;
 
-%% check if WGS84 end is available, evaluate
+%% check if WGS-84 end is available, evaluate
 
 if isfield(data.head, 'eend') % start and end are both defined
     error('CRG:wgs84Error', 'WGS84 end coordinate already set')
 elseif isfield(data.head, 'ebeg') % only start is defined
     wgs1 = [data.head.nbeg data.head.ebeg];
 
-    pref = atan2(yend-ybeg, xend-xbeg); % beg->end direction in xy
-    dbeg = dref*pi/180 - pref; % beg->end direction in WGS84
+    pref = atan2(yend-ybeg, xend-xbeg); % beg->end direction in x/y-coordinates
+    dbeg = dref*pi/180 - pref; % beg->end direction in WGS-84 coordinates
 
     dist = sqrt((xend-xbeg)^2 + (yend-ybeg)^2);
 

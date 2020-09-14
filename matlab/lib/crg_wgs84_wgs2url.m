@@ -1,23 +1,23 @@
 function [url] = crg_wgs84_wgs2url(wgs, opts)
-%CRG_WGS84_WGS2URL CRG generate url string to show wgs info
-%   [URL] = CRG_WGS84_WGS2URL(WGS, OPTS) generates url string
-%   to show WGS84 coordinates.
+%CRG_WGS84_WGS2URL Generate URL to show WGS-84 information on Google Maps
+%   [URL] = CRG_WGS84_WGS2URL(WGS, OPTS) generates a URL
+%   for showing WGS-84 coordinates using Google Maps.
 %
 %   Inputs:
-%   WGS     (np, 2) arrays of latitude/longitude (north/east) wgs84
+%   WGS     (np, 2) arrays of latitude/longitude (north/east) WGS-84
 %           coordinate pairs (in degrees)
 %   OPTS    stuct for method options (optional, no default)
 %   .label  sets label comment text (default: 'OpenCRG road mark')
 %
 %   Outputs:
-%   URL     url string (for np=1) or struct of strings (for np>1)
+%   URL     URL string (for np=1) or struct of strings (for np>1)
 %
 %   Examples:
 %   wgs = [51.477811,-0.001475]  % Greenwich Prime Meridian
 %                                % (Airy's Transit Circle)
 %   url = crg_wgs84_wgs2url(wgs) % generate url sting
-%   web(url, '-browser')         % show url in default browser
-%   generate url string to show wgs info in
+%   web(url, '-browser')         % show URL in default browser
+%   Generate URL to show WGS-84 info using Google Maps
 %
 %   See also CRG_INTRO.
 
@@ -40,7 +40,7 @@ function [url] = crg_wgs84_wgs2url(wgs, opts)
 %
 % *****************************************************************
 
-%% handle optional args
+%% handle optional arguments
 
 if nargin < 2
     opts = struct;
@@ -53,7 +53,7 @@ else
 end
 label = strrep(label, ' ', '+'); % replace blanks by '+' for url string
 
-%% generate url string
+%% generate URL string
 
 np = size(wgs, 1);
 

@@ -1,5 +1,5 @@
 function [pz, data] = crg_eval_xy2z(data, pxy)
-%CRG__EVAL_XY2Z CRG evaluate z at position xy.
+%CRG__EVAL_XY2Z Evaluate z at x/y-position.
 %   [PZ, DATA] = CRG_EVAL_XY2Z(DATA, PXY) evaluates the z-values at
 %   the given x/y-positions. This function combines the calls of
 %   CRG_EVAL_XY2UV and CRG_EVAL_UV2Z.

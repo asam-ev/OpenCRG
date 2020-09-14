@@ -1,5 +1,5 @@
 function [pllh, data] = crg_eval_xyz2llh(data, pxyz)
-%CRG_EVAL_XYZ2LLH CRG tranform point in xyz to llh.
+%CRG_EVAL_XYZ2LLH Transform point in xyz to llh.
 %   [PLLH, DATA] = CRG_EVAL_XYZ2LLH(DATA, PXYZ) transforms points given in
 %   xyz-coordinates to llh-coordinates.
 %
@@ -37,7 +37,7 @@ function [pllh, data] = crg_eval_xyz2llh(data, pxyz)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);

@@ -1,6 +1,6 @@
 function [data] = crg_perform2surface(data, uv_surf, oper)
-% CRG_PERFORM2SURFACE synthetical surface generation.
-%   [DATA] = CRG_PERFORM2SURFACE(DATA,UV_SURF,OPER) checks CRG data
+% CRG_PERFORM2SURFACE Generate synthetical surface.
+%   [DATA] = CRG_PERFORM2SURFACE(DATA,UV_SURF,OPER) checks OpenCRG data
 %   and perform it to surface data
 %
 %   Inputs:

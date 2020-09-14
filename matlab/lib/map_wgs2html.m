@@ -1,5 +1,5 @@
 function [file] = map_wgs2html(llh, file, opts)
-% MAP_WGS2HTML Generate HTML file to show WGS84 data in browser
+% MAP_WGS2HTML Generate HTML file to visualize WGS-84 data in a map.
 %   [FILE] = MAP_WGS2HTML(LLH, FILE, OPTS) generates a HTML file to display
 %   WGS 84 positions as a track in a web-based map using OpenLayers.
 %
