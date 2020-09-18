@@ -3,15 +3,15 @@
 The optional _options_ section defines values for options. Options influence the evaluation of OpenCRG data. They do not modify the road data itself.
 
 //TODO think again, how to make this paragraph more understandable.
-A creator of an OpenCRG file must not rely on applications evaluating the data with options set to the values specified in the OpenCRG file. Applications shall define default values for options themselves. An application may, however, use options provided in an OpenCRG file to override these default values. A creator of an OpenCRG file may thus use the _options_ section to express the intended option settings.
+A creator of an OpenCRG file must not rely on applications evaluating the data with options set to the values specified in the OpenCRG file. Applications shall define default values for options. Applications may use options provided in an OpenCRG file to override these default values. A creator of an OpenCRG file may thus use the _options_ section to express the intended option settings.
 
-An OpenCRG file may specify options without having a section containing actual road data. Such a file may be referenced in another OpenCRG file, which contains the actual data, and be used as a control file.
+An OpenCRG file may specify options without having a section containing road data. Such a file may be referenced in another OpenCRG file, which contains the road data, and be used as a control file.
 
-Border mode options and border offset options influence the returned z-values when the u/v-coordinates in a query exceed the defined road in the respective direction. These options may be used to mark borders, provide fallback values or to extend the data beyond the defined area.
+Border mode options and border offset options influence the returned z-values when the u/v-coordinates in a query exceed the defined road in the respective direction. These options may be used to mark borders, provide fallback values, or to extend the data beyond the defined area.
 
-Border-smoothing options provide a linear ascend or descend of z-values along a defined range at the beginning and the end of the road. These options can be used to smooth abrupt changes in road data at the beginning or the end of the road for example, in order to reduce unwanted high-frequency input in vibration simulation.
+Border-smoothing options provide a linear ascend or descend of z-values along a defined range at the beginning and the end of the road. These options can be used to smooth abrupt changes in road data at the beginning or the end of the road, for example, in order to reduce unwanted high-frequency input in vibration simulation.
 
-When the u-coordinate exceeds the defined range, the corresponding x/y-coordinates are calculated by either extrapolating the reference line or evaluating the reference line as closed track. The reference-line-continuation option defines whether the reference line is extrapolated or treated as closed track.
+When the u-coordinate exceeds the defined range, the corresponding x/y-coordinates are calculated by either extrapolating the reference line or evaluating the reference line as closed track. The reference-line-continuation option defines whether the reference line is extrapolated or treated as closed track. A track can be closed, if the extrapolated tracks intersect at an angle of less than 60 degree.
 
 ===== Keyword
 
@@ -73,25 +73,25 @@ a| Mode for computing x/y-positions if a given u-coordinate is positioned outsid
 |-1, 0, [1;∞[ (default: -1)
 a|Number of warning messages displayed.
 
--1:: All
-0:: None
-[1;∞[:: Max. number
+-1:: All.
+0:: None.
+[1;∞[:: Max. number.
 
 |`WARN_CURV_LOCAL`
 |-1, 0, [1;∞[ (default: -1)
 a|Number of warning messages displayed: local curvature limit exceeded.
 
--1:: All
-0:: None
-[1;∞[:: Max. number
+-1:: All.
+0:: None.
+[1;∞[:: Max. number.
 
 |`WARN_CURV_GLOBAL`
 |-1, 0, [1;∞[ (default: -1)
 a|Number of warning messages displayed: global curvature limit exceeded.
 
--1:: All
-0:: None
-[1;∞[:: Max. number
+-1:: All.
+0:: None.
+[1;∞[:: Max. number.
 
 |`CHECK_EPS`
 | [1e-6; 1e-2] (default: 1e-6)

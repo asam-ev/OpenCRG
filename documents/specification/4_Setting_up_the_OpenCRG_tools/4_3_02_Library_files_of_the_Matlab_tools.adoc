@@ -1,6 +1,6 @@
-==== Library files of the Matlab tools
+==== Library files of the MATLAB tools
 
-The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and comprise the following:
+The library files of the MATLAB tools are stored in `_open-crg_/matlab/lib/` and comprise the following:
 
 .Evaluation tools
 |===
@@ -13,10 +13,10 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Transform points in llh to x/y/z.
 
 |`crg_eval_u2crv.m`
-|Evaluate curvature at reference line posititons.
+|Evaluate curvature at reference line positions.
 
 |`crg_eval_u2phi.m`
-|Evaluate heading angles at reference line posititons.
+|Evaluate heading angles at reference line positions.
 
 |`crg_eval_uv2iuiv.m`
 |Evaluate index positions of grid positions.
@@ -71,7 +71,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Plot z-values as uncurved orthographic image.
 
 |`crg_plot_elgrid_xyz_map.m`
-|Plot z-values as curved 3-dimensional image.
+|Plot z-values as curved three-dimensional image.
 
 |`crg_plot_refline_curvature.m`
 |Plot curvature along the reference line.
@@ -107,7 +107,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Plot road surface as uncurved orthographic image.
 
 |`crg_plot_road_xyz_map.m`
-|Plot road surface as curved 3-dimensional image.
+|Plot road surface as curved three-dimensional image.
 
 |`crg_show.m`
 |Visualize CRG data.
@@ -143,7 +143,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Visualize the road surface on a given grid.
 
 |`crg_surf.m`
-|Plot a 3-dimensional surface.
+|Plot a three-dimensional surface.
 
 |===
 
@@ -170,7 +170,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Read IPLOS file.
 
 |`ipl_write.m`
-|Write IPLOS file
+|Write IPLOS file.
 
 |`sdf_add.m`
 |Add block to struct data file.
@@ -212,7 +212,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Check core OpenCRG data for type single.
 
 |`crg_check_wgs84.m`
-|Check OpenCRG WGS-84 data.
+|Check OpenCRG WGS 84 data.
 
 |===
 
@@ -236,7 +236,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Extract slope from OpenCRG data.
 
 |`crg_filter.m`
-|Apply filter OpenCRG data.
+|Apply filter to OpenCRG data.
 
 |`crg_flip.m`
 |Flip OpenCRG data.
@@ -254,7 +254,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Apply modifiers to data.
 
 |`crg_rerender.m`
-|Re-render OpenCRG data for a new u/v-grid
+|Re-render OpenCRG data for a new u/v-grid.
 
 |`crg_s2z.m`
 |Apply slope to OpenCRG data.
@@ -281,7 +281,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |`crg_gen_ppxy2phi.m`
 |Generate reference line heading from polynomial.
 
-|`crg_gen_pxy2ppxy
+|`crg_gen_pxy2ppxy.m`
 |Generates smooth polynomial from reference points.
 
 |`crg_perform2surface.m`
@@ -297,22 +297,22 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Generate HTML file to visualize OpenCRG data in a map.
 
 |`crg_wgs84_dist.m`
-|Evaluate distance and bearing between WGS-84 positions.
+|Evaluate distance and bearing between WGS 84 positions.
 
 |`crg_wgs84_invdist.m`
-|Calculate WGS-84 positions by distance and bearing.
+|Calculate WGS 84 positions by distance and bearing.
 
 |`crg_wgs84_setend.m`
-|Set WGS-84 end coordinate.
+|Set WGS 84 end coordinate.
 
 |`crg_wgs84_wgs2url.m`
-|Generate URL to show WGS-84 information on Google Maps
+|Generate URL to show WGS 84 information on Google Maps
 
 |`crg_wgs84_wgsxy2wgs.m`
-|Transform points in x/y-coordinates to WGS-84 coordinates using two references.
+|Transform points in x/y-coordinates to WGS 84 coordinates using two references.
 
 |`crg_wgs84_xy2wgs.m`
-|Transform points in x/y-coordinates to WGS-84 coordinates.
+|Transform points in x/y-coordinates to WGS 84 coordinates.
 
 |`map_check.m`
 |Check and update DAT struct.
@@ -339,7 +339,7 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Forward map projection.
 
 |`map_geod2pmap_tm.m`
-|Forward transverse mercator projection.
+|Forward transverse Mercator projection.
 
 |`map_global2plocal.m`
 |Forward projection: global to projected local.
@@ -351,15 +351,15 @@ The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and
 |Backward projection: projected local to global.
 
 |`map_pmap2geod_tm.m`
-|Backward projection: transverse mercator.
+|Backward projection: transverse Mercator.
 
 |`map_ptm_north2initiallat.m`
-|Transverse mercator utility function.
+|Transverse Mercator utility function.
 
 |`map_ptm_phi2marc.m`
-|Transverse mercator utility function: meridional arc.
+|Transverse Mercator utility function: meridional arc.
 
 |`map_wgs2html.m`
-|Generate HTML file to visualize WGS-84 data in a map.
+|Generate HTML file to visualize WGS 84 data in a map.
 
 |===

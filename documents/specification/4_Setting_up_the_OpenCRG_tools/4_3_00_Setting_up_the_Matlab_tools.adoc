@@ -1,4 +1,4 @@
-=== Setting up the Matlab tools
+=== Setting up the MATLAB tools
 
 include::4_3_01_Contents_of_the_Matlab_tools.adoc[]
 

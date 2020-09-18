@@ -2,13 +2,13 @@
 
 Modifiers provide a way to alter OpenCRG data without changing the actual data in the file. 
 
-With the C-API, modifiers are set via function calls. For all modifiers and values, symbolic constants are defined in `_opencrg_/c-api/baselib/inc/crgBaseLib.h`. These constants should be used instead of their integer equivalents to improve readability of the code.
+With the C-API, you use function calls to set modifiers. For all modifiers and values, symbolic constants are defined in `_opencrg_/c-api/baselib/inc/crgBaseLib.h`. These constants should be used instead of their integer equivalents to improve readability of the code.
 
-With Matlab, modifiers are set by directly accessing the `mods` field of a data set using dot notation.
+With MATLAB, you set modifiers by directly accessing the `mods` field of a data set using dot notation.
 
 [NOTE]
 ====
-Modifiers, whether defined in an OpenCRG file or via function calls, are not applied automatically. They must be applied explicitly via a separate function call.
+Modifiers, whether defined in an OpenCRG file or via function calls, are not applied automatically. They must be applied explicitly with a separate function call.
 ====
 
 ==== Prerequisites
@@ -30,7 +30,7 @@ Get the current value of the integer modifier `modID` of the data set `dataSetId
 Print the current modifier settings of the data set `dataSetId`.
 
 `int crgDataSetModifierGetDouble( int dataSetId, unsigned int modId, double* modValue )`::
-Get the current value of the double modifier `modID`of the data set `dataSetId` and store it in `modValue`.
+Get the current value of the double modifier `modID` of the data set `dataSetId` and store it in `modValue`.
 
 `int crgDataSetModifierRemove( int dataSetId, unsigned int modId )`::
 Remove the modifier `modID` from the data set `dataSetId`.
@@ -44,10 +44,10 @@ Set all modifiers of the data set `dataSetId` to their default values.
 `void crgDataSetModifiersApply( int dataSetId )`::
 Apply set modifiers to the data set `dataSetId`. If no modifiers are defined, the default modifier values are applied.
 
-//TODO: Does applying modifiers remove them the applied modifier from the data set like with the Matlab API?
+//TODO: Does applying modifiers remove them the applied modifier from the data set like with the MATLAB API?
 //REVIEW: Max wird testen, ob Modifier nach Anwendung verschwinden.
 
-==== Corresponding Matlab functions
+==== Corresponding MATLAB functions
 
 `[data] = crg_mods(data)`::
 Apply modifiers in `data.mods` to the OpenCRG data in `data`. Afterwards, remove all modifiers from `data.mods`. If `data.mods` does not exist, default modifier values are applied. If `data.mods` is empty, no modifiers are applied.
@@ -77,9 +77,9 @@ crgDataSetModifierSetDouble( dataSetId, dCrgModRefLineOffsetZ,   10.0 );
 crgDataSetModifiersApply( dataSetId );
 ----
 
-===== Matlab examples
+===== MATLAB examples
 
-The following example shows how to set and apply modifiers using the Matlab tools.
+The following example shows how to set and apply modifiers using the MATLAB tools.
 
 ----
 % load CRG file 

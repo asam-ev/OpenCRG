@@ -1,6 +1,6 @@
 ==== Getting help
 
-The OpenCRG Matlab files contain comments formatted for help display. The help comments contain the following information:
+The OpenCRG MATLAB files contain comments formatted for help display. The help comments contain the following information:
 
 * Short description of the function
 * Input parameters and return values
@@ -9,12 +9,12 @@ The OpenCRG Matlab files contain comments formatted for help display. The help c
 
 ===== Prerequisites
 
-You have initialized the Matlab tools.
+You have initialized the MATLAB tools.
 
 ===== Steps
 
-. In Matlab, switch to the Command Window.
-. To get an overview of the Matlab implementation, run `crg_intro`.
+. In MATLAB, switch to the Command Window.
+. To get an overview of the MATLAB implementation, run `crg_intro`.
 . To get help for a specific function, run `help _function_`.
 
 ===== Result
@@ -23,4 +23,4 @@ The help text is displayed in the Command Window.
 
 ===== Related topics
 
-* <<Initializing the Matlab tools>>
+* <<Initializing the MATLAB tools>>

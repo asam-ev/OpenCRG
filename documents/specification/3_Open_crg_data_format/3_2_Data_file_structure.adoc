@@ -7,7 +7,7 @@ An OpenCRG file consists of several data sections that represent different aspec
 
 Each data section shall start with a line containing a `$` character followed by a keyword. Each data section shall be terminated by a new line with a `$` character as first character. The keyword at the beginning of a data section and the closing `$` character at the end of a data section may be followed by inline comments.
 
-Every OpenCRG file shall start with a header information section, describing the contents of the file. If a road data section is present, it shall be the last section in the OpenCRG file. The sequence of the other data sections is not defined. To increase readability, data sections should, however, appear in the sequence recommended in <<recommended_data_section_sequence>>.
+Every OpenCRG file shall start with a header information section, describing the contents of the file. If a road data section is present, it shall be the last section in the OpenCRG file. The sequence of the other data sections is not defined. To increase readability, data sections should appear in the sequence recommended in <<recommended_data_section_sequence>>.
 
 [[recommended_data_section_sequence]]
 .Overview of data sections in recommended sequence.
@@ -51,7 +51,7 @@ Every OpenCRG file shall start with a header information section, describing the
 
 |Road data
 |none
-|Actual road surface data in plain-text or binary format.
+|Actual road surface data in plain text or binary format.
 |Optional
 
 |====

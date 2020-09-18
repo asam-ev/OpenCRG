@@ -2,7 +2,7 @@
 
 The optional _file reference_ section contains references to other OpenCRG files. 
 
-The _file reference_ section of an OpenCRG file may reference multiple files. This can be used to separate options and modifiers in control files from files containing actual road data. By referencing both a control file and a road data file, multiple combinations of options, modifiers and road data can be created without copying the contents.
+The _file reference_ section of an OpenCRG file may reference multiple files. This can be used to separate options and modifiers in control files from files containing actual road data. By referencing both a control file and a road data file, multiple combinations of options, modifiers, and road data can be created without copying the contents.
 
 If resolving references results in conflicting definitions, the last definition takes precedence.
 
@@ -19,45 +19,45 @@ File references use the following symbols for describing paths.
 |===
 |Symbol |Function
 
-|`/`| Path delimiter
-|`.`| Current directory
-|`..`| Superordinate directory
-|`$`| Reference to environment variable
+|`/`| Path delimiter.
+|`.`| Current directory.
+|`..`| Superordinate directory.
+|`$`| Reference to environment variable.
 |===
 
 
 ===== Rules
 
 *   An OpenCRG file may contain a _file reference_ section.
-*   A _file reference_ section may contain multiple file references
+*   A _file reference_ section may contain multiple file references.
 *   File references may use absolute or relative paths.
 *   File references may use environment variables.
-*   A path may be split into several lines. These lines shall not contain leading or trailing spaces, tabs, asterisks and exclamation marks.
+*   A path may be split into several lines. These lines shall not contain leading or trailing spaces, tabs, asterisks, and exclamation marks.
 
 ===== Examples
 
-.File reference using an absolute path
+.File reference using an absolute path.
 ----
 /home/name/crg-files/handmade_straight.crg
 ----
 
-.File reference using an absolute path split into 2 lines
+.File reference using an absolute path split into 2 lines.
 ----
 /home/name/crg-files/hand
 made_straight.crg
 ----
 
-.File reference using an relative path
+.File reference using a relative path.
 ----
 ./handmade_straight.crg
 ----
 
-.File reference using an environment variable ($crgpath)
+.File reference using an environment variable ($crgpath).
 ----
 $crgpath/handmade_straight.crg
 ----
 
-.File reference section containing two file references
+.File reference section containing two file references.
 ----
 $ROAD_CRG_FILE
 /home/name/crg-files/control_file.crg

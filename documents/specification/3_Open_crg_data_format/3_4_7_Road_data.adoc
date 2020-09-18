@@ -4,7 +4,7 @@
 
 The _road data_ section contains the actual road surface data. Road surface data is not limited to road elevation, although this is the primary use case. For example, an OpenCRG file may contain friction coefficients or color values.
 
-Road data is stored as low-precision array as defined in the _data definition_ section. Columns are longitudinal cuts parallel to the reference line. Rows are lateral cuts orthogonal to the reference line. Additional columns may contain reference line data, such as heading angle, banking or slope.
+Road data is stored as low-precision array as defined in the _data definition_ section. Columns are longitudinal cuts parallel to the reference line. Rows are lateral cuts orthogonal to the reference line. Additional columns may contain reference line data, for example, heading angle, banking or slope.
 
 A single record shall contain a maximum of 80 byte. If the defined data channels exceed this limit, the respective data row shall be wrapped to the next record. In plain-text format, each data row shall start in a new record. In binary format, records are successively filled up to 80 byte. The last record is padded with NaNs.
 
@@ -24,7 +24,7 @@ In binary formats, numbers are represented as follows:
 
 ===== Keyword
 
-none
+None.
 
 ===== Rules
 

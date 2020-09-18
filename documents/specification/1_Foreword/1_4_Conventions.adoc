@@ -2,7 +2,7 @@
 :imagesdir: ../images/
 :stem: latexmath
 
-==== Naming Conventions 
+==== Naming conventions 
 In this document, the following conventions apply:
 
 ``data types`` 	are given according to IEEE standards.
@@ -14,11 +14,11 @@ Unless stated otherwise, all numeric values within this specification are in SI 
 *	position/distance	in [m]
 *	angles	in [rad]
 
-Geographic positions are stated in the unit defined by the spatial coordinate system, for example, in accordance with WGS 84 – EPSG 4326 [1].
+Geographic positions are stated in the unit defined by the spatial coordinate system, for example, in accordance with WGS 84 – EPSG 4326.
 
 ==== Modal verbs
 
-To ensure compliance with the OpenCRG standard, users need to be able to distinguish between mandatory requirements, recommendations, permissions, as well as possibilities and capabilities.
+To ensure compliance with the OpenCRG standard, users must be able to distinguish between mandatory requirements, recommendations, permissions, as well as possibilities, capabilities, obligations and necessities.
 
 The following rules for using modal verbs apply:
 

@@ -1,6 +1,6 @@
 ==== Demo scripts
 
-The demo scripts for the Matlab tools are located in `_open-crg_/matlab/demo/` and comprise the following:
+The demo scripts for the MATLAB tools are located in `_open-crg_/matlab/demo/` and comprise the following:
 
 `crg_demo.m`:: Create a set of demo files. 
 `crg_demo_belgian_block.m`:: Load and visualize `../crg-bin/belgian_block.crg`.
@@ -19,5 +19,5 @@ a complete road.
 `crg_demo_gen_surface.m`:: Generate a OpenCRG file for a given reference line from measurement data.
 `crg_demo_gen_syntheticStraight.m`:: Generate a synthetic OpenCRG file representing a straight road.
 `crg_demo_gen_target.m`:: Generate a surface OpenCRG file.
-`crg_demo_map_transformation.m`:: Perform geodetic transformations (e.g UTM -> WGS84).
+`crg_demo_map_transformation.m`:: Perform geodetic transformations (e.g UTM -> WGS 84).
 `crg_demo_scale_data.m`:: Scale OpenCRG data.

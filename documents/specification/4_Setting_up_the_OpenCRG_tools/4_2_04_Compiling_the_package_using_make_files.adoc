@@ -1,6 +1,6 @@
-==== Compiling the C-API using _make_ files
+==== Compiling the C-API using Makefiles
 
-Using the provided make files is the most convenient way of compiling the C-API.
+Using the provided Makefiles is the most convenient way of compiling the C-API.
 
 ===== Prerequisites
 

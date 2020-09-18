@@ -6,10 +6,10 @@ The C-API comprises methods for the following tasks:
  * Setting modifiers and options.
  * Evaluating OpenCRG data.
 
-The C-API is especially suitable for applications where fast evaluation is important. Typical use cases include driving simulators or test rigs.
+The C-API is especially suitable for applications for which fast evaluation is important. Typical use cases include driving simulators or test rigs.
 
 A _data set_ is the instance of data read from an OpenCRG file into memory. A data set is identified by a unique integer ID. This ID is returned by the data loader method. A data set stores the actual road data as well as modifiers and options defined in the file.
 
-After reading the file, the modifiers of the _data set_ may be replaced, deleted or extended via API calls referring to that data set. Once the modifiers are defined, they must be applied via an API call.
+After the file has been read, the modifiers of the _data set_ may be replaced, deleted or extended via API calls referring to that data set. Once the modifiers are defined, they must be applied via an API call.
 
-A _contact point_ provides access to a data set.  In simulations, contact points can be used to model the touching point between a tire and the road surface. A contact point inherits all options from the corresponding data set. The options of a contact point may be replaced, deleted or extended via API calls referring to that contact point. In contrast to modifiers, options are applied implicitly whenever an evaluation is performed. 
+A _contact point_ provides access to a data set. In simulations, contact points can be used to model the touching point between a tire and the road surface. A contact point inherits all options from the corresponding data set. The options of a contact point may be replaced, deleted or extended via API calls referring to that contact point. In contrast to modifiers, options are applied implicitly whenever an evaluation is performed. 

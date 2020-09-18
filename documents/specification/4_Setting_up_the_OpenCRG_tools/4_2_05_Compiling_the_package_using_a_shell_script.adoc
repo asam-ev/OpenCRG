@@ -2,7 +2,7 @@
 
 Using a shell script for compiling is appropriate, if you cannot compile the software package using the provided make files.
 
-In contrast to using the make files, no library containing the object files of the basic library is generated.
+In contrast to using the Makefiles, no library containing the object files of the basic library is generated.
 
 
 ===== Prerequisites

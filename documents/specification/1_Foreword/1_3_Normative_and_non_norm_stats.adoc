@@ -6,5 +6,5 @@ This specification uses a standard information structure. The following rules ap
 *   Keywords of OpenCRG data structures in "Keyword" sections are normative.
 *   Content descriptions of OpenCRG data structures in "Contents" sections are normative.
 *   Rules for OpenCRG data structures in "Rules" sections are normative.
-*   The OpenCRG tool-suite and its use are non-normative.
+*   The OpenCRG toolsuite and its use are non-normative.
 *   Examples and use case descriptions are non-normative.
