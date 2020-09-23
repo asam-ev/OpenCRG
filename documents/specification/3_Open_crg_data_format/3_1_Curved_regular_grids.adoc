@@ -15,6 +15,6 @@ A curved regular grid may be placed in an inertial x/y-coordinate system by prov
 
 // TODO add an image
 [[image-banking_slope]]
-image::banking_slope.png[banking_slope, title="Schematic drawing of banking and slope"]
+image::banking_slope.png[banking_slope, title="Schematic drawing of banking and slope."]
 
 The reference line may be complemented by slope or banking (see <<image-banking_slope>>).
