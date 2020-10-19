@@ -66,6 +66,9 @@
 #define dCrgCpOptionCheckEps            15       /* [double],  expected min. accuracy                                                     [m] */
 #define dCrgCpOptionCheckInc            16       /* [double],  expected min. increment                                                    [m] */
 #define dCrgCpOptionCheckTol            17       /* [double],  expected abs. tolerance                                                    [m] */
+#define dCrgCpOptionWarnCurvLocal		18		 /* [integer], local curvature test															  */
+#define dCrgCpOptionWarnCurvGlobal		19		 /* [integer], global curvature test														  */
+
 
 /**
 * Mode definitions for option: dCrgCpOptionBorderModeU

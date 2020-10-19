@@ -1,4 +1,4 @@
-#!/bin/csh
+#!/bin/bash
 #    Copyright 2008-2015 VIRES Simulationstechnologie GmbH
 #
 #    Licensed under the Apache License, Version 2.0 (the "License");

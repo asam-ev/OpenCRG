@@ -12,6 +12,7 @@ default:
 	@cd EvalZ; ${MAKE_CMD} ${MAKECMDGOALS}
 	@cd Simple; ${MAKE_CMD} ${MAKECMDGOALS}
 	@cd EvalOptions; ${MAKE_CMD} ${MAKECMDGOALS}
+	@cd Curvature; ${MAKE_CMD} ${MAKECMDGOALS}
 
 debug: default
 
