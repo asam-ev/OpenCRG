@@ -1,4 +1,27 @@
 /* ===================================================
+ *  main program for CRG test program calculating 
+ *  z values from a registered array of x/y co-ordinates  
+ * ---------------------------------------------------
+ * 
+ * ASAM OpenCRG C API
+ * 
+ * OpenCRG version:           1.2.0
+ * 
+ * package:               test/MemTest
+ * file name:             main.c
+ * author:                ASAM e.V.
+ * 
+ * 
+ * C by ASAM e.V., 2020
+ * Any use is limited to the scope described in the license terms.
+ * The license terms can be viewed at www.asam.net/license
+ * 
+ * More Information on ASAM OpenCRG can be found here:
+ * https://www.asam.net/standards/detail/opencrg/
+ *
+ */
+
+/* ===================================================
  *  file:       main.c
  * ---------------------------------------------------
  *  purpose:    main program for CRG test program

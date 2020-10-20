@@ -1,27 +1,23 @@
 /* ===================================================
- *  file:       crgBaseLib.h
+ *  interface definitions for the OpenCRG base library    
  * ---------------------------------------------------
- *  purpose:	interface definitions for the 
- *              OpenCRG base library
- * ---------------------------------------------------
- *  based on routines by Dr. Jochen Rauh, Daimler AG
- * ---------------------------------------------------
- *  first edit:	20.10.2008 by M. Dupuis @ VIRES GmbH
- *  last mod.:  03.04.2015 by H. Helmich @ VIRES GmbH
- * ===================================================
-    Copyright 2015 VIRES Simulationstechnologie GmbH
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+ * 
+ * ASAM OpenCRG C API
+ * 
+ * OpenCRG version:           1.2.0
+ * 
+ * package:               baselib
+ * file name:             crgBaseLib.h
+ * author:                ASAM e.V.
+ * 
+ * 
+ * C by ASAM e.V., 2020
+ * Any use is limited to the scope described in the license terms.
+ * The license terms can be viewed at www.asam.net/license
+ * 
+ * More Information on ASAM OpenCRG can be found here:
+ * https://www.asam.net/standards/detail/opencrg/
+ *
  */
 #ifndef _CRG_BASELIB_H
 #define _CRG_BASELIB_H
@@ -66,6 +62,9 @@
 #define dCrgCpOptionCheckEps            15       /* [double],  expected min. accuracy                                                     [m] */
 #define dCrgCpOptionCheckInc            16       /* [double],  expected min. increment                                                    [m] */
 #define dCrgCpOptionCheckTol            17       /* [double],  expected abs. tolerance                                                    [m] */
+#define dCrgCpOptionWarnCurvLocal		18		 /* [integer], local curvature test															  */
+#define dCrgCpOptionWarnCurvGlobal		19		 /* [integer], global curvature test														  */
+
 
 /**
 * Mode definitions for option: dCrgCpOptionBorderModeU

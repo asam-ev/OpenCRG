@@ -1,18 +1,14 @@
 #
 #    Copyright 2005-2017 OpenCRG - Daimler AG - Jochen Rauh
-#    Copyright 2017 VIRES Simulationstechnologie GmbH
+#    Copyright 2017-2020 VIRES Simulationstechnologie GmbH
+#	 Copyright 2020 ASAM e.V.
 #
-#    Licensed under the Apache License, Version 2.0 (the "License");
-#    you may not use this file except in compliance with the License.
-#    You may obtain a copy of the License at
+# 	 C by ASAM e.V., 2020
+# 	 Any use is limited to the scope described in the license terms.
+# 	 The license terms can be viewed at www.asam.net/license
 #
-#        http://www.apache.org/licenses/LICENSE-2.0
-#
-#    Unless required by applicable law or agreed to in writing, software
-#    distributed under the License is distributed on an "AS IS" BASIS,
-#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#    See the License for the specific language governing permissions and
-#    limitations under the License.
+# 	 More Information on ASAM OpenCRG can be found here:
+# 	 https://www.asam.net/standards/detail/opencrg/
 #
 
 
@@ -32,8 +28,8 @@ contributions to our common intitiative.
 
 Version Info
 --------------------------------------------------------------
-This readme file was updated on March 30, 2018 by
-VIRES Simulationstechnologie GmbH 
+This readme file was updated on October 14, 2020 by
+virtual city systems GmbH on behave of ASAM e.V.
 
 
 Overview
@@ -76,6 +72,22 @@ Directory structure:
 Release Notes:
 --------------------------------------------------------------
 
+October 14, 2020 Release 1.2
+-----------------------------
+Adaption to ASAM Standard
+- C-API:
+  make files fixes
+  global and local curvature check implementation
+- MATLAB-API:
+  crg_demo_map_transformation - new demo on transformation
+  crg_test_map_pro - new test on transformation
+  crg_check_curvature - global and local curvature check implementation
+  crg_test_curvature - test on global and local curvature check
+  map_wgs2html - update to OpenLAYERS
+  crg_wgs84_crg2html - update to ASAM Style
+
+July 26, 2017 Release 1.1.1
+-----------------------------
 March 30, 2018 Release 1.1.2
 -----------------------------
 - C-API:

@@ -18,24 +18,10 @@ $CT
 %
 % data provided by DaimlerChrysler, Forschung Fahrzeugsystemdynamik (REI/AR), 2005.
 % *****************************************************************
-.
-Literatur:
-==========
-Schittenhelm, H., Ammon, D.:
-Auf dem Weg zu lebensdauer- und komfortrelevanten 3-dimensionalen
-Fahrstrecken in der Fahrwerkssimulation. Tagungsband VDI Reifen,
-Fahrwerk, Fahrbahn. Hannover, Oktober 2001, S. 447-464.
-VDI, Düsseldorf, 2001.
-.
-Eichhorn, A., Möhlenbrink, W., Schittenhelm, H.:
-Project 'Bumpy Road' - the durabilitysimulation on virtual car
-models, Procdeedings of 5.th Int. Conference on Optical
-3D-Measurement Techniques, Wien, Oktober 2001.
-.
-Rauh, J.:
-Road Profiles for Simulation - VSA Data Analysis.
-Internal Presentation, DaimlerChrysler, Stuttgart, 2005.
-* modified by crg_cut_iuiv at 2009-10-21 14:58:29
+$
+$ROAD_CRG_OPTS
+warn_curv_local		 =  0.0000000000000000e+000
+warn_curv_global	 =  1.0000000000000000e+000
 $
 $ROAD_CRG
 reference_line_start_u   =  7.3000000000000000e+002

@@ -1,27 +1,23 @@
 /* ===================================================
- *  file:       crgLoader.c
+ *  loads a CRG file and pre-processes the data      
  * ---------------------------------------------------
- *  purpose:	loads a CRG file and pre-processes the
- *              data
- * ---------------------------------------------------
- *  based on routines by Dr. Jochen Rauh, Daimler AG
- * ---------------------------------------------------
- *  first edit:	31.10.2008 by M. Dupuis @ VIRES GmbH
- *  last mod.:  31.10.2014 by M. Dupuis @ VIRES GmbH
- * ===================================================
-    Copyright 2014 VIRES Simulationstechnologie GmbH
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+ * 
+ * ASAM OpenCRG C API
+ * 
+ * OpenCRG version:           1.2.0
+ * 
+ * package:               baselib
+ * file name:             crgLoader.c 
+ * author:                ASAM e.V.
+ * 
+ * 
+ * C by ASAM e.V., 2020
+ * Any use is limited to the scope described in the license terms.
+ * The license terms can be viewed at www.asam.net/license
+ * 
+ * More Information on ASAM OpenCRG can be found here:
+ * https://www.asam.net/standards/detail/opencrg/
+ *
  */
 /* ====== INCLUSIONS ====== */
 #include "crgBaseLibPrivate.h"
@@ -80,9 +76,7 @@
 #ifdef _WIN64
 #    define stat _stat64
 #elif _WIN32
-    // Nothing to do, default stat uses 32 bit on Windows
 #elif __linux__
-    // Nothing to do, Linux automatically switches between 32-bit and 64-bit version of stat depending on the architecture
 #endif
 
 /* ====== TYPE DEFINITIONS ====== */
@@ -456,8 +450,8 @@ static CrgReaderCallbackStruct	sLoaderCallbacksOpts[] =
    { "refline_search_u",     decodeHdrOpMod, dCrgCpOptionRefLineSearchU     },
    { "refline_search_ufrac", decodeHdrOpMod, dCrgCpOptionRefLineSearchUFrac },
    { "warn_msgs",            decodeHdrOpMod, dCrgCpOptionWarnMsgs           },
-   { "warn_curv_local",      decodeHdrOpMod, dOpcodeNone                    },
-   { "warn_curv_global",     decodeHdrOpMod, dOpcodeNone                    },
+   { "warn_curv_local",      decodeHdrOpMod, dCrgCpOptionWarnCurvLocal      },
+   { "warn_curv_global",     decodeHdrOpMod, dCrgCpOptionWarnCurvGlobal     },
    { "log_msgs",             decodeHdrOpMod, dOpcodeNone                    },
    { "log_eval",             decodeHdrOpMod, dOpcodeNone                    },
    { "log_eval_freq",        decodeHdrOpMod, dOpcodeNone                    },
@@ -826,7 +820,36 @@ decodeHdrOpMod( CrgDataStruct* crgData, const char* buffer, int opcode )
                 }
             }
             break;
+
             
+        case dCrgCpOptionWarnCurvGlobal:
+        	if ( !optionEnabled )
+        		break;
+        	{
+        		int iValue = atoi( ++bufPtr );
+        		switch ( iValue )
+        		{
+        		case 1:
+        			crgOptionSetInt( &(crgData->options ), opcode, dCrgCpOptionWarnCurvGlobal);
+        			break;
+        		}
+        	}
+        	break;
+
+        case dCrgCpOptionWarnCurvLocal:
+        	if ( !optionEnabled )
+        		break;
+        	{
+        		int iValue = atoi( ++bufPtr );
+        		switch ( iValue )
+        		{
+        		case 1:
+        			crgOptionSetInt( &(crgData->options ), opcode, dCrgCpOptionWarnCurvLocal);
+        			break;
+        		}
+        	}
+        	break;
+
         case dCrgCpOptionBorderOffsetU:
         case dCrgCpOptionBorderOffsetV:
         case dCrgCpOptionSmoothUBegin:
@@ -2438,10 +2461,108 @@ crgLoaderPrepareData( CrgDataStruct* crgData )
     crgMsgPrint( dCrgMsgLevelDebug, "crgLoaderPrepareData: crgCalcUtilityData() done.\n" );
 }
 
+int
+crgLocalCurvature(CrgDataStruct* crgData){
+
+    double dx0;
+    double dy0;
+    double dx1;
+    double dy1;
+    double val;
+    double curv = 0.0;
+    int    cpId;
+    double z;
+	size_t i;
+	double uStart = crgData->channelU.info.first;
+
+	val = 1.0 / pow( crgData->channelU.info.inc, 3.0 );
+
+	 if ( ( cpId = crgContactPointCreate( crgData->admin.id ) ) < 0 )
+	 {
+		 crgMsgPrint( dCrgMsgLevelFatal, "main: could not create contact point.\n" );
+		 return 0;
+	 }
+
+	  for ( i = 1; i < crgData->channelX.info.size - 1; i++ )
+	  {
+	        dx0  = crgData->channelX.data[i]   - crgData->channelX.data[i-1];
+	        dx1  = crgData->channelX.data[i+1] - crgData->channelX.data[i];
+	        dy0  = crgData->channelY.data[i]   - crgData->channelY.data[i-1];
+	        dy1  = crgData->channelY.data[i+1] - crgData->channelY.data[i];
+	        curv = ( dx0 * dy1 - dy0 * dx1 ) * val;
+	        if ( crgEvaluv2z( cpId, uStart+i*crgData->channelU.info.inc, 1/curv, &z ) ){
+	        	if(!crgIsNan(&z)){
+	        		return 0;
+	        	}
+	        }
+	  }
+	return 1;
+}
+
+int
+crgGlobalCurvature(CrgDataStruct* crgData){
+	double vMin = crgData->channelV.info.first;
+	double vMax = crgData->channelV.info.last;
+    double dx0;
+    double dy0;
+    double dx1;
+    double dy1;
+    double cMax = 0.0;
+    double cMin = 0.0;
+    double val;
+    double curv = 0.0;
+    double rMin = 0.0;
+    double rMax = 0.0;
+	size_t i;
+
+	val = 1.0 / pow( crgData->channelU.info.inc, 3.0 );
+
+	  for ( i = 1; i < crgData->channelX.info.size - 1; i++ )
+	  {
+	        dx0  = crgData->channelX.data[i]   - crgData->channelX.data[i-1];
+	        dx1  = crgData->channelX.data[i+1] - crgData->channelX.data[i];
+	        dy0  = crgData->channelY.data[i]   - crgData->channelY.data[i-1];
+	        dy1  = crgData->channelY.data[i+1] - crgData->channelY.data[i];
+	        curv = ( dx0 * dy1 - dy0 * dx1 ) * val;
+
+	        if ( curv < cMin )
+	            cMin = curv;
+
+	        if ( curv > cMax )
+	            cMax = curv;
+	  }
+
+	  if(cMin==0.0){
+		  rMin = 0.0;
+	  } else{
+		  rMin = 1/cMin;
+	  }
+
+	  if(cMax==0.0){
+		  rMax = 0.0;
+	  } else{
+		  rMax = 1/cMax;
+	  }
+
+	if(rMax!=0.0){
+		if(vMax >= rMax){
+			return 0;
+		}
+	}
+
+	if(rMin != 0.0){
+		if(rMin >= vMin){
+			return 0;
+		}
+	}
+	return 1;
+}
 
 int
 crgCheck( int dataSetId )
 {
+	int optAsInt;
+
     CrgDataStruct *crgData = crgDataSetAccess( dataSetId );
 
     if ( !crgData )
@@ -2468,6 +2589,43 @@ crgCheck( int dataSetId )
     {
         crgMsgPrint( dCrgMsgLevelFatal, "crgCheckOpts: failed to validate modifier settings.\n" );
         return 0;
+    }
+
+
+    /* global curvature check */
+    if ( crgOptionGetInt( &crgData->options, dCrgCpOptionWarnCurvGlobal, &optAsInt )
+    		&& !( crgOptionGetInt( &crgData->options, dCrgCpOptionWarnCurvLocal, &optAsInt ) ) )
+    {
+    		if(!crgGlobalCurvature(crgData))
+    		{
+        		crgMsgPrint( dCrgMsgLevelFatal, "crgGlobalCurvature: Global curvature test failed.\n" );
+        		return 0;
+    		} else {
+    			crgMsgPrint( dCrgMsgLevelNotice, "crgGlobalCurvature: Global curvature test succeeded.\n" );
+    		}
+
+
+    }
+
+    /* local curvature check */
+    if ( crgOptionGetInt( &crgData->options, dCrgCpOptionWarnCurvLocal, &optAsInt ) )
+    {
+
+
+    		if( !crgGlobalCurvature( crgData ) )
+    		{
+    		    if(!crgLocalCurvature(crgData)){
+    		    	crgMsgPrint( dCrgMsgLevelWarn, "crgGlobalCurvature: Global curvature test failed.\n" );
+    		    	crgMsgPrint( dCrgMsgLevelWarn, "crgLocaCurvature: Local curvature test failed.\n" );
+    		    	return 0;
+    		    } else{
+    		    	crgMsgPrint( dCrgMsgLevelWarn, "crgGlobalCurvature: Global curvature test failed.\n" );
+    		    	return 0;
+    		    }
+    		} else{
+    			crgMsgPrint( dCrgMsgLevelNotice, "Global and local curvature test succeeded.\n" );
+    		}
+
     }
 
     return 1;
@@ -2558,6 +2716,7 @@ crgCheckOpts( CrgDataStruct* crgData )
             return 0;
         }
     }
+
 
     /* not implemented: warn_curv_local  */
     /* not implemented: warn_curv_global */
