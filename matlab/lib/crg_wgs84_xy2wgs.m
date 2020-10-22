@@ -1,7 +1,8 @@
 function [wgs, data] = crg_wgs84_xy2wgs(data, pxy)
-%CRG_WGS84_XY2WGS CRG transform point in xy to WGS84.
-%   [WGS, DATA] = CRG_WGS84_XY2WGS(DATA, PXY) transforms points given in xy
-%   system to WGS84 coordinates.
+%CRG_WGS84_XY2WGS Transform points in x/y-coordinates to WGS-84 coordinates.
+%   [WGS, DATA] = CRG_WGS84_XY2WGS(DATA, PXY) transforms points given in local
+%   x/y-coordinates to WGS-84 coordinates using the provided OpenCRG data for
+%   reference
 %
 %   Inputs:
 %   DATA    struct array as defined in CRG_INTRO.
@@ -37,7 +38,7 @@ function [wgs, data] = crg_wgs84_xy2wgs(data, pxy)
 %
 % *****************************************************************
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);
@@ -46,7 +47,7 @@ if ~isfield(data, 'ok')
     end
 end
 
-%% simplyfy data access
+%% simplify data access
 
 crgeps = data.opts.ceps;
 crgtol = data.opts.ctol;
@@ -70,7 +71,7 @@ if isfield(data, 'mpro') % mapping projection data is available
     return
 end
 
-%% check if WGS84 end is available, evaluate
+%% check if WGS-84 end is available, evaluate
 
 if isfield(data.head, 'eend') % start and end are both defined
     wgs1 = [data.head.nbeg data.head.ebeg];

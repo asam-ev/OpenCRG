@@ -1,5 +1,5 @@
 function [data] = crg_wrap(data)
-%CRG_WRAP Wraps heading angles to +/- pi range.
+%CRG_WRAP Wrap heading angles to +/- pi range.
 %   [DATA] = CRG_WRAP(DATA) wraps OpenCRG heading angle data in road parameters
 %   and road data to a +/- pi range.
 %

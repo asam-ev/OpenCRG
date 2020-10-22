@@ -1,5 +1,5 @@
 function [ pindex, pij] = crg_peakfinder( data, iu, iv, th, ra )
-% CRG_PEAKFINDER detects peaks at a CRG file.
+% CRG_PEAKFINDER Detect peaks in a OpenCRG data.
 %   [PINDEX, PIJ] = CRG_PEAKFINDER(DATA, IU, IV, TH, RA) returns
 %   positons of peaks.
 %
@@ -54,7 +54,7 @@ if nargin < 2 || isempty(iv), iv = [1 nv]; end
 if length(iu) < 2, iu = [iu, nu]; end
 if length(iv) < 2, iv = [iv, nv]; end
 
-%% check/complement optional arguments
+%% check and complement optional arguments
 
 if iu(1)<1 || iu(1) >= iu(2) || iu(2) > nu
     error('CRG:peakFinderError', 'illegal IU index values iu=[%d %d] with nu=%d', iu(1), iu(2), nu);
@@ -64,7 +64,7 @@ if iv(1)<1 || iv(1) >= iv(2) || iv(2) > nv
     error('CRG:peakFinderError', 'illegal IV index values iv=[%d %d] with nv=%d', iv(1), iv(2), nv);
 end
 
-%% check if already succesfully checked
+%% check if already successfully checked
 
 if ~isfield(data, 'ok')
     data = crg_check(data);

@@ -1,5 +1,5 @@
 function [v] = crg_check_uv_descript(uv_descript, posmode)
-% CRG_CHECK_UV_DESCRIPT Check uv_descript and create a v-profile
+% CRG_CHECK_UV_DESCRIPT Check uv_descript and create a v-profile.
 %   CRG_CHECK_UV_DESCRIPT(UV_DESCRIPT, POSMODE) checks whether the uv-description (see below)
 %   is in a valid form and returns the associated v-profile. Otherwise an error occures.
 %   Each row of UV_DESCRIPT must be of the following style:

@@ -1,5 +1,5 @@
 function [pxy, data] = crg_eval_uv2xy(data, puv)
-%CRG_UV2XY Evaluate inertial coordinates of grid positions.
+%CRG_UV2XY Evaluate local coordinates of grid positions.
 %   [PXY, DATA] = CRG_UV2XY(DATA, PUV) Evaluate the x/y-positions
 %   of the given u/v-positions.
 %

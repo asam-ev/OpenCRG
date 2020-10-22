@@ -1,12 +1,12 @@
 === Creating and deleting contact points
 
-In order to evaluate data with the C-API, the user must create one or more _contact points_. Contact points provide access to a given data set. A contact point is identified by a unique integer ID. This ID is returned by the contact-point creation method. The number of contact points per data set is not limited.
+In order to evaluate data with the C-API, you must create one or more _contact points_. Contact points provide access to a given data set. A contact point is identified by a unique integer ID. This ID is returned by the contact-point creation method. The number of contact points per data set is not limited.
 
 In simulations, contact points can be used to model the touching point between a tire and the road surface.
 
 [NOTE]
 ====
-When creating multi-thread applications to parallelize evaluation calls, create a separate contact point for each thread. Sharing contact points across different threads will destroy data associated with that  contact point.
+When creating multithreaded applications to parallelize evaluation calls, create a separate contact point for each thread. Sharing contact points across different threads destroys data associated with that  contact point.
 ====
 
 ==== Prerequisites
@@ -25,9 +25,9 @@ Delete the contact point with the ID `cpId`.
 `int crgContactPointDeleteAll( int dataSetId )`::
 Delete all contact points associated with the data set `dataSetId`.
 
-==== Corresponding Matlab functions
+==== Corresponding MATLAB functions
 
-The Matlab tools do not use contact points.
+The MATLAB tools do not use contact points.
 
 ==== Examples
 

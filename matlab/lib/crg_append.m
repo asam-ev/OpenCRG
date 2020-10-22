@@ -1,8 +1,8 @@
 function [data, roff2] = crg_append(data1, data2)
-%CRG_APPEND Append a second compatible CRG to a first CRG.
-%   [CRG] = CRG_APPEND(DATA1, DATA2) appends a second compatible CRG to a
+%CRG_APPEND Append a second compatible OpenCRG to a first OpenCRG.
+%   [CRG] = CRG_APPEND(DATA1, DATA2) appends a second compatible OpenCRG to a
 %   first one. For a smooth connection, the second CRG is re-positioned so that
-%   both CRG overlap for one longitudinal increment.
+%   both OpenCRG overlap for one longitudinal increment.
 %   The last latitudinal cut of DATA1 and the first latitudinal cut of DATA2
 %   are dropped.
 %   Incomplete or inconsistent WGS84 values at the intersection

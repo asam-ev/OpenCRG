@@ -1,6 +1,6 @@
 == Foreword
 
-ASAM OpenCRG provides the exchange format specification to describe static road surfaces for tire simulation, vibration simulation or driving simulation. The primary task of ASAM OpenCRG is the road surface description. The OpenCRG Specification covers a data format for storing and exchanging road surface data. It further includes a tool suite for creating, modifying and evaluating OpenCRG data.
+ASAM OpenCRG provides an exchange format for the description of static road surfaces. The format can be used by applications for tire simulation, vibration simulation and driving simulation. In addition to the data format for storing and exchanging road surface data, OpenCRG includes a tool suite for creating, modifying and evaluating OpenCRG data.
 
 include::1_2_Deliverables_of_the_OpenCRG_Spec.adoc[]
 

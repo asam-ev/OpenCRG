@@ -1,6 +1,6 @@
 function [data] = crg_surf(data, x, y, z)
-% CRG_SURF plots a 3d surface.
-%   DATA = CRG_SURF(DATA, X, Y, Z) plots a 3d surface in current axes
+% CRG_SURF Plot a 3-dimensional surface.
+%   DATA = CRG_SURF(DATA, X, Y, Z) plots a 3-dimensional surface in current axes
 %   object with extended option settings.
 %
 %   Inputs:

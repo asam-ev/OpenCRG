@@ -1,10 +1,9 @@
 === Setting options
 
-With the Matlab tools, Options stored with OpenCRG data are automatically taken into account when evaluating the data.
+With the C-API, you set options via function calls. For all options and values, symbolic constants are defined in `_opencrg_/c-api/baselib/inc/crgBaseLib.h`. You should use the symbolic constants rather than their integer equivalents to make your code easier to read.
 
-With the C-API, options are set via function calls. For all options and values, symbolic constants are defined in `_opencrg_/c-api/baselib/inc/crgBaseLib.h`. These constants should be used instead of their integer equivalents to improve readability of the code.
 
-With Matlab, options are set by directly accessing the `opts` field of a data set using dot notation.
+When you use the MATLAB tools to evaluate data, options stored with OpenCRG data are automatically taken into account. With MATLAB, you set options by directly accessing the `opts` field of a data set using dot notation.
 
 [NOTE]
 ====
@@ -43,7 +42,7 @@ Remove all options from the contact point `cpId`.
 `void crgContactPointSetDefaultOptions( int cpId )`::
 Set all options of the contact point `cpId` to their default values.
 
-==== Corresponding Matlab functions
+==== Corresponding MATLAB functions
 
 Options are set by directly accessing the `opts` field of a data set using dot notation.
 
@@ -68,9 +67,9 @@ crgContactPointOptionSetInt( cpId, dCrgCpOptionBorderModeV, dCrgBorderModeNone )
 crgEvaluv2z( cpId, 100, 0, &z );
 ----
 
-===== Matlab examples
+===== MATLAB examples
 
-The following example shows how to set options using the Matlab tools.
+The following example shows how to set options using the MATLAB tools.
 
 ----
 % load CRG file 

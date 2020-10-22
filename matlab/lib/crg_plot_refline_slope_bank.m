@@ -1,5 +1,5 @@
 function [data] = crg_plot_refline_slope_bank(data, iu)
-% CRG_PLOT_REFLINE_SLOPE_BANK Plot slope and banking along the reference line..
+% CRG_PLOT_REFLINE_SLOPE_BANK Plot slope and banking along the reference line.
 %   DATA = CRG_PLOT_REFLINE_SLOPE_BANK(DATA, IU) plots slope and banking along
 %   the reference line in the current axes object. The plot can be limited to a
 %   selected range on the reference line.

@@ -1,5 +1,5 @@
 function [ data ] = crg_map_xy2xy( data, crg_xy, iu, iv )
-%CRG_MAP_XY2XY Map z-values from inertial coordinate system to another.
+%CRG_MAP_XY2XY Map z-values from one inertial coordinate system to another.
 %   [DATA] = CRG_MAP_XY2XY(DATA, CRG_XY, IU, IV) maps z-values of CRG_XY
 %   in x/y-coordinates to the inertial x/y-coordinate system of DATA.
 %

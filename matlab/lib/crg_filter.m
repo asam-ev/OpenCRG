@@ -1,5 +1,5 @@
 function [data] = crg_filter(data, iu, iv, fm, mask, wopt)
-% CRG_FILTER Filters OpenCRG data.
+% CRG_FILTER Apply filter OpenCRG data.
 %   DATA = CRG_FILTER(DATA, IU, IV, FM, MASK, WOPT) applies a filter mask on
 %   OpenCRG data.
 %

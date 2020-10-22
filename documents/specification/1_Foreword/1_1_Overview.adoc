@@ -2,4 +2,4 @@
 :imagesdir: ../images/
 :stem: latexmath
 
-The OpenCRG format provides a common base for describing road surfaces. The data that is stored in an OpenCRG file describes the surface of roads, primarily elevation data. The road surfaces that are described in an OpenCRG file can either be synthetic or real. The main purpose of OpenCRG is to provide a road surface description that can be fed into simulations and to make these road surface descriptions exchangeable. 
+The OpenCRG format provides a common format for describing road surfaces. The data in an OpenCRG file usually describes road elevation. OpenCRG file can be used for both synthetic or real road surfaces. The main purpose of OpenCRG is to provide a road surface description that can be fed into simulations and to make these road surface descriptions exchangeable.

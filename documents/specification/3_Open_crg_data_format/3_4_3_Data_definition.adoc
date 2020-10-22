@@ -13,7 +13,7 @@ Lines starting with `#:` define the data format used. OpenCRG supports the follo
 
 If no data format is defined, road data is considered to use KRBI format.
 
-Lines starting with `D:` define a channel in the _road data_ section. A channel definition defines both the type of data and the unit. A channel corresponds to a column in the _road data_ section. Channel definitions appear in the same sequence as the corresponding columns appear in the _road data_ section.
+Lines starting with `D:` define a channel in the _road data_ section. A channel definition describes both the type of data and the unit. A channel corresponds to a column in the _road data_ section. Channel definitions appear in the same sequence as the corresponding columns appear in the _road data_ section.
 
 // TODO: Nicco: re-do image in higher quality
 image::OpenCRG_coord_sys.png[title="A channel corresponds to a column in the _road data_ section."]
@@ -70,7 +70,7 @@ $KD_Definition
 
 ===== Examples
 
-The following _data definition_ section defines ten channels. Each channel corresponds to a column in the _road data_ section. The first three columns contain reference line data. The other seven columns contain road surface data. The v-positions of the longitudinal cuts are defined explicitely.
+The following _data definition_ section defines ten channels. Each channel corresponds to a column in the _road data_ section. The first three columns contain reference line data. The other seven columns contain road surface data. The v-positions of the longitudinal cuts are defined explicitly.
 
 ----
 $KD_DEFINiTION
@@ -88,7 +88,7 @@ D:long section at v =  1.500,m     ! 1.50 m left  of reference line
 $!********************************
 ----
 
-The following examples illustrates how the _data definition_ section interacts with the _road parameters_ section. In the example, the _road parameters_ section defines a 3 m wide road with longitudinal cuts every 10 cm. The channel definitions only refer to the number of the cut without explicitly stating the v-position.
+The following examples illustrates how the _data definition_ section interacts with the _road parameters_ section. In the example, the _road parameters_ section defines a 3 m wide road with longitudinal cuts every 0.1 m. The channel definitions only refer to the number of the cut without explicitly stating the v-position.
 
 ----
 $ROAD_CRG                          ! road parameters section

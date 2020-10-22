@@ -1,8 +1,8 @@
 === Manipulating OpenCRG data
 
-OpenCRG data is usually changed by applying modifiers or setting options. However, some changes cannot be achieved with modifiers or options. This is common for changes to the actual data, for example, when preparing real-world data for use in simulations.
+OpenCRG data is usually changed by applying modifiers or setting options. However, there are some changes that you cannot achieve with modifiers or options. An example is when you need to prepare real-world data for use in simulations.
 
-The Matlab tools cover the following use cases:
+The MATLAB tools cover the following use cases:
 
 * Appending or cutting OpenCRG data sets.
 * Extracting and changing slope and banking.
@@ -17,16 +17,16 @@ The Matlab tools cover the following use cases:
 
 The C-API does not provide functions for manipulating OpenCRG data.
 
-==== Corresponding Matlab functions
+==== Corresponding MATLAB functions
 
 `[data, roff2] = crg_append(data1, data2)`::
-Append an OpenCRG data set `data2` to the OpenCRG data set `data1` and returns the resulting data set `data`. For a smooth connection, the second grid is re-positioned so that both grids overlap for one longitudinal increment. The re-positioned data set is returned as `roff2`. The last latitudinal cut of `data` and the first latitudinal cut of `data2` are dropped. Incomplete or inconsistent WGS84 values at the intersection will result in omitting the WGS84 information in the result.
+Append an OpenCRG data set `data2` to the OpenCRG data set `data1` and return the resulting data set `data`. For a smooth connection, the second grid is re-positioned so that both grids overlap for one longitudinal increment. The re-positioned data set is returned as `roff2`. The last latitudinal cut of `data` and the first latitudinal cut of `data2` are dropped. Incomplete or inconsistent WGS 84 values at the intersection result in omitting the WGS 84 information in the result.
 
 `[data] = crg_cut_iuiv(data, iu, iv)`::
 Cut out a part of a OpenCRG road `data`. `iu` and `iv` specify the index positions of the area to be cut out.
 
 `[data] = crg_separate_sb(data, swlen, bwlen)`::
-Find and filter slope and banking in road data of `data`. Slope and banking are filtered using a moving average with window lenght `swlen` and `bwlen` respectively. Separate the filtered result from the road data leaving the total elevation information unchanged. 
+Find and filter slope and banking in road data of `data`. Slope and banking are filtered using a moving average with window lenght `swlen` and `bwlen`, respectively. Separate the filtered result from the road data leaving the total elevation information unchanged. 
 
 `[data] = crg_b2z(data, b)`::
 Apply new banking `b` to the OpenCRG data in `data`. Merge existing banking into the road data.
@@ -41,7 +41,7 @@ Extract the slope from OpenCRG data in `data`. `pp` is a smoothing parameter.
 Extract the banking from OpenCRG data in `data`. `pp` is a smoothing parameter.
 
 `[data] = crg_filter(data, iu, iv, fm, mask, wopt)`::
-Filter OpenCRG data in `data`. `iu` and `iv` can be used to limit filtering to an area of the grid. `fm` specifies the filtering method. `mask` specifies the size of the filter mask. The optional `wopt` defines filter weights and number of repeated filterings.
+Filter OpenCRG data in `data`. `iu` and `iv` can be used to limit filtering to an area of the grid. `fm` specifies the filtering method. `mask` specifies the size of the filter mask. The optional `wopt` defines filter weights and number of repeated filter applications.
 
 `[data] = crg_limiter(data, mmlim, iu, iv)`::
 Limit z-values in `data` to the minimum and maximum defined in `mmlim`. `iu` and `iv` can be used to limit the operation to an area of the grid.
@@ -63,9 +63,9 @@ Re-render OpenCRG data in `crg` as `data` with new u/v-increment `inc` and v-spa
 
 ==== Examples
 
-===== Matlab examples
+===== MATLAB examples
 
-The following example shows how to manipulate data using the Matlab tools.
+The following example shows how to manipulate data using the MATLAB tools.
 
 ----
 % load OpenCRG data

@@ -1,114 +1,365 @@
-==== Library files of the Matlab tools
+==== Library files of the MATLAB tools
 
-The library files of the Matlab tools are stored in `_open-crg_/matlab/lib/` and comprise the following:
+The library files of the MATLAB tools are stored in `_open-crg_/matlab/lib/` and comprise the following:
 
-// TODO: add descriptions once the code comments have been reviewed (maybe use include mechanism?)
-// TODO: do we need this at all?
+.Evaluation tools
+|===
+|Filename | Description
 
-`copy_ax2fig.m`::  ???
-`crg_append.m`::  ???
-`crg_b2z.m`::  ???
-`crg_check.m`::  ???
-`crg_check_curvature.m`::  ???
-`crg_check_curvature2.m`::  ???
-`crg_check_data.m`::  ???
-`crg_check_head.m`::  ???
-`crg_check_mods.m`::  ???
-`crg_check_mpro.m`::  ???
-`crg_check_opts.m`::  ???
-`crg_check_single.m`::  ???
-`crg_check_uv_descript.m`::  ???
-`crg_check_wgs84.m`::  ???
-`crg_cut_iuiv.m`::  ???
-`crg_eval_enh2xyz.m`::  ???
-`crg_eval_llh2xyz.m`::  ???
-`crg_eval_u2crv.m`::  ???
-`crg_eval_u2phi.m`::  ???
-`crg_eval_uv2iuiv.m`::  ???
-`crg_eval_uv2xy.m`::  ???
-`crg_eval_uv2z.m`::  ???
-`crg_eval_xy2uv.m`::  ???
-`crg_eval_xy2z.m`::  ???
-`crg_eval_xyz2enh.m`::  ???
-`crg_eval_xyz2llh.m`::  ???
-`crg_ext_banking.m`::  ???
-`crg_ext_slope.m`::  ???
-`crg_figure.m`::  ???
-`crg_filter.m`::  ???
-`crg_flip.m`::  ???
-`crg_gen_csb2crg0.m`::  ???
-`crg_gen_ppxy2phi.m`::  ???
-`crg_gen_pxy2ppxy.m`::  ???
-`crg_isequal.m`::  ???
-`crg_limiter.m`::  ???
-`crg_map_uv2uv.m`::  ???
-`crg_map_xy2xy.m`::  ???
-`crg_mods.m`::  ???
-`crg_peakfinder.m`::  ???
-`crg_perform2surface.m`::  ???
-`crg_plot_elgrid_cross_sect.m`::  ???
-`crg_plot_elgrid_limits.m`::  ???
-`crg_plot_elgrid_long_sect.m`::  ???
-`crg_plot_elgrid_uvz_map.m`::  ???
-`crg_plot_elgrid_xyz_map.m`::  ???
-`crg_plot_refline_curvature.m`::  ???
-`crg_plot_refline_elevation.m`::  ???
-`crg_plot_refline_heading.m`::  ???
-`crg_plot_refline_slope_bank.m`::  ???
-`crg_plot_refline_xyz_map.m`::  ???
-`crg_plot_refline_xy_map_and_curv.m`::  ???
-`crg_plot_refline_xy_overview_map.m`::  ???
-`crg_plot_refpnt_distances.m`::  ???
-`crg_plot_road_uv2uvz_map.m`::  ???
-`crg_plot_road_uv2xyz_map.m`::  ???
-`crg_plot_road_uvz_map.m`::  ???
-`crg_plot_road_xyz_map.m`::  ???
-`crg_read.m`::  ???
-`crg_rerender.m`::  ???
-`crg_s2z.m`::  ???
-`crg_separate_sb.m`::  ???
-`crg_show.m`::  ???
-`crg_show_elgrid_cuts_and_limits.m`::  ???
-`crg_show_elgrid_surface.m`::  ???
-`crg_show_info.m`::  ???
-`crg_show_isequal.m`::  ???
-`crg_show_peaks.m`::  ???
-`crg_show_refline_elevation.m`::  ???
-`crg_show_refline_map.m`::  ???
-`crg_show_refpnts_and_refline.m`::  ???
-`crg_show_road_surface.m`::  ???
-`crg_show_road_uv2surface.m`::  ???
-`crg_single.m`::  ???
-`crg_surf.m`::  ???
-`crg_wgs84_crg2html.m`::  ???
-`crg_wgs84_dist.m`::  ???
-`crg_wgs84_invdist.m`::  ???
-`crg_wgs84_setend.m`::  ???
-`crg_wgs84_wgs2url.m`::  ???
-`crg_wgs84_wgsxy2wgs.m`::  ???
-`crg_wgs84_xy2wgs.m`::  ???
-`crg_wrap.m`::  ???
-`crg_write.m`::  ???
-`ipl_demo.m`::  ???
-`ipl_read.m`::  ???
-`ipl_write.m`::  ???
-`map_check.m`::  ???
-`map_check_elli.m`::  ???
-`map_check_proj.m`::  ???
-`map_check_tran.m`::  ???
-`map_ecef2ecef.m`::  ???
-`map_ecef2geod.m`::  ???
-`map_geod2ecef.m`::  ???
-`map_geod2pmap.m`::  ???
-`map_geod2pmap_tm.m`::  ???
-`map_global2plocal.m`::  ???
-`map_intro.m`::  ???
-`map_plocal2global.m`::  ???
-`map_pmap2geod_tm.m`::  ???
-`map_ptm_north2initiallat.m`::  ???
-`map_ptm_phi2marc.m`::  ???
-`map_wgs2html.m`::  ???
-`sdf_add.m`::  ???
-`sdf_cut.m`::  ???
-`smooth_firfilt.m`::  ???
-`str_num2strn.m`::  ???
+|`crg_eval_enh2xyz.m`
+|Transform points in e/n/h to x/y/z.
+
+|`crg_eval_llh2xyz.m`
+|Transform points in llh to x/y/z.
+
+|`crg_eval_u2crv.m`
+|Evaluate curvature at reference line positions.
+
+|`crg_eval_u2phi.m`
+|Evaluate heading angles at reference line positions.
+
+|`crg_eval_uv2iuiv.m`
+|Evaluate index positions of grid positions.
+
+|`crg_eval_uv2xy.m`
+|Evaluate local coordinates of grid positions.
+
+|`crg_eval_uv2z.m`
+|Evaluate z at grid position.
+
+|`crg_eval_xy2uv.m`
+|Transform points in x/y to u/v.
+
+|`crg_eval_xy2z.m`
+|Evaluate z at x/y-position.
+
+|`crg_eval_xyz2enh.m`
+|Transform point in x/y/z to e/n/h.
+
+|`crg_eval_xyz2llh.m`
+|Transform point in x/y/z to l/l/h.
+
+|===
+
+
+.Visualization and analysis tools
+|===
+|Filename | Description
+
+|`copy_ax2fig.m`
+|Copy current axes object to new figure.
+
+|`crg_figure.m`
+|Set up OpenCRG figure.
+
+|`crg_isequal.m`
+|Compare two OpenCRG data sets.
+
+|`crg_peakfinder.m`
+|Detect peaks in a OpenCRG data.
+
+|`crg_plot_elgrid_cross_sect.m`
+|Plot z-values over latitudinal cuts.
+
+|`crg_plot_elgrid_limits.m`
+|Plot the outer grid limits.
+
+|`crg_plot_elgrid_long_sect.m`
+|Plot z-values over longitudinal cuts.
+
+|`crg_plot_elgrid_uvz_map.m`
+|Plot z-values as uncurved orthographic image.
+
+|`crg_plot_elgrid_xyz_map.m`
+|Plot z-values as curved three-dimensional image.
+
+|`crg_plot_refline_curvature.m`
+|Plot curvature along the reference line.
+
+|`crg_plot_refline_elevation.m`
+|Plot the z-values along the reference line.
+
+|`crg_plot_refline_heading.m`
+|Plot heading angle along the reference line.
+
+|`crg_plot_refline_slope_bank.m`
+|Plot slope and banking along the reference line.
+
+|`crg_plot_refline_xyz_map.m`
+|Plot reference line in x/y/z-coordinates.
+
+|`crg_plot_refline_xy_map_and_curv.m`
+|Plot reference line including curvature.
+
+|`crg_plot_refline_xy_overview_map.m`
+|Plot reference line in x/y-coordinates.
+
+|`crg_plot_refpnt_distances.m`
+|Plot distance of reference points to reference line.
+
+|`crg_plot_road_uv2uvz_map.m`
+|Plot road surface over a given uncurved grid.
+
+|`crg_plot_road_uv2xyz_map.m`
+|Plot road surface over a given curved grid.
+
+|`crg_plot_road_uvz_map.m`
+|Plot road surface as uncurved orthographic image.
+
+|`crg_plot_road_xyz_map.m`
+|Plot road surface as curved three-dimensional image.
+
+|`crg_show.m`
+|Visualize CRG data.
+
+|`crg_show_elgrid_cuts_and_limits.m`
+|Visualize the cuts and limits of the CRG
+
+|`crg_show_elgrid_surface.m`
+|Visualize z-values.
+
+|`crg_show_info.m`
+|Display information about the CRG.
+
+|`crg_show_isequal.m`
+|Visualize the result of comparing two OpenCRG files.
+
+|`crg_show_peaks.m`
+|Visualize peaks.
+
+|`crg_show_refline_elevation.m`
+|Visualize elevation along the reference line.
+
+|`crg_show_refline_map.m`
+|Visualize the reference line.
+
+|`crg_show_refpnts_and_refline.m`
+|Visualize reference points and reference line.
+
+|`crg_show_road_surface.m`
+|Visualize the road surface.
+
+|`crg_show_road_uv2surface.m`
+|Visualize the road surface on a given grid.
+
+|`crg_surf.m`
+|Plot a three-dimensional surface.
+
+|===
+
+.File input and output tools
+|===
+|Filename | Description
+
+|`crg_read.m`
+|Read OpenCRG file.
+
+|`crg_single.m`
+|Convert OpenCRG road data to type single.
+
+|`crg_wrap.m`
+|Wrap heading angles to +/- pi range.
+
+|`crg_write.m`
+|Write OpenCRG file.
+
+|`ipl_demo.m`
+|IPLOS write/read demonstration.
+
+|`ipl_read.m`
+|Read IPLOS file.
+
+|`ipl_write.m`
+|Write IPLOS file.
+
+|`sdf_add.m`
+|Add block to struct data file.
+
+|`sdf_cut.m`
+|Cut block from struct data file.
+
+|`str_num2strn.m`
+|Convert number to string of given length.
+
+|===
+
+.Checking tools
+|===
+|Filename | Description
+
+|`crg_check.m`
+|Run all OpenCRG data checks.
+
+|`crg_check_curvature.m`
+|Check OpenCRG curvature data.
+
+|`crg_check_data.m`
+|Check, fix, and complement OpenCRG data.
+
+|`crg_check_head.m`
+|Check OpenCRG road parameters data.
+
+|`crg_check_mods.m`
+|Check modifier data.
+
+|`crg_check_mpro.m`
+|Check OpenCRG map projection data.
+
+|`crg_check_opts.m`
+|Check OpenCRG options data.
+
+|`crg_check_single.m`
+|Check core OpenCRG data for type single.
+
+|`crg_check_wgs84.m`
+|Check OpenCRG WGS 84 data.
+
+|===
+
+.modification tools
+|===
+|Filename | Description
+
+|`crg_append.m`
+|Append a second compatible OpenCRG to a first OpenCRG.
+
+|`crg_b2z.m`
+|Apply banking to OpenCRG data.
+
+|`crg_cut_iuiv.m`
+|Cut out a part of a OpenCRG road.
+
+|`crg_ext_banking.m`
+|Extract banking from OpenCRG data.
+
+|`crg_ext_slope.m`
+|Extract slope from OpenCRG data.
+
+|`crg_filter.m`
+|Apply filter to OpenCRG data.
+
+|`crg_flip.m`
+|Flip OpenCRG data.
+
+|`crg_limiter.m`
+|Limits z-values in OpenCRG data.
+
+|`crg_map_uv2uv.m`
+|Map z-values from one grid to another.
+
+|`crg_map_xy2xy.m`
+|Map z-values from one local coordinate system to another.
+
+|`crg_mods.m`
+|Apply modifiers to data.
+
+|`crg_rerender.m`
+|Re-render OpenCRG data for a new u/v-grid.
+
+|`crg_s2z.m`
+|Apply slope to OpenCRG data.
+
+|`crg_separate_sb.m`
+|Separate slope and banking.
+
+|`smooth_firfilt.m`
+|Smooth input signals with symmetric FIR filter.
+
+|===
+
+
+.Generation tools
+|===
+|Filename | Description
+
+|`crg_check_uv_descript.m`
+|Check uv_descript and create a v-profile.
+
+|`crg_gen_csb2crg0.m`
+|Generate synthetic OpenCRG data.
+
+|`crg_gen_ppxy2phi.m`
+|Generate reference line heading from polynomial.
+
+|`crg_gen_pxy2ppxy.m`
+|Generates smooth polynomial from reference points.
+
+|`crg_perform2surface.m`
+|Generate synthetical surface.
+
+|===
+
+.Geographic referencing tools
+|===
+|Filename | Description
+
+|`crg_wgs84_crg2html.m`
+|Generate HTML file to visualize OpenCRG data in a map.
+
+|`crg_wgs84_dist.m`
+|Evaluate distance and bearing between WGS 84 positions.
+
+|`crg_wgs84_invdist.m`
+|Calculate WGS 84 positions by distance and bearing.
+
+|`crg_wgs84_setend.m`
+|Set WGS 84 end coordinate.
+
+|`crg_wgs84_wgs2url.m`
+|Generate URL to show WGS 84 information on Google Maps
+
+|`crg_wgs84_wgsxy2wgs.m`
+|Transform points in x/y-coordinates to WGS 84 coordinates using two references.
+
+|`crg_wgs84_xy2wgs.m`
+|Transform points in x/y-coordinates to WGS 84 coordinates.
+
+|`map_check.m`
+|Check and update DAT struct.
+
+|`map_check_elli.m`
+|Check and update ellipsoid struct.
+
+|`map_check_proj.m`
+|Check and update map projection struct.
+
+|`map_check_tran.m`
+|Check and update datum transformation struct.
+
+|`map_ecef2ecef.m`
+|Datum transformation in ECEF system.
+
+|`map_ecef2geod.m`
+|Convert points from ECEF system to geodetic system.
+
+|`map_geod2ecef.m`
+|Convert points from geodetic system to ECEF system.
+
+|`map_geod2pmap.m`
+|Forward map projection.
+
+|`map_geod2pmap_tm.m`
+|Forward transverse Mercator projection.
+
+|`map_global2plocal.m`
+|Forward projection: global to projected local.
+
+|`map_intro.m`
+|MAP routines introduction
+
+|`map_plocal2global.m`
+|Backward projection: projected local to global.
+
+|`map_pmap2geod_tm.m`
+|Backward projection: transverse Mercator.
+
+|`map_ptm_north2initiallat.m`
+|Transverse Mercator utility function.
+
+|`map_ptm_phi2marc.m`
+|Transverse Mercator utility function: meridional arc.
+
+|`map_wgs2html.m`
+|Generate HTML file to visualize WGS 84 data in a map.
+
+|===

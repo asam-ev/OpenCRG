@@ -1,12 +1,13 @@
-==== Compiling the C-API using _make_ files
+==== Compiling the C-API using Makefiles
 
-Using the provided make files is the most convenient way of compiling the C-API.
+Using the provided Makefiles is the most convenient way of compiling the C-API.
 
 ===== Prerequisites
 
 * You downloaded and unpacked the OpenCRG software package.
 * You have installed the C-compiler _gcc_ on your computer.
 * You have set up a standard _make_ environment on your computer.
+* The following directories exist: `_open-crg_/c-api/test/bin/`, `_open-crg_/c-api/demo/bin/`.
 
 ===== Steps
 
@@ -17,8 +18,8 @@ Using the provided make files is the most convenient way of compiling the C-API.
 ===== Result
 
 * A library containing all object files of the basic library is generated in `c-api/baselib/lib/`.
-* Executable test files are generated in `c-api/test/bin/`.
-* Executable demo files are generated in `c-api/demo/bin/`.
+* Executable test files are generated in `_open-crg_/c-api/test/bin/`.
+* Executable demo files are generated in `_open-crg_/c-api/demo/bin/`.
 
 ===== What to do next
 

@@ -1,15 +1,15 @@
 function [data] = crg_read(file)
-% CRG_READ CRG road file reader.
-%   DATA = CRG_READ(FILE) reads CRG (curved regular grid) road data file
+% CRG_READ Read OpenCRG file.
+%   DATA = CRG_READ(FILE) reads OpenCRG (curved regular grid) road data file
 %
 %   Inputs:
-%   FILE    is the CRG file to read
+%   FILE    is the OpenCRG file to read
 %
 %   Outputs:
 %   DATA    struct array as defined in CRG_INTRO.
 %
 %   Example:
-%   data = crg_read(file) reads a CRG file.
+%   data = crg_read(file) reads an OpenCRG file.
 %
 %   See also CRG_INTRO.
 
@@ -36,31 +36,31 @@ function [data] = crg_read(file)
 
 data = struct;
 
-%% read CRG file as IPLOS data file
+%% read OpenCRG file as IPLOS data file
 
 ipl = ipl_read(file);
 
-%% look for CRG opts
+%% look for OpenCRG options
 
 [opts, s] = sdf_cut(ipl.struct, 'ROAD_CRG_OPTS');
 if size(s, 2) < size(ipl.struct, 2)
-    data.opts = struct; % found CRG opts
+    data.opts = struct; % found CRG options
     ipl.struct = s;
 end
 
-%% look for CRG mods
+%% look for OpenCRG modifiers
 
 [mods, s] = sdf_cut(ipl.struct, 'ROAD_CRG_MODS');
 if size(s, 2) < size(ipl.struct, 2)
-    data.mods = struct; % found CRG mods
+    data.mods = struct; % found CRG modifiers
     ipl.struct = s;
 end
 
-%% look for CRG file reference
+%% look for OpenCRG file reference
 
 [fref s] = sdf_cut(ipl.struct, 'ROAD_CRG_FILE');
 if size(s, 2) < size(ipl.struct, 2)
-    data.opts = struct; % found CRG file reference
+    data.opts = struct; % found OpenCRG file reference
     ipl.struct = s;
     for i = 1:length(fref)
         if strncmp(fref{i}, '*', 1)
@@ -77,28 +77,28 @@ if size(s, 2) < size(ipl.struct, 2)
     end
     file = regexprep(fref, '\$\w+', fenv, 'once'); % replace env vars in file name
 
-    ipl = ipl_read(file); % read referenced CRG file
-    if ~isfield(data, 'opts') % look here for opts only if not already defined
+    ipl = ipl_read(file); % read referenced OpenCRG file
+    if ~isfield(data, 'opts') % look here for options only if not already defined
         [opts, s] = sdf_cut(ipl.struct, 'ROAD_CRG_OPTS');
         if size(s, 2) < size(ipl.struct, 2)
-            data.opts = struct; % found CRG opts
+            data.opts = struct; % found OpenCRG options
             ipl.struct = s;
         end
     end
-    if ~isfield(data, 'mods') % look here for mods only if not already defined
+    if ~isfield(data, 'mods') % look here for modifiers only if not already defined
         [mods, s] = sdf_cut(ipl.struct, 'ROAD_CRG_MODS');
         if size(s, 2) < size(ipl.struct, 2)
-            data.mods = struct; % found CRG mods
+            data.mods = struct; % found CRG modifiers
             ipl.struct = s;
         end
     end
 end
 
-%% copy CRG filename to data
+%% copy filename to data
 
 data.filenm = ipl.filenm;
 
-%% first CRG data check ...
+%% first OpenCRG data check ...
 
 if size(ipl.kd_dat,1) < 2
     error('at least 2 cross sections required in CRG file %s', file)
@@ -108,7 +108,7 @@ end
 
 [data.ct, ipl.struct] = sdf_cut(ipl.struct, 'CT');
 
-%% read CRG opts from ipl.struct (already extracted to opts)
+%% read OpenCRG options from ipl.struct (already extracted to opts)
 
 if isfield(data, 'opts')
     for i = 1:length(opts)
@@ -119,7 +119,7 @@ if isfield(data, 'opts')
         % all unknown keywords and many syntax flaws will be silently ignored
         [oname, ovalue] = strread(hc, '%s%f', 1, 'delimiter', '=');
         switch lower(deblank(oname{1}))
-%         CRG border modes in u and v directions
+%         OpenCRG border modes in u and v directions
             case 'border_mode_u'
                 data.opts.bdmu = ovalue;
             case 'border_mode_v'
@@ -132,15 +132,15 @@ if isfield(data, 'opts')
                 data.opts.bdss = ovalue;
             case 'border_smooth_uend'
                 data.opts.bdse = ovalue;
-%         CRG reference line continuation
+%         OpenCRG reference line continuation
             case 'refline_continuation'
                 data.opts.rflc = ovalue;
-%         CRG reference line search strategy
+%         OpenCRG reference line search strategy
             case 'refline_search_far'
                 data.opts.sfar = ovalue;
             case 'refline_search_close'
                 data.opts.scls = ovalue;
-%         CRG message options
+%         OpenCRG message options
             case 'warn_msgs'
                 data.opts.wmsg = ovalue;
             case 'warn_curv_local'
@@ -159,7 +159,7 @@ if isfield(data, 'opts')
                 data.opts.lsta = ovalue;
             case 'log_stat_freq'
                 data.opts.lstf = ovalue;
-%         CRG check options
+%         OpenCRG check options
             case 'check_eps'
                 data.opts.ceps = ovalue;
             case 'check_inc'
@@ -176,7 +176,7 @@ end
 
 data = crg_check_opts(data);
 
-%% read CRG mods from ipl.struct (already extracted to mods)
+%% read OpenCRG modifiers from ipl.struct (already extracted to mods)
 
 if isfield(data, 'mods')
     for i = 1:length(mods)
@@ -187,7 +187,7 @@ if isfield(data, 'mods')
         % all unknown keywords and many syntax flaws will be silently ignored
         [mname, mvalue] = strread(hc, '%s%f', 1, 'delimiter', '=');
         switch lower(deblank(mname{1}))
-%         CRG scaling
+%         OpenCRG scaling
             case 'scale_z_grid'
                 data.mods.szgd = mvalue;
             case 'scale_slope'
@@ -200,12 +200,12 @@ if isfield(data, 'mods')
                 data.mods.swth = mvalue;
             case 'scale_curvature'
                 data.mods.scrv = mvalue;
-%         CRG elevation grid NaN handling
+%         OpenCRG elevation grid NaN handling
             case 'grid_nan_mode'
                 data.mods.gnan = mvalue;
             case 'grid_nan_offset'
                 data.mods.gnao = mvalue;
-%         CRG re-positioning: refline by offset
+%         OpenCRG re-positioning: refline by offset
             case 'refline_rotcenter_x'
                 data.mods.rlrx = mvalue;
             case 'refline_rotcenter_y'
@@ -218,7 +218,7 @@ if isfield(data, 'mods')
                 data.mods.rloy = mvalue;
             case 'refline_offset_z'
                 data.mods.rloz = mvalue;
-%         CRG re-positioning: refline by refpoint
+%         OpenCRG re-positioning: refline by refpoint
             case 'refpoint_u'
                 data.mods.rptu = mvalue;
             case 'refpoint_u_fraction'
@@ -245,7 +245,7 @@ end
 
 data = crg_check_mods(data);
 
-%% read CRG header information from ipl.struct
+%% read OpenCRG header information from ipl.struct
 
 [block, ipl.struct] = sdf_cut(ipl.struct, 'ROAD_CRG');
 
@@ -321,7 +321,7 @@ end
 
 data = crg_check_head(data);
 
-%% read CRG map projection information from ipl.struct
+%% read OpenCRG map projection information from ipl.struct
 
 [block, ipl.struct] = sdf_cut(ipl.struct, 'ROAD_CRG_MPRO');
 

@@ -4,7 +4,7 @@
 
 === Positioning of ASAM OpenCRG within ASAM activities
 
-ASAM OpenCRG is part of the ASAM simulation standards that focus on simulation data for the automotive environment. Next to ASAM OpenCRG, ASAM Provides other standards for the simulation domain, like ASAM OpenDRIVE and ASAM openSCENARIO.
+ASAM OpenCRG is part of the ASAM simulation standards that focus on simulation data for the automotive environment. Next to OpenCRG, ASAM provides other standards for the simulation domain, like ASAM OpenDRIVE and ASAM OpenSCENARIO.
 
 === Relation of ASAM OpenCRG to OpenDRIVE and OpenSCENARIO
 

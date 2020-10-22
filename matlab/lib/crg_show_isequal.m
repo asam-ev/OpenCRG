@@ -1,5 +1,5 @@
 function [] = crg_show_isequal(dd, out)
-% CRG_SHOW_ISEQUAL CRG_comparison of two crg_files data core visualizer.
+% CRG_SHOW_ISEQUAL Visualize the result of comparing two OpenCRG files.
 %   CRG_SHOW_ISEQUAL(DD) Visualize the result of comparing two OpenCRG files.
 %   Comparisons are usually done using CRG_ISEQUAL.
 %

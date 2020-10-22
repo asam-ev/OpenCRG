@@ -11,9 +11,9 @@ A _map projection data_ section shall at least specify a map projection, either 
 
 If geodetic coordinates use a global ellipsoid other than WGS 84, the ellipsoid shall be specified, either by providing the name of the ellipsoid or the semi-major and the semi-minor axis in case of a user-defined ellipsoid.
 
-A map projection can involve a datum transformation, for example with Gauss-Krüger projections of WGS-84 coordinates. In this case, both a local ellipsoid as well as a transformation type including all 7 parameters shall be specified.
+A map projection can involve a datum transformation, for example with Gauss-Krüger projections of WGS 84 coordinates. In this case, both a local ellipsoid and a transformation type including all 7 parameters shall be specified.
 
-// TODO describe TM without zone string but with map projection parameters.
+The map projection parameters `PROJ_*` are relevant for the generic transverse Mercator projection (`PROJ_NM = TM` or `PROJ_NM = TM_*`). If the generic transverse Mercator projection is used with a zone substring `PROJ_L0` is ignored.
 
 ===== Keyword
 
@@ -93,13 +93,9 @@ a|Identifier of the map projection
 
 GK3_0 ... GK3_119:: Gauss-Krüger with 3-degree zones with appended zone number.
 GK6_0 ... GK6_59:: Gauss-Krüger with 6-degree zones with appended zone number.
-UTM_01C ... UTM_60X:: Universal transverse mercator with appended zone number and band letter.
-TM_0 ... TM_359:: Transverse mercator, with appended center meridian (degree east).
-TM:: Transverse mercator using map projection parameters `PROJ_*` (user-defined or default).
-
-//TODO can you define projections without appendix (e. g. 'GK3' or 'TM')?
-
-//TODO When are these parameters used? How do they interact with 'proj_nm'?
+UTM_01C ... UTM_60X:: Universal transverse Mercator with appended zone number and band letter.
+TM_0 ... TM_359:: Transverse Mercator, with appended center meridian (degree east).
+TM:: Transverse Mercator using map projection parameters `PROJ_*` (user-defined or default).
 
 |`PROJ_F0`
 |Double-precision floating-point number (default: 1.0)
@@ -125,7 +121,8 @@ TM:: Transverse mercator using map projection parameters `PROJ_*` (user-defined 
 
 ===== Rules
 
-* The map projection data section shall contain enough information to execute the desired transformation.
+* Parameters in a _map projection data_ section shall be provided as key-value pairs using the syntax `PARAMETER = value`.
+* The _map projection data_ section shall contain enough information to execute the desired transformation.
 * For UTM, defining the zone number and band letter shall be sufficient.
 
 ===== Examples

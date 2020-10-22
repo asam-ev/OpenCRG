@@ -1,26 +1,26 @@
 ==== Modifiers
 
-The optional _modifiers_ section defines values for modifiers. Modifiers modify OpenCRG data stored in memory.
+The optional _modifiers_ section defines values for modifiers. Modifiers alter OpenCRG data stored in memory.
 
-Applications may define default values for modifiers. However, if an OpenCRG file contains a _modifiers_ section, applications must remove all default modifier values. Instead, only the modifiers specified in the OpenCRG file are applied. If an OpenCRG file contains an empty modifiers sections, no modifiers are applied to the data. Applications may nonetheless apply different modifiers explicitly via API calls.
+Applications may define default values for modifiers. However, if an OpenCRG file contains a _modifiers_ section, applications must remove all default modifier values. Instead, only the modifiers specified in the OpenCRG file shall be applied. If an OpenCRG file contains an empty modifiers sections, no modifiers are applied to the data. Applications may nonetheless apply different modifiers explicitly via API calls.
 
 An OpenCRG file may specify modifiers without having a section containing actual road data. Such a file may be used as a control file by referencing it in another OpenCRG file containing the actual data.
 
 An OpenCRG data set can be re-located by mapping a reference point in u/v-coordinates to a new target position in x/y-coordinates. 
 
-* The reference point can be explicitely defined in u/v-coordinates.
-* Alternativley, the reference point can be defined as fractions of the data-set extent in u-direction or v-direction.
-* Additionally, the reference point can be modified by adding an offset.
+* The reference point may be explicitly defined in u/v-coordinates.
+* Alternatively, the reference point may be defined as fractions of the data-set extent in u-direction or v-direction.
+* Additionally, the reference point may be modified by adding an offset.
 
 The methods for defining a reference point may be combined as long as this combination does not result in contradicting definitions. The target position of the data set is defined in x/y-coordinates and with an absolute heading angle.
 
-An OpenCRG data set can be re-located by rotating and shifting the data set in x/y-coordinates. First, the data set is rotated by a rotation angle around a rotation center. Then the data set is translated in x-direction, y-direction and z-direction.
+An OpenCRG data set may be relocated by rotating and shifting the data set in x/y-coordinates. First, the data set is rotated by a rotation angle around a rotation center. Then the data set is translated in x-direction, y-direction and z-direction.
 
-OpenCRG data can be scaled in multiple ways. Scaling factors can be applied to length, width, z-values, slope and banking. If a factor of 0 is specified for elevation data, that modifier is ignored. For length and width only factors greater than 0 are valid.
+OpenCRG data may be scaled in multiple ways. Scaling factors may be applied to length, width, z-values, slope and banking. If a factor of 0 is specified for elevation data, that modifier is ignored. For length and width, only factors greater than 0 are valid.
 
-The curvature of the reference line can be scaled by a factor, resulting in a different end point. Scaling the curvature by a factor of 0 results in a straight line.
+The curvature of the reference line may be scaled by a factor, resulting in a different end point. Scaling the curvature by a factor of 0 results in a straight line.
 
-When preparing a data set for evaluation, the borders of the road in v-direction are checked for NaN values. These NaN values can be kept or replaced by defined values. If NaN values are to be kept, the BORDER_MODE_V option shall be set to 0 (none). If NaN values are to be replaced, an additional offset may be applied to them.
+When preparing a data set for evaluation, the borders of the road in v-direction are checked for NaN values. These NaN values may be kept or replaced by defined values. If NaN values are to be kept, the BORDER_MODE_V option shall be set to 0 (none). If NaN values are to be replaced, an additional offset may be applied to them.
 
 ===== Keyword
 
@@ -124,7 +124,7 @@ a| Factor for scaling the data in v-direction.
 a| Factor for scaling the curvature.
 
 |`GRID_NAN_MODE`
-|0,1,2
+|0, 1, 2
 a| Mode for replacing NaN values in road data borders.
 
 0:: Keep NaN values.
@@ -148,7 +148,7 @@ a| Offset applied to replaced NaN values.
 
 ===== Examples
 
-In the following example, the reference line is first rotated by 1.57 rad (90°) around the origin of the x/y-coordinate system and then shifted 100 m in x-direction, y-direction and z-direction.
+In the following example, the reference line is first rotated by 1.57 rad (90°) around the origin of the x/y-coordinate system and then shifted by 100 m in x-direction, y-direction and z-direction.
 
 .Rotating and shifting the reference line 
 ----
