@@ -78,20 +78,18 @@ a|Number of warning messages displayed.
 [1;∞[:: Max. number.
 
 |`WARN_CURV_LOCAL`
-|-1, 0, [1;∞[ (default: -1)
-a|Number of warning messages displayed: local curvature limit exceeded.
+|0, 1 (default: 0)
+a|Check whether local curvature limit is exceeded.
 
--1:: All.
-0:: None.
-[1;∞[:: Max. number.
+0:: Do not check local curvature.
+1:: Check local curvature.
 
 |`WARN_CURV_GLOBAL`
-|-1, 0, [1;∞[ (default: -1)
-a|Number of warning messages displayed: global curvature limit exceeded.
+|0, 1 (default: 0)
+a||Check whether global curvature limit is exceeded.
 
--1:: All.
-0:: None.
-[1;∞[:: Max. number.
+0:: Do not check global curvature.
+1:: Check global curvature.
 
 |`CHECK_EPS`
 | [1e-6; 1e-2] (default: 1e-6)

@@ -1,10 +1,12 @@
 === Checking OpenCRG data
 
-OpenCRG data can contain inconsistent definitions, for example, definitions in the road parameters section that do not match the actual data in the road data section. Another example are intersecting lateral cuts caused by high curvature, resulting in an ambiguous grid definition. Checking OpenCRG data ensures internal consistency, accuracy´, and completeness.
+OpenCRG data can contain inconsistent definitions, for example, definitions in the road parameters section that do not match the actual data in the road data section. Checking OpenCRG data ensures internal consistency, accuracy, and completeness.
+
+ Another example are intersecting lateral cuts caused by high curvature, resulting in an ambiguous grid definition. A global curvature check fails if two or more lateral cuts intersect inside the road limits. In this case, the local curvature check still succeeds, if such an intersection falls into a region of NaN values.
 
 With the C-API, OpenCRG data is not checked automatically upon reading. It must be checked explicitly via an appropriate API call. 
 
-Most functions of the MATLAB tools already call `crg_check` internally. With the MATLABTools, it is usually not required to check OpenCRG data explicitly.
+Most functions of the MATLAB tools already call `crg_check` internally. With the MATLAB tools, it is usually not required to check OpenCRG data explicitly.
 
 ==== Prerequisites
 
@@ -13,7 +15,7 @@ Most functions of the MATLAB tools already call `crg_check` internally. With the
 ==== Corresponding C functions
 
 `int crgCheck( int dataSetId )`::
-Check OpenCRG data `dataSetId` for consistency and accuracy and returns `true` if the data was checked successfully.
+Check OpenCRG data `dataSetId` for consistency and accuracy and returns `true` if the data was checked successfully. Check reference line curvature in `dataSetId` globally and locally, if the respective options are set.
 
 ==== Corresponding MATLAB functions
 
@@ -36,7 +38,7 @@ Check OpenCRG map projection data in `data` for consistent definitions and value
 Check OpenCRG data in `data` for consistency and accuracy, fix minor accuracy problems, and complement and condense the OpenCRG data as far as possible.
 
 `[data, ierr] = crg_check_curvature(data, ierr)`::
-Check reference line curvature in `data` globally and locally. The global curvature check fails if two or more lateral cuts intersect inside the road limits. In this case, the local curvature check still succeeds, if such an intersection falls into a region of NaN values.
+Check reference line curvature in `data` globally. Check reference line curvature in `data` locally, if the respective option is set.
 
 `[data] = crg_check_single(data)`::
 Check whether OpenCRG data in core data vectors and arrays of `data` is of type single.
