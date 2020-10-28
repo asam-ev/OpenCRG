@@ -68,7 +68,7 @@ int main( int argc, char** argv )
     /* --- check CRG data for consistency and accuracy --- */
     if ( !crgCheck( dataSetId ) )
     {
-        crgMsgPrint ( dCrgMsgLevelFatal, "main: could not validate crg data. \n" );
+    	crgMsgPrint ( dCrgMsgLevelFatal, "main: could not validate crg data. \n" );
         return -1;
     }
 
