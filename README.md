@@ -76,9 +76,9 @@ October 14, 2020 Release 1.2
 -----------------------------
 Adaption to ASAM Standard
 - C-API:
-  make files fixes
   global and local curvature check implementation
 - MATLAB-API:
+  map_* - added  transformation support
   crg_demo_map_transformation - new demo on transformation
   crg_test_map_pro - new test on transformation
   crg_check_curvature - global and local curvature check implementation
