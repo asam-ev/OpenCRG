@@ -86,7 +86,7 @@ a|Check whether local curvature limit is exceeded.
 
 |`WARN_CURV_GLOBAL`
 |0, 1 (default: 0)
-a||Check whether global curvature limit is exceeded.
+a|Check whether global curvature limit is exceeded.
 
 0:: Do not check global curvature.
 1:: Check global curvature.
