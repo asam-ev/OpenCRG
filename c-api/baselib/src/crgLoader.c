@@ -2461,43 +2461,57 @@ crgLoaderPrepareData( CrgDataStruct* crgData )
     crgMsgPrint( dCrgMsgLevelDebug, "crgLoaderPrepareData: crgCalcUtilityData() done.\n" );
 }
 
-int
-crgLocalCurvature(CrgDataStruct* crgData){
+		int crgLocalCurvature(CrgDataStruct *crgData) {
 
-    double dx0;
-    double dy0;
-    double dx1;
-    double dy1;
-    double val;
-    double curv = 0.0;
-    int    cpId;
-    double z;
-	size_t i;
-	double uStart = crgData->channelU.info.first;
+			int optAsInt;
+			int inter;
+			double dx0;
+			double dy0;
+			double dx1;
+			double dy1;
+			double val;
+			double curv = 0.0;
+			int cpId;
+			double z;
+			size_t i;
+			double uStart = crgData->channelU.info.first;
 
-	val = 1.0 / pow( crgData->channelU.info.inc, 3.0 );
+			/* remember border mode */
+			crgOptionGetInt(&crgData->options, dCrgCpOptionBorderModeV,
+					&optAsInt);
 
-	 if ( ( cpId = crgContactPointCreate( crgData->admin.id ) ) < 0 )
-	 {
-		 crgMsgPrint( dCrgMsgLevelFatal, "main: could not create contact point.\n" );
-		 return 0;
-	 }
+			crgOptionSetInt(&crgData->options, dCrgCpOptionBorderModeV, 0);
 
-	  for ( i = 1; i < crgData->channelX.info.size - 1; i++ )
-	  {
-	        dx0  = crgData->channelX.data[i]   - crgData->channelX.data[i-1];
-	        dx1  = crgData->channelX.data[i+1] - crgData->channelX.data[i];
-	        dy0  = crgData->channelY.data[i]   - crgData->channelY.data[i-1];
-	        dy1  = crgData->channelY.data[i+1] - crgData->channelY.data[i];
-	        curv = ( dx0 * dy1 - dy0 * dx1 ) * val;
-	        if ( crgEvaluv2z( cpId, uStart+i*crgData->channelU.info.inc, 1/curv, &z ) ){
-	        	if(!crgIsNan(&z)){
-	        		return 0;
-	        	}
-	        }
-	  }
-	return 1;
-}
+			val = 1.0 / pow(crgData->channelU.info.inc, 3.0);
+
+			if ((cpId = crgContactPointCreate(crgData->admin.id)) < 0) {
+				crgMsgPrint( dCrgMsgLevelFatal,
+						"main: could not create contact point.\n");
+				return 0;
+			}
+
+			for (i = 1; i < crgData->channelX.info.size - 1; i++) {
+				dx0 = crgData->channelX.data[i] - crgData->channelX.data[i - 1];
+				dx1 = crgData->channelX.data[i + 1] - crgData->channelX.data[i];
+				dy0 = crgData->channelY.data[i] - crgData->channelY.data[i - 1];
+				dy1 = crgData->channelY.data[i + 1] - crgData->channelY.data[i];
+				curv = (dx0 * dy1 - dy0 * dx1) * val;
+				if (crgEvaluv2z(cpId, uStart + i * crgData->channelU.info.inc,
+						1 / curv, &z)) {
+					if (!crgIsNan(&z)) {
+
+						crgOptionSetInt(&crgData->options,
+						dCrgCpOptionBorderModeV, optAsInt);
+
+						return 0;
+					}
+				}
+			}
+
+			crgOptionSetInt(&crgData->options, dCrgCpOptionBorderModeV, optAsInt);
+
+			return 1;
+		}
 
 int
 crgGlobalCurvature(CrgDataStruct* crgData){
@@ -2598,7 +2612,7 @@ crgCheck( int dataSetId )
     {
     		if(!crgGlobalCurvature(crgData))
     		{
-        		crgMsgPrint( dCrgMsgLevelFatal, "crgGlobalCurvature: Global curvature test failed.\n" );
+        		crgMsgPrint( dCrgMsgLevelWarn, "crgGlobalCurvature: Global curvature test failed.\n" );
         		return 0;
     		} else {
     			crgMsgPrint( dCrgMsgLevelNotice, "crgGlobalCurvature: Global curvature test succeeded.\n" );
