@@ -8,6 +8,8 @@ Road data is stored as low-precision array as defined in the _data definition_ s
 
 A single record shall contain a maximum of 80 byte. If the defined data channels exceed this limit, the respective data row shall be wrapped to the next record. In plain-text format, each data row shall start in a new record. In binary format, records are successively filled up to 80 byte. The last record is padded with NaNs.
 
+===== Contents
+
 In plain-text formats, numbers are represented as follows:
 
 * Numbers of type real are 10 characters long for a maximum of 8 numbers per record.
