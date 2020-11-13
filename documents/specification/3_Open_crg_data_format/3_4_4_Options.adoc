@@ -27,7 +27,7 @@ The _options_ section contains options provided as key-value pairs.
 |Option |Values |Description
 
 |`BORDER_MODE_U`
-|0, 1, 2, 3, 4, 5 (default: 2)
+|0, 1, 2, 3, 4 (default: 2)
 a|Returned z-value, when a query exceeds the beginning or the end of the road.
 
 0:: Return NaN or an error.
@@ -37,7 +37,7 @@ a|Returned z-value, when a query exceeds the beginning or the end of the road.
 4:: Mirror road data at the beginning and the end of the road.
 
 |`BORDER_MODE_V`
-|0, 1, 2, 3, 4, 5 (default: 2)
+|0, 1, 2, 3, 4 (default: 2)
 a|Returned z-value, when a query exceeds the left side or the right side of the road.
 
 0:: Return NaN or an error.
