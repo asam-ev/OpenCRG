@@ -72,7 +72,7 @@ Directory structure:
 Release Notes:
 --------------------------------------------------------------
 
-October 14, 2020 Release 1.2
+November xx, 2020 Release 1.2
 -----------------------------
 Adaption to ASAM Standard
 - C-API:
@@ -86,8 +86,6 @@ Adaption to ASAM Standard
   map_wgs2html - update to OpenLAYERS
   crg_wgs84_crg2html - update to ASAM Style
 
-July 26, 2017 Release 1.1.1
------------------------------
 March 30, 2018 Release 1.1.2
 -----------------------------
 - C-API:
