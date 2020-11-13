@@ -5,7 +5,7 @@
 ==== Naming conventions 
 In this document, the following conventions apply:
 
-``data types`` 	are given according to IEEE standards.
+``data types`` 	are given according to IEEE 754 standard.
 
 ==== Units
 

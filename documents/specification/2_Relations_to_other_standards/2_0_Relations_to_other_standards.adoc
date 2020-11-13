@@ -1,4 +1,4 @@
-== Relations to other standards (preliminary)
+== Relations to other standards
 :imagesdir: images/
 :stem: latexmath
 
@@ -22,3 +22,6 @@ ASAM OpenCRG 1.2.0 is backward compatible to OpenCRG 1.1.2.
 * ISO 8601 for time / date
 * ISO 8859-1 for plain-text encoding
 * Georeferencing (ISO DIN 19111)
+* ASAM OpenDRIVE
+* ASAM OpenSCENARIO
+* IEEE 754
