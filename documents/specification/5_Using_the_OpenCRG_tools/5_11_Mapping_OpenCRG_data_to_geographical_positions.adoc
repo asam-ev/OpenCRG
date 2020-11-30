@@ -5,7 +5,7 @@ The C-API does not provide functions for handling geographical coordinates. Inst
 The MATLAB tools provide a large collection of functions for visualizing, converting and transforming geographic data. <<image-geo_transformations>> shows the available coordinate systems and transformations. Many of these functions are generic and may also be used for data not in OpenCRG format.
 
 [[image-geo_transformations]]
-image::geo_transformations.png[transformations, 900, title = "Overview of coordinate transformations."]
+image::geo_transformations.svg[transformations, 900, title = "Overview of coordinate transformations."]
 
 Map projection data can be defined either in the OpenCRG file or by accessing the relevant fields of the loaded OpenCRG data.
 
