@@ -16,7 +16,7 @@ $ROAD_CRG_FILE
 
 File references use the following symbols for describing paths.
 
-.file reference symbols
+.File reference symbols
 |===
 |Symbol |Function
 

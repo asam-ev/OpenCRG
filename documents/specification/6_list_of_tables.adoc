@@ -3,8 +3,46 @@
 
 [cols="10,90", grid=none, frame=none]
 |===
-|Table 1: |Rules for using modal verbs
+|Table 1: |Deliverables of ASAM OpenCRG
 
-|Table 2: |Typographical conventions
+|Table 2: |Rules for using modal verbs
+
+|Table 3: |Typographical conventions
+
+|Table 4: |Overview of data sections in recommended sequence.
+
+|Table 5: |Road parameters
+
+|Table 6: |Data definition parameters
+
+|Table 7: |Map projection parameters
+
+|Table 8: |Option parameters
+
+|Table 9: |Modifier
+
+|Table 10: |File reference symbols
+
+|Table 11: |File reference using an absolute path.
+
+|Table 12: |File reference using an absolute path split into 2 lines.
+
+|Table 13: |File reference using a relative path.
+
+|Table 14: |File reference using an environment variable ($crgpath).
+
+|Table 15: |File reference section containing two file references.
+
+|Table 16: |Evaluation tools
+
+|Table 17: |Visualization and analysis tools
+
+|Table 18: |File input and output tools
+
+|Table 19: |Checking tools
+
+|Table 20: |Generation tools
+
+|Table 21: |Geographic referencing tools
 
 |===

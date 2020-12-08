@@ -34,7 +34,7 @@ def read_adoc(path):
             title = title[:title.rfind('"')]
             figures.append([img_number, title])
 
-        elif line.find(".Attributes") !=-1 or line.find(".Units") !=-1 or line.find(".Rules") !=-1 or line.find(".Typo") !=-1 :
+        elif line.find(".Deliv") !=-1 or line.find(".Overview") !=-1 or line.find(".Rules") !=-1 or line.find(".Typo") !=-1 or line.find(".Road") !=-1 or line.find(".Map") !=-1  or line.find(".Data") !=-1  or line.find(".Option") !=-1 or line.find(".Modi") !=-1 or line.find(".File") !=-1 or line.find(".Eval") !=-1 or line.find(".Visu") !=-1 or line.find(".Check") !=-1 or line.find(".Gen") !=-1 or line.find(".Geo") !=-1 :
             tables.append(line[1:])
 
 
