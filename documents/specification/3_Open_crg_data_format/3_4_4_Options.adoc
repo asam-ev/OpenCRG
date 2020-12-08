@@ -23,6 +23,7 @@ $ROAD_CRG_OPTS
 
 The _options_ section contains options provided as key-value pairs.
 
+.Option parameters
 |===
 |Option |Values |Description
 

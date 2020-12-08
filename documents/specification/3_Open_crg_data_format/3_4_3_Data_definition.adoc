@@ -15,8 +15,7 @@ If no data format is defined, road data is considered to use KRBI format.
 
 Lines starting with `D:` define a channel in the _road data_ section. A channel definition describes both the type of data and the unit. A channel corresponds to a column in the _road data_ section. Channel definitions appear in the same sequence as the corresponding columns appear in the _road data_ section.
 
-// TODO: Nicco: re-do image in higher quality
-image::OpenCRG_coord_sys.png[title="A channel corresponds to a column in the _road data_ section."]
+image::OpenCRG_coord_sys.png[img4, title="A channel corresponds to a column in the _road data_ section."]
 
 Lines starting with `U:` define a virtual channel. A virtual channel does not contain original data. Instead, data in a virtual channel is derived from data and definitions provided elsewhere in the file. Virtual channels may safely be ignored.
 
@@ -28,6 +27,7 @@ $KD_Definition
 
 ===== Contents
 
+.Data definition parameters
 |===
 |Definition |Description
 

@@ -40,3 +40,7 @@ include::3_Open_crg_data_format/3_0_Open_crg_data_format.adoc[]
 include::4_Setting_up_the_OpenCRG_tools/4_0_Setting_up_the_OpenCRG_tools.adoc[]
 
 include::5_Using_the_OpenCRG_tools/5_00_Using_the_OpenCRG_tools.adoc[]
+
+include::6_list_of_tables.adoc[]
+
+include::7_list_of_figures.adoc[]

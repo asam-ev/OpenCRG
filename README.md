@@ -72,7 +72,7 @@ Directory structure:
 Release Notes:
 --------------------------------------------------------------
 
-November xx, 2020 Release 1.2
+November 18, 2020 Release 1.2
 -----------------------------
 Adaption to ASAM Standard
 - C-API:

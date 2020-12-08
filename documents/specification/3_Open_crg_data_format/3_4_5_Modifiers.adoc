@@ -32,6 +32,7 @@ $ROAD_CRG_MODS
 
 The _modifiers_ section contains modifiers provided as key-value pairs.
 
+.Modifier
 |===
 |Modifier |Values |Description
 

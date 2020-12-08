@@ -15,6 +15,6 @@ Figure 2. <<image-opencrg_introductory_example>> shows an example of an OpenCRG 
 
 // TODO add an image
 [[image-banking_slope]]
-image::banking_slope.png[banking_slope, title="Schematic drawing of banking and slope."]
+image::banking_slope.png[img3, banking_slope, title="Schematic drawing of banking and slope."]
 
 The reference line may be complemented by slope or banking (see <<image-banking_slope>>).

@@ -2,6 +2,7 @@
 
 The following deliverables are provided for OpenCRG:
 
+.Deliverables of ASAM OpenCRG
 [frame="none]
 |===
 |User guide| The User Guides help to get started with the OpenCRG APIs and how OpenCRG can be applied

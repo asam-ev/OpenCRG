@@ -57,9 +57,6 @@ must not
 This documentation uses the following typographical conventions:
 
 .Typographical conventions
-
-//TODO check whether code snippets are actually blue
-
 [%header, cols=2*]
 |===
 |Mark-up					|Definition

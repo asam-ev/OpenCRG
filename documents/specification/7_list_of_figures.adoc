@@ -1,0 +1,11 @@
+== List of figures
+
+
+[cols="10,80, 10", grid=none, frame=none]
+|===
+|Figure 1: |Relation between OpenDRIVE, OpenCRG, and OpenSCENARIO|
+|Figure 2: |OpenCRG road surface description using u/v-coordinates and x/y-coordinates.|
+|Figure 3: |Schematic drawing of banking and slope.|
+|Figure 4: |A channel corresponds to a column in the _road data_ section.|
+|Figure 5: |Overview of coordinate transformations.|
+|===
