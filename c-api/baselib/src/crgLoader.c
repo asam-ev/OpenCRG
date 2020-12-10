@@ -76,7 +76,9 @@
 #ifdef _WIN64
 #    define stat _stat64
 #elif _WIN32
+    // Nothing to do, default stat uses 32 bit on Windows
 #elif __linux__
+    // Nothing to do, Linux automatically switches between 32-bit and 64-bit version of stat depending on the architecture
 #endif
 
 /* ====== TYPE DEFINITIONS ====== */

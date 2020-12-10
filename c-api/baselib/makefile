@@ -21,7 +21,7 @@
 #
 
 #library version
-REVISION = 1.1.1
+REVISION = 1.2.0
 
 #directories
 LIB_DIR = lib

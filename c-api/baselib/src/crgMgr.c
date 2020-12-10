@@ -720,7 +720,7 @@ crgMemRelease( void )
 const char*
 crgGetReleaseInfo( void )
 {
-    return "OpenCRG C-API release 1.1.1, January 17, 2017";
+    return "ASAM OpenCRG C-API release 1.2.0, November 18, 2020";
 }
 
 int

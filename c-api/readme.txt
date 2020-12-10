@@ -139,6 +139,12 @@ C) If you don't like makefiles and our scripts, you may just write your own
 Release Notes:
 --------------------------------------------------------------
 
+March 30, 2018 Release 1.1.2
+-----------------------------
+- C-API:
+  fixes multiplatform issues with files bigger than 2GB, WIN64 now uses stat64 while WIN32 build are still possible
+
+
 January 17, 2017 Release 1.1.1
 -----------------------------
 - C-API:
