@@ -2201,6 +2201,8 @@ calcRefLine( CrgDataStruct* crgData )
         crgMsgPrint( dCrgMsgLevelDebug, "calcRefLine: using simplified (forward) algorithm.\n" );
 
         /* --- integrate phi -> (x,y) from start to end by simple Euler steps, using simple forward integration --- */
+        crgData->channelX.data[0] = crgData->channelX.info.first;
+        crgData->channelY.data[0] = crgData->channelY.info.first;
         for ( i = 0; i < crgData->channelPhi.info.size-1; i++ )
         {
             crgData->channelX.data[i+1] = crgData->channelX.data[i] + crgData->channelU.info.inc * cos( crgData->channelPhi.data[i+1] );
