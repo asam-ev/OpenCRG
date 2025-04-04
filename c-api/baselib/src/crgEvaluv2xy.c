@@ -46,15 +46,7 @@ crgEvaluv2xy( int cpId, double u, double v, double* x, double* y )
     if ( !( cp = crgContactPointGetFromId( cpId ) ) )
         return 0;
 
-    /* --- remember the input and compute the fallback solution --- */
-    cp->u = u;
-    cp->v = v;
-
-    retVal = crgDataEvaluv2xy( cp->crgData, &( cp->options ), cp->u, cp->v, &( cp->x ), &( cp->y ) );
-
-    /* --- transfer the result --- */
-    *x = cp->x;
-    *y = cp->y;
+    retVal = crgDataEvaluv2xy( cp->crgData, &( cp->options ), u, v, x, y );
 
     return retVal;
 }
