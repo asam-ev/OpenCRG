@@ -3,7 +3,7 @@ name: Build and Deploy HTML
 on:
   push:
     branches:
-      - main  # pas aan als je een andere branch gebruikt
+      - main
 
 jobs:
   build:
