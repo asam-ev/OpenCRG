@@ -16,7 +16,7 @@ jobs:
       - name: Install Asciidoctor
         run: |
           sudo apt-get update
-          sudo apt-get install -y asciidoctor asciidoctor-diagram
+          sudo apt-get install -y asciidoctor
 
       - name: Build HTML
         run: |
