@@ -2,26 +2,33 @@ name: Build and Deploy HTML
 
 on:
   push:
-    branches:
-      - master
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     container:
       image: asciidoctor/docker-asciidoctor:latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Build HTML
         run: |
-          asciidoctor -r asciidoctor-diagram documents/specification/OpenCRG_specification_1_2.adoc -o OpenCRG_specification_1_2.html
+          mkdir -p site
+          asciidoctor -r asciidoctor-diagram documents/specification/OpenCRG_specification_1_2.adoc -o site/index.html
+
+      # >>> Fix: GNU tar installeren en als /bin/tar beschikbaar maken
+      - name: Install GNU tar in container
+        run: |
+          apk add --no-cache gnu-tar
+          ln -sf /usr/bin/gtar /bin/tar
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: OpenCRG_specification_1_2.html
+          path: site
 
   deploy:
     needs: build
@@ -30,12 +37,12 @@ jobs:
       contents: write
       pages: write
       id-token: write
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
