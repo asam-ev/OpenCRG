@@ -1,0 +1,34 @@
+ASAM OpenCRG®
+Copyright 2025 ASAM e.V.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+This product includes software developed at ASAM e.V. (https://www.asam.net/).
+
+The ASAM OpenCRG project is inherited from the original OpenCRG initiative of the German automotive industry.
+Contributors to previous and current versions include:
+
+Copyright 2005–2017 Daimler AG – Jochen Rauh
+Copyright 2005–2011 Daimler AG – Klaus Mueller
+Copyright 2008–2014 VIRES Simulationstechnologie GmbH – Marius Dupuis
+Copyright 2008–2017 VIRES Simulationstechnologie GmbH – Holger Helmich
+Copyright 2018–2019 Daimler AG – Jochen Rauh
+Copyright 2019 VIRES Simulationstechnologie GmbH – Marius Dupuis
+Copyright 2020 Parson Europe – Maximilian Rosin
+Copyright 2020 Virtual City Systems – Roland Ruhdorfer
+Copyright 2020 Virtual City Systems – Maximilian Sindram
+Copyright 2020 3D Mapping Solutions – Sebastian Tuttas
+
+In 2025, ASAM reinstated the Apache 2.0 license for ASAM OpenCRG.
+All relevant license statements have been updated accordingly without functional changes.
+ASAM OpenCRG® is a registered trademark of ASAM e.V.
