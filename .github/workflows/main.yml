@@ -2,28 +2,38 @@ name: Build and Deploy HTML
 
 on:
   push:
-    branches: [ master ]
+    branches: master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: asciidoctor/docker-asciidoctor:latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+
+      - name: Install Asciidoctor
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+          gem install asciidoctor asciidoctor-diagram
 
       - name: Build HTML
         run: |
           mkdir -p site
           asciidoctor -r asciidoctor-diagram documents/specification/OpenCRG_specification_1_2.adoc -o site/index.html
-
-      # >>> Fix: GNU tar installeren en als /bin/tar beschikbaar maken
-      - name: Install GNU tar in container
-        run: |
-          apk add --no-cache gnu-tar
-          ln -sf /usr/bin/gtar /bin/tar
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
@@ -33,10 +43,6 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
