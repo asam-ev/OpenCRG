@@ -4,15 +4,8 @@
  * 
  * ASAM OpenCRG C API
  * 
- * OpenCRG version:           1.2.0
- * 
- * package:               baselib
- * file name:             crgEvaluv2xy.c 
- * author:                ASAM e.V.
- * 
- * 
- * Original code by VIRES Simulationstechnologie GmbH, modified by ASAM e.V. 2025. See the NOTICE file 
- * distributed with this work for additional information regarding copyright ownership.
+ * Copyright 2025 ASAM e.V.
+ * See the NOTICE file distributed with this work for additional information regarding copyright ownership.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
