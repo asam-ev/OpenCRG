@@ -1,6 +1,0 @@
-= README
-
-
-include::Getting_Started.adoc[]
-
-include::Workflow_Tutorial.adoc[]
