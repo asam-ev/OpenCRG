@@ -28,7 +28,7 @@ close all
 
 %% load demo road
 
-crg = crg_read('../crg-bin/belgian_block.crg');
+crg = crg_read('../../crg-bin/belgian_block.crg');
 
 %% visualize road
 

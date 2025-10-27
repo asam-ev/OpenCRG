@@ -41,7 +41,7 @@ function [ier] = crg_demo_gen_sl_mue(filename)
 
 ier = -1;
 if ~exist('filename','var') || ~ischar(filename)
-    error('CRG:checkError', 'No valid filename is spezified');
+    error('CRG:checkError', 'No valid filename is specified');
 end
 
 %% default settings

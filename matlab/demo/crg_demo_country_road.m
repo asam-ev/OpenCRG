@@ -28,7 +28,7 @@ close all
 
 %% load demo road
 
-crg = crg_read('../crg-bin/country_road.crg');
+crg = crg_read('../../crg-bin/country_road.crg');
 
 %% visualize road
 

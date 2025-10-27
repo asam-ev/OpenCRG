@@ -28,7 +28,7 @@ close all
 
 %% load demo road
 
-ipl = ipl_read('../crg-txt/handmade_curved.crg');
+ipl = ipl_read('../../crg-txt/handmade_curved.crg');
 
 %% write it as binary verison (single precision)
 

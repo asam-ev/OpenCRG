@@ -28,7 +28,7 @@ close all
 
 %% load demo road
 
-ipl = ipl_read('../crg-bin/belgian_block.crg');
+ipl = ipl_read('../../crg-bin/belgian_block.crg');
 
 %% write it as clear text verison (single precision)
 

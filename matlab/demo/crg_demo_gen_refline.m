@@ -34,7 +34,7 @@ function [] = crg_demo_gen_refline()
 
 %% use CRG demo data set as measurement data
 
-crgmeas = crg_read('../crg-bin/country_road.crg');
+crgmeas = crg_read('../../crg-bin/country_road.crg');
 
 %% generate (noisy) midpoint measurements of it
 

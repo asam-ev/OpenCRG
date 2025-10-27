@@ -43,7 +43,7 @@ function [] = crg_demo_gen_surface()
 
 %% use CRG demo data set as raw measurement data
 
-crgmeas = crg_read('../crg-bin/country_road.crg');
+crgmeas = crg_read('../../crg-bin/country_road.crg');
 crgmeas.mods = struct;
 crgmeas.opts.bdmu = 0;
 crgmeas.opts.bdmv = 0;

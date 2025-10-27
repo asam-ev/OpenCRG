@@ -37,7 +37,7 @@ function [data] = crg_demo_scale_data(data)
 
 %% check number of arguments
 
-error(nargchk(1,1,nargin));
+error(nargchk(1,1,nargin)); %#ok<NCHKN>
 
 %% check if already succesfully checked
 
