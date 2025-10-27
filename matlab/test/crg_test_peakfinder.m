@@ -86,7 +86,7 @@ crg_show_peaks(data, pij, [], [], iu, iv);
 
 %% Test2 (real)
 
-dat1 = crg_read('../crg-bin/country_road.crg');
+dat1 = crg_read('../../crg-bin/country_road.crg');
 
 % add peaks
 dat1.z(200:210, 25:35) = 0.5;      % 10x10 + 0.05

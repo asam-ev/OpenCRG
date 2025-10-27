@@ -78,7 +78,7 @@ crg_show_road_surface(exdata);
 
 %% Test3 ( real dataset extract slope/banking )
 
-dat = crg_read('../crg-bin/belgian_block.crg');
+dat = crg_read('../../crg-bin/belgian_block.crg');
 
 exdata = crg_ext_banking(dat, 0.0000000000003);
 exdata = crg_ext_slope(exdata);

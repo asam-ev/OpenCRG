@@ -25,7 +25,7 @@
 
 %% Test proceedings
 %
-% * read input file '../crg-bin/crg_refline_Hoki_HoeKi_Grafing.crg'
+% * read input file '../../crg-bin/crg_refline_Hoki_HoeKi_Grafing.crg'
 %   containing correct wgs84 coordinates, but no mpro
 %
 % Test 1
@@ -44,7 +44,7 @@ clear all;
 clc;
 
 % read crg data (with correct wgs84 and UTM coordinates)
-crg_orig = crg_read('../crg-bin/crg_refline_Hoki_HoeKi_Grafing.crg');
+crg_orig = crg_read('../../crg-bin/crg_refline_Hoki_HoeKi_Grafing.crg');
 
 %% Test1 ( orig data consistency no map pro entry )
 

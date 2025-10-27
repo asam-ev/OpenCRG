@@ -237,7 +237,7 @@ if dispRes, crg_show_isequal(dd); end
 
 %% Test4.2 (check rerender)
 
-data = crg_read('../crg-bin/belgian_block.crg');
+data = crg_read('../../crg-bin/belgian_block.crg');
 
 data = crg_rerender(data, [0.01 0.01]);
 
@@ -253,7 +253,7 @@ if dispRes, crg_show_isequal(dd); end
 
 %% Test5 ( check real crg_ext_slope/banking )
 
-dat = crg_read('../crg-bin/belgian_block.crg');
+dat = crg_read('../../crg-bin/belgian_block.crg');
 
 exdata = crg_ext_banking(dat, 0.0000000000003);
 exdata = crg_ext_slope(exdata);

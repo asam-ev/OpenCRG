@@ -112,7 +112,7 @@ crg_show(data);
 
 %% Test8 ( real case: )
 
-dat1 = crg_read('../crg-bin/country_road.crg');
+dat1 = crg_read('../../crg-bin/country_road.crg');
 
 data = crg_rerender(dat1, 0.4);
 crg_show(data);

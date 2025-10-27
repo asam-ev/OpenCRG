@@ -81,7 +81,7 @@ crg_show(data);
 
 %% Test5 ( real dataset incl. u/v start/stop)
 
-dat = crg_read('../crg-bin/country_road.crg');
+dat = crg_read('../../crg-bin/country_road.crg');
 
 data = crg_limiter(dat, -31.45, [5000 5500], [25 150]);
 
@@ -89,7 +89,7 @@ crg_show(data, [5000 5500]);
 
 %% Test6 ( real dataset incl. u/v start/stop)
 
-dat = crg_read('../crg-bin/belgian_block.crg');
+dat = crg_read('../../crg-bin/belgian_block.crg');
 
 data = crg_limiter(dat, [-10 2.13], [600 800], 150);
 

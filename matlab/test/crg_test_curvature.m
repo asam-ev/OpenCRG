@@ -41,11 +41,11 @@ clc;
 
 % File 1: failing global and local curvature test
 disp("----- Pre File 1: standard check 'crg_read' -----");
-data0 = crg_read('../crg-bin/crg_local_curv_test_fail.crg');
+data0 = crg_read('../../crg-bin/crg_local_curv_test_fail.crg');
 
 % File 2: failing global but succeeding local curvature test
 disp("----- Pre File 2: standard check 'crg_read' -----");
-data1 = crg_read('../crg-bin/crg_local_curv_test_ok.crg');
+data1 = crg_read('../../crg-bin/crg_local_curv_test_ok.crg');
 
 ierr = 0;
 

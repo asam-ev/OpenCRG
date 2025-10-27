@@ -123,7 +123,7 @@ c = {  3   {   0  -0.2/3 }  ...    % klothoide
     };
 
 dat1 = crg_gen_csb2crg0([], 16, 1, c);
-dat2 = crg_read('../crg-bin/belgian_block.crg');
+dat2 = crg_read('../../crg-bin/belgian_block.crg');
 
 dat2.mods.rptx = 1;
 dat2.mods.rpty = 1;

@@ -1,0 +1,4 @@
+# ignore generated demo crg files
+/*.crg
+# ignore generated demo html files
+/*.html

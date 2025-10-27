@@ -61,7 +61,7 @@ crg_plot_road_xyz_map(data);
 
 %% Test1.2 (mean filter: real -> smooth road)
 
-data = crg_read('../crg-bin/belgian_block.crg');
+data = crg_read('../../crg-bin/belgian_block.crg');
 
 dat = crg_filter(data, [400 900], [50 300], 'mean', [10 10], [1 5]);
 
@@ -88,7 +88,7 @@ crg_plot_road_xyz_map(data);
 
 %% Test2.2 (gauss filter: real -> smooth road)
 
-data = crg_read('../crg-bin/belgian_block.crg');
+data = crg_read('../../crg-bin/belgian_block.crg');
 
 dat = crg_filter(data, [400 900], [50 300], 'gauss', [10 10], [1 5]);
 
@@ -115,7 +115,7 @@ crg_plot_road_xyz_map(data);
 
 %% Test3.2 (laplace: real -> bumpy road)
 
-data = crg_read('../crg-bin/belgian_block.crg');
+data = crg_read('../../crg-bin/belgian_block.crg');
 
 dat = crg_filter(data, [400 900], [50 300], 'laplace', [10 10], [1 20]);
 
@@ -142,7 +142,7 @@ crg_plot_road_xyz_map(data);
 
 %% Test4.2 (sobel: real -> bumpy road)
 
-data = crg_read('../crg-bin/belgian_block.crg');
+data = crg_read('../../crg-bin/belgian_block.crg');
 
 dat = crg_filter(data, [400 900], [50 300], 'sobel', [10 10], [1 30]);
 
@@ -169,7 +169,7 @@ crg_plot_road_xyz_map(data);
 
 %% Test5.2 ( 2diff )
 
-data = crg_read('../crg-bin/belgian_block.crg');
+data = crg_read('../../crg-bin/belgian_block.crg');
 
 dat = crg_filter(data, [400 900], [50 300], '2diff', [10 10], [1 30]);
 
