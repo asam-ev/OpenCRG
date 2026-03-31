@@ -3,15 +3,17 @@
 //TODO bytes as plural or byte as unit?
 //TODO full-stop after image or table titles?
 
-OpenCRG data is stored in a compact hybrid file format. Its first part is a plain text header containing sections for road parameters, data channel definitions, comments and further optional sections. The second part contains the data payload in plain text or binary representation.
+OpenCRG data is stored in a compact hybrid file format. Its first part is a plain text header containing sections for road parameters, data channel definitions, and further optional sections. The second part contains the data payload in plain text or binary representation.
 
 The plain text header shall consist of records with a maximum length of 72 ASCII characters. Any characters beyond the maximum length of 72 bytes shall be ignored. All records shall be terminated by LF or CRLF.
 
 Use of character sets beyond ASCII is limited to comments in the plain text header. Using 8bit character sets like ISO8859-1 or variable byte length character sets like UTF-8 may be possible, but the maximum record length shall be 72 bytes. Any use of non-ASCII characters is strongly discouraged, since the representation of the non-ASCII characters may fail in non-consistent environments. 
 
-All keywords used for sections or parameters inside the sections shall follow the rules of a simple variable naming convention: first character is a letter A-Z, next characters are letters A-Z, digits 0-9 and underscores`_`. The maximum keyword length is 31 characters. All keyword letters are treated case-insensitive. To increase readability, clear text header sections should appear in the sequence recommended in <<tab-recommended_data_section_sequence>>.
+All keywords used for sections or parameters inside the sections shall follow the rules of a simple variable naming convention: first character is a letter A-Z, next characters are letters A-Z, digits 0-9 and underscores`_`. The maximum keyword length is 31 characters. All keyword letters are treated case-insensitive. 
 
 Each plain text header section shall start with a line containing a `$` character as first character followed by a keyword. Each plain text header section shall be terminated by a new line with a single `$` character as first character. The keyword at the beginning of a data section and the closing `$` character at the end of a data section may be followed by inline comments.
+
+Sections labeled by keywords shall be unique inside the plain text header. Parameters labeled by keywords shall be unique inside a section of the plain text header. The order of the sections in the plain text header and the order of parameters within the sections can be arranged in a flexible manner. To increase readability, the clear text header sections may appear in the sequence recommended in <<tab-recommended_data_section_sequence>> and later paragraphs and samples.
 
 The plain text header shall be terminated by a new line with double or multiple `$` as first characters and may be followed by an inline comment. This separator record shall be terminated by LF or CRLF.
 
