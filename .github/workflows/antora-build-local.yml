@@ -1,0 +1,49 @@
+name: Build documentation (PR preview)
+on:
+  pull_request:
+    types: [ opened, edited, synchronize, reopened ]
+  workflow_dispatch:
+
+concurrency:
+  group: pr-docs-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read  # Only what's needed for checkout
+
+jobs:
+  build:
+    name: Build OpenCRG documentation (PR preview)
+    runs-on: ubuntu-latest
+    services:
+      kroki:
+        image: yuzutech/kroki:0.15.1
+        env:
+          KROKI_MAX_URI_LENGTH: 8000
+          KROKI_BLOCKDIAG_HOST: blockdiag
+          KROKI_MERMAID_HOST: mermaid
+      blockdiag:
+        image: yuzutech/kroki-blockdiag:0.15.1
+      mermaid:
+        image: yuzutech/kroki-mermaid:0.15.1
+
+    steps:
+    - name: Checkout with submodules
+      uses: actions/checkout@v6
+      with:
+        path: repo
+        fetch-depth: 0
+        submodules: recursive
+
+    - name: Generate site
+      uses: docker://ghcr.io/asam-ev/project-guide-docker:4
+      with:
+        entrypoint: sh
+        args: repo/run-build.sh
+
+    - name: Upload preview artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: docs-preview-${{ github.event.pull_request.number }}
+        path: ./repo/site
+        retention-days: 7
