@@ -1995,7 +1995,7 @@ readData( CrgDataStruct* crgData )
 void
 crgLoaderHandleNaNs( CrgDataStruct* crgData, int mode, double offset )
 {
-    int totalNaN   = 0;
+    size_t totalNaN   = 0;
     size_t minIndexLR = crgData->channelV.info.size;
     size_t maxIndexRL = 0;
     size_t i;
@@ -2100,7 +2100,7 @@ crgLoaderHandleNaNs( CrgDataStruct* crgData, int mode, double offset )
 
     crgMsgPrint( dCrgMsgLevelNotice, "crgLoaderHandleNaNs: Summary of NaN handling information:\n" );
     crgMsgPrint( dCrgMsgLevelNotice, "                     NaNs in crg data replaced by constant extrapolation.\n" );
-    crgMsgPrint( dCrgMsgLevelNotice, "                     total NaNs in data [-]:        %d\n", totalNaN );
+    crgMsgPrint( dCrgMsgLevelNotice, "                     total NaNs in data [-]:        %zu\n", totalNaN );
     crgMsgPrint( dCrgMsgLevelNotice, "                     max. NaN count from left [-]:  %ld\n", crgData->channelV.info.size - minIndexLR );
     crgMsgPrint( dCrgMsgLevelNotice, "                     max. NaN count from right [-]: %ld\n", maxIndexRL );
 }

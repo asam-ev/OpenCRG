@@ -290,6 +290,7 @@ void crgCalcUtilityData( CrgDataStruct *crgData )
         /*         extension on end of data set within valid area              */
         l     = ( ( a2 - b2 ) * m2 + ( a1 - b1 ) * m1 ) / divisor;
         valid = l > 0.0;
+        k     = 0;
 
         if ( valid )
         {
