@@ -622,3 +622,14 @@ crgContactPointPrintHistory( CrgContactPointStruct *cp, double x, double y )
 
 }
 
+void
+crgContactPointSetHistoryForAllPoints( int histSize )
+{
+    if ( !cpTable )
+        return;
+
+    for ( int i = 0; i < cpTableSize; i++ )
+    {
+        crgContactPointPtrSetHistory( cpTable[i], histSize );
+    }
+}
