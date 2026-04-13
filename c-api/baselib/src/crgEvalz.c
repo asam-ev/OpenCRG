@@ -37,7 +37,7 @@
 int
 crgEvaluv2z( int cpId, double u, double v, double* z )
 {
-    CrgContactPointStruct* cp;
+    const CrgContactPointStruct* cp;
 
     if ( !( cp = crgContactPointGetFromId( cpId ) ) )
         return 0;
@@ -46,21 +46,15 @@ crgEvaluv2z( int cpId, double u, double v, double* z )
 
 }
 
-int crgEvaluv2zPtr( CrgContactPointStruct *cp, double u, double v, double* z )
+int
+crgEvaluv2zPtr( const CrgContactPointStruct *cp, double u, double v, double* z )
 {
     int retVal = 0;
 
     if ( !cp )
         return 0;
 
-    /* --- compute the fallback solution --- */
-    cp->u = u;
-    cp->v = v;
-
-    retVal = crgDataEvaluv2z( cp->crgData, &( cp->options ), cp->u, cp->v, &( cp->z ) );
-
-    /* --- transfer the result --- */
-    *z = cp->z;
+    retVal = crgDataEvaluv2z( cp->crgData, &( cp->options ), u, v, z );
 
     return retVal;
 }

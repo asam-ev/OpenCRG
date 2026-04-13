@@ -41,16 +41,10 @@ crgEvaluv2pk( int cpId, double u, double v, double* phi, double* curv )
         return 0;
 
     /* --- compute the fallback solution --- */
-    cp->u    = u;
-    cp->v    = v;
-    cp->phi  = 0.0;
-    cp->curv = 0.0;
+    *phi  = 0.0;
+    *curv = 0.0;
 
-    retVal = crgDataEvaluv2pk( cp->crgData, &( cp->options ), cp->u, cp->v, &( cp->phi ), &( cp->curv ) );
-
-    /* --- transfer the result --- */
-    *phi  = cp->phi;
-    *curv = cp->curv;
+    retVal = crgDataEvaluv2pk( cp->crgData, &( cp->options ), u, v, phi, curv );
 
     return retVal;
 }

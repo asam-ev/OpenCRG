@@ -391,13 +391,14 @@ crgContactPointPtrSetHistory( CrgContactPointStruct *cp, int histSize )
     cp->history.usedSize  = 0;
     cp->history.entrySize = sizeof( CrgHistoryEntryStruct );
 
-    if ( histSize )
+    if ( histSize ) {
         cp->history.entry = ( CrgHistoryEntryStruct* ) crgCalloc( histSize, sizeof( CrgHistoryEntryStruct ) );
 
-    if ( !( cp->history.entry ) )
-    {
-        crgMsgPrint( dCrgMsgLevelNotice, "crgContactPointPtrSetHistory: could not allocate history.\n" );
-        return 0;
+        if ( !( cp->history.entry ) )
+        {
+            crgMsgPrint( dCrgMsgLevelNotice, "crgContactPointPtrSetHistory: could not allocate history.\n" );
+            return 0;
+        }
     }
 
     /* --- pre-calculate some history variables (note: it's the square value!) --- */

@@ -50,6 +50,8 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
     size_t indexMin = 0;
     int useHist  =  0;
     CrgDataStruct* crgData;
+    double locU;
+    double locV;
     double x0;
     double x1;
     double x2;
@@ -85,12 +87,8 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
         return 0;
 
     /* --- remember the input and compute the fallback solution --- */
-    cp->x = x;
-    cp->y = y;
-    cp->u = cp->x;
-    cp->v = cp->y;
-    *u    = cp->u;
-    *v    = cp->v;
+    *u = x;
+    *v = y;
 
     crgData = cp->crgData;
 
@@ -113,8 +111,8 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
             cp->history.stat.noIter++;
 #endif
 
-        dx = cp->x - cp->history.entry[j].x;
-        dy = cp->y - cp->history.entry[j].y;
+        dx = x - cp->history.entry[j].x;
+        dy = y - cp->history.entry[j].y;
 
         dist2 = dx * dx + dy * dy;
 
@@ -159,8 +157,8 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
 
         while ( i < crgData->channelX.info.size )
         {
-            double dx = cp->x - crgData->channelX.data[i];
-            double dy = cp->y - crgData->channelY.data[i];
+            double dx = x - crgData->channelX.data[i];
+            double dy = y - crgData->channelY.data[i];
 
             double dist2 = dx * dx + dy * dy;
 
@@ -222,9 +220,9 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
         *  - hd is negative for P "left"  of normal on P3-P1 through P2
         *  - hd is positive for P "right" of normal on P3-P1 through P2
         */
-        xxx2 = cp->x - crgData->channelX.data[indexMin];
+        xxx2 = x - crgData->channelX.data[indexMin];
         x3x1 = crgData->channelX.data[indexP1] - crgData->channelX.data[indexMin-1];
-        yyy2 = cp->y - crgData->channelY.data[indexMin];
+        yyy2 = y - crgData->channelY.data[indexMin];
         y3y1 = crgData->channelY.data[indexP1] - crgData->channelY.data[indexMin-1];
 
         dProd = xxx2 * x3x1 + yyy2 * y3y1;
@@ -246,9 +244,9 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
                  indexMin++;
              else if(crgData->util.uIsClosed)
              {
-                t_dProd = (cp->x - crgData->channelX.data[0])
+                t_dProd = (x - crgData->channelX.data[0])
                                 * (crgData->channelX.data[1] - crgData->channelX.data[0])
-                                + (cp->y - crgData->channelY.data[0])
+                                + (y - crgData->channelY.data[0])
                                 * (crgData->channelY.data[1] - crgData->channelY.data[0]);
 
                 if (t_dProd <= 0.0) break;  /* crgData->channelU.data[0] may be closer */
@@ -289,9 +287,9 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
         *  - hd is negative for P "left"  of normal on P2-P0 through P1
         *  - hd is positive for P "right" of normal on P2-P0 through P1
         */
-        xxx1 = cp->x - x1;
+        xxx1 = x - x1;
         x2x0 = x2    - x0;
-        yyy1 = cp->y - y1;
+        yyy1 = y - y1;
         y2y0 = y2    - y0;
 
         dProd   = xxx1 * x2x0 + yyy1 * y2y0;
@@ -317,9 +315,9 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
                if(t_dProd != 0.0) break; /* last reference point already checked */
 
                lastIdx = crgData->channelX.info.size-1;
-               t_dProd = (cp->x - crgData->channelX.data[lastIdx])
+               t_dProd = (x - crgData->channelX.data[lastIdx])
                                * (crgData->channelX.data[lastIdx] - crgData->channelX.data[lastIdx-1])
-                               + (cp->y - crgData->channelY.data[lastIdx])
+                               + (y - crgData->channelY.data[lastIdx])
                                * (crgData->channelY.data[lastIdx] - crgData->channelY.data[lastIdx-1]);
 
                if (t_dProd >= 0.0) break;  /* crgData->channelU.data[end] may be closer */
@@ -342,7 +340,7 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
     x2x1 = x2 - x1;
     y2y1 = y2 - y1;
 
-    cp->v = ( x2x1 * yyy1 - y2y1 * xxx1 ) / sqrt( x2x1 * x2x1 + y2y1 * y2y1 );
+    locV = ( x2x1 * yyy1 - y2y1 * xxx1 ) / sqrt( x2x1 * x2x1 + y2y1 * y2y1 );
 
    /*
     * here we could check distance related to curvature:
@@ -372,14 +370,14 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
     x3x1 = x3 - x1;
     y3y1 = y3 - y1;
 
-    x2xx = x2 - cp->x;
-    y2yy = y2 - cp->y;
+    x2xx = x2 - x;
+    y2yy = y2 - y;
 
     ta = dProd / ( x2x0 * x2x1 + y2y0 * y2y1 );
     tb = ( x3x1 * x2xx + y3y1 * y2yy ) / ( x3x1 * x2x1 + y3y1 * y2y1 );
     du = ta / ( ta + tb ) * crgData->channelU.info.inc;
 
-    cp->u = ( indexMin - 1 ) * crgData->channelU.info.inc + du + crgData->channelU.info.first;
+    locU = ( indexMin - 1 ) * crgData->channelU.info.inc + du + crgData->channelU.info.first;
 
     /* --- test again if point is closest to begin or end of reference line    --- */
     /* --- and reference line is closed, then check whether point             --- */
@@ -387,40 +385,40 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
     /* --- co-ordinates as required                                           --- */
     if ( crgOptionHasValueInt( &( cp->options ), dCrgRefLineCloseTrack, 1 ) && crgData->util.uIsClosed )
     {
-        if ( cp->u > crgData->util.uCloseMax )
+        if ( locU > crgData->util.uCloseMax )
         {
-            double dx1 = cp->x - crgData->channelX.info.first;
-            double dy1 = cp->y - crgData->channelY.info.first;
+            double dx1 = x - crgData->channelX.info.first;
+            double dy1 = y - crgData->channelY.info.first;
 
-            cp->u = crgData->channelU.info.first + dx1 * crgData->util.phiFirstCos + dy1 * crgData->util.phiFirstSin;
-            cp->v =                              + dy1 * crgData->util.phiFirstCos - dx1 * crgData->util.phiFirstSin;
+            locU = crgData->channelU.info.first + dx1 * crgData->util.phiFirstCos + dy1 * crgData->util.phiFirstSin;
+            locV =                              + dy1 * crgData->util.phiFirstCos - dx1 * crgData->util.phiFirstSin;
         }
-        else if ( cp->u < crgData->util.uCloseMin )
+        else if ( locU < crgData->util.uCloseMin )
         {
-            double dx1 = cp->x - crgData->channelX.info.last;
-            double dy1 = cp->y - crgData->channelY.info.last;
+            double dx1 = x - crgData->channelX.info.last;
+            double dy1 = y - crgData->channelY.info.last;
 
-            cp->u = crgData->channelU.info.last + dx1 * crgData->util.phiLastCos + dy1 * crgData->util.phiLastSin;
-            cp->v =                             + dy1 * crgData->util.phiLastCos - dx1 * crgData->util.phiLastSin;
+            locU = crgData->channelU.info.last + dx1 * crgData->util.phiLastCos + dy1 * crgData->util.phiLastSin;
+            locV =                             + dy1 * crgData->util.phiLastCos - dx1 * crgData->util.phiLastSin;
         }
     }
     else
     {
-        if ( cp->u < crgData->channelU.info.first )
+        if ( locU < crgData->channelU.info.first )
         {
-            double dx1 = cp->x - crgData->channelX.info.first;
-            double dy1 = cp->y - crgData->channelY.info.first;
+            double dx1 = x - crgData->channelX.info.first;
+            double dy1 = y - crgData->channelY.info.first;
 
-            cp->u = crgData->channelU.info.first + dx1 * crgData->util.phiFirstCos + dy1 * crgData->util.phiFirstSin;
-            cp->v =                              + dy1 * crgData->util.phiFirstCos - dx1 * crgData->util.phiFirstSin;
+            locU = crgData->channelU.info.first + dx1 * crgData->util.phiFirstCos + dy1 * crgData->util.phiFirstSin;
+            locV =                              + dy1 * crgData->util.phiFirstCos - dx1 * crgData->util.phiFirstSin;
         }
-        else if ( cp->u > crgData->channelU.info.last )
+        else if ( locU > crgData->channelU.info.last )
         {
-            double dx1 = cp->x - crgData->channelX.info.last;
-            double dy1 = cp->y - crgData->channelY.info.last;
+            double dx1 = x - crgData->channelX.info.last;
+            double dy1 = y - crgData->channelY.info.last;
 
-            cp->u = crgData->channelU.info.last + dx1 * crgData->util.phiLastCos + dy1 * crgData->util.phiLastSin;
-            cp->v =                             + dy1 * crgData->util.phiLastCos - dx1 * crgData->util.phiLastSin;
+            locU = crgData->channelU.info.last + dx1 * crgData->util.phiLastCos + dy1 * crgData->util.phiLastSin;
+            locV =                             + dy1 * crgData->util.phiLastCos - dx1 * crgData->util.phiLastSin;
         }
     }
 
@@ -436,13 +434,13 @@ crgEvalxy2uvPtr( CrgContactPointStruct *cp, double x, double y, double* u, doubl
                 cp->history.usedSize++;
         }
 
-        cp->history.entry[0].x     = cp->x;
-        cp->history.entry[0].y     = cp->y;
+        cp->history.entry[0].x     = x;
+        cp->history.entry[0].y     = y;
         cp->history.entry[0].index = indexP1;
     }
 
-    *u = cp->u;
-    *v = cp->v;
+    *u = locU;
+    *v = locV;
 
     return 1;
 }

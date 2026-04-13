@@ -268,20 +268,10 @@ typedef struct
 */
 typedef struct
 {
-    double x;                          /* inertial x position                                             [m] */
-    double y;                          /* inertial y position                                             [m] */
-    double u;                          /* local u position                                                [m] */
-    double v;                          /* local v position                                                [m] */
-    double z;                          /* data value (typically: elevation) at the given position         [m] */
-    double phi;                        /* heading at the given position                                 [rad] */
-    double curv;                       /* curvature at the given position                               [1/m] */
     CrgDataStruct*        crgData;     /* pointer to the CRG data on which contact point is working           */
     int useLocalHistory;               /* use local history of contact point instead of global one      [0/1] */
-    CrgHistoryEntryStruct histEntry;   /* information about the previous query                                */
     CrgOptionsStruct      options;     /* list of options to be applied when using the contact point      [-] */
     CrgHistoryStruct      history;     /* history for successive queries                                  [-] */
-    double smoothBaseBeg;              /* base value for smoothing at the begin of the data set           [m] */
-    double smoothBaseEnd;              /* base value for smoothing at the end of the data set             [m] */
 } CrgContactPointStruct;
 
 /**
@@ -680,7 +670,7 @@ extern int mCrgBigEndian;             /* endian-ness of machine */
     * @param z     pointer to resulting z co-ordinate
     * @return 1 if successful, otherwise 0
     */
-    extern int crgEvaluv2zPtr( CrgContactPointStruct *cp, double u, double v, double* z );
+    extern int crgEvaluv2zPtr( const CrgContactPointStruct *cp, double u, double v, double* z );
 
     /**
     * compute the z value of reference line at given u position
