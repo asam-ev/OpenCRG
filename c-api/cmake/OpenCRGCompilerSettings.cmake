@@ -11,7 +11,7 @@ if(NOT TARGET OpenCRGCompilerSettings)
 
     # Set warning flags
     target_compile_options(OpenCRGCompilerSettings INTERFACE
-        $<$<C_COMPILER_ID:MSVC>:/W4>
+        $<$<C_COMPILER_ID:MSVC>:/W4 /wd4996>
         $<$<NOT:$<C_COMPILER_ID:MSVC>>:-Wall -Wextra>
     )
 

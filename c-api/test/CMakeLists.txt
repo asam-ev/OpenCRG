@@ -11,12 +11,8 @@ endif()
 
 add_subdirectory(Dump)
 add_subdirectory(MemTest)
+add_subdirectory(MultiCp)
+add_subdirectory(MultiRead)
+add_subdirectory(PerfTest)
 add_subdirectory(Scan)
 add_subdirectory(Verify)
-
-# The following source files use non-portable code
-if(UNIX)
-    add_subdirectory(MultiCp)
-    add_subdirectory(MultiRead)
-    add_subdirectory(PerfTest)
-endif()

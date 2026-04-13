@@ -47,8 +47,8 @@ int main( int argc, char** argv )
     FILE*          fPtr      = NULL;
     CrgDataStruct* crgData   = NULL;
     int            dataSetId = 0;
-    int            i;
-    int            j;
+    size_t         i;
+    size_t         j;
     int            cpId;
     int            count;
     int            resolution;
@@ -167,7 +167,7 @@ int main( int argc, char** argv )
 
         for ( j = 0; j < crgData->channelV.info.size; j += resolution )
         {
-            int index = j;
+            size_t index = j;
 
             if ( count % 2 )
                 index = crgData->channelV.info.size - 1 - index;

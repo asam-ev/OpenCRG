@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#include <sys/time.h>
+#include <time.h>
 #include "crgBaseLibPrivate.h"
 
 
@@ -37,6 +37,12 @@ void usage()
     crgMsgPrint( dCrgMsgLevelNotice, "       options: -h    show this info\n" );
     crgMsgPrint( dCrgMsgLevelNotice, "       <filename> use indicated file as input file\n" );
     exit( -1 );
+}
+
+double get_time_seconds(void) {
+    struct timespec ts;
+    timespec_get(&ts, TIME_UTC);
+    return ts.tv_sec + 1.0e-9 * ts.tv_nsec;
 }
 
 int main( int argc, char** argv )
@@ -93,9 +99,8 @@ int main( int argc, char** argv )
     size_t noTestPts;       /* size of the test point array                */
     size_t idxTestPt;       /* test point index                            */
 
-    struct timeval tme;     /* measure the run-time                        */
-    double startTime;       /* [s]                                         */
-    double endTime;         /* [s]                                         */
+    double startTime;       /* query timer start [s]                       */
+    double endTime;         /* query timer end   [s]                       */
 
     /* --- decode the command line --- */
     if ( argc < 2 )
@@ -255,8 +260,7 @@ int main( int argc, char** argv )
     crgContactPointActivatePerfStat( cpId );
 
     /* --- all right, I have the test points, now let's go through all of them and measure the time required --- */
-    gettimeofday(&tme, 0);
-    startTime = tme.tv_sec + 1.0e-6 * tme.tv_usec;
+    startTime = get_time_seconds();
 
     idxTestPt = 0;
 
@@ -274,8 +278,7 @@ int main( int argc, char** argv )
         idxTestPt++;
     }
 
-    gettimeofday(&tme, 0);
-    endTime = tme.tv_sec + 1.0e-6 * tme.tv_usec;
+    endTime = get_time_seconds();
 
     crgMsgPrint( dCrgMsgLevelWarn, "main: total time for %zu queries: %.3lf seconds (i.e. %.3lfus per query)\n",  noTestPts, endTime - startTime, ( endTime - startTime ) / noTestPts * 1.0e6 );
 
