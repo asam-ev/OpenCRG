@@ -1,6 +1,21 @@
 Release Notes:
 --------------------------------------------------------------
 
+April 13, 2026 Release 2.0.1
+-----------------------------
+- Common
+  Clean up and organize the repository and version releases
+  Correct spelling errors
+- Documentation
+  Switch to antora framework
+  Some bug fixes and clarifications
+- C-API
+  Update to C99 standard conformance
+  Add cmake for library build
+  Some bug fixes
+- MATLAB-API
+  Some bug fixes
+
 February 02, 2026, Release 2.0.0
 -----------------------------
 - Common:
