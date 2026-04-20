@@ -16,7 +16,7 @@ content:
   - url: https://code.asam.net/common/asam-terminology.git
     start_path: .antora
     tags: [v*,V*]
-  - url: ..
+  - url: .
     start_path: .antora
     tags: ['v*', '!v2.0.0', '!v1.2.1', '!v_1_1_2'] # Exclude old versions that are not build with antora
     branches: ['HEAD']
