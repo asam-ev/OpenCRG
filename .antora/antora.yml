@@ -28,8 +28,6 @@ asciidoc: # Sets global AsciiDoc attributes that are applied for every page of t
     reusedir: reuse
     imagesoutdir: ./images/generated_images
     asamBibliography: 'specification:bibliography.bib'
-    generate-attachments: [["c-api/", "generated/c-api.zip", "clean"], ["matlab/", "generated/matlab.zip", "clean"], ["crg-bin/", "generated/crg-bin.zip", "clean"], ["crg-txt/", "generated/crg-txt.zip", "clean"]]
-    page-download-links: [["generated/c-api.zip","C-API"], ["generated/matlab.zip","Matlab"], ["generated/crg-bin.zip","CRG Binary Examples"], ["generated/crg-txt.zip","CRG TXT Examples"]]
 
 nav:
   - modules/specification/nav-opencrg.adoc
