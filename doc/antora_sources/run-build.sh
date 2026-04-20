@@ -5,4 +5,4 @@
 cp -r /usr/src/repo/. /github/workspace/.
 cd repo
 export NODE_OPTIONS="--max-old-space-size=8192"
-exec antora --stacktrace --fetch --clean antora-playbook.yml
+exec antora --stacktrace --fetch --clean ./doc/antora_sources/antora-playbook.yml
