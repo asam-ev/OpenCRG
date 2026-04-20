@@ -58,13 +58,13 @@ asciidoc:
 
   extensions:
   - asciidoctor-kroki
-  - './asam-antora-extensions/asam-asciidoctor_extensions.js'
-  - './asam-antora-extensions/asam-asciidoctor_extensions-registered.js'
+  - './doc/antora_sources/asam-antora-extensions/asam-asciidoctor_extensions.js'
+  - './doc/antora_sources/asam-antora-extensions/asam-asciidoctor_extensions-registered.js'
 
 antora:
   extensions:
     - require: '@antora/lunr-extension'
-    - require: './asam-antora-extensions/asam-antora_extension.js'
+    - require: './doc/antora_sources/asam-antora-extensions/asam-antora_extension.js'
       orphan_exceptions: '/'
       numbered_titles: true
       section_number_style: 'iso'
