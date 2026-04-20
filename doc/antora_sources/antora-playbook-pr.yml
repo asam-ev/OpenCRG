@@ -26,7 +26,7 @@ ui:
   bundle:
     url: https://code.asam.net/common/antora-ui/-/jobs/artifacts/main/raw/build/ui-bundle.zip?job=bundle-stable
     snapshot: true
-  supplemental_files: ./doc/antora_sources/supplemental_ui # Activate this if you need to make local UI changes. Check the official Antora documentation for more information.
+  supplemental_files: ./supplemental_ui # Activate this if you need to make local UI changes. Check the official Antora documentation for more information.
 
 output:
   clean: true
@@ -58,13 +58,13 @@ asciidoc:
 
   extensions:
   - asciidoctor-kroki
-  - './doc/antora_sources/asam-antora-extensions/asam-asciidoctor_extensions.js'
-  - './doc/antora_sources/asam-antora-extensions/asam-asciidoctor_extensions-registered.js'
+  - './asam-antora-extensions/asam-asciidoctor_extensions.js'
+  - './asam-antora-extensions/asam-asciidoctor_extensions-registered.js'
 
 antora:
   extensions:
     - require: '@antora/lunr-extension'
-    - require: './doc/antora_sources/asam-antora-extensions/asam-antora_extension.js'
+    - require: './asam-antora-extensions/asam-antora_extension.js'
       orphan_exceptions: '/'
       numbered_titles: true
       section_number_style: 'iso'
