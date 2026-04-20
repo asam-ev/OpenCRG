@@ -2,6 +2,7 @@
 
 The following deliverables are provided for OpenCRG:
 
+[#tab-deliverables]
 .Deliverables of ASAM OpenCRG
 [frame="none]
 |===
