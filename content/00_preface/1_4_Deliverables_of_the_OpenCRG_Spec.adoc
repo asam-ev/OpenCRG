@@ -2,20 +2,20 @@
 
 The following deliverables are provided for OpenCRG:
 
-// [#tab-deliverables]
-// .Deliverables of ASAM OpenCRG
-// |===
-// |Deliverable | Description
-//
-// |User guide
-// |The User Guides help to get started with the OpenCRG APIs and how OpenCRG can be applied
-//
-// |Sample OpenCRG files
-// |These demo files are explanatory examples
-//
-// |C-API including demo files and test scripts
-// |The C-API is capable of reading and evaluating OpenCRG Files
-//
-// |MATLAB library including demo files and test scripts
-// |The Matlab API can create, manipulate, visualize and validate OpenCRG Files
-// |===
+[#tab-deliverables]
+.Deliverables of ASAM OpenCRG
+|===
+|Deliverable | Description
+
+|User guide
+|The User Guides help to get started with the OpenCRG APIs and how OpenCRG can be applied
+
+|Sample OpenCRG files
+|These demo files are explanatory examples
+
+|C-API including demo files and test scripts
+|The C-API is capable of reading and evaluating OpenCRG Files
+
+|MATLAB library including demo files and test scripts
+|The Matlab API can create, manipulate, visualize and validate OpenCRG Files
+|===

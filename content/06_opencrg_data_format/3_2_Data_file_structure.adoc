@@ -1,4 +1,4 @@
-=== OpenCRG data files
+== OpenCRG data files
 
 //TODO bytes as plural or byte as unit?
 //TODO full-stop after image or table titles?
