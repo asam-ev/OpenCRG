@@ -30,7 +30,7 @@ ui:
 
 output:
   clean: true
-  dir: ../../site
+  dir: ../repo/site
 runtime:
   fetch: true
 
