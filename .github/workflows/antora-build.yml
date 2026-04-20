@@ -51,7 +51,7 @@ jobs:
       uses: docker://ghcr.io/asam-ev/project-guide-docker:4
       with:
         entrypoint: sh
-        args: repo/run-build.sh # modified based on OSI
+        args: repo/doc/antora_sources/run-build.sh
 
     - name: Upload Artifacts
       uses: actions/upload-pages-artifact@v4
