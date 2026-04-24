@@ -45,7 +45,7 @@ jobs:
          submodules: recursive
 
     - name: Configure Pages
-      uses: actions/configure-pages@v5
+      uses: actions/configure-pages@v6
 
     - name: Generate site
       uses: docker://ghcr.io/asam-ev/project-guide-docker:4
@@ -54,7 +54,7 @@ jobs:
         args: repo/run-build.sh # modified based on OSI
 
     - name: Upload Artifacts
-      uses: actions/upload-pages-artifact@v4
+      uses: actions/upload-pages-artifact@v5
       with:
         path: ./repo/site
 
@@ -82,7 +82,7 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
   release:
     # Run if triggered by a published release.
@@ -97,7 +97,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download specification artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: github-pages
           path: ./artifact-download
