@@ -45,16 +45,16 @@ jobs:
          submodules: recursive
 
     - name: Configure Pages
-      uses: actions/configure-pages@v5
+      uses: actions/configure-pages@v6
 
     - name: Generate site
       uses: docker://ghcr.io/asam-ev/project-guide-docker:4
       with:
         entrypoint: sh
-        args: repo/run-build.sh # modified based on OSI
+        args: repo/doc/antora_sources/run-build.sh
 
     - name: Upload Artifacts
-      uses: actions/upload-pages-artifact@v4
+      uses: actions/upload-pages-artifact@v5
       with:
         path: ./repo/site
 
@@ -82,4 +82,46 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+
+  release:
+    # Run if triggered by a published release.
+    if: ${{ github.event_name == 'release' && github.event.action == 'published' }}
+    # Take specification artifact from build job and package into a zip for the release.
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Download specification artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: github-pages
+          path: ./artifact-download
+
+      - name: Extract specification
+        run: |
+          mkdir -p ./specification
+          tar -xf ./artifact-download/artifact.tar -C ./specification
+
+      - name: Create zip archive
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          TAG_NAME="${GITHUB_REF_NAME}"
+          ZIP_NAME="${REPO_NAME}-${TAG_NAME}.zip"
+          
+          echo "ZIP_NAME=$ZIP_NAME" >> "$GITHUB_ENV"
+          
+          zip -r "$ZIP_NAME" \
+          c-api crg-bin crg-txt matlab \
+          specification \
+          LICENSE NOTICE README.md RELEASENOTES \
+          -x ".git/*" ".github/*" "*.gitignore" "*.gitattributes" "*.gitkeep" "*.o" "*.obj" ".a"
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v3
+        with:
+          files: ${{ env.ZIP_NAME }}
