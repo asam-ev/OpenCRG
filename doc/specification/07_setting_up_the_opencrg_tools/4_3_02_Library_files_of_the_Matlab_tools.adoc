@@ -219,7 +219,8 @@ The library files of the MATLAB tools are stored in `_open-crg_/matlab/lib/` and
 
 |===
 
-.modification tools
+[#tab-modification-tools]
+.Modification tools
 |===
 |Filename | Description
 
