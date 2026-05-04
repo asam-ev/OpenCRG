@@ -21,7 +21,7 @@ The data payload shall consist of clear text records with a maximum length of 80
 
 [#tab-recommended_data_section_sequence]
 .Overview of data sections in recommended sequence.
-|====
+|===
 |Data section |Keyword | Content |Remark
 
 |Header information
@@ -64,4 +64,4 @@ The data payload shall consist of clear text records with a maximum length of 80
 |Actual road surface data in plain text or binary format.
 |Optional
 
-|====
+|===
