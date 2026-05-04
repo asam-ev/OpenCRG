@@ -102,4 +102,4 @@ data = crg_mods(data);
 
 == Related topics
 
-* <<Modifiers>>
+* xref:../06_opencrg_data_format/6_0_Open_crg_data_format.adoc#sec-modifiers[Modifiers]

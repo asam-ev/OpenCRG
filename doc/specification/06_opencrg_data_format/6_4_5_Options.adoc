@@ -1,3 +1,4 @@
+[#sec-options]
 = Options
 
 The optional _options_ section defines values for options. Options influence the evaluation of OpenCRG data. They do not modify the road data itself.

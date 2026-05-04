@@ -1,3 +1,4 @@
+[#sec-sample-files]
 = Sample OpenCRG files
 
 The OpenCRG software package contains various sample files demonstrating different use cases.

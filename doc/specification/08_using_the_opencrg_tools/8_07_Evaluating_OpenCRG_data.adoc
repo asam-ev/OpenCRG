@@ -101,4 +101,4 @@ pz = crg_eval_uv2z(data, [100 0]);
 
 - <<Reading OpenCRG files>>
 - <<Creating and deleting contact points>>
-- <<Map projection data>>
+- xref:../06_opencrg_data_format/6_0_Open_crg_data_format.adoc#sec-map-projection[Map projection data]

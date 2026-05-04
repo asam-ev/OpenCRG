@@ -31,4 +31,4 @@ ier = crg_write(crg_single(data), 'demo.crg');
 
 == Related topics
 
-* <<Road data>>
+* xref:../06_opencrg_data_format/6_0_Open_crg_data_format.adoc#sec-road-data[Road data]

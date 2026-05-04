@@ -157,4 +157,4 @@ enh_gk = map_global2plocal(llh, mpro)
 
 * <<Reading OpenCRG files>>
 * <<Evaluating OpenCRG data>>
-* <<Map projection data>>
+* xref:../06_opencrg_data_format/6_0_Open_crg_data_format.adoc#sec-map-projection[Map projection data]

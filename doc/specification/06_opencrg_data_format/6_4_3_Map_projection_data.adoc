@@ -1,3 +1,4 @@
+[#sec-map-projection]
 = Map projection data
 
 ifndef::include-only-once[]

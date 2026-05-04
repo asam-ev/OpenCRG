@@ -1,3 +1,4 @@
+[#sec-modifiers]
 = Modifiers
 
 The optional _modifiers_ section defines values for modifiers. Modifiers alter OpenCRG data stored in memory.

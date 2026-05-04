@@ -85,4 +85,4 @@ crg_show_road_uv2surface(data, u, v);
 
 == Related topics
 
-* <<Options>>
+* xref:../06_opencrg_data_format/6_0_Open_crg_data_format.adoc#sec-options[Options]

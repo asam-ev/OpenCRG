@@ -26,6 +26,6 @@ executables are stored in `_open-crg_/c-api/demo/bin/`.
 
 == Related topics
 
-* <<Compiling the C-API using _make_ files>>
+* <<Compiling the C-API using Makefiles>>
 * <<Compiling the C-API using a shell script>>
 * <<Compiling the C-API using the command line>>
