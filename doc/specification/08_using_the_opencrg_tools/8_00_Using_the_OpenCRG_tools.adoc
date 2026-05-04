@@ -1,0 +1,37 @@
+[#top-using_the_opencrg_tools]
+= Using the OpenCRG tools
+
+ifndef::include-only-once[]
+:root-path: ../
+:imagesdir: {root-path}/_images
+:includedir: {root-path}/_images
+:stem: latexmath
+:sampledir: ../../crg-text
+include::{root-path}_config.adoc[]
+endif::[]
+
+include::8_01_Usage_of_the_C-API.adoc[leveloffset=+1]
+
+include::8_02_Usage_of_the_Matlab_tools.adoc[leveloffset=+1]
+
+include::8_03_Reading_OpenCRG_files.adoc[leveloffset=+1]
+
+include::8_04_Setting_and_applying_modifiers.adoc[leveloffset=+1]
+
+include::8_05_Creating_a_contact_point.adoc[leveloffset=+1]
+
+include::8_06_Setting_options.adoc[leveloffset=+1]
+
+include::8_07_Evaluating_OpenCRG_data.adoc[leveloffset=+1]
+
+include::8_08_Manipulating_OpenCRG_data.adoc[leveloffset=+1]
+
+include::8_09_Generating_OpenCRG_data.adoc[leveloffset=+1]
+
+include::8_10_Visualizing_OpenCRG_data.adoc[leveloffset=+1]
+
+include::8_11_Mapping_OpenCRG_data_to_geographical_positions.adoc[leveloffset=+1]
+
+include::8_12_Checking_OpenCRG_data.adoc[leveloffset=+1]
+
+include::8_13_Writing_OpenCRG_data_to_file.adoc[leveloffset=+1]

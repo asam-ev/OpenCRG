@@ -1,0 +1,9 @@
+= Source code of sample programs
+
+The source code of the sample programs for the C-API is stored in `_open-crg_/c-api/demo/` and comprises the following:
+
+`EvalOptions/src/`:: Source code for `crgEvalOpts`.
+`EvalXYnUV/src/`:: Source code for `crgEvalxyuv`.
+`EvalZ/src/`:: Source code for `crgEvalZ`.
+`Reader/src/`:: Source code for `crgReader`.
+`Simple/src/`:: Source code for `crgSimple`.

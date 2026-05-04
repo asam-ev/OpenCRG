@@ -1,0 +1,70 @@
+= File reference
+
+The optional _file reference_ section of a first OpenCRG file references a second OpenCRG file.
+
+A first (incomplete) OpenCRG file with the _file reference_ section can be used to replace options and modifiers of a second (full) OpenCRG file containing actual road data. 
+
+Any empty or non-empty option or modifier section in the first OpenCRG file replaces the equivalent section in the second OpenCRG file.
+Any missing option or modifier section in the first OpenCRG file enables the use of the equivalent section (or it's defaults) in the second OpenCRG file.
+Any further sections and actual road data in the first OpenCRG file are ignored.
+
+== Keyword
+
+----
+$ROAD_CRG_FILE
+----
+
+== Contents
+
+File references use the following symbols for describing paths.
+
+[#tab-file-reference-symbols]
+.File reference symbols
+[cols="1l,4"]
+|===
+|Symbol |Function
+
+| / | Path delimiter.
+| . | Current directory.
+| ..| Superordinate directory.
+| $ | Reference to environment variable.
+|===
+
+
+== Rules
+
+*   An OpenCRG file may contain a _file reference_ section.
+*   A _file reference_ section may contain a single file reference.
+*   File references may use absolute or relative paths.
+*   File references may use environment variables.
+*   A path may be split into several lines. These lines shall not contain leading or trailing spaces, tabs, asterisks, and exclamation marks.
+
+== Examples
+
+.File reference using an absolute path.
+----
+/home/name/crg-files/handmade_straight.crg
+----
+
+.File reference using an absolute path split into 2 lines.
+----
+/home/name/crg-files/hand
+made_straight.crg
+----
+
+.File reference using a relative path.
+----
+./handmade_straight.crg
+----
+
+.File reference using an environment variable ($crgpath).
+----
+$crgpath/handmade_straight.crg
+----
+
+.File reference section containing a file reference.
+----
+$ROAD_CRG_FILE
+/home/name/crg-files/road_data.crg
+$!********
+----

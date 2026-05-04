@@ -7,4 +7,4 @@ include::{root-path}_config.adoc[]
 endif::[]
 
 ASAM OpenCRG 2.0.0 is backward compatible to OpenCRG 1.0.0.
-To assure full backward and forward compatibility do not use the features for geographical positions, which are introduced in <<Mapping OpenCRG data to geographical positions>>. An OpenCRG file created with the mpro field is only valid within version 1.2.0 or higher.
+To assure full backward and forward compatibility do not use the features for geographical positions, which are introduced in xref:../08_using_the_opencrg_tools/8_00_Using_the_OpenCRG_tools.adoc#sec-mapping-opencrg-data-to-geographical-positions[Mapping OpenCRG data to geographical positions]. An OpenCRG file created with the mpro field is only valid within version 1.2.0 or higher.

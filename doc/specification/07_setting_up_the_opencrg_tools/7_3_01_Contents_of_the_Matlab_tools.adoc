@@ -1,0 +1,13 @@
+= Contents of the MATLAB tools
+
+The MATLAB tools are stored in `_open-crg_/matlab/` and comprise the following:
+
+`demo/`:: Scripts demonstrating the use of the base library.
+
+`lib/`:: Base library for working with OpenCRG files in MATLAB.
+
+`test/`:: Scripts for testing the MATLAB tools.
+
+`crg_init.m`:: Script for initializing the MATLAB tools.
+
+`crg_intro.m`:: Script for displaying an introduction to the MATLAB implementation of OpenCRG.
