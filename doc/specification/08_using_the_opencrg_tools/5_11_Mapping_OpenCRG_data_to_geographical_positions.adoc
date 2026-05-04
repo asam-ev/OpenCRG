@@ -1,4 +1,3 @@
-[#sec-mapping_opencrg_data_to_geographical_positions]
 === Mapping OpenCRG data to geographical positions
 
 ifndef::include-only-once[]
