@@ -1,0 +1,15 @@
+= Setting up the MATLAB tools
+
+include::7_3_01_Contents_of_the_Matlab_tools.adoc[leveloffset=+1]
+
+include::7_3_02_Library_files_of_the_Matlab_tools.adoc[leveloffset=+1]
+
+include::7_3_03_Initializing_the_Matlab_tools.adoc[leveloffset=+1]
+
+include::7_3_04_Getting_help.adoc[leveloffset=+1]
+
+include::7_3_05_Testing_the_Matlab_tools.adoc[leveloffset=+1]
+
+include::7_3_06_Test_scripts.adoc[leveloffset=+1]
+
+include::7_3_07_Demo_scripts.adoc[leveloffset=+1]

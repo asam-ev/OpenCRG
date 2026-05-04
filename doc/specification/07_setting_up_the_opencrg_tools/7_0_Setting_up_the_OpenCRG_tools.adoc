@@ -1,0 +1,17 @@
+[#top-setting_up_the_opencrg_tools]
+= Setting up the OpenCRG tools
+
+ifndef::include-only-once[]
+:root-path: ../
+:imagesdir: {root-path}/_images
+:includedir: {root-path}/_images
+:stem: latexmath
+:sampledir: ../../crg-text
+include::{root-path}_config.adoc[]
+endif::[]
+
+include::7_1_Downloading_the_software_package.adoc[leveloffset=+1]
+
+include::7_2_00_Setting_up_the_C-API.adoc[leveloffset=+1]
+
+include::7_3_00_Setting_up_the_Matlab_tools.adoc[leveloffset=+1]

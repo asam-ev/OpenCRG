@@ -1,0 +1,31 @@
+= Initializing the MATLAB tools
+
+Initializing the MATLAB tools adds them to the MATLAB search path. This allows
+MATLAB to find functions by their name.
+
+Additionally, a new directory for holding temporary data is needed. Such a directory is required when running the demo scripts or tests.
+
+== Prerequisites
+
+You have downloaded and unpacked the OpenCRG software package.
+
+== Steps
+
+. In MATLAB, switch to the Command Window.
+. Run `run _path-to-opencrg_/matlab/crg_init` to add the MATLAB tools to the MATLAB search path.
+. Run `mkdir _path-to-opencrg_/matlab/temp` to create a directory for temporary data.
+. Run `cd _path-to-opencrg_/matlab/temp` to change the current directory to the location of the directory for temporary data.
+
+
+== Result
+
+The MATLAB tools are added to the search path. MATLAB's current directory points to the newly created directory for temporary data.
+
+== What to do next
+
+Test the MATLAB tools to ensure that they are set up correctly.
+
+== Related topics
+
+* <<Downloading the software package>>
+* <<Testing the MATLAB tools>>

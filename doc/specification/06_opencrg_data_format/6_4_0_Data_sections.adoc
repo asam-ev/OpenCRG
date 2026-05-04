@@ -1,0 +1,17 @@
+= Data sections
+
+include::6_4_1_Header_information.adoc[leveloffset=+1]
+
+include::6_4_2_Road_parameters.adoc[leveloffset=+1]
+
+include::6_4_3_Map_projection_data.adoc[leveloffset=+1]
+
+include::6_4_4_Data_definition.adoc[leveloffset=+1]
+
+include::6_4_5_Options.adoc[leveloffset=+1]
+
+include::6_4_6_Modifiers.adoc[leveloffset=+1]
+
+include::6_4_7_File_reference.adoc[leveloffset=+1]
+
+include::6_4_8_Road_data.adoc[leveloffset=+1]
