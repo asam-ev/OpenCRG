@@ -1,7 +1,7 @@
 Release Notes:
 --------------------------------------------------------------
 
-April 13, 2026 Release 2.0.1
+May 20, 2026 Release 2.0.1
 -----------------------------
 - Common
   Clean up and organize the repository and version releases
@@ -189,7 +189,7 @@ June 01, 2011
 
 September 24, 2010
 --------------------------------
-- Release 1.0.2 - RC5 
+- Release 1.0.2 - RC5
 - Matlab:
   consistent linefeed
   minor doc/spelling changes
@@ -199,11 +199,21 @@ September 24, 2010
 
 August 21, 2010:
 --------------------------------
-- Release 1.0.2 - RC4 (adjustments in C-API, see readme.txt in c-api/)
+- C-API:
+    - reduced warning messages for unhandled options
+    - improved compilation on 64bit systems (less compiler warnings)
+    - debugged loader for data formad LDFI, increased loading performance
+    - ignoring "reference_line_offset_xxx" in file header (was introduced
+      for Matlab routines only in 1.0.2)
+    - debugged callback for "check_tol" in crgLoader.c
 - introduced reference line offset information in Matlab routines and
   in file header
 - Matlab:
   store x,y,z,phi-offset in head information
+
+June 04, 2010:
+--------------------------------------
+- debugged reading of files containing "CRLF" line ends
 
 April 14, 2010:
 --------------------------------
@@ -218,7 +228,9 @@ April 12, 2010:
 
 March 30, 2010:
 --------------------------------
-- C-API  1.0.0 rc6, see also "readme.txt" in c-api/
+- C-API:
+    - harmonized default modifiers with Matlab routines
+    - adjusted test routines "crgEvalOpts"
 - Matlab:
     updated plot routines
 - General:
@@ -235,7 +247,12 @@ March 30, 2010:
 March 26, 2010:
 --------------------------------
 - updated various ASCII examples in crg-txt/
-- C-API  1.0.0 rc5, see also "readme.txt" in c-api/
+- C-API :
+    - increased compatibility with older MS compilers (crgPortability.c)
+    - loader recognizes <cr> in all areas of ASCII files
+    - first occurrence of modifier block in data file clears default modifiers
+    - option / modifier print improved to distinguish between the two types
+    - harmonized closed-reference line algorithm with Matlab tool-set
 - Matlab:
         update crg_gen_csb2crg0.m
         update crg_eval_xy2uv.m
@@ -249,18 +266,31 @@ March 26, 2010:
 
 March 03, 2010:
 --------------------------------
-- C-API  1.0.0 rc4, see also "readme.txt" in c-api/
+- debugged modifier "grid_nan_offset"
+- debugged calculation of centerline phi value
+- new (primitive) test tool "crgScan" which scans data in x/y direction and
+  writes output file with x/y/z data (like crgDump)
 - updated comments in ASCII samples crg-txt/
 
 February 26, 2010:
 --------------------------------
-- C-API  1.0.0 rc3, see also "readme.txt" in c-api/
-- Matlab 1.0.0 rc3, see also "readme.txt" in matlab/
+- corrected interpretation zBeg and zEnd if no slope is given
+- corrected computation of direction angle (no longer interpolated)
+- corrected various issues concerning transformations (via modifiers)
+- checked / debugged repeat and reflect options in combination with
+  smoothing, bank and slope
+
+February 16, 2010:
+--------------------------------------
+- corrected interpretation of slope values
+- corrected handling of reference line elevation outside core area
+- corrected weighted integration of phi values
 
 February 10, 2010:
 --------------------------------
-- C-API  1.0.0 rc2, see also "readme.txt" in c-api/
-- Matlab 1.0.0 rc2, see also "readme.txt" in matlab/
+- corrected example "handmade_circle.crg" so that phi stays within [-PI;PI]
+- corrected closed reference line calculation
+- increased performance of z evaluation routines
 - updated user manual
 
 January  13, 2010:
@@ -275,15 +305,19 @@ December 29, 2009:
 
 December 17, 2009:
 --------------------------------
-- C-API 0.8.0, see also "readme.txt" in c-api/
+- reduced memory footprint by using float data type for storage of z data
+- increased performance of z evaluation routines
 
 December 04, 2009:
 --------------------------------
-- C-API.0.7.2, see also "readme.txt" in c-api/
+- debugged computation of remaining file size after reading header information
 
 November 19, 2009:
 --------------------------------
-- C-API.0.7.1, see also "readme.txt" in c-api/
+- introduced new test routines
+    c-api/test/MultiRead
+  here, a file is being read multiple times (once for each contact point)
+- debugged file loading via reference file
 
 November 04, 2009:
 --------------------------------
@@ -292,7 +326,51 @@ November 04, 2009:
 - add Matlab test routines
 - add Matlab demo routines
 - add Matlab tools suite introduction to documentation
-- C-API.0.7, see also "readme.txt" in c-api/
+- C-API.0.7:
+    - corrected default mode for NaNs to "keep last"
+    - (default) modifiers must now be applied explicitly after loading a file;
+      check the demo files for the corresponding examples
+    - corrected algorithm for smoothing zone at begin/end of data; behavior
+      depends on the selected u border mode; if border mode is "set to 0" then
+      smoothing will be carried out between 0 and the actual z value; if border
+      mode is set to "keep last", then smoothing will be carried out between the
+      z mean value (including reference line elevation) at the corresponding end
+      of the data set and the actual z value
+    - corrected algorithm for computation of elevation on closed tracks
+    - new debug tool "crgDump" which reads a file and dumps the data contents into
+      an ASCII file "crgDump.txt"; each line of the file represents a triplet which
+      is either (u,v,z) or (x,y,z), depending on the options that have been set;
+      the file may be used e.g. for gnuplot to visualize the contents of an OpenCRG
+      file
+        usage: crgDump [options] <filename>
+               options: -h    show this info
+                        -u    plot u/v->z (default: plot x/y->z)
+               <filename> OpenCRG input file
+
+    - added release query method:
+        crgGetReleaseInfo()
+      This method returns a string with the relevant information about the release
+    - added new debug tool: crgVerify
+      This tool may be used for verifying z values at given x/y positions; The
+      x/y/z triplets have to be stored in an ASCII file (triplet per row, separated
+      by whitespace character). The tool will read the ASCII file and another user-
+      defined OpenCRG file, evaluate the OpenCRG file at the respective x/y positions
+      and compare the result to the z value given in the ASCII file. If the
+      deviation is above a user-defined tolerance level, a warning will be printed.
+      At the end, the tool will provide some statistics data about the test results.
+        usage: crgVerify [options] <CRG file> <XYZ file>
+               options: -h      show this info
+                        -t <n>  tolerance value <n> for z comparison [m]
+               <CRG file> CRG file from which to compute the z data
+               <XYZ file> file containing the x/y/z positions for verification
+    - users may replace the message printing mechanisms with their own methods;
+      a user-defined callback may be registered which is then called for each
+      message instead of printing it to stderr; criticality levels are still
+      checked before invoking the callback, so if a user wants to perform also
+      full level checking, the notification level should be set to "debug" beforehand;
+      an example of the callback definition and usages is given in the main.c of
+      crgEvalOpts (source: demo/EvalOptions/src/main.c); the callback is registered
+      with "crgMsgSetCallback( ... )"
 
 October 16, 2009:
 --------------------------------
@@ -300,14 +378,123 @@ October 16, 2009:
 
 October 01, 2009:
 --------------------------------
-- C-API 0.7, release candidate 1
+- added memory allocation / release test
+- debugged memory management
+- fixed major bug in computation of data set ID as being returned by the crgLoader
+- added API method for releasing all memory used by the C-API:
+    crgMemRelease()
+- added API method for querying u and v increments of the data set:
+    crgDataSetGetIncrements(...)
+- history is now (again) part of contactPoint management, not of crgDataSet; by this,
+  some methods concerning the history were shifted from crgData domain to
+  crgContactPoint domain (all of them were part of the private baselib and are,
+  therefore, not described in detail)
+- fixed bug in preloading history with a uFrac value
+- fixed bug in the reflect mode of the z evaluation routines
+- activated header option "WARN_MSGS" which allows for the control of the number of
+  messages that are to be printed to shell;
+  valid values:
+    0  = print no messages at all
+   -1  = print unlimited number of messages
+    n  = print the first n messages
 
 August 15, 2009:
 --------------------------------
 - new directory structure for better handling of an entire OpenCRG release
 - merge of MATLAB routines from Daimler AG (Dr. J. Rauh) with C-API
-- C-API 0.6beta
+- C-API bug fixed data set id for application of default modifiers and options (in method crgDataSetCreate())
+- C-API increased robustness of conditional queries for highly optimized code generation
 - updated matlab routines
 - updated documentation
 
+May. 25, 2009, Release 0.4beta:
+-------------------------------
+- introduced channels for slope and bank
+- evaluating slope and bank
+- introduced maximum relative error for channel data as symbolic constant dCrgEps
+- introduced new evaluation options:
+    dCrgCpOptionBorderModeU         [integer], extrapolation / repeat mode for z values in u direction
+        - dCrgBorderModeReflect
+    dCrgCpOptionBorderModeV         [integer], extrapolation / repeat mode for z values in v direction
+        - dCrgBorderModeReflect
+    dCrgCpOptionBorderOffsetU       [double],  offset of z values when exceeding core area in u direction
+    dCrgCpOptionBorderOffsetV       [double],  offset of z values when exceeding core area in v direction
+    dCrgCpOptionSmoothUBegin        [double],  smoothly blend the data on-set over the given range [m]
+                                               at the begin of the data set
+    dCrgCpOptionSmoothUEnd          [double],  smoothly blend the data off-set over the given range [m]
+                                               at the end of the data set
+- introduced new option / modifier handling class "crgOptions.c" for the handling of options per
+  contact point and modifiers per data set
+- introduced routines for setting and printing data modifiers
+  associated with a data set. Modifiers may be of integer or
+  double data types
+      crgDataSetModifierSet[Int|Double]( ... )
+      crgDataSetModifierGet[Int|Double]( ... )
+      crgDataSetModifierRemove( ... )
+      crgDataSetModifierRemoveAll( ... )
+      crgDataSetModifierPrint( ... )
+      crgContactPointSetDefaultOptions()
+- distinguishing levels during include operations, so that options and modifiers defined at
+  top level will always be preferred to options and modifiers defined at lower levels
+- routines which might be subject to portability issues (e.g. for an integration into
+  FORTRAN environments) are now located in crgPortability.c
+- first release of comprehensive documentation as .pdf file
+
+
+
+Feb. 10, 2009, Release 0.3beta:
+-------------------------------
+- harmonized command line options of sample tools:
+    crgEvalOpts [-h] <filename>
+    crgEvalz [-h] <filename>
+    crgEvalxyuv [-h] <filename>
+    crgReader [-h] <filename>
+    crgSimple [-h] <filename>
+- improved handling of NaNs in ASCII files
+- introduced separate channels for v and z data
+- removed routine for setting endian format from public interface
+  (endianness check is done automatically in the loader)
+- introduced routines for setting and printing evaluation options
+  associated with a contact point. Options may be of integer or
+  double data types
+      crgContactPointOptionSet[Int|Double]( ... )
+      crgContactPointOptionGet[Int|Double]( ... )
+      crgContactPointOptionRemove( ... )
+      crgContactPointOptionRemoveAll( ... )
+      crgContactPointOptionsPrint( ... )
+      crgContactPointSetDefaultOptions()
+- The following option types with respective value ranges are available:
+    dCrgCpOptionBorderModeU             /* [integer], extrapolation / repeat mode for z values in u direction */
+    dCrgCpOptionBorderModeV             /* [integer], extrapolation / repeat mode for z values in v direction */
+        dCrgBorderModeNone              /* refuse computation, i.e. return error         */
+        dCrgBorderModeExKeep            /* keep last value on border of data set         */
+        dCrgBorderModeExLinear          /* linear extrapolation                          */
+        dCrgBorderModeExZero            /* set z value to 0                              */
+        dCrgBorderModeRepeatStandard    /* repeat the data set and perform interpolation */
+
+    dCrgCpOptionCurvMode                /* [integer], curvature calculation mode aside the reference line     */
+        dCrgCurvLateral                 /* compute curvature based on lateral position (v)  */
+        dCrgCurvRefLine                 /* keep curvature value on reference line           */
+
+    dCrgCpOptionScaleZ                  /* [double],  scale factor for resulting z values */
+        numeric value of applicable scale factor
+
+- added module for testing option settings;
+      new directory EvalOptions
+      new binary    crgEvalOpts
+- adapted makefiles and scripts for additional module
+
+
+****** known bugs and/or deficiencies ********
+- the samples "handmade_sloped.crg" and "handmade_banked.crg" are not yet handled correctly. To be fixed in 0.4beta.
+
+
+Dec. 17, 2008, Release 0.2beta:
+-------------------------------
+- crgClearData() is now called crgDataSetRelease()
+- crgGetDataSet() is now called crgDataSetAccess()
+- added very simple example in directory Tools/Simple
+- debugged "static" modifier in crgLoader.c at method "getNextRecord()"
+- added compile scripts in order to overcome makefile conflicts on various platforms
+- debugged reading of binary data on big endian machines
 
