@@ -22,7 +22,7 @@
 #
 
 #library version
-REVISION = 2.0.0
+REVISION = 2.0.1
 
 #directories
 LIB_DIR = lib
