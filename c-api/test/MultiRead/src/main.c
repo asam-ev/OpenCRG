@@ -139,7 +139,6 @@ int main( int argc, char** argv )
         {
             crgMsgPrint( dCrgMsgLevelFatal, "main: error reading data.\n" );
             usage();
-            return -1;
         }
 
         /* --- check CRG data for consistency and accuracy --- */
@@ -271,7 +270,7 @@ int main( int argc, char** argv )
 
         /* --- now all the way back and check the result --- */
         if ( !crgEvalxy2z( cpId, testX[idxTestPt], testY[idxTestPt], &z ) )
-            crgMsgPrint( dCrgMsgLevelWarn, "main: error converting x/y = %.3f / %.3f to z.\n",  x, y );
+            crgMsgPrint( dCrgMsgLevelWarn, "main: error converting x/y = %.3f / %.3f to z.\n",  testX[idxTestPt], testY[idxTestPt] );
 
         /* fprintf( stderr, "%.3lf %.3lf %.3lf\n", testX[idxTestPt], testY[idxTestPt], z ); */
 
