@@ -40,33 +40,24 @@ platforms without modification of the source code.
 Directory structure:
 --------------------------------------------------------------
 |----baselib................OpenCRG basic library - the core of the toolset
-|    |----lib...............location of the compiled OpenCRG library
 |    |----inc...............include files providing the interface to the library
-|    |----makefile..........sample makefile for users preferring the make mechanism
-|    |----obj...............target directory for sources compiled with the make mechanism
 |    |----src...............the library's sources
-|----compileScript.sh.......script for the compilation of all demos and tools,
-|                           based on simple compiler calls; this is an alternative to
-|                           using the make mechanism; all files of the base library are
-|                           also compiled with this script, so there is no need for a
-|                           separate compilation of the library files.
+|    |----CMakeLists.txt....CMake listfile to build OpenCRG basic library
+|    |----makefile..........sample makefile for users preferring the make mechanism
+|----cmake..................directory containing cmake modules
+|    |----*.cmake...........cmake modules to set compiler settings, common include directories, etc.
 |----demo...................demo sources showing the usage of the basic library
-|    |----Simple............a really simple application covering all basics of the API,
-|    |                      runs with fix data sample "handmade_straight.crg"
+|    |----bin...............target directory for demo executables
+|    |----Curvature.........example of crg check which includes refline curvature check 
 |    |----EvalOptions.......a set of routines demonstrating the usage of various options
 |    |----EvalXYnUV.........a set of routines for the evaluation of OpenCRG reference lines
 |    |----EvalZ.............an advanced example for the evaluation of OpenCRG data
 |    |----Reader............a sample application for a CRG file reader
-|    |----bin
-|    |    |----crgSimple....executable of the very simple example
-|    |    |----crgEvalxyuv..executable of the reference line evaluator
-|    |    |----crgReader....executable of the sample reader
-|    |    |----crgEvalz.....executable of the complex z data evaluator
-|    |    |----crgEvalOpts..executable of the option usage example
-|    |----makefile..........makefile for all demos (alternative to "compileScript.sh")
-|----makefile
-|----readme.txt
+|    |----Simple............a really simple application covering all basics of the API
+|    |----CMakeLists.txt....CMake listfile to build all demos
+|    |----makefile..........makefile for all demos (alternative to "compileScript.sh" and cmake)
 |----test
+|    |----bin.....................target directory for test executables
 |    |----Dump....................reads an OpenCRG file and dumps the values x/y/z/u/v into
 |    |                            into a text file "crgDump.txt" - very helpful for debugging
 |    |----MemTest.................just a quick test for allocating and releasing CRG data sets
@@ -79,20 +70,47 @@ Directory structure:
 |    |                            file containing test points. This will compute the z value
 |    |                            at the given x/y locations from the OpenCRG file and then
 |    |                            compare the result with the given z reference value
-|    |----bin
-|    |    |----testModifiers.sh...script for performing a series of tests using the
-|    |    |                       modifier mechanisms; requires gnuplot
-|    |    |----testOptions.sh.....script for performing a series of tests using the
-|    |    |                       evaluation option mechanisms; requires gnuplot
-|    |    |----crgPerfTest........performance test tool; may not run on all platforms
-|    |----makefile................makefile for all tests (alternative to "compileScript.sh")
+|    |----CMakeLists.txt..........CMake listfile to build all tests
+|    |----makefile................makefile for all tests (alternative to "compileScript.sh" and cmake)
+|    |----testModifiers.sh........script for performing a series of tests using the
+|    |                            modifier mechanisms; requires gnuplot
+|    |----testOptions.sh..........script for performing a series of tests using the
+|    |                            evaluation option mechanisms; requires gnuplot
+|----CMakeLists.txt.........CMake listfile to build OpenCRG basic library, demos and tests
+|----compileScript.sh.......script for the compilation of all demos and tools,
+|                           based on simple compiler calls; this is an alternative to
+|                           using the make mechanism; all files of the base library are
+|                           also compiled with this script, so there is no need for a
+|                           separate compilation of the library files.
+|----makefile...............sample makefile that builds baselib, demos, tests
+|----readme.txt
 
 
 Compiling:
 --------------------------------------------------------------
-Three methods for compiling the tool-set are provided:
+Four methods for compiling the tool-set are provided:
 
-A) On machines with gcc and standard make environment, just type
+A) On machines with CMake 3.19 or higher and compatible C compiler installed,
+   when in a directory containing a CMake listfile, type
+
+       cmake -B build -DCMAKE_BUILD_TYPE=Release
+	   
+   then type
+	   
+       cmake --build build --config Release
+	   
+   Note that CMAKE_BUILD_TYPE will be ignored using multi-config generators. 
+   The build type is specified by the --config flag in this case.
+   The above is a simplified example and it is assumed that the compiler is 
+   detected automatically.
+   
+   Depending on which sources were built, the OpenCRG basic library or executables can be found in:
+   
+      baselib/lib/
+      demo/bin/
+      test/bin/
+
+B) On machines with gcc and standard make environment, just type
 
       make
 
@@ -107,7 +125,7 @@ A) On machines with gcc and standard make environment, just type
 
       baselib/lib
 
-B) On machines having trouble with the provided makefiles, either adapt those
+C) On machines having trouble with the provided makefiles, either adapt those
    files or use the very basic fallback solution which is a compile script.
    The script "compileScript.sh" is located in the root directory
 
@@ -122,7 +140,7 @@ B) On machines having trouble with the provided makefiles, either adapt those
    In contrast to the makefile mechanism, no library is explicitly created
    from the baselib/ files.
 
-C) If you don't like makefiles and our scripts, you may just write your own
+D) If you don't like makefiles and our scripts, you may just write your own
    simple compile instruction at command line level.
 
    For this purpose, please note the following hints:
