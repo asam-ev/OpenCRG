@@ -928,6 +928,9 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
     if ( applyXform )
     {
         size_t i;
+        double dx = toXYZ[0] - fromXYZ[0];
+        double dy = toXYZ[1] - fromXYZ[1];
+        double dz = toXYZ[2] - fromXYZ[2];
 
         /* --- first rotate --- */
         /* phi on center line */
@@ -936,6 +939,7 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
                 rotAngle * 180 / 3.14159265, rotCenter[0], rotCenter[1], fromPhi * 180 / 3.14159265 );
 
         crgDataOffsetChannel( &( crgData->channelPhi ), rotAngle );
+        crgData->channelPhi.info.offset -= rotAngle;
 
         /* --- compute sine and cosine of direction at either end of reference line */
         crgData->util.phiFirstSin = sin( crgData->channelPhi.info.first );
@@ -945,35 +949,41 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
 
         /* x,y data of center line */
         rotatePoint( &( crgData->channelX.info.first ), &( crgData->channelY.info.first ), rotCenter[0], rotCenter[1], rotAngle );
-        rotatePoint( &( crgData->channelX.info.last ),  &( crgData->channelY.info.last ),  rotCenter [0], rotCenter [1], rotAngle );
+        rotatePoint( &( crgData->channelX.info.last ),  &( crgData->channelY.info.last ),  rotCenter[0], rotCenter[1], rotAngle );
 
         for ( i = 0; i < crgData->channelX.info.size; i++ )
-            rotatePoint( &( crgData->channelX.data[i] ), &( crgData->channelY.data[i] ), rotCenter [0], rotCenter [1], rotAngle );
+            rotatePoint( &( crgData->channelX.data[i] ), &( crgData->channelY.data[i] ), rotCenter[0], rotCenter[1], rotAngle );
 
         /* --- translation --- */
-        crgDataOffsetChannel( &( crgData->channelX ), toXYZ[0] - fromXYZ[0] );
-        crgDataOffsetChannel( &( crgData->channelY ), toXYZ[1] - fromXYZ[1] );
+        crgDataOffsetChannel( &( crgData->channelX ), dx );
+        crgDataOffsetChannel( &( crgData->channelY ), dy );
+
+        crgData->channelX.info.offset -= dx;
+        crgData->channelY.info.offset -= dy;
 
         if ( crgData->channelRefZ.info.valid )
         {
             for ( i = 0; i < crgData->channelRefZ.info.size; i++ )
-                crgData->channelRefZ.data[i] += toXYZ[2] - fromXYZ[2];
+                crgData->channelRefZ.data[i] += dz;
 
-            crgData->channelRefZ.info.first += toXYZ[2] - fromXYZ[2];
-            crgData->channelRefZ.info.last  += toXYZ[2] - fromXYZ[2];
+            crgData->channelRefZ.info.first  += dz;
+            crgData->channelRefZ.info.last   += dz;
+            crgData->channelRefZ.info.offset -= dz;
         }
         else if ( crgData->admin.defMask & dCrgDataDefZStart )
         {
-            crgData->channelRefZ.info.first += toXYZ[2] - fromXYZ[2];
-            crgData->channelRefZ.info.last  += toXYZ[2] - fromXYZ[2];
+            crgData->channelRefZ.info.first  += dz;
+            crgData->channelRefZ.info.last   += dz;
+            crgData->channelRefZ.info.offset -= dz;
         }
         else
         {
             for ( i = 0; i < crgData->channelV.info.size; i++ )
             {
-                crgData->channelZ[i].info.mean  += toXYZ[2] - fromXYZ[2];
-                crgData->channelZ[i].info.first += toXYZ[2] - fromXYZ[2];
-                crgData->channelZ[i].info.last  += toXYZ[2] - fromXYZ[2];
+                crgData->channelZ[i].info.mean   += dz;
+                crgData->channelZ[i].info.first  += dz;
+                crgData->channelZ[i].info.last   += dz;
+                crgData->channelZ[i].info.offset -= dz;
             }
         }
     }
