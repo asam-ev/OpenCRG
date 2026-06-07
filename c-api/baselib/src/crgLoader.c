@@ -3372,14 +3372,8 @@ decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 
         case dOpcodeIncludeDone:
             {
-                CrgAdminStruct adminBackup;
-
                 crgMsgPrint( dCrgMsgLevelNotice, "--------------------------------------\n" );
                 crgMsgPrint( dCrgMsgLevelNotice, "decodeIncludeFile: importing file <%s>\n", filename );
-
-                /* hold a copy of the administration structure */
-                memcpy( &adminBackup, &( crgData->admin ), sizeof( CrgAdminStruct ) );
-                crgData->admin.sectionType = dFileSectionNone;
 
                 /* load the include file and set the file level accordingly */
                 mFileLevel++;
@@ -3390,9 +3384,6 @@ decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 
                 if ( !result )
                     return 0;
-
-                /* restore the administration structure */
-                memcpy( &( crgData->admin ), &adminBackup, sizeof( CrgAdminStruct ) );
 
                 crgMsgPrint( dCrgMsgLevelNotice, "--------------------------------------\n" );
                 crgMsgPrint( dCrgMsgLevelNotice, "decodeIncludeFile: continuing with previous file\n" );
