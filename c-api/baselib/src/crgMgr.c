@@ -47,6 +47,13 @@ static void crgDataScaleChannel( CrgChannelBaseStruct* channel, double factor, i
 static void crgDataOffsetChannel( CrgChannelStruct* channel, double offset );
 
 /**
+* offset the data of channelZ or channelRefZ depending on availability
+* @param channel    pointer to data set
+* @param offset     offset value
+*/
+static void crgDataOffsetChannelZ(CrgDataStruct* crgData, double offset);
+
+/**
 * apply any transformation specified by modifiers
 * @param crgData    pointer to data set which is to be modified
 */
@@ -671,6 +678,41 @@ crgDataOffsetChannel( CrgChannelStruct* channel, double offset )
     channel->info.offset -= offset;
 }
 
+static void
+crgDataOffsetChannelZ(CrgDataStruct* crgData, double offset)
+{
+    size_t i;
+
+    if (!crgData)
+        return;
+
+    if (crgData->channelRefZ.info.valid)
+    {
+        for (i = 0; i < crgData->channelRefZ.info.size; i++)
+            crgData->channelRefZ.data[i] += offset;
+
+        crgData->channelRefZ.info.first  += offset;
+        crgData->channelRefZ.info.last   += offset;
+        crgData->channelRefZ.info.offset -= offset;
+    }
+    else if (crgData->admin.defMask & dCrgDataDefZStart)
+    {
+        crgData->channelRefZ.info.first  += offset;
+        crgData->channelRefZ.info.last   += offset;
+        crgData->channelRefZ.info.offset -= offset;
+    }
+    else
+    {
+        for (i = 0; i < crgData->channelV.info.size; i++)
+        {
+            crgData->channelZ[i].info.mean   += offset;
+            crgData->channelZ[i].info.first  += offset;
+            crgData->channelZ[i].info.last   += offset;
+            crgData->channelZ[i].info.offset -= offset;
+        }
+    }
+}
+
 void
 crgDataSetModifierSetDefault( int dataSetId )
 {
@@ -697,6 +739,25 @@ crgDataSetOptionSetDefault( int dataSetId )
     }
 
     crgOptionSetDefaultOptions( &( crgData->options ) );
+}
+
+int
+crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff)
+{
+    CrgDataStruct* crgData = crgDataSetAccess(dataSetId);
+
+    if (!crgData)
+    {
+        crgMsgPrint(dCrgMsgLevelWarn, "crgDataSetChangeGlobalOrigin: invalid data set id <%d>.\n", dataSetId);
+        return 0;
+    }
+
+    /* --- translate by offset difference --- */
+    crgDataOffsetChannel(&(crgData->channelX), crgData->channelX.info.offset - xoff);
+    crgDataOffsetChannel(&(crgData->channelY), crgData->channelY.info.offset - yoff);
+    crgDataOffsetChannelZ(crgData, crgData->channelRefZ.info.offset - zoff);
+
+    return 1;
 }
 
 void
@@ -957,32 +1018,7 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
         /* --- translation --- */
         crgDataOffsetChannel( &( crgData->channelX ), dx );
         crgDataOffsetChannel( &( crgData->channelY ), dy );
-
-        if ( crgData->channelRefZ.info.valid )
-        {
-            for ( i = 0; i < crgData->channelRefZ.info.size; i++ )
-                crgData->channelRefZ.data[i] += dz;
-
-            crgData->channelRefZ.info.first  += dz;
-            crgData->channelRefZ.info.last   += dz;
-            crgData->channelRefZ.info.offset -= dz;
-        }
-        else if ( crgData->admin.defMask & dCrgDataDefZStart )
-        {
-            crgData->channelRefZ.info.first  += dz;
-            crgData->channelRefZ.info.last   += dz;
-            crgData->channelRefZ.info.offset -= dz;
-        }
-        else
-        {
-            for ( i = 0; i < crgData->channelV.info.size; i++ )
-            {
-                crgData->channelZ[i].info.mean   += dz;
-                crgData->channelZ[i].info.first  += dz;
-                crgData->channelZ[i].info.last   += dz;
-                crgData->channelZ[i].info.offset -= dz;
-            }
-        }
+        crgDataOffsetChannelZ(crgData, dz);
     }
 }
 

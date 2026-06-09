@@ -146,11 +146,12 @@
 #endif 
 /* ====== TYPE DEFINITIONS ====== */
 
-/* ====== METHODS in crgMgr.c ====== */
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
+/* ====== METHODS in crgMgr.c ====== */
     /**
     * destroy the data of the given data set
     * @param dataSetId    identifier of the applicable dataset
@@ -297,6 +298,18 @@ extern "C"
     * @param  dataSetId    identifier of the applicable dataset
     */
     extern void crgDataSetOptionSetDefault( int dataSetId );
+
+    /**
+    * set the global offset values for a data set;
+    * the local coordinates are changed accordingly, os that no shift
+    * of evaluated global coordinates will occur
+    * @param  dataSetId    identifier of the applicable dataset
+    * @param  xoff         new x offset
+    * @param  yoff         new y offset
+    * @param  zoff         new z offset
+    * @return 1 if successful, otherwise 0
+    */
+    extern int crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff);
 
     /**
     * release all data held by the crg library
