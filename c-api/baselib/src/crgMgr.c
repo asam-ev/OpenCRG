@@ -668,6 +668,7 @@ crgDataOffsetChannel( CrgChannelStruct* channel, double offset )
 
     channel->info.first += offset;
     channel->info.last  += offset;
+    channel->info.offset -= offset;
 }
 
 void
@@ -939,7 +940,6 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
                 rotAngle * 180 / 3.14159265, rotCenter[0], rotCenter[1], fromPhi * 180 / 3.14159265 );
 
         crgDataOffsetChannel( &( crgData->channelPhi ), rotAngle );
-        crgData->channelPhi.info.offset -= rotAngle;
 
         /* --- compute sine and cosine of direction at either end of reference line */
         crgData->util.phiFirstSin = sin( crgData->channelPhi.info.first );
@@ -957,9 +957,6 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
         /* --- translation --- */
         crgDataOffsetChannel( &( crgData->channelX ), dx );
         crgDataOffsetChannel( &( crgData->channelY ), dy );
-
-        crgData->channelX.info.offset -= dx;
-        crgData->channelY.info.offset -= dy;
 
         if ( crgData->channelRefZ.info.valid )
         {
