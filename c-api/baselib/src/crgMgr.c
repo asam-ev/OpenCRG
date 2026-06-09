@@ -742,7 +742,7 @@ crgDataSetOptionSetDefault( int dataSetId )
 }
 
 int
-crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff)
+crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff, double poff)
 {
     CrgDataStruct* crgData = crgDataSetAccess(dataSetId);
 
@@ -752,10 +752,19 @@ crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zof
         return 0;
     }
 
-    /* --- translate by offset difference --- */
+    /* --- translate by coordinate offset difference --- */
     crgDataOffsetChannel(&(crgData->channelX), crgData->channelX.info.offset - xoff);
     crgDataOffsetChannel(&(crgData->channelY), crgData->channelY.info.offset - yoff);
     crgDataOffsetChannelZ(crgData, crgData->channelRefZ.info.offset - zoff);
+
+    /* --- rotate by heading offset difference --- */
+    crgDataOffsetChannel(&(crgData->channelPhi), crgData->channelPhi.info.offset - poff);
+
+    /* --- compute sine and cosine of direction at either end of reference line --- */
+    crgData->util.phiFirstSin = sin(crgData->channelPhi.info.first);
+    crgData->util.phiFirstCos = cos(crgData->channelPhi.info.first);
+    crgData->util.phiLastSin  = sin(crgData->channelPhi.info.last);
+    crgData->util.phiLastCos  = cos(crgData->channelPhi.info.last);
 
     return 1;
 }

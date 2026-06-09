@@ -301,15 +301,16 @@ extern "C"
 
     /**
     * set the global offset values for a data set;
-    * the local coordinates are changed accordingly, os that no shift
+    * the local coordinates are changed accordingly, so that no shift
     * of evaluated global coordinates will occur
     * @param  dataSetId    identifier of the applicable dataset
     * @param  xoff         new x offset
     * @param  yoff         new y offset
     * @param  zoff         new z offset
+    * @param  poff         new p angle offset
     * @return 1 if successful, otherwise 0
     */
-    extern int crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff);
+    extern int crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff, double poff);
 
     /**
     * release all data held by the crg library
