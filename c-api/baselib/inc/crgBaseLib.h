@@ -313,6 +313,17 @@ extern "C"
     extern int crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff, double poff);
 
     /**
+    * get the global offset values for a data set;
+    * @param  dataSetId    identifier of the applicable dataset
+    * @param  xoff         x offset return value
+    * @param  yoff         y offset return value
+    * @param  zoff         z offset return value
+    * @param  poff         p angle offset return value
+    * @return 1 if successful, otherwise 0
+    */
+    extern int crgDataSetGetGlobalOrigin(int dataSetId, double* xoff, double* yoff, double* zoff, double* poff);
+
+    /**
     * release all data held by the crg library
     */
     extern void crgMemRelease( void );

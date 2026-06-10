@@ -769,6 +769,25 @@ crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zof
     return 1;
 }
 
+int
+crgDataSetGetGlobalOrigin(int dataSetId, double* xoff, double* yoff, double* zoff, double* poff)
+{
+    CrgDataStruct* crgData = crgDataSetAccess(dataSetId);
+
+    if (!crgData)
+    {
+        crgMsgPrint(dCrgMsgLevelWarn, "crgDataSetGetGlobalOrigin: invalid data set id <%d>.\n", dataSetId);
+        return 0;
+    }
+
+    *xoff = crgData->channelX.info.offset;
+    *yoff = crgData->channelY.info.offset;
+    *zoff = crgData->channelRefZ.info.offset;
+    *poff = crgData->channelPhi.info.offset;
+
+    return 1;
+}
+
 void
 crgMemRelease( void )
 {
