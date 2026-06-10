@@ -694,6 +694,33 @@ extern int mCrgBigEndian;             /* endian-ness of machine */
     */
     extern int crgDataEvaluv2pk( const CrgDataStruct *crgData, const CrgOptionsStruct* optionList, double u, double v, double* phi, double* curv );
 
+/* ====== METHODS in crgEvalenh.c ====== */
+    /**
+    * convert a given local (x,y,z) position into the corresponding global (e,n,h) position
+    * @param crgData  pointer to data set which holds the data
+    * @param x        x coordinate
+    * @param y        y coordinate
+    * @param z        z coordinate
+    * @param e        e coordinate
+    * @param n        n coordinate
+    * @param h        h coordinate
+    * @return 1 if successful, otherwise 0
+    */
+    extern int crgDataEvalxyz2enh( const CrgDataStruct* crgData, double x, double y, double z, double* e, double* n, double* h );
+
+    /**
+    * convert a given global (e,n,h) position into the corresponding local (x,y,z) position
+    * @param crgData  pointer to data set which holds the data
+    * @param e        e coordinate
+    * @param n        n coordinate
+    * @param h        h coordinate
+    * @param x        x coordinate
+    * @param y        y coordinate
+    * @param z        z coordinate
+    * @return 1 if successful, otherwise 0
+    */
+    extern int crgDataEvalenh2xyz( const CrgDataStruct* crgData, double e, double n, double h, double* x, double* y, double* z );
+
 /* ====== METHODS in crgPortability.c ====== */
     /**
     * set the maximum level of messages that will be handled,
