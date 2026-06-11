@@ -686,6 +686,8 @@ crgDataOffsetChannelZ(CrgDataStruct* crgData, double offset)
     if (!crgData)
         return;
 
+    crgData->channelRefZ.info.offset -= offset;
+
     if (crgData->channelRefZ.info.valid)
     {
         for (i = 0; i < crgData->channelRefZ.info.size; i++)
@@ -693,23 +695,11 @@ crgDataOffsetChannelZ(CrgDataStruct* crgData, double offset)
 
         crgData->channelRefZ.info.first  += offset;
         crgData->channelRefZ.info.last   += offset;
-        crgData->channelRefZ.info.offset -= offset;
-    }
-    else if (crgData->admin.defMask & dCrgDataDefZStart)
-    {
-        crgData->channelRefZ.info.first  += offset;
-        crgData->channelRefZ.info.last   += offset;
-        crgData->channelRefZ.info.offset -= offset;
     }
     else
     {
-        for (i = 0; i < crgData->channelV.info.size; i++)
-        {
-            crgData->channelZ[i].info.mean   += offset;
-            crgData->channelZ[i].info.first  += offset;
-            crgData->channelZ[i].info.last   += offset;
-            crgData->channelZ[i].info.offset -= offset;
-        }
+        crgData->channelRefZ.info.first  += offset;
+        crgData->channelRefZ.info.last   += offset;
     }
 }
 
