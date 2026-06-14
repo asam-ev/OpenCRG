@@ -68,7 +68,7 @@ int myMsgHandler( int level, char* message )
 
 int main( int argc, char** argv )
 {
-    char*  filename = "../../Data/handmade_straight.crg";
+    char*  filename = "../../../crg-txt/handmade_straight.crg";
     int    dataSetId = 0;
     int    cpId;
     int    testNo = 0;
