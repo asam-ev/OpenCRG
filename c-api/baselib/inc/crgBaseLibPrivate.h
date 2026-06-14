@@ -115,6 +115,8 @@ typedef struct
     double  phiFirstCos;  /* cosine of first phi value                        [-] */
     double  phiLastSin;   /* sine   of last phi value                         [-] */
     double  phiLastCos;   /* cosine of last phi value                         [-] */
+    double  phiOffSin;    /* sine   of phi offset value                       [-] */
+    double  phiOffCos;    /* cosine of phi offset value                       [-] */
 } CrgUtilityStruct;
 
 /**

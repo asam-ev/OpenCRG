@@ -577,7 +577,7 @@ extern "C"
     * @param h     h coordinate
     * @return 1 if successful, otherwise 0
     */
-    extern int crgEvalxyz2enh(int cpId, double x, double y, double z, double* e, double* n, double* h);
+    extern int crgEvalxyz2enh( int cpId, double x, double y, double z, double* e, double* n, double* h );
 
     /**
     * convert a given local (x,y,z) position into the corresponding global (e,n,h) position
@@ -590,7 +590,7 @@ extern "C"
     * @param h     h coordinate
     * @return 1 if successful, otherwise 0
     */
-    extern int crgDataSetEvalxyz2enh(int dataSetId, double x, double y, double z, double* e, double* n, double* h);
+    extern int crgDataSetEvalxyz2enh( int dataSetId, double x, double y, double z, double* e, double* n, double* h );
 
     /**
     * convert a given global (e,n,h) position into the corresponding local (x,y,z) position
@@ -603,7 +603,7 @@ extern "C"
     * @param z     z coordinate
     * @return 1 if successful, otherwise 0
     */
-    extern int crgEvalenh2xyz(int cpId, double e, double n, double h, double* x, double* y, double* z);
+    extern int crgEvalenh2xyz( int cpId, double e, double n, double h, double* x, double* y, double* z );
 
     /**
     * convert a given global (e,n,h) position into the corresponding local (x,y,z) position
@@ -616,7 +616,7 @@ extern "C"
     * @param z     z coordinate
     * @return 1 if successful, otherwise 0
     */
-    extern int crgDataSetEvalenh2xyz(int dataSetId, double e, double n, double h, double* x, double* y, double* z);
+    extern int crgDataSetEvalenh2xyz( int dataSetId, double e, double n, double h, double* x, double* y, double* z );
 
 /* ====== METHODS in crgPortability.c ====== */
     /**

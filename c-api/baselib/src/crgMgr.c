@@ -732,41 +732,43 @@ crgDataSetOptionSetDefault( int dataSetId )
 }
 
 int
-crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff, double poff)
+crgDataSetChangeGlobalOrigin( int dataSetId, double xoff, double yoff, double zoff, double poff )
 {
-    CrgDataStruct* crgData = crgDataSetAccess(dataSetId);
+    CrgDataStruct* crgData = crgDataSetAccess( dataSetId );
 
     if (!crgData)
     {
-        crgMsgPrint(dCrgMsgLevelWarn, "crgDataSetChangeGlobalOrigin: invalid data set id <%d>.\n", dataSetId);
+        crgMsgPrint( dCrgMsgLevelWarn, "crgDataSetChangeGlobalOrigin: invalid data set id <%d>.\n", dataSetId );
         return 0;
     }
 
     /* --- translate by coordinate offset difference --- */
-    crgDataOffsetChannel(&(crgData->channelX), crgData->channelX.info.offset - xoff);
-    crgDataOffsetChannel(&(crgData->channelY), crgData->channelY.info.offset - yoff);
-    crgDataOffsetChannelZ(crgData, crgData->channelRefZ.info.offset - zoff);
+    crgDataOffsetChannel( &(crgData->channelX), crgData->channelX.info.offset - xoff );
+    crgDataOffsetChannel( &(crgData->channelY), crgData->channelY.info.offset - yoff );
+    crgDataOffsetChannelZ( crgData, crgData->channelRefZ.info.offset - zoff);
 
     /* --- rotate by heading offset difference --- */
-    crgDataOffsetChannel(&(crgData->channelPhi), crgData->channelPhi.info.offset - poff);
+    crgDataOffsetChannel( &(crgData->channelPhi), crgData->channelPhi.info.offset - poff );
 
     /* --- compute sine and cosine of direction at either end of reference line --- */
-    crgData->util.phiFirstSin = sin(crgData->channelPhi.info.first);
-    crgData->util.phiFirstCos = cos(crgData->channelPhi.info.first);
-    crgData->util.phiLastSin  = sin(crgData->channelPhi.info.last);
-    crgData->util.phiLastCos  = cos(crgData->channelPhi.info.last);
+    crgData->util.phiFirstSin = sin( crgData->channelPhi.info.first );
+    crgData->util.phiFirstCos = cos( crgData->channelPhi.info.first );
+    crgData->util.phiLastSin  = sin( crgData->channelPhi.info.last  );
+    crgData->util.phiLastCos  = cos( crgData->channelPhi.info.last  );
+    crgData->util.phiOffSin   = sin( crgData->channelPhi.info.offset );
+    crgData->util.phiOffCos   = cos( crgData->channelPhi.info.offset );
 
     return 1;
 }
 
 int
-crgDataSetGetGlobalOrigin(int dataSetId, double* xoff, double* yoff, double* zoff, double* poff)
+crgDataSetGetGlobalOrigin( int dataSetId, double* xoff, double* yoff, double* zoff, double* poff )
 {
-    CrgDataStruct* crgData = crgDataSetAccess(dataSetId);
+    CrgDataStruct* crgData = crgDataSetAccess( dataSetId );
 
     if (!crgData)
     {
-        crgMsgPrint(dCrgMsgLevelWarn, "crgDataSetGetGlobalOrigin: invalid data set id <%d>.\n", dataSetId);
+        crgMsgPrint(dCrgMsgLevelWarn, "crgDataSetGetGlobalOrigin: invalid data set id <%d>.\n", dataSetId );
         return 0;
     }
 
@@ -1025,6 +1027,8 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
         crgData->util.phiFirstCos = cos( crgData->channelPhi.info.first );
         crgData->util.phiLastSin  = sin( crgData->channelPhi.info.last  );
         crgData->util.phiLastCos  = cos( crgData->channelPhi.info.last  );
+        crgData->util.phiOffSin   = sin( crgData->channelPhi.info.offset );
+        crgData->util.phiOffCos   = cos( crgData->channelPhi.info.offset );
 
         /* x,y data of center line */
         rotatePoint( &( crgData->channelX.info.first ), &( crgData->channelY.info.first ), rotCenter[0], rotCenter[1], rotAngle );
@@ -1036,7 +1040,7 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
         /* --- translation --- */
         crgDataOffsetChannel( &( crgData->channelX ), dx );
         crgDataOffsetChannel( &( crgData->channelY ), dy );
-        crgDataOffsetChannelZ(crgData, dz);
+        crgDataOffsetChannelZ( crgData, dz );
     }
 }
 

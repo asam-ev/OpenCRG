@@ -67,8 +67,8 @@ crgDataEvalxyz2enh( const CrgDataStruct *crgData, double x, double y, double z, 
     double xbeg = crgData->channelX.info.first;
     double ybeg = crgData->channelY.info.first;
 
-    double ps = sin(crgData->channelPhi.info.offset);
-    double pc = cos(crgData->channelPhi.info.offset);
+    double ps = crgData->util.phiOffSin;
+    double pc = crgData->util.phiOffCos;
 
     /* --- rotate around(xbeg, ybeg) --- */
     double dx = x - xbeg;
@@ -120,8 +120,8 @@ crgDataEvalenh2xyz( const CrgDataStruct* crgData, double e, double n, double h, 
     double xbeg = crgData->channelX.info.first;
     double ybeg = crgData->channelY.info.first;
 
-    double ps = sin(crgData->channelPhi.info.offset);
-    double pc = cos(crgData->channelPhi.info.offset);
+    double ps = crgData->util.phiOffSin;
+    double pc = crgData->util.phiOffCos;
 
     /* --- translate --- */
     *x = e - crgData->channelX.info.offset;
