@@ -687,19 +687,13 @@ crgDataOffsetChannelZ(CrgDataStruct* crgData, double offset)
         return;
 
     crgData->channelRefZ.info.offset -= offset;
+    crgData->channelRefZ.info.first  += offset;
+    crgData->channelRefZ.info.last   += offset;
 
     if (crgData->channelRefZ.info.valid)
     {
         for (i = 0; i < crgData->channelRefZ.info.size; i++)
             crgData->channelRefZ.data[i] += offset;
-
-        crgData->channelRefZ.info.first  += offset;
-        crgData->channelRefZ.info.last   += offset;
-    }
-    else
-    {
-        crgData->channelRefZ.info.first  += offset;
-        crgData->channelRefZ.info.last   += offset;
     }
 }
 
