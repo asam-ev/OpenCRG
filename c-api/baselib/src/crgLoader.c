@@ -2968,8 +2968,8 @@ crgCheckMods( CrgDataStruct* crgData )
         }
         if ( !crgOptionIsSet( &crgData->modifiers, dCrgModRefPointVFrac ) && !crgOptionIsSet( &crgData->modifiers, dCrgModRefPointV ) )
         {
-            crgOptionSetDouble( &crgData->modifiers, dCrgModRefPointVFrac, 0. );
-            crgMsgPrint( dCrgMsgLevelNotice, "crgCheckMods: setting value of modifier \"refpoint_v_fraction\" to 0.0.\n");
+            crgOptionSetDouble( &crgData->modifiers, dCrgModRefPointV, 0. );
+            crgMsgPrint( dCrgMsgLevelNotice, "crgCheckMods: setting value of modifier \"refpoint_v\" to 0.0.\n");
         }
         if( !crgOptionIsSet( &crgData->modifiers, dCrgModRefPointUOffset ) )
             crgOptionSetDouble( &crgData->modifiers, dCrgModRefPointUOffset , 0. );
