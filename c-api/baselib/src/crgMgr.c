@@ -675,7 +675,6 @@ crgDataOffsetChannel( CrgChannelStruct* channel, double offset )
 
     channel->info.first += offset;
     channel->info.last  += offset;
-    channel->info.offset -= offset;
 }
 
 static void
@@ -686,7 +685,6 @@ crgDataOffsetChannelZ(CrgDataStruct* crgData, double offset)
     if (!crgData)
         return;
 
-    crgData->channelRefZ.info.offset -= offset;
     crgData->channelRefZ.info.first  += offset;
     crgData->channelRefZ.info.last   += offset;
 
@@ -864,6 +862,7 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
     double fromXYZ[3]    = { 0.0, 0.0, 0.0 };
     double toXYZ[3]      = { 0.0, 0.0, 0.0 };
     double rotCenter[2]  = { 0.0, 0.0 };
+    double xyFirst[2]    = { 0.0, 0.0 };
     double rotAngle      = 0.0;
     double fromPhi       = 0.0;
     double fromCurv      = 0.0;
@@ -1007,6 +1006,8 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
         double dx = toXYZ[0] - fromXYZ[0];
         double dy = toXYZ[1] - fromXYZ[1];
         double dz = toXYZ[2] - fromXYZ[2];
+        xyFirst[0] = crgData->channelX.info.first;
+        xyFirst[1] = crgData->channelY.info.first;
 
         /* --- first rotate --- */
         /* phi on center line */
@@ -1015,6 +1016,7 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
                 rotAngle * 180 / 3.14159265, rotCenter[0], rotCenter[1], fromPhi * 180 / 3.14159265 );
 
         crgDataOffsetChannel( &( crgData->channelPhi ), rotAngle );
+        crgData->channelPhi.info.offset -= rotAngle;
 
         /* --- compute sine and cosine of direction at either end of reference line */
         crgData->util.phiFirstSin = sin( crgData->channelPhi.info.first );
@@ -1035,6 +1037,10 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
         crgDataOffsetChannel( &( crgData->channelX ), dx );
         crgDataOffsetChannel( &( crgData->channelY ), dy );
         crgDataOffsetChannelZ( crgData, dz );
+
+        crgData->channelX.info.offset    -= crgData->channelX.info.first - xyFirst[0];
+        crgData->channelY.info.offset    -= crgData->channelY.info.first - xyFirst[1];
+        crgData->channelRefZ.info.offset -= dz;
     }
 }
 
