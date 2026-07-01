@@ -726,6 +726,12 @@ crgDataSetOptionSetDefault( int dataSetId )
 int
 crgDataSetChangeGlobalOrigin( int dataSetId, double xoff, double yoff, double zoff, double poff )
 {
+    int i;
+    double dxoff;
+    double dyoff;
+    double dzoff;
+    double dpoff;
+
     CrgDataStruct* crgData = crgDataSetAccess( dataSetId );
 
     if (!crgData)
@@ -734,13 +740,15 @@ crgDataSetChangeGlobalOrigin( int dataSetId, double xoff, double yoff, double zo
         return 0;
     }
 
-    /* --- translate by coordinate offset difference --- */
-    crgDataOffsetChannel( &(crgData->channelX), crgData->channelX.info.offset - xoff );
-    crgDataOffsetChannel( &(crgData->channelY), crgData->channelY.info.offset - yoff );
-    crgDataOffsetChannelZ( crgData, crgData->channelRefZ.info.offset - zoff);
+    /* --- calculate offset residuals --- */
+    dxoff = crgData->channelX.info.offset - xoff;
+    dyoff = crgData->channelY.info.offset - yoff;
+    dzoff = crgData->channelRefZ.info.offset - zoff;
+    dpoff = crgData->channelPhi.info.offset - poff;
 
-    /* --- rotate by heading offset difference --- */
-    crgDataOffsetChannel( &(crgData->channelPhi), crgData->channelPhi.info.offset - poff );
+    /* --- rotate by heading offset difference --- */    
+    crgDataOffsetChannel( &(crgData->channelPhi), dpoff);
+    crgData->channelPhi.info.offset -= dpoff;
 
     /* --- compute sine and cosine of direction at either end of reference line --- */
     crgData->util.phiFirstSin = sin( crgData->channelPhi.info.first );
@@ -749,6 +757,21 @@ crgDataSetChangeGlobalOrigin( int dataSetId, double xoff, double yoff, double zo
     crgData->util.phiLastCos  = cos( crgData->channelPhi.info.last  );
     crgData->util.phiOffSin   = sin( crgData->channelPhi.info.offset );
     crgData->util.phiOffCos   = cos( crgData->channelPhi.info.offset );
+
+    /* --- rotate around refline start --- */
+    rotatePoint(&(crgData->channelX.info.last), &(crgData->channelY.info.last), crgData->channelX.info.first, crgData->channelY.info.first, dpoff);
+
+    for (i = 0; i < crgData->channelX.info.size; i++)
+        rotatePoint(&(crgData->channelX.data[i]), &(crgData->channelY.data[i]), crgData->channelX.info.first, crgData->channelY.info.first, dpoff);
+
+    /* --- translate by coordinate offset residuals --- */
+    crgDataOffsetChannel( &(crgData->channelX), dxoff);
+    crgDataOffsetChannel( &(crgData->channelY), dyoff);
+    crgDataOffsetChannelZ( crgData, dzoff);
+
+    crgData->channelX.info.offset -= dxoff;
+    crgData->channelY.info.offset -= dyoff;
+    crgData->channelRefZ.info.offset -= dzoff;
 
     return 1;
 }
