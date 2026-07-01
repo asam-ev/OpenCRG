@@ -724,7 +724,7 @@ crgDataSetOptionSetDefault( int dataSetId )
 }
 
 int
-crgDataSetChangeGlobalOrigin( int dataSetId, double xoff, double yoff, double zoff, double poff )
+crgDataSetSetGlobalOrigin( int dataSetId, double xoff, double yoff, double zoff, double poff )
 {
     size_t i;
     double dxoff;
@@ -736,7 +736,7 @@ crgDataSetChangeGlobalOrigin( int dataSetId, double xoff, double yoff, double zo
 
     if (!crgData)
     {
-        crgMsgPrint( dCrgMsgLevelWarn, "crgDataSetChangeGlobalOrigin: invalid data set id <%d>.\n", dataSetId );
+        crgMsgPrint( dCrgMsgLevelWarn, "crgDataSetSetGlobalOrigin: invalid data set id <%d>.\n", dataSetId );
         return 0;
     }
 

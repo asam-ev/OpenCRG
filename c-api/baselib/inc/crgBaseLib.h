@@ -310,7 +310,7 @@ extern "C"
     * @param  poff         new p angle offset
     * @return 1 if successful, otherwise 0
     */
-    extern int crgDataSetChangeGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff, double poff);
+    extern int crgDataSetSetGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff, double poff);
 
     /**
     * get the global offset values for a data set;
