@@ -726,7 +726,7 @@ crgDataSetOptionSetDefault( int dataSetId )
 int
 crgDataSetChangeGlobalOrigin( int dataSetId, double xoff, double yoff, double zoff, double poff )
 {
-    int i;
+    size_t i;
     double dxoff;
     double dyoff;
     double dzoff;
