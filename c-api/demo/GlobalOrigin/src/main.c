@@ -62,7 +62,7 @@ void crg_demo_local_to_global_conversion(int dataSetId, int cpId, int nStepsU)
     double dy;
     double dz;
 
-    nStepsU = max(nStepsU, 1);
+    nStepsU = nStepsU < 1 ? 1 : nStepsU;
 
     /* --- get extents of data set --- */
     if (!crgDataSetGetURange(dataSetId, &uMin, &uMax))
