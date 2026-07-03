@@ -44,20 +44,6 @@ crgEvalxyz2enh( int cpId, double x, double y, double z, double* e, double* n, do
     return crgDataEvalxyz2enh(cp->crgData, x, y, z, e, n, h);
 }
 
-int 
-crgDataSetEvalxyz2enh( int dataSetId, double x, double y, double z, double* e, double* n, double* h )
-{
-    CrgDataStruct* crgData = crgDataSetAccess(dataSetId);
-
-    if (!crgData)
-    {
-        crgMsgPrint(dCrgMsgLevelNotice, "crgDataSetEvalxyz2enh: unknown data set %d\n", dataSetId);
-        return 0;
-    }
-
-    return crgDataEvalxyz2enh(crgData, x, y, z, e, n, h);
-}
-
 int
 crgDataEvalxyz2enh( const CrgDataStruct *crgData, double x, double y, double z, double* e, double* n, double* h )
 {
@@ -95,20 +81,6 @@ crgEvalenh2xyz( int cpId, double e, double n, double h, double* x, double* y, do
         return 0;
 
     return crgDataEvalenh2xyz(cp->crgData, e, n, h, x, y, z);
-}
-
-int
-crgDataSetEvalenh2xyz(int dataSetId, double e, double n, double h, double* x, double* y, double* z )
-{
-    CrgDataStruct* crgData = crgDataSetAccess(dataSetId);
-
-    if (!crgData)
-    {
-        crgMsgPrint(dCrgMsgLevelNotice, "crgDataSetEvalenh2xyz: unknown data set %d\n", dataSetId);
-        return 0;
-    }
-
-    return crgDataEvalenh2xyz(crgData, e, n, h, x, y, z);
 }
 
 int

@@ -580,19 +580,6 @@ extern "C"
     extern int crgEvalxyz2enh( int cpId, double x, double y, double z, double* e, double* n, double* h );
 
     /**
-    * convert a given local (x,y,z) position into the corresponding global (e,n,h) position
-    * @param dataSetId  id of the crg dataset that is used for the query
-    * @param x     x coordinate
-    * @param y     y coordinate
-    * @param z     z coordinate
-    * @param e     e coordinate
-    * @param n     n coordinate
-    * @param h     h coordinate
-    * @return 1 if successful, otherwise 0
-    */
-    extern int crgDataSetEvalxyz2enh( int dataSetId, double x, double y, double z, double* e, double* n, double* h );
-
-    /**
     * convert a given global (e,n,h) position into the corresponding local (x,y,z) position
     * @param cpId  id of the contact point that is used for the query
     * @param e     e coordinate
@@ -604,19 +591,6 @@ extern "C"
     * @return 1 if successful, otherwise 0
     */
     extern int crgEvalenh2xyz( int cpId, double e, double n, double h, double* x, double* y, double* z );
-
-    /**
-    * convert a given global (e,n,h) position into the corresponding local (x,y,z) position
-    * @param dataSetId  id of the crg dataset that is used for the query
-    * @param e     e coordinate
-    * @param n     n coordinate
-    * @param h     h coordinate
-    * @param x     x coordinate
-    * @param y     y coordinate
-    * @param z     z coordinate
-    * @return 1 if successful, otherwise 0
-    */
-    extern int crgDataSetEvalenh2xyz( int dataSetId, double e, double n, double h, double* x, double* y, double* z );
 
 /* ====== METHODS in crgPortability.c ====== */
     /**
