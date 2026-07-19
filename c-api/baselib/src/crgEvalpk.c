@@ -152,7 +152,7 @@ crgDataEvaluv2pk( const CrgDataStruct *crgData, const CrgOptionsStruct* optionLi
         /* NOTE: phi will not be interpolated, since the data set consists
                  of a sequence of straight lines with discrete change of
                  direction at the respective end points                   */
-        *phi = crgData->channelPhi.data[indexU];
+        *phi = crgData->channelPhi.data[indexU + 1];
     }
 
     return 1;
