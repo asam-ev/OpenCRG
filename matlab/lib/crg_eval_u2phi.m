@@ -78,7 +78,7 @@ num1 = size(p, 2); % nu - 1
 %% work on all points
 
 for ip = 1:np
-    iu = floor((pu(ip) - ubeg) / uinc);
+    iu = floor((pu(ip) - ubeg) / uinc) + 1;
     if iu < 1
         phi(ip) = pbeg;
     elseif iu > num1
