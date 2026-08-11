@@ -3255,18 +3255,11 @@ crgLoaderInit( void )
 static int
 decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 {
-    static char filename[1024];
+    static char filename[1024] = { 0 }; 
     static char envVar[256];
-    static int firstTime = 1;
     int result;
 
     /* --- initialize the structures? --- */
-    if ( firstTime )
-    {
-        firstTime = 0;
-        memset( filename, 0, 1024 * sizeof( char ) );
-    }
-
     switch ( code )
     {
         case dOpcodeIncludeItem:
@@ -3390,6 +3383,9 @@ decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 
                 mFileLevel--;
 
+                /* reset the filename for successive read operations */
+                memset( filename, 0, sizeof( filename ) );
+
                 if ( !result )
                     return 0;
 
@@ -3398,9 +3394,6 @@ decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 
                 crgMsgPrint( dCrgMsgLevelNotice, "--------------------------------------\n" );
                 crgMsgPrint( dCrgMsgLevelNotice, "decodeIncludeFile: continuing with previous file\n" );
-
-                /* reset the filename for successive read operations */
-                memset( filename, 0, sizeof( filename ) );
 
                 return 1;
 
