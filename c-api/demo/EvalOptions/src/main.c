@@ -36,7 +36,7 @@ void usage()
     crgMsgPrint( dCrgMsgLevelNotice, "       options: -h      show this info\n" );
     crgMsgPrint( dCrgMsgLevelNotice, "                -t <n>  run only test no. <n>\n" );
     crgMsgPrint( dCrgMsgLevelNotice, "                -p      write resulting data to <crgPlotFile.txt>\n" );
-    crgMsgPrint( dCrgMsgLevelNotice, "       <filename>  input file, default: [%s]\n", "../../Data/handmade_straight.crg" );
+    crgMsgPrint( dCrgMsgLevelNotice, "       <filename>  input file, default: [%s]\n", "../../../crg-txt/handmade_straight.crg" );
     exit( -1 );
 }
 
@@ -68,7 +68,7 @@ int myMsgHandler( int level, char* message )
 
 int main( int argc, char** argv )
 {
-    char*  filename = "../../Data/handmade_straight.crg";
+    char*  filename = "../../../crg-txt/handmade_straight.crg";
     int    dataSetId = 0;
     int    cpId;
     int    testNo = 0;

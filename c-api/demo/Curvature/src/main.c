@@ -63,7 +63,6 @@ int main( int argc, char** argv )
     {
         crgMsgPrint( dCrgMsgLevelFatal, "main: error reading data file <%s>.\n", filename );
         usage();
-        return -1;
     }
 
     /* --- check CRG data for consistency and accuracy --- */
