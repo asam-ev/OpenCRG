@@ -50,6 +50,7 @@ SOURCES = \
 	crgEvaluv2xy.c \
 	crgEvalz.c \
 	crgEvalpk.c \
+	crgEvalenh.c \
         crgLoader.c \
         crgOptionMgmt.c \
         crgPortability.c
