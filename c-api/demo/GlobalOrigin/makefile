@@ -21,65 +21,48 @@
 #
 #
 
-#library version
-REVISION = 2.0.1
-
 #directories
-LIB_DIR = lib
-SRC_DIR = src
-OBJ_DIR = obj
-INC_DIR = inc
+LIB_INC_DIR = ../../baselib/inc
+LIB_DIR     = ../../baselib/lib
+SRC_DIR     = src
+OBJ_DIR     = obj
+INC_DIR     = inc
+BIN_TGT     =../bin/crgGlobalOrigin
 
 #Compiler
 COMP = gcc
 
 #Compiler options
-# CFLGS = -Wall -ggdb -std=c11 -I$(INC_DIR) #all Warnings with debugging
-CFLGS = -Wall -O3 -std=c11 -I$(INC_DIR)     #all Warnings with level 3 optimizations
+CFLGS = -Wall -ggdb -std=c11 -I$(LIB_INC_DIR) -I$(INC_DIR)	#all Warnings with debugging
+
+#linker options
+LFLGS = -L$(LIB_DIR) -lOpenCRG -lm
 
 #Compiler call
-CC = $(COMP) $(CFLGS)
+CC = $(COMP)
 
 #SOURCE FILES
 SOURCES = \
-	crgMgr.c \
-	crgMsg.c \
-	crgStatistics.c \
-	crgContactPoint.c \
-	crgEvalxy2uv.c \
-	crgEvaluv2xy.c \
-	crgEvalz.c \
-	crgEvalpk.c \
-	crgEvalenh.c \
-        crgLoader.c \
-        crgOptionMgmt.c \
-        crgPortability.c
+	main.c
 
 #EXTERNAL OBJECT FILES
 OBJECTS = $(SOURCES:.c=.o)
 
 #Make
-lib : all archive
-
 all : $(OBJECTS)
-
-archive :
-	mkdir -p $(LIB_DIR)
-	rm -f $(LIB_DIR)/libOpenCRG*.a
-	ar -r $(LIB_DIR)/libOpenCRG.$(REVISION).a obj/*.o
-	cd $(LIB_DIR); ln -s libOpenCRG.$(REVISION).a libOpenCRG.a
+	$(CC) $(OBJ_DIR)/$(OBJECTS) $(LFLGS) -o $(BIN_TGT)
 
 clean :
 	rm -f $(OBJ_DIR)/*.o
-	rm -f $(LIB_DIR)/libOpenCRG*.a
+	rm -f $(BIN_TGT)
 
 %.o:	$(SRC_DIR)/%.c $(OBJ_DIR)
-	$(CC) -c $< -o $(OBJ_DIR)/$@
+	$(CC) $(CFLGS) -c $< -o $(OBJ_DIR)/$@
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
 #*** FILE DEPENDENCIES : WHERE TO FIND FILES
-.PATH: $(SRC_DIR) $(INC_DIR)
+.PATH: $(SRC_DIR)
 
 
