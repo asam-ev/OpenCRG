@@ -274,9 +274,6 @@ if isfield(data.head, 'vmin') && isfield(data.head, 'vmax')
     end
 end
 
-%% check for consistent start/end distance & altitude definitions
-[data] = crg_check_wgs84(data);
-
 %% set ok-flag
 
 if ierr == 0
