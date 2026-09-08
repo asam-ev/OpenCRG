@@ -47,7 +47,7 @@ static void crgDataScaleChannel( CrgChannelBaseStruct* channel, double factor, i
 static void crgDataOffsetChannel( CrgChannelStruct* channel, double offset );
 
 /**
-* offset the data of channelZ or channelRefZ depending on availability
+* offset channelRefZ channel data of data set
 * @param channel    pointer to data set
 * @param offset     offset value
 */
