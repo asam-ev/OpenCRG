@@ -47,7 +47,7 @@ static void crgDataScaleChannel( CrgChannelBaseStruct* channel, double factor, i
 static void crgDataOffsetChannel( CrgChannelStruct* channel, double offset );
 
 /**
-* offset the data of channelZ or channelRefZ depending on availability
+* offset channelRefZ channel data of data set
 * @param channel    pointer to data set
 * @param offset     offset value
 */
@@ -721,78 +721,6 @@ crgDataSetOptionSetDefault( int dataSetId )
     }
 
     crgOptionSetDefaultOptions( &( crgData->options ) );
-}
-
-int
-crgDataSetSetGlobalOrigin( int dataSetId, double xoff, double yoff, double zoff, double poff )
-{
-    size_t i;
-    double dxoff;
-    double dyoff;
-    double dzoff;
-    double dpoff;
-
-    CrgDataStruct* crgData = crgDataSetAccess( dataSetId );
-
-    if (!crgData)
-    {
-        crgMsgPrint( dCrgMsgLevelWarn, "crgDataSetSetGlobalOrigin: invalid data set id <%d>.\n", dataSetId );
-        return 0;
-    }
-
-    /* --- calculate offset residuals --- */
-    dxoff = crgData->channelX.info.offset - xoff;
-    dyoff = crgData->channelY.info.offset - yoff;
-    dzoff = crgData->channelRefZ.info.offset - zoff;
-    dpoff = crgData->channelPhi.info.offset - poff;
-
-    /* --- rotate by heading offset difference --- */    
-    crgDataOffsetChannel( &(crgData->channelPhi), dpoff);
-    crgData->channelPhi.info.offset -= dpoff;
-
-    /* --- compute sine and cosine of direction at either end of reference line --- */
-    crgData->util.phiFirstSin = sin( crgData->channelPhi.info.first );
-    crgData->util.phiFirstCos = cos( crgData->channelPhi.info.first );
-    crgData->util.phiLastSin  = sin( crgData->channelPhi.info.last  );
-    crgData->util.phiLastCos  = cos( crgData->channelPhi.info.last  );
-    crgData->util.phiOffSin   = sin( crgData->channelPhi.info.offset );
-    crgData->util.phiOffCos   = cos( crgData->channelPhi.info.offset );
-
-    /* --- rotate around refline start --- */
-    rotatePoint(&(crgData->channelX.info.last), &(crgData->channelY.info.last), crgData->channelX.info.first, crgData->channelY.info.first, dpoff);
-
-    for (i = 0; i < crgData->channelX.info.size; i++)
-        rotatePoint(&(crgData->channelX.data[i]), &(crgData->channelY.data[i]), crgData->channelX.info.first, crgData->channelY.info.first, dpoff);
-
-    /* --- translate by coordinate offset residuals --- */
-    crgDataOffsetChannel( &(crgData->channelX), dxoff);
-    crgDataOffsetChannel( &(crgData->channelY), dyoff);
-    crgDataOffsetChannelZ( crgData, dzoff);
-
-    crgData->channelX.info.offset -= dxoff;
-    crgData->channelY.info.offset -= dyoff;
-    crgData->channelRefZ.info.offset -= dzoff;
-
-    return 1;
-}
-
-int
-crgDataSetGetGlobalOrigin( int dataSetId, double* xoff, double* yoff, double* zoff, double* poff )
-{
-    CrgDataStruct* crgData = crgDataSetAccess( dataSetId );
-
-    if (!crgData)
-    {
-        crgMsgPrint(dCrgMsgLevelWarn, "crgDataSetGetGlobalOrigin: invalid data set id <%d>.\n", dataSetId );
-        return 0;
-    }
-
-    *xoff = crgData->channelX.info.offset;
-    *yoff = crgData->channelY.info.offset;
-    *zoff = crgData->channelRefZ.info.offset;
-    *poff = crgData->channelPhi.info.offset;
-
-    return 1;
 }
 
 void
