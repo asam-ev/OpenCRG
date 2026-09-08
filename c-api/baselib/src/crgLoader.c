@@ -2201,6 +2201,8 @@ calcRefLine( CrgDataStruct* crgData )
         crgMsgPrint( dCrgMsgLevelDebug, "calcRefLine: using simplified (forward) algorithm.\n" );
 
         /* --- integrate phi -> (x,y) from start to end by simple Euler steps, using simple forward integration --- */
+        crgData->channelX.data[0] = crgData->channelX.info.first;
+        crgData->channelY.data[0] = crgData->channelY.info.first;
         for ( i = 0; i < crgData->channelPhi.info.size-1; i++ )
         {
             crgData->channelX.data[i+1] = crgData->channelX.data[i] + crgData->channelU.info.inc * cos( crgData->channelPhi.data[i+1] );
@@ -2968,8 +2970,8 @@ crgCheckMods( CrgDataStruct* crgData )
         }
         if ( !crgOptionIsSet( &crgData->modifiers, dCrgModRefPointVFrac ) && !crgOptionIsSet( &crgData->modifiers, dCrgModRefPointV ) )
         {
-            crgOptionSetDouble( &crgData->modifiers, dCrgModRefPointVFrac, 0. );
-            crgMsgPrint( dCrgMsgLevelNotice, "crgCheckMods: setting value of modifier \"refpoint_v_fraction\" to 0.0.\n");
+            crgOptionSetDouble( &crgData->modifiers, dCrgModRefPointV, 0. );
+            crgMsgPrint( dCrgMsgLevelNotice, "crgCheckMods: setting value of modifier \"refpoint_v\" to 0.0.\n");
         }
         if( !crgOptionIsSet( &crgData->modifiers, dCrgModRefPointUOffset ) )
             crgOptionSetDouble( &crgData->modifiers, dCrgModRefPointUOffset , 0. );
@@ -3253,18 +3255,11 @@ crgLoaderInit( void )
 static int
 decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 {
-    static char filename[1024];
+    static char filename[1024] = { 0 }; 
     static char envVar[256];
-    static int firstTime = 1;
     int result;
 
     /* --- initialize the structures? --- */
-    if ( firstTime )
-    {
-        firstTime = 0;
-        memset( filename, 0, 1024 * sizeof( char ) );
-    }
-
     switch ( code )
     {
         case dOpcodeIncludeItem:
@@ -3388,6 +3383,9 @@ decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 
                 mFileLevel--;
 
+                /* reset the filename for successive read operations */
+                memset( filename, 0, sizeof( filename ) );
+
                 if ( !result )
                     return 0;
 
@@ -3396,9 +3394,6 @@ decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 
                 crgMsgPrint( dCrgMsgLevelNotice, "--------------------------------------\n" );
                 crgMsgPrint( dCrgMsgLevelNotice, "decodeIncludeFile: continuing with previous file\n" );
-
-                /* reset the filename for successive read operations */
-                memset( filename, 0, sizeof( filename ) );
 
                 return 1;
 
