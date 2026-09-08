@@ -146,11 +146,12 @@
 #endif 
 /* ====== TYPE DEFINITIONS ====== */
 
-/* ====== METHODS in crgMgr.c ====== */
 #ifdef __cplusplus
 extern "C"
 {
 #endif
+
+/* ====== METHODS in crgMgr.c ====== */
     /**
     * destroy the data of the given data set
     * @param dataSetId    identifier of the applicable dataset
@@ -297,6 +298,30 @@ extern "C"
     * @param  dataSetId    identifier of the applicable dataset
     */
     extern void crgDataSetOptionSetDefault( int dataSetId );
+
+    /**
+    * set the global offset values for a data set;
+    * the local coordinates are changed accordingly, so that no shift
+    * of evaluated global coordinates will occur
+    * @param  dataSetId    identifier of the applicable dataset
+    * @param  xoff         new x offset
+    * @param  yoff         new y offset
+    * @param  zoff         new z offset
+    * @param  poff         new p angle offset
+    * @return 1 if successful, otherwise 0
+    */
+    extern int crgDataSetSetGlobalOrigin(int dataSetId, double xoff, double yoff, double zoff, double poff);
+
+    /**
+    * get the global offset values for a data set;
+    * @param  dataSetId    identifier of the applicable dataset
+    * @param  xoff         x offset return value
+    * @param  yoff         y offset return value
+    * @param  zoff         z offset return value
+    * @param  poff         p angle offset return value
+    * @return 1 if successful, otherwise 0
+    */
+    extern int crgDataSetGetGlobalOrigin(int dataSetId, double* xoff, double* yoff, double* zoff, double* poff);
 
     /**
     * release all data held by the crg library
@@ -539,6 +564,33 @@ extern "C"
     * @return 1 if successful, otherwise 0
     */
     extern int crgEvalxy2pk( int cpId, double x, double y, double* phi, double* curv );
+
+/* ====== METHODS in crgEvalenh.c ====== */
+    /**
+    * convert a given local (x,y,z) position into the corresponding global (e,n,h) position
+    * @param cpId  id of the contact point that is used for the query
+    * @param x     x coordinate
+    * @param y     y coordinate
+    * @param z     z coordinate
+    * @param e     e coordinate
+    * @param n     n coordinate
+    * @param h     h coordinate
+    * @return 1 if successful, otherwise 0
+    */
+    extern int crgEvalxyz2enh( int cpId, double x, double y, double z, double* e, double* n, double* h );
+
+    /**
+    * convert a given global (e,n,h) position into the corresponding local (x,y,z) position
+    * @param cpId  id of the contact point that is used for the query
+    * @param e     e coordinate
+    * @param n     n coordinate
+    * @param h     h coordinate
+    * @param x     x coordinate
+    * @param y     y coordinate
+    * @param z     z coordinate
+    * @return 1 if successful, otherwise 0
+    */
+    extern int crgEvalenh2xyz( int cpId, double e, double n, double h, double* x, double* y, double* z );
 
 /* ====== METHODS in crgPortability.c ====== */
     /**
