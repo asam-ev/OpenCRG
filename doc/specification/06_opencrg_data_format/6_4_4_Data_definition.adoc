@@ -83,7 +83,7 @@ $KD_Definition
 The following _data definition_ section defines ten channels. Each channel corresponds to a column in the _road data_ section. The first three columns contain reference line data. The other seven columns contain road surface data. The v-positions of the longitudinal cuts are defined explicitly.
 
 ----
-$KD_DEFINiTION
+$KD_DEFINITION
 #:LRFI                             ! plain-text data, numbers of type real
 D:reference line phi,rad           ! heading angle
 D:reference line banking,m/m       ! lateral banking (cross slope)
@@ -107,7 +107,7 @@ LONG_SECTION_V_RIGHT     = -1.50   ! right road border
 LONG_SECTION_V_RIGHT     =  1.50   ! left road border
 LONG_SECTION_V_INCREMENT =  0.10   ! 10 cm between every longitudinal cut
 $!********************************
-$KD_DEFINiTION                     ! data definition section
+$KD_DEFINITION                     ! data definition section
 #:KRBI                             ! binary data, numbers of type real
 D:reference line phi,rad           ! heading angle
 D:long section 1,m                 ! 1.50 m right of reference line
