@@ -21,8 +21,8 @@ ASAM OpenCRG data is defined relative to the road reference line.
 
 Road reference line coordinate system::
 The road reference line is always located within the x/y-plane defined by the inertial coordinate system.
-A road reference line coordinate system runs along the road reference line.
+A curvilinear Frenet coordinate system runs along the road reference line.
 It is a right-handed coordinate system.
 The u-axis follows the tangent of the road reference line.
-The v-axis is orthogonal to the s-axis.
+The v-axis is orthogonal to the u-axis.
 The right-handed coordinate system is completed by defining the up-direction z orthogonal to u-axis and v-axis.

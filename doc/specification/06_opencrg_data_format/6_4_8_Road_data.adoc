@@ -57,7 +57,7 @@ LONG_SECTION_V_RIGHT     = -0.50  ! right road border
 LONG_SECTION_V_RIGHT     =  0.50  ! left road border
 LONG_SECTION_V_INCREMENT =  0.50  ! 50 cm between every longitudinal cut
 $!******10********20********30********40********50********60********70**
-$KD_DEFINiTION                    ! data definition section
+$KD_DEFINITION                    ! data definition section
 #:LRFI                            ! plain-text data, real numbers
 D:reference line phi,rad          ! heading angle
 D:long section 1,m                ! 0.50m right of reference line
