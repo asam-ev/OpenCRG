@@ -12,7 +12,7 @@ Each road runs along one road reference line.
 ASAM OpenCRG data is applied to the road surface.
 
 Road elevation::
-Road elevation specifies the elevation along the road reference line, that is in s direction.
+Road elevation specifies the elevation along the road reference line, that is in u direction.
 
 Road reference line::
 A road reference line defines the horizontal alignment of a road and consists of one or more geometry elements.
