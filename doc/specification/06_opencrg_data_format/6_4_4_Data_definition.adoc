@@ -104,7 +104,7 @@ The following examples illustrates how the _data definition_ section interacts w
 $ROAD_CRG                          ! road parameters section
 REFERENCE_LINE_INCREMENT =  0.01   ! 1 cm between every lateral cut
 LONG_SECTION_V_RIGHT     = -1.50   ! right road border
-LONG_SECTION_V_RIGHT     =  1.50   ! left road border
+LONG_SECTION_V_LEFT      =  1.50   ! left road border
 LONG_SECTION_V_INCREMENT =  0.10   ! 10 cm between every longitudinal cut
 $!********************************
 $KD_DEFINITION                     ! data definition section
