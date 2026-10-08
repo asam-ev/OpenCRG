@@ -24,7 +24,7 @@ the following:
 `handmade_sloped.crg`:: Straight road with slope.
 `handmade_sloped_opts.crg`:: Straight road with slope and options.
 `handmade_straight.crg`:: Straight road (LRFI format).
-`handmade_straight_double.crg`:: Straight road (LDRI format).
+`handmade_straight_double.crg`:: Straight road (LDFI format).
 `handmade_straight_minimalist.crg`:: Minimal OpenCRG file.
 `handmade_vtest.crg`:: Human-readable test relating to v-options.
 `testOptionBorderMode.crg`:: Testing different border mode options.
