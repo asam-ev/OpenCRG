@@ -566,7 +566,7 @@ clearTmpData( CrgDataStruct *crgData )
         return;
 
     if ( crgData->admin.recordBuffer )
-        free ( crgData->admin.recordBuffer );
+        crgFree ( crgData->admin.recordBuffer );
 
     crgData->admin.recordBuffer = NULL;
 }
@@ -1987,7 +1987,7 @@ readData( CrgDataStruct* crgData )
 
     /* --- ok, file data copy is no longer needed, get rid of it --- */
     if ( crgData->admin.fileBuffer )
-        free ( crgData->admin.fileBuffer );
+        crgFree ( crgData->admin.fileBuffer );
 
     crgData->admin.fileBuffer = NULL;
 }
