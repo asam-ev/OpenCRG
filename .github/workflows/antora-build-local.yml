@@ -2,6 +2,11 @@ name: Build documentation (PR preview)
 on:
   pull_request:
     types: [ opened, edited, synchronize, reopened ]
+    paths:
+      - '.antora/**'
+      - '.github/workflows/*.yml'
+      - 'asciidoc-resources/**'
+      - 'doc/**'
   workflow_dispatch:
 
 concurrency:
