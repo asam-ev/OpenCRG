@@ -326,153 +326,292 @@ end
 
 fid = fopen(file, 'w');
 
+if fid < 0
+   error('Failed to write to file "%s"', file); 
+end
+
+file_io_cleanup = onCleanup(@() fclose(fid));
+
 fprintf(fid, '<!DOCTYPE html>\n');
 fprintf(fid, '<html>\n');
 fprintf(fid, '  <head>\n');
-fprintf(fid, '    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />\n');
-fprintf(fid, '    <meta charset="ISO8859-1" />\n');
-fprintf(fid, '    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.9.0/ol.css" type="text/css">\n');
+fprintf(fid, '    <meta name="viewport" content="width=device-width, initial-scale=1.0" />\n');
+fprintf(fid, '    <meta charset="UTF-8" />\n');
+
+fprintf(fid, '    <link href="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.css" rel="stylesheet" />\n');
+
 fprintf(fid, '    <style type="text/css">\n');
-fprintf(fid, '      html, body { height: 100%%; margin: 0; padding: 0; font-family:"AzoSans-Bold",Helvetica,Arial,sans-serif; overflow: auto; } \n');
+fprintf(fid, '      html, body { height: 100%%; margin: 0; padding: 0; font-family: "AzoSans-Bold", Helvetica, Arial, sans-serif; overflow: auto; }\n');
 fprintf(fid, '      h1 { font-size: 2rem; margin: 0.5rem; }\n');
 fprintf(fid, '      h3 { font-size: 1.2rem; margin: 0.5rem; }\n');
-fprintf(fid, '      .map { height: %s; min-height: 360px; width: 100%%; }\n', height);
-fprintf(fid, '      .popup { background: white; padding: 1rem; border-radius: 1rem; box-shadow: 0 0 8px grey; }\n');
-fprintf(fid, '      .popup h4 {margin: 0 2rem 0.7rem 0;}\n');
-fprintf(fid, '      .popup:after {content: "";position: absolute;bottom: 0;left: 50%%;width: 0;height: 0;border: 0.688em solid transparent;border-top-color: white;border-bottom: 0;margin-left: -0.687em;margin-bottom: -0.687em;}\n');
-fprintf(fid, '      .popup-closer {text-decoration: none;color: black;position: absolute;top: 0.5rem;right: 1rem;}\n');
-fprintf(fid, '      .popup-closer:after {content: "\\2716";}\n');
-fprintf(fid, '      .popup-closer:hover {color: #cd0000;cursor: pointer;}\n');
-fprintf(fid, '      .featuretip {background-color: white;color: black;padding: 0.1rem 0.4rem;border-radius: 0.2rem;border: 1px solid black;}\n');
+fprintf(fid, '      .map { height: %s; min-height: 360px; width: 100%%; position: relative; }\n', height);
+fprintf(fid, '      .featuretip { background-color: white; color: black; padding: 0.1rem 0.4rem; border-radius: 0.2rem; border: 1px solid black; pointer-events: none; }\n');
+fprintf(fid, '      .maplibregl-popup-content { font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.5; color: #263238; background: #ffffff; padding: 18px 22px; border-radius: 12px; box-shadow: 0 4px 18px rgba(0,0,0,0.2); max-width: 380px; }\n');
+fprintf(fid, '      .maplibregl-popup-content h4 { font-size: 16px; font-weight: 700; color: #1565c0; margin: 0 24px 12px 0; }\n');
+fprintf(fid, '      .maplibregl-popup-content table { width: 100%%; border-collapse: collapse; font-size: 15px; }\n');
+fprintf(fid, '      .maplibregl-popup-content td { padding: 1px 5px; vertical-align: top; text-align: right; font-size: 15px; color: #263238; font-weight: normal; }\n');
+fprintf(fid, '      .maplibregl-popup-content td:nth-child(1), .maplibregl-popup-content td:nth-child(4) { color: #546e7a; font-weight: 600; white-space: nowrap; }\n');
+fprintf(fid, '      .maplibregl-popup-close-button { font-size: 20px; color: #546e7a; padding: 4px 8px; }\n');
+fprintf(fid, '      .maplibregl-popup-close-button:hover { color: #d32f2f; background: transparent; }\n');
 fprintf(fid, '      %s\n', css);
 fprintf(fid, '    </style>\n');
+
 fprintf(fid, '    <title>%s</title>\n', title);
 fprintf(fid, '  </head>\n');
 fprintf(fid, '  <body>\n');
+
 fprintf(fid, '    %s\n', header);
-fprintf(fid, '    <div id="crg-map" class="map">\n<div id="popup" class="popup"><div id="popup-content"></div><a href="#" id="popup-closer" class="popup-closer"></a></div>\n<div id="featuretip" class="featuretip"></div>\n</div>\n');
+
+fprintf(fid, '    <div id="crg-map" class="map">\n');
+fprintf(fid, '      <div id="popup" class="popup" style="display:none; position:absolute; z-index:10;">\n');
+fprintf(fid, '        <div id="popup-content"></div>\n');
+fprintf(fid, '        <a href="#" id="popup-closer" class="popup-closer"></a>\n');
+fprintf(fid, '      </div>\n');
+fprintf(fid, '      <div id="featuretip" class="featuretip" style="display:none; position:absolute; z-index:5;"></div>\n');
+fprintf(fid, '    </div>\n');
+
 fprintf(fid, '    %s\n', footer);
-fprintf(fid, '    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ol@v10.9.0/dist/ol.js"></script>\n');
+
+fprintf(fid, '    <script src="https://unpkg.com/maplibre-gl@5.6.2/dist/maplibre-gl.js"></script>\n');
 fprintf(fid, '    <script type="text/javascript">\n');
-fprintf(fid, '      let popup = new ol.Overlay({\n');
-fprintf(fid, '        element: document.getElementById("popup"),\n');
-fprintf(fid, '        positioning: "bottom-center",\n');
-fprintf(fid, '        stopEvent: true,\n');
-fprintf(fid, '        offset: [0, -50]\n');
+
+% map initialization
+fprintf(fid, '      const map = new maplibregl.Map({\n');
+fprintf(fid, '        container: "crg-map",\n');
+fprintf(fid, '        style: "https://tiles.openfreemap.org/styles/bright",\n');
+fprintf(fid, '        center: [0, 0],\n');
+fprintf(fid, '        zoom: 1\n');
 fprintf(fid, '      });\n');
-fprintf(fid, '      let featuretip = new ol.Overlay({\n');
-fprintf(fid, '        element: document.getElementById("featuretip"),\n');
-fprintf(fid, '        positioning: "top-left",\n');
-fprintf(fid, '        stopEvent: true,\n');
-fprintf(fid, '        offset: [10, 0]\n');
+
+fprintf(fid, '      map.addControl(new maplibregl.NavigationControl(), "top-right");\n');
+
+% popup and feature tip
+fprintf(fid, '      const popupElement = document.getElementById("popup");\n');
+fprintf(fid, '      const popupContent = document.getElementById("popup-content");\n');
+fprintf(fid, '      const featuretipElement = document.getElementById("featuretip");\n');
+
+fprintf(fid, '      const popup = new maplibregl.Popup({\n');
+fprintf(fid, '        closeButton: false,\n');
+fprintf(fid, '        closeOnClick: false,\n');
+fprintf(fid, '        offset: [0, -27],\n');  
+fprintf(fid, '        maxWidth: "340px"\n');
 fprintf(fid, '      });\n');
-fprintf(fid, '      let createSVGIconStyle = function(letter) {\n');
-fprintf(fid, '        let svg = `data:image/svg+xml;utf8,\n');
-fprintf(fid, '        <svg width="28" height="37" version="1.1" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">\n');
-fprintf(fid, '        <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z" fill="currentColor"/>\n');
-fprintf(fid, '        <text id="start-text" x="85" y="305.83084" style="font-size:300px;font-family:sans-serif;font-weight:bold;line-height:1.25;fill:white;">\n');
-fprintf(fid, '        ${letter}</text></svg>`;\n');
-fprintf(fid, '        return new ol.style.Style({\n');
-fprintf(fid, '          image: new ol.style.Icon({anchor: [0.5, 1], src: svg})\n');
-fprintf(fid, '        });\n');
+
+% marker SVG icons
+fprintf(fid, '      function createSVGIcon(letter, color) {\n');
+fprintf(fid, '        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="70" height="92" viewBox="0 0 384 512">\n');
+fprintf(fid, '          <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0z" fill="${color}" stroke="white" stroke-width="12" stroke-linejoin="round"/>\n');
+fprintf(fid, '          <text x="192" y="300" text-anchor="middle" style="font-size:280px;font-family:sans-serif;font-weight:bold;fill:white;">${letter}</text>\n');
+fprintf(fid, '        </svg>`;\n');
+fprintf(fid, '        return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);\n');
 fprintf(fid, '      }\n');
-fprintf(fid, '      let vectorSource = new ol.source.Vector({});\n');
+
+fprintf(fid, '      const markerImages = {\n');
+fprintf(fid, '        start: createSVGIcon("A", "#0099e6"),\n');
+fprintf(fid, '        end: createSVGIcon("B", "#006ea5")\n');
+fprintf(fid, '      };\n');
+
+% Marker and route features
+fprintf(fid, '      const routeFeatures = [];\n');
+fprintf(fid, '      const markerFeatures = [];\n');
 
 for ic = 1:nc
 
     if isempty(wgs{ic})
         continue;
     end
+    
+    coords = wgs{ic}(:, 1:2);
+    coords = coords(:, [2 1]);
 
+    % Start marker
+    fprintf(fid, '      markerFeatures.push({\n');
+    fprintf(fid, '        type: "Feature",\n');
+    fprintf(fid, '        geometry: { type: "Point", coordinates: [%.8f, %.8f] },\n', coords(1,1), coords(1,2));
+    fprintf(fid, '        properties: {\n');
+    fprintf(fid, '          name: "%s",\n', beg_nm{ic});
+    fprintf(fid, '          description: "%s",\n', beg_pu{ic});
+    fprintf(fid, '          icon: "start",\n');
+    fprintf(fid, '          track: %u\n', ic);
+    fprintf(fid, '        }\n');
+    fprintf(fid, '      });\n');
 
-    fprintf(fid, '      let startPoint%u = new ol.Feature({\n', ic);
-    fprintf(fid, '        geometry: new ol.geom.Point(ol.proj.fromLonLat([%.6f, %.6f])),\n', wgs{ic}(1,2), wgs{ic}(1,1));
-    fprintf(fid, '        name: "%s",\n', beg_nm{ic});
-    fprintf(fid, '        description: "%s"\n', beg_pu{ic});
+    % End marker
+    fprintf(fid, '      markerFeatures.push({\n');
+    fprintf(fid, '        type: "Feature",\n');
+    fprintf(fid, '        geometry: { type: "Point", coordinates: [%.8f, %.8f] },\n', coords(end,1), coords(end,2));
+    fprintf(fid, '        properties: {\n');
+    fprintf(fid, '          name: "%s",\n', end_nm{ic});
+    fprintf(fid, '          description: "%s",\n', end_pu{ic});
+    fprintf(fid, '          icon: "end",\n');
+    fprintf(fid, '          track: %u\n', ic);
+    fprintf(fid, '        }\n');
     fprintf(fid, '      });\n');
-    fprintf(fid, '      let endPoint%u = new ol.Feature({\n', ic);
-    fprintf(fid, '        geometry: new ol.geom.Point(ol.proj.fromLonLat([%.6f, %.6f])),\n', wgs{ic}(end,2), wgs{ic}(end,1));
-    fprintf(fid, '        name: "%s",\n', end_nm{ic});
-    fprintf(fid, '        description: "%s"\n', end_pu{ic});
-    fprintf(fid, '      });\n');
-    fprintf(fid, '      let route%u = new ol.Feature({\n', ic);
-    fprintf(fid, '        geometry: new ol.geom.LineString([\n');
-    for i = 1:size(wgs{ic}, 1)
-        fprintf(fid, '          ol.proj.fromLonLat([%.6f,%.6f]),\n', wgs{ic}(i,2), wgs{ic}(i,1));
+
+    % Route line
+    fprintf(fid, '      routeFeatures.push({\n');
+    fprintf(fid, '        type: "Feature",\n');
+    fprintf(fid, '        geometry: {\n');
+    fprintf(fid, '          type: "LineString",\n');
+    fprintf(fid, '          coordinates: [\n');
+
+    for i = 1:size(coords, 1)
+        fprintf(fid, '            [%.8f, %.8f],\n', coords(i,1), coords(i,2));
     end
-    fprintf(fid, '        ]),\n');
-    fprintf(fid, '        description: "%s"\n', course_pu{ic});
+
+    fprintf(fid, '          ]\n');
+    fprintf(fid, '        },\n');
+    fprintf(fid, '        properties: {\n');
+    fprintf(fid, '          description: "%s",\n', course_pu{ic});
+    fprintf(fid, '          track: %u,\n', ic);
+    fprintf(fid, '          colorIn: "#%s",\n', tcolorin{ic});
+    fprintf(fid, '          colorOut: "#%s",\n', tcolorout{ic});
+    fprintf(fid, '          widthIn: %g,\n', twidthin{ic});
+    fprintf(fid, '          widthOut: %g,\n', twidthout{ic});
+    fprintf(fid, '          opacity: %g\n', topaci{ic});
+    fprintf(fid, '        }\n');
     fprintf(fid, '      });\n');
-    fprintf(fid, '      startPoint%u.setStyle(createSVGIconStyle("A"));\n', ic);
-    fprintf(fid, '      endPoint%u.setStyle(createSVGIconStyle("B"));\n', ic);
-    fprintf(fid, '      route%u.setStyle([\n', ic);
-    fprintf(fid, '        new ol.style.Style({\n');
-    fprintf(fid, '          stroke: new ol.style.Stroke({\n');
-    fprintf(fid, '            width: %d,\n', twidthout{ic});
-    fprintf(fid, '            color: "#%s"\n', tcolorout{ic});
-    fprintf(fid, '          })\n');
-    fprintf(fid, '        }),\n');
-    fprintf(fid, '        new ol.style.Style({\n');
-    fprintf(fid, '          stroke: new ol.style.Stroke({\n');
-    fprintf(fid, '            width: %d,\n', twidthin{ic});
-    fprintf(fid, '            color: "#%s"\n', tcolorin{ic});
-    fprintf(fid, '          })\n');
-    fprintf(fid, '      })]);\n');
-    fprintf(fid, '      vectorSource.addFeatures([startPoint%u, endPoint%u, route%u]);\n', ic, ic, ic);
+
 end
-fprintf(fid, '      let extent = vectorSource.getExtent();\n');
-fprintf(fid, '      let measures = [extent[2]-extent[0],extent[3]-extent[1]];\n');
-fprintf(fid, '      let center = [extent[0]+(measures[0])/2,extent[1]+(measures[1])/2]\n');
-fprintf(fid, '      let map = new ol.Map({\n');
-fprintf(fid, '        target: "crg-map",\n');
-fprintf(fid, '        layers: [\n');
-fprintf(fid, '          new ol.layer.Tile({\n');
-fprintf(fid, '            source: new ol.source.XYZ({\n');
-fprintf(fid, '              url: ''https://{a-c}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png'',\n');
-fprintf(fid, '              attributions: ''&copy; OpenStreetMap contributors &copy; CARTO''\n');
-fprintf(fid, '            })\n');
-fprintf(fid, '          }),\n');
-fprintf(fid, '          new ol.layer.Vector({source: vectorSource})\n');
-fprintf(fid, '        ],\n');
-fprintf(fid, '        view: new ol.View({center: center, zoom: 1}),\n');
-fprintf(fid, '        overlays: [popup, featuretip]\n');
+
+fprintf(fid, '      const routeData = { type: "FeatureCollection", features: routeFeatures };\n');
+fprintf(fid, '      const markerData = { type: "FeatureCollection", features: markerFeatures };\n');
+
+% Add data and layers
+fprintf(fid, '      map.on("load", () => {\n');
+
+% Register custom marker images
+fprintf(fid, '        function loadMarkerImage(name, url) {\n');
+fprintf(fid, '          const img = new Image();\n');
+fprintf(fid, '          img.onload = () => {\n');
+fprintf(fid, '            if (!map.hasImage(name)) {\n');
+fprintf(fid, '              map.addImage(name, img, { pixelRatio: 2 });\n');
+fprintf(fid, '            }\n');
+fprintf(fid, '          };\n');
+fprintf(fid, '          img.onerror = () => console.error("Could not load marker image:", name);\n');
+fprintf(fid, '          img.src = url;\n');
+fprintf(fid, '        }\n');
+
+fprintf(fid, '        loadMarkerImage("start", markerImages.start);\n');
+fprintf(fid, '        loadMarkerImage("end", markerImages.end);\n');
+
+% GeoJSON sources
+fprintf(fid, '        map.addSource("routes", { type: "geojson", data: routeData });\n');
+fprintf(fid, '        map.addSource("markers", { type: "geojson", data: markerData });\n');
+
+% Outer route line
+fprintf(fid, '        map.addLayer({\n');
+fprintf(fid, '          id: "route-outline",\n');
+fprintf(fid, '          type: "line",\n');
+fprintf(fid, '          source: "routes",\n');
+fprintf(fid, '          layout: { "line-cap": "round", "line-join": "round" },\n');
+fprintf(fid, '          paint: {\n');
+fprintf(fid, '            "line-color": ["get", "colorOut"],\n');
+fprintf(fid, '            "line-width": ["get", "widthOut"],\n');
+fprintf(fid, '            "line-opacity": ["get", "opacity"]\n');
+fprintf(fid, '          }\n');
+fprintf(fid, '        });\n');
+
+% Inner route line
+fprintf(fid, '        map.addLayer({\n');
+fprintf(fid, '          id: "route-inner",\n');
+fprintf(fid, '          type: "line",\n');
+fprintf(fid, '          source: "routes",\n');
+fprintf(fid, '          layout: { "line-cap": "round", "line-join": "round" },\n');
+fprintf(fid, '          paint: {\n');
+fprintf(fid, '            "line-color": ["get", "colorIn"],\n');
+fprintf(fid, '            "line-width": ["get", "widthIn"],\n');
+fprintf(fid, '            "line-opacity": ["get", "opacity"]\n');
+fprintf(fid, '          }\n');
+fprintf(fid, '        });\n');
+
+% Add the marker layer when ready. Check every 50ms until ready
+fprintf(fid, '        function addMarkerLayer() {\n');
+fprintf(fid, '          if (!map.hasImage("start") || !map.hasImage("end")) return;\n');
+fprintf(fid, '          if (map.getLayer("track-markers")) return;\n');
+fprintf(fid, '          map.addLayer({\n');
+fprintf(fid, '            id: "track-markers",\n');
+fprintf(fid, '            type: "symbol",\n');
+fprintf(fid, '            source: "markers",\n');
+fprintf(fid, '            layout: {\n');
+fprintf(fid, '              "icon-image": ["get", "icon"],\n');
+fprintf(fid, '              "icon-size": 0.75,\n');
+fprintf(fid, '              "icon-anchor": "bottom",\n');
+fprintf(fid, '              "icon-allow-overlap": true\n');
+fprintf(fid, '            }\n');
+fprintf(fid, '          });\n');
+fprintf(fid, '        }\n');
+
+fprintf(fid, '        map.on("styleimagemissing", (event) => console.warn("Missing style image:", event.id));\n');
+fprintf(fid, '        const markerCheck = setInterval(() => {\n');
+fprintf(fid, '          if (map.hasImage("start") && map.hasImage("end")) {\n');
+fprintf(fid, '            clearInterval(markerCheck);\n');
+fprintf(fid, '            addMarkerLayer();\n');
+fprintf(fid, '          }\n');
+fprintf(fid, '        }, 50);\n');
+
+% Fit map to route
+fprintf(fid, '        const bounds = new maplibregl.LngLatBounds();\n');
+fprintf(fid, '        routeFeatures.forEach(feature => {\n');
+fprintf(fid, '          feature.geometry.coordinates.forEach(coord => bounds.extend(coord));\n');
+fprintf(fid, '        });\n');
+
+fprintf(fid, '        if (!bounds.isEmpty()) {\n');
+fprintf(fid, '          map.fitBounds(bounds, { padding: 50, maxZoom: 16, duration: 1500 });\n');
+fprintf(fid, '        }\n');
+
+% hover
+fprintf(fid, '        map.on("mousemove", (event) => {\n');
+fprintf(fid, '          const features = map.queryRenderedFeatures(event.point, { layers: ["route-outline", "route-inner", "track-markers"] });\n');
+fprintf(fid, '          const feature = features.length ? features[0] : null;\n');
+fprintf(fid, '          const name = feature && feature.properties ? feature.properties.name : null;\n');
+fprintf(fid, '          const tip = featuretipElement;\n');
+fprintf(fid, '          if (feature && name) {\n');
+fprintf(fid, '            tip.textContent = name;\n');
+fprintf(fid, '            tip.style.display = "block";\n');
+fprintf(fid, '            tip.style.left = (event.point.x + 10) + "px";\n');
+fprintf(fid, '            tip.style.top = (event.point.y + 10) + "px";\n');
+fprintf(fid, '          } else {\n');
+fprintf(fid, '            tip.style.display = "none";\n');
+fprintf(fid, '          }\n');
+fprintf(fid, '          map.getCanvas().style.cursor = feature ? "pointer" : "";\n');
+fprintf(fid, '        });\n');
+
+% click
+fprintf(fid, '        map.on("click", (event) => {\n');
+fprintf(fid, '          const features = map.queryRenderedFeatures(event.point, { layers: ["route-outline", "route-inner", "track-markers"] });\n');
+fprintf(fid, '          if (!features.length) {\n');
+fprintf(fid, '            popup.remove();\n');
+fprintf(fid, '            return;\n');
+fprintf(fid, '          }\n');
+
+fprintf(fid, '          const feature = features.find(f => f.properties && f.properties.description && f.properties.description !== "undefined");\n');
+fprintf(fid, '          if (!feature) {\n');
+fprintf(fid, '            popup.remove();\n');
+fprintf(fid, '            return;\n');
+fprintf(fid, '          }\n');
+
+fprintf(fid, '          const coordinates = feature.geometry.type === "Point"\n');
+fprintf(fid, '            ? feature.geometry.coordinates.slice()\n');
+fprintf(fid, '            : event.lngLat.toArray();\n');
+
+fprintf(fid, '          popup.setLngLat(coordinates)\n');
+fprintf(fid, '            .setHTML(feature.properties.description)\n');
+fprintf(fid, '            .addTo(map);\n');
+fprintf(fid, '        });\n');
 fprintf(fid, '      });\n');
-fprintf(fid, '      let minResolution = Math.max(...map.getSize().map((px,i)=>measures[i]/px*1.7));\n');
-fprintf(fid, '      map.getView().fit(extent, {duration: 3000, easing: ol.easing.easeOut, minResolution: minResolution} );\n');
-fprintf(fid, '      map.on("pointermove", (event)=> {\n');
-fprintf(fid, '        let feature = map.forEachFeatureAtPixel(event.pixel, (feature) => feature);\n');
-fprintf(fid, '        if (feature && feature.get("name")) {\n');
-fprintf(fid, '          document.getElementById("featuretip").innerHTML = feature.get("name");\n');
-fprintf(fid, '          featuretip.setPosition(feature.getGeometry().getCoordinates());\n');
-fprintf(fid, '        } else { featuretip.setPosition(undefined); }\n');
-fprintf(fid, '        if (feature && feature.get("description")) {\n');
-fprintf(fid, '          document.getElementById("crg-map").style.cursor = "pointer";\n');
-fprintf(fid, '        } else { document.getElementById("crg-map").style.cursor = "auto"; }\n');
+
+% Error report
+fprintf(fid, '      map.on("error", (event) => {\n');
+fprintf(fid, '        if (event && event.error) console.error("MapLibre error:", event.error);\n');
 fprintf(fid, '      });\n');
-fprintf(fid, '      map.on("singleclick", (event) => {\n');
-fprintf(fid, '        let feature = map.forEachFeatureAtPixel(event.pixel, (feature) => feature);\n');
-fprintf(fid, '        if (feature && feature.get("description")) {\n');
-fprintf(fid, '          document.getElementById("popup-content").innerHTML = feature.get("description");\n');
-fprintf(fid, '          if (feature.getGeometry().getType() === "Point"){\n');
-fprintf(fid, '            popup.setOffset([0, -50]);\n');
-fprintf(fid, '            popup.setPosition(feature.getGeometry().getCoordinates());\n');
-fprintf(fid, '          } else if (feature.getGeometry().getType() === "LineString"){\n');
-fprintf(fid, '            popup.setOffset([0, -20]);\n');
-fprintf(fid, '            popup.setPosition(feature.getGeometry().getCoordinateAt(0.5));\n');
-fprintf(fid, '          } else { popup.setPosition(undefined); }\n');
-fprintf(fid, '        } else { popup.setPosition(undefined); }\n');
-fprintf(fid, '      });\n');
-fprintf(fid, '      document.getElementById("popup-closer").addEventListener("click", (event) =>{\n');
-fprintf(fid, '        popup.setPosition(undefined);\n');
-fprintf(fid, '        event.target.blur();\n');
-fprintf(fid, '        event.preventDefault();\n');
-fprintf(fid, '        return false;\n');
-fprintf(fid, '      });\n');
+
 fprintf(fid, '    </script>\n');
 fprintf(fid, '  </body>\n');
 fprintf(fid, '</html>\n');
 
-fclose(fid);
+clear('file_io_cleanup');
+
 
 end
 
