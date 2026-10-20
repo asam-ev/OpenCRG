@@ -35,10 +35,14 @@ function [] = crg_intro()
 %                   length(b) ==  1: constant banking
 %                   length(b) == nu: variable banking
 %
-%   - Head data, which is read from or written to OpenCRG road parameters
-%     section. This data is checked and complemented with equivalent core data
-%     where available. Defaults are used for missing CRG curved and local
-%     inertial coordinate systems. WGS84 data is optional.
+%   - Head data, which is read from or written to the OpenCRG road
+%     parameter section $ROAD_CRG.
+%     This data is checked and complemented with equivalent core data where
+%     available. Defaults are used for missing CRG curved and rectangular
+%     coordinate systems.
+%     WGS84 data for start and end of the reference line is optional, only
+%     the start of the reference line may be defined. Longitude/latitude
+%     data is independent from altitude data.
 %       DATA.head   struct array of data scalars
 %                   (and equivalent OpenCRG file header keyword)
 %                   with these struct elements:
@@ -80,7 +84,8 @@ function [] = crg_intro()
 %           abeg (reference_line_start_alt)
 %           aend (reference_line_end_alt)
 %
-%   - Map projection data, which is read from or written to OpenCRG file headers.
+%   - Map projection data, which is read from or written to the OpenCRG
+%     road parameter section $ROAD_CRG_MPRO.
 %     This data is checked, expanded or overwritten where appropriate.
 %     Defaults are used where explicit settings are missing, see MAP_INTRO
 %     for details.
@@ -98,10 +103,11 @@ function [] = crg_intro()
 %                   file processing.
 %       DATA.filenm name of OpenCRG file
 %
-%   - Modifier data, which defines further OpenCRG modifiers
-%     This data is read from OpenCRG file headers or otherwise set,
-%     and then evaluated and applied by CRG_MODS. The modifiers are evaluated in
-%     as they appear below, and are cleared after they are applied.
+%   - Modifier data, which is read from or written to the OpenCRG road
+%     parameter section $ROAD_CRG_MODS.
+%     By calling CRG_MODS, the modifiers are evaluated and applied to the
+%     OpenCRG data in sequence as they appear below, and are cleared after
+%     they are applied.    
 %     An empty mods array inhibits any default settings.
 %       DATA.mods   struct array of data scalars
 %                   (and equivalent OpenCRG file mods keywords)
@@ -145,9 +151,11 @@ function [] = crg_intro()
 %           rptz (refpoint_z) target position (default: 0)
 %           rptp (refpoint_phi) target orientation (default: 0)
 %
-%   - Options data, which defines further OpenCRG processing options
-%     This data is read from OpenCRG file headers or set by
-%     crg_opts_set.
+%   - Options data, which is read from or written to the OpenCRG road
+%     parameter section $ROAD_CRG_OPTS.
+%     This data defines further OpenCRG processing options and is used in
+%     many further processing steps. It does not change the OpenCRG data
+%     itself, as the modifiers do.
 %       DATA.opts   struct array of data scalars
 %                   (and equivalent OpenCRG file opts keywords)
 %                   with these struct elements:

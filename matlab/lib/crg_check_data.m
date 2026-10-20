@@ -695,14 +695,6 @@ if ~isfield(data.head, 'zoff')
     data.head.zoff = 0;
 end
 
-%% complete WGS84 head data
-
-if isfield(data.head, 'abeg')
-    if ~isfield(data.head, 'aend')
-        data.head.aend = data.head.abeg + (data.head.zend - data.head.zbeg);
-    end
-end
-
 %% check NaNs in DATA.z
 
 data.ir = zeros(1, nu);
