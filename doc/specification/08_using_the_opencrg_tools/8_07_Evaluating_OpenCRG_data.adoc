@@ -29,6 +29,12 @@ Evaluate the heading angle `phi` and the curvature `crv` at a given `u`/`v`-posi
 `int crgEvalxy2pk( int cpId, double x, double y, double* phi, double* curv )`::
 Evaluate the heading angle `phi` and the curvature `crv` at a given `x`/`y`-position for contact point `cpId`.
 
+`int crgEvalxyz2enh( int cpId, double x, double y, double z, double* e, double* n, double* h )`::
+Evaluate the global position `e`/`n`/`h` (easting, northing, height) of the given local `x`/`y`/'z'-position for contact point `cpId`.
+
+`int crgEvalenh2xyz( int cpId, double e, double n, double h, double* x, double* y, double* z )`::
+Evaluate the local `x`/`y`/'z'-positions of the given global position `e`/`n`/`h` (easting, northing, height) for contact point `cpId`.
+
 == Corresponding MATLAB functions
 
 `[pz, data] = crg_eval_uv2z(data, puv)`::
@@ -60,7 +66,7 @@ Evaluate the local `x`/`y`/'z'-positions of the given geographic coordinates `pl
 `data` must have appropriate map projection data.
 
 `[penh, data] = crg_eval_xyz2enh(data, pxyz)`::
-Evaluate the global map positions `penh`(easting, northing, height) of the given local `x`/`y`/'z'-positions-positions for data set `data`.
+Evaluate the global map positions `penh`(easting, northing, height) of the given local `x`/`y`/'z'-positions for data set `data`.
 
 `[pllh, data] = crg_eval_xyz2llh(data, pxyz)`::
 Evaluate the geographic coordinates `pllh` (latitude, longitude, height) of the given local `x`/`y`/'z'-positions for data set `data`.
