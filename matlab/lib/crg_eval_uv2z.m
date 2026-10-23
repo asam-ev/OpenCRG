@@ -63,6 +63,9 @@ bdov = data.opts.bdov;
 bdss = data.opts.bdss;
 bdse = data.opts.bdse;
 
+ceps0 = data.opts.ceps;
+ceps1 = 1 - ceps0;
+
 ubeg = data.head.ubeg;
 uend = data.head.uend;
 uinc = data.head.uinc;
@@ -141,7 +144,7 @@ for ip = 1 : np
     iu = iu + 1; % MATLAB counts from 1
 
     if vinc ~= 0
-        % find v-interval in constanty spaced v-axis
+        % find v-interval in constantly spaced v-axis
         vi = (pvi - vmin) / vinc;
         iv = min(max(0, floor(vi)), nv-2); % find v-interval
         dv = vi-iv;
@@ -169,12 +172,55 @@ for ip = 1 : np
     end
 
     % evaluate z(u, v) by bilinear interpolation
+    % using a special NaN handling to avoid undesired NaN propagation
+    % because of 0*NaN resulting in NaN instead of 0 at corners (edges)
+
+    % the 4 corners to work with
     z00 = double(z(iu  , iv  ));
-    z10 = double(z(iu+1, iv  )) - z00;
+    z10 = double(z(iu+1, iv  ));
     z01 = double(z(iu  , iv+1));
-    z11 = double(z(iu+1, iv+1)) - (z10 + z01);
-    z01 = z01 - z00;
-    piz = (z11*vi + z10)*ui + z01*vi + z00;
+    z11 = double(z(iu+1, iv+1));
+
+    % check if any corner is NaN (any NaN will be propagated to d11)
+    d11 = z11 - z10 - z01 + z00;
+    if ~isnan(d11)
+        % standard interpolation without any NaN corner
+        d10 = z10 - z00;
+        d01 = z01 - z00;
+        piz = (d11*vi + d10)*ui + d01*vi + z00;
+    else
+        % snap to corner (edge) if rather close
+        uw = ui;  vw = vi;
+        if uw < ceps0, uw = 0; elseif uw > ceps1, uw = 1; end
+        if vw < ceps0, vw = 0; elseif vw > ceps1, vw = 1; end
+
+        % identify NaN(s)
+        n00 = isnan(z00);
+        n10 = isnan(z10);
+        n01 = isnan(z01);
+        n11 = isnan(z11);
+
+        if (n00 && uw<1 && vw<1) || (n10 && uw>0 && vw<1) || ...
+           (n01 && uw<1 && vw>0) || (n11 && uw>0 && vw>0)
+
+            % at least one NaN corner is relevant
+            % NaN is propagated
+            piz = NaN;
+        else
+            % all NaN corners (edges) are irrelevant and are replaced by 0
+
+            if n00, z00 = 0; end
+            if n10, z10 = 0; end
+            if n01, z01 = 0; end
+            if n11, z11 = 0; end
+
+            % standard interpolation (as above)
+            d11 = z11 - z10 - z01 + z00;
+            d10 = z10 - z00;
+            d01 = z01 - z00;
+            piz = (d11*vw + d10)*uw + d01*vw + z00;
+        end
+    end
 
     % add slope
     if nrz > 0

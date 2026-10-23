@@ -566,7 +566,7 @@ clearTmpData( CrgDataStruct *crgData )
         return;
 
     if ( crgData->admin.recordBuffer )
-        free ( crgData->admin.recordBuffer );
+        crgFree ( crgData->admin.recordBuffer );
 
     crgData->admin.recordBuffer = NULL;
 }
@@ -1987,7 +1987,7 @@ readData( CrgDataStruct* crgData )
 
     /* --- ok, file data copy is no longer needed, get rid of it --- */
     if ( crgData->admin.fileBuffer )
-        free ( crgData->admin.fileBuffer );
+        crgFree ( crgData->admin.fileBuffer );
 
     crgData->admin.fileBuffer = NULL;
 }
@@ -3367,14 +3367,8 @@ decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 
         case dOpcodeIncludeDone:
             {
-                CrgAdminStruct adminBackup;
-
                 crgMsgPrint( dCrgMsgLevelNotice, "--------------------------------------\n" );
                 crgMsgPrint( dCrgMsgLevelNotice, "decodeIncludeFile: importing file <%s>\n", filename );
-
-                /* hold a copy of the administration structure */
-                memcpy( &adminBackup, &( crgData->admin ), sizeof( CrgAdminStruct ) );
-                crgData->admin.sectionType = dFileSectionNone;
 
                 /* load the include file and set the file level accordingly */
                 mFileLevel++;
@@ -3388,9 +3382,6 @@ decodeIncludeFile( CrgDataStruct* crgData, const char* buffer, int code )
 
                 if ( !result )
                     return 0;
-
-                /* restore the administration structure */
-                memcpy( &( crgData->admin ), &adminBackup, sizeof( CrgAdminStruct ) );
 
                 crgMsgPrint( dCrgMsgLevelNotice, "--------------------------------------\n" );
                 crgMsgPrint( dCrgMsgLevelNotice, "decodeIncludeFile: continuing with previous file\n" );
