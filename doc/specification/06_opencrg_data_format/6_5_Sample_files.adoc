@@ -7,6 +7,10 @@ Sample files with binary road data are stored in `_open-crg_/crg-bin/` and compr
 the following:
 
 `belgian_block.crg`:: Binary data set for complex tests.
+`country_road.crg`:: High resolution data set of a road in Germany.
+`crg_local_curv_test_fail.crg`:: Test data set that fails the local curvature check.
+`crg_local_curv_test_ok.crg`:: Test data set that passes the local curvature check.
+`crg_refline_Hoki_HoeKi_Grafing.crg`:: Data set containing a 44 kilometer reference line with minimal grid data.
 
 Sample files with human-readable road data are stored in `_open-crg_/crg-txt/` and comprise
 the following:
@@ -26,5 +30,6 @@ the following:
 `handmade_straight.crg`:: Straight road (LRFI format).
 `handmade_straight_double.crg`:: Straight road (LDFI format).
 `handmade_straight_minimalist.crg`:: Minimal OpenCRG file.
+`handmade_straight_NaN.crg`:: Straight road containing NaN data.
 `handmade_vtest.crg`:: Human-readable test relating to v-options.
 `testOptionBorderMode.crg`:: Testing different border mode options.
