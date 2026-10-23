@@ -4,6 +4,7 @@ The source files of the C-API are stored in `_open-crg_/c-api/baselib/src/` and 
 the following:
 
 `crgContactPoint.c`:: Contact point management.
+`crgEvalenh.c`:: Routines for transforming x/y/z-coordinates to e/n/h-coordinates and vice versa.
 `crgEvalpk.c`:: Routines for evaluating heading and curvature.
 `crgEvaluv2xy.c`:: Routines for evaluating x/y-coordinates from u/v-coordinates.
 `crgEvalxy2uv.c`:: Routines for evaluating u/v-coordinates from x/y-coordinates.
