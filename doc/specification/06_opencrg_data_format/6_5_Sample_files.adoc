@@ -3,12 +3,12 @@
 
 The OpenCRG software package contains various sample files demonstrating different use cases.
 
-Sample files with binary road data are stored in `_open-crg_/crg-bin/` and comprise
+Sample files with binary road data are stored in `_OpenCRG_/crg-bin/` and comprise
 the following:
 
 `belgian_block.crg`:: Binary data set for complex tests.
 
-Sample files with human-readable road data are stored in `_open-crg_/crg-txt/` and comprise
+Sample files with human-readable road data are stored in `_OpenCRG_/crg-txt/` and comprise
 the following:
 
 `fileref.crg`:: Referencing another CRG file.

@@ -1,6 +1,6 @@
 = Test scripts
 
-The test scripts for the MATLAB tools are stored in `_open-crg_/matlab/test/` and comprise the following:
+The test scripts for the MATLAB tools are stored in `_OpenCRG_/matlab/test/` and comprise the following:
 
 `crg_test_append.m`:: Test concatenating two OpenCRG files.
 `crg_test_continuesTrack.m`:: Test the reference line continuation option.

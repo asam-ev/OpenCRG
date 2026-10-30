@@ -1,6 +1,6 @@
 = Source code of test programs
 
-The source code of the test programs for the C-API is stored in `_open-crg_/c-api/test/` and comprises the following:
+The source code of the test programs for the C-API is stored in `_OpenCRG_/c-api/test/` and comprises the following:
 
 `Dump/`:: Read an OpenCRG file and write all values (x, y, z, u, v) into a text file `crgDump.txt`.
 `MemTest/`:: Test allocating and releasing OpenCRG data sets.

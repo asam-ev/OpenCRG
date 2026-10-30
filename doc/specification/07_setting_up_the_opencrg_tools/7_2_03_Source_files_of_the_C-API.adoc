@@ -1,6 +1,6 @@
 = Source files of the C-API
 
-The source files of the C-API are stored in `_open-crg_/c-api/baselib/src/` and comprise
+The source files of the C-API are stored in `_OpenCRG_/c-api/baselib/src/` and comprise
 the following:
 
 `crgContactPoint.c`:: Contact point management.

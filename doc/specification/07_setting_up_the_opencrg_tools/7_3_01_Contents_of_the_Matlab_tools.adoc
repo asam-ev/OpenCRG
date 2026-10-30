@@ -1,6 +1,6 @@
 = Contents of the MATLAB tools
 
-The MATLAB tools are stored in `_open-crg_/matlab/` and comprise the following:
+The MATLAB tools are stored in `_OpenCRG_/matlab/` and comprise the following:
 
 `demo/`:: Scripts demonstrating the use of the base library.
 
