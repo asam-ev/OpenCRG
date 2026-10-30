@@ -10,10 +10,8 @@ The latest stable version of OpenCRG is available on the ASAM website. The softw
 [discrete]
 == Steps
 
-. Open https://www.asam.net/standards/detail/opencrg/.
-. Navigate to the _Download_ area.
-. Follow the instructions to download the software package.
-. Download the ZIP archive.
+. Open https://www.github.com/asam-ev/OpenCRG/releases/latest.
+. Download the ZIP archive `OpenCRG-vX.Y.Z.zip`.
 . Unpack the archive into a local directory.
 
 [discrete]
@@ -25,6 +23,7 @@ The latest stable version of OpenCRG is available on the ASAM website. The softw
 [discrete]
 == Related topics
 
+* <<Compiling the C-API using CMake>>
 * <<Compiling the C-API using Makefiles>>
 * <<Compiling the C-API using a shell script>>
 * <<Compiling the C-API using the command line>>
