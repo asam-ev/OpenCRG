@@ -15,7 +15,7 @@ Using CMake is the most compatible way of compiling the C-API.
 . Run `cmake --build build --config Release`.
 
 Note that CMAKE_BUILD_TYPE will be ignored using multi-config generators. 
-The build type is then specified by the --config flag.
+The build type is then specified by the `--config` flag.
 The above is a simplified example and it is assumed that the compiler is 
 detected automatically.
 
