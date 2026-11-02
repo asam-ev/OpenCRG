@@ -20,12 +20,13 @@ You have compiled the C-API.
 
 . Open a command line interpreter.
 . Switch to the directory containing the executable of the sample program. The
-executables are stored in `_open-crg_/c-api/demo/bin/`.
+executables are stored in `_OpenCRG_/c-api/demo/bin/`.
 . Run `[program] -help` to display information about the available options.
 . Run `[program] [options] <OpenCRG file>` to run the program with the set options for the selected OpenCRG file.
 
 == Related topics
 
+* <<Compiling the C-API using CMake>>
 * <<Compiling the C-API using Makefiles>>
 * <<Compiling the C-API using a shell script>>
 * <<Compiling the C-API using the command line>>
