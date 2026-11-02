@@ -586,10 +586,6 @@ if isfield(data, 'p') && length(data.p)==nu-1 % variable heading (curved refline
     dy = diff(data.ry);
     data.rc = (dx(1:end-1).*dy(2:end)-dy(1:end-1).*dx(2:end)) / data.head.uinc^3;
     clear dx dy
-
-    % curvature check (global and local)
-    [data, ierr] = crg_check_curvature(data, ierr);
-
 else % constant heading (straight refline)
     if ~isfield(data.head, 'xbeg')
         data.head.xbeg = 0;
@@ -701,6 +697,12 @@ if isfield(data.head, 'abeg')
     if ~isfield(data.head, 'aend')
         data.head.aend = data.head.abeg + (data.head.zend - data.head.zbeg);
     end
+end
+
+%% check curvature (global and local)
+
+if isfield(data, 'p') && length(data.p)==nu-1 % variable heading (curved refline)
+    [data, ierr] = crg_check_curvature(data, ierr);
 end
 
 %% check NaNs in DATA.z
