@@ -2,13 +2,14 @@ name: CMake C-API multi-platform
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "main" ]
     paths:
-      - "c-api/**"
+      - 'c-api/**'
+      - '.github/workflows/ci-cmake-c-api.yml'
   pull_request:
-    branches: [ "master" ]
     paths:
-      - "c-api/**"
+      - 'c-api/**'
+      - '.github/workflows/ci-cmake-c-api.yml'
 
 jobs:
   build-c-api:
