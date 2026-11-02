@@ -47,7 +47,7 @@ static void crgDataScaleChannel( CrgChannelBaseStruct* channel, double factor, i
 static void crgDataOffsetChannel( CrgChannelStruct* channel, double offset );
 
 /**
-* offset the data of channelZ or channelRefZ depending on availability
+* offset channelRefZ channel data of data set
 * @param channel    pointer to data set
 * @param offset     offset value
 */
@@ -974,6 +974,8 @@ crgDataApplyTransformations( CrgDataStruct *crgData )
         crgData->util.phiFirstCos = cos( crgData->channelPhi.info.first );
         crgData->util.phiLastSin  = sin( crgData->channelPhi.info.last  );
         crgData->util.phiLastCos  = cos( crgData->channelPhi.info.last  );
+        crgData->util.phiOffSin   = sin( crgData->channelPhi.info.offset );
+        crgData->util.phiOffCos   = cos( crgData->channelPhi.info.offset );
 
         /* x,y data of center line */
         rotatePoint( &( crgData->channelX.info.first ), &( crgData->channelY.info.first ), rotCenter[0], rotCenter[1], rotAngle );

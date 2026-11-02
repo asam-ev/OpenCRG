@@ -258,6 +258,8 @@ void crgCalcUtilityData( CrgDataStruct *crgData )
     crgData->util.phiFirstCos = cos( crgData->channelPhi.info.first );
     crgData->util.phiLastSin  = sin( crgData->channelPhi.info.last  );
     crgData->util.phiLastCos  = cos( crgData->channelPhi.info.last  );
+    crgData->util.phiOffSin   = sin( crgData->channelPhi.info.offset );
+    crgData->util.phiOffCos   = cos( crgData->channelPhi.info.offset );
 
     /* --- reset the "closed" feature --- */
     crgData->util.uIsClosed = 0;
