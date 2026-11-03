@@ -152,7 +152,9 @@ end
 
 %% apply modifiers
 
-done = 0;
+done = 0; % flag for forced check
+rmee = 0; % flag for removal of DATA.head.eend, DATA.head.nend, DATA.mpro
+rmae = 0; % flag for removal of DATA.head.aend, DATA.mpro
 
 if szgd ~= 1.0 % scale elevation grid
     data.z = szgd * data.z;
@@ -166,9 +168,7 @@ if sslp ~= 1.0 % scale slope information
     data.head.send = sslp * data.head.send;
     done = 1; % force check
     data.head.zend = data.head.zbeg + sslp*(data.head.zend-data.head.zbeg);
-    if isfield(data.head, 'aend')
-        data.head = rmfield(data.head, 'aend');
-    end
+    rmae = 1; % remove DATA.head.aend, DATA.mpro
 end
 
 if sbkg ~= 1.0 % scale banking information
@@ -188,13 +188,8 @@ if slth ~= 1.0 % scale u information
     data.head.xend = data.head.xbeg + slth*(data.head.xend-data.head.xbeg);
     data.head.yend = data.head.ybeg + slth*(data.head.yend-data.head.ybeg);
     data.head.zend = data.head.zbeg + slth*(data.head.zend-data.head.zbeg);
-    if isfield(data.head, 'eend')
-        data.head = rmfield(data.head, 'eend');
-        data.head = rmfield(data.head, 'nend');
-    end
-    if isfield(data.head, 'aend')
-        data.head = rmfield(data.head, 'aend');
-    end
+    rmee = 1; % remove DATA.head.eend, DATA.head.nend, DATA.mpro
+    rmae = 1; % remove DATA.head.aend, DATA.mpro
 end
 
 if swth ~= 1.0 % scale v information
@@ -216,10 +211,7 @@ if scrv ~= 1.0 % scale reference line's curvature
         done = 1; % force check
         data.head = rmfield(data.head, 'xend');
         data.head = rmfield(data.head, 'yend');
-        if isfield(data.head, 'eend')
-            data.head = rmfield(data.head, 'eend');
-            data.head = rmfield(data.head, 'nend');
-        end
+        rmee = 1; % remove DATA.head.eend, DATA.head.nend, DATA.mpro
     end
 end
 
@@ -227,6 +219,30 @@ end
 
 if done == 0
     return
+end
+
+%% remove invalid georeferencing data
+
+if rmee ~= 0
+    if isfield(data.head, 'eend')
+        warning('CRG:modsWarning', 'DATA.head.eend and DATA.head.nend become invalid and are removed')
+        data.head = rmfield(data.head, 'eend');
+        data.head = rmfield(data.head, 'nend');
+    end
+end
+
+if rmae ~= 0
+    if isfield(data.head, 'aend')
+        warning('CRG:modsWarning', 'DATA.head.aend becomes invalid and is removed')
+        data.head = rmfield(data.head, 'aend');
+    end
+end
+
+if rmee ~= 0 || rmae ~= 0
+    if isfield(data, 'mpro')
+        warning('CRG:modsWarning', 'DATA.mpro becomes invalid and is removed')
+        data = rmfield(data, 'mpro');
+    end
 end
 
 %% check data again
@@ -405,6 +421,13 @@ end
 
 if done == 0
     return
+end
+
+%% remove invalid georeferencing data
+
+if isfield(data, 'mpro')
+    warning('CRG:modsWarning', 'DATA.mpro becomes invalid and is removed')
+    data = rmfield(data, 'mpro');
 end
 
 %% check head and data again
