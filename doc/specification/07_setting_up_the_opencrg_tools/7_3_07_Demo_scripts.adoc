@@ -1,6 +1,6 @@
 = Demo scripts
 
-The demo scripts for the MATLAB tools are located in `_OpenCRG_/matlab/demo/` and comprise the following:
+The demo scripts for the MATLAB tools are located in `matlab/demo/` and comprise the following:
 
 `crg_demo.m`:: Create a set of demo files. 
 `crg_demo_belgian_block.m`:: Load and visualize `../crg-bin/belgian_block.crg`.
