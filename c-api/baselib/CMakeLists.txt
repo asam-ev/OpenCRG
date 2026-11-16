@@ -24,6 +24,7 @@ endif()
 # Source files
 set(OPENCRG_SOURCES
     src/crgContactPoint.c
+    src/crgEvalenh.c
     src/crgEvalpk.c
     src/crgEvaluv2xy.c
     src/crgEvalxy2uv.c
