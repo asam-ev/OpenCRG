@@ -2,7 +2,7 @@
 
 Modifiers provide a way to alter OpenCRG data without changing the actual data in the file. 
 
-With the C-API, you use function calls to set modifiers. For all modifiers and values, symbolic constants are defined in `_opencrg_/c-api/baselib/inc/crgBaseLib.h`. These constants should be used instead of their integer equivalents to improve readability of the code.
+With the C-API, you use function calls to set modifiers. For all modifiers and values, symbolic constants are defined in `c-api/baselib/inc/crgBaseLib.h`. These constants should be used instead of their integer equivalents to improve readability of the code.
 
 With MATLAB, you set modifiers by directly accessing the `mods` field of a data set using dot notation.
 

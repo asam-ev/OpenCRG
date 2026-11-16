@@ -10,7 +10,7 @@ Using CMake is the most compatible way of compiling the C-API.
 == Steps
 
 . Open a command line interpreter that can call cmake.
-. Change current working directory to `_OpenCRG_/c-api`.
+. Change current working directory to `c-api`.
 . Run `cmake -B build -DCMAKE_BUILD_TYPE=Release`.
 . Run `cmake --build build --config Release`.
 
