@@ -568,8 +568,6 @@ crgDataEvaluv2z( const CrgDataStruct *crgData, const CrgOptionsStruct* optionLis
     /* add z displacement from reference line z data */
     if ( crgData->channelRefZ.info.valid )
        *z += crgData->channelRefZ.data[indexU] + fracU * ( crgData->channelRefZ.data[indexU+1] - crgData->channelRefZ.data[indexU] );
-    else
-        *z += crgData->channelRefZ.info.first;
 
     /* add z displacement from banking */
     if ( crgData->util.hasBank && calcBank )
